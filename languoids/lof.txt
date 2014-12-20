@@ -1,0 +1,1003 @@
+Artificial Language
+  Esperanto [epo]
+  Interlingua (International Auxiliary Language Association) [ina]
+  Lingua Franca Nova [lfn]
+  Kotava [avk]
+  Neo [neu]
+  Talossan [tzl]
+  Ladakhi Sign [NOCODE_Ladakhi-Sign]
+Artificial Language, Efate group based
+  Efatese [NOCODE_Efatese]
+Sign Language, Deaf Sign Language, JSLic
+  Taiwan Sign Language [tss]
+  Japanese Sign Language [jsl]
+  Korean Sign Language [kvk]
+Sign Language, Deaf Sign Language, LSFic, Danish Sign
+  Danish Sign Language [dsl]
+  Icelandic Sign Language [icl]
+Sign Language, Deaf Sign Language, LSFic, Central European Sign
+  Czech Sign Language [cse]
+  Romanian Sign Language [rms]
+  Hungarian Sign Language [hsh]
+  Slovakian Sign Language [svk]
+  Bulgarian Sign Language [bqn]
+Sign Language, Deaf Sign Language, LSFic, Catalan Sign
+  Catalan Sign Language [csc]
+  Valencian Sign Language [vsv]
+Sign Language, Deaf Sign Language, LSFic, Yugoslav Sign
+  Yugoslavian Sign Language [ysl]
+  Croatia Sign Language [csq]
+Sign Language, Deaf Sign Language, LSFic, Dutch-Flemish Sign
+  Dutch Sign Language [dse]
+Sign Language, Deaf Sign Language, LSFic, Dutch-Flemish Sign, Belgian Sign
+  Vlaamse Gebarentaal [vgt]
+  Langue des signes de Belgique Francophone [sfb]
+Sign Language, Deaf Sign Language, LSFic, Norwegian Sign
+  Norwegian Sign Language [nsl]
+  Madagascar Sign Language [mzc]
+Sign Language, Deaf Sign Language, LSFic, Italian Sign
+  Italian Sign Language [ise]
+  Swiss-Italian Sign Language [slf]
+Sign Language, Deaf Sign Language, LSFic
+  French Sign Language [fsl]
+  Austrian Sign Language [asq]
+  Bolivian Sign Language [bvl]
+  Greek Sign Language [gss]
+  Hawai'i Pidgin Sign Language [hps]
+  Irish Sign Language [isg]
+  Selangor Sign Language [kgi]
+  Latvian Sign Language [lsl]
+  Moroccan Sign Language [xms]
+  Swiss-French Sign Language [ssr]
+  Puerto Rican Sign Language [psl]
+  Philippine Sign Language [psp]
+  Tunisian Sign Language [tse]
+  Algerian Sign Language [asp]
+Sign Language, Deaf Sign Language, DGSic
+  German Sign Language [gsg]
+  Polish Sign Language [pso]
+  Israeli Sign Language [isr]
+  Swiss-German Sign Language [sgg]
+Sign Language, Deaf Sign Language, CSLic, Nuclear CSLic
+  Hong Kong-Macau Sign Language [hks]
+  Chinese Sign Language [csl]
+Sign Language, Deaf Sign Language, CSLic
+  Thai Sign Language [tsq]
+Sign Language, Deaf Sign Language, CSLic, Ha-Hoic
+  Hanoi Sign Language [hab]
+  Ho Chi Minh City Sign Language [hos]
+Sign Language, Deaf Sign Language, ASLic, American Sign
+  Jamaican Sign Language [jls]
+  American Sign Language [ase]
+Sign Language, Deaf Sign Language, ASLic, Malaysian Sign
+  Malaysian Sign Language [xml]
+  Indonesian Sign Language [inl]
+Sign Language, Deaf Sign Language, ASLic, Nigerian Sign
+  Nigerian Sign Language [nsi]
+  Chadian Sign Language [cds]
+Sign Language, Deaf Sign Language, ASLic
+  Quebec Sign Language [fcs]
+  Panamanian Sign Language [lsp]
+  Gambian Sign Language [NOCODE_Gambian-Sign]
+  Guinean Sign Language [gus]
+  Ghanaian Sign Language [gse]
+  Costa Rican Sign Language [csr]
+  Dominican Sign Language [doq]
+  Trinidad and Tobago Sign Language [lst]
+  Ugandan Sign Language [ugn]
+  Sierra Leone Sign Language [sgx]
+  Ethiopian Sign Language [eth]
+  Chilean Sign Language [csg]
+  Colombian Sign Language [csn]
+Sign Language, Deaf Sign Language, BSLic, BANZL
+  British Sign Language [bfi]
+  New Zealand Sign Language [nzs]
+  Australian Sign Language [asf]
+Sign Language, Deaf Sign Language, BSLic, South African Sign
+  South African Sign Language [sfs]
+  Namibian Sign Language [nbs]
+Sign Language, Deaf Sign Language, BSLic
+  Maritime Sign Language [nsr]
+Sign Language, Deaf Sign Language, BSLic, Swedish Sign
+  Swedish Sign Language [swl]
+  Portuguese Sign Language [psr]
+Sign Language, Deaf Sign Language, BSLic, Swedish Sign, Finnish Sign
+  Finnish Sign Language [fse]
+  Finland-Swedish Sign Language [fss]
+Sign Language, Village Sign Language, Providencia-Cayman Sign
+  Providencia Sign Language [prz]
+  Old Cayman Sign Language [NOCODE_Old-Cayman-Sign]
+Sign Language, Village Sign Language
+  Yolngu Sign Language [NOCODE_Yolngu-Sign]
+  Keresan Pueblo Indian Sign Language [NOCODE_Keresan-Pueblo-Sign]
+  Jamaican Country Sign Language [jcs]
+  Al-Sayyid Bedouin Sign Language [syy]
+  Martha's Vineyard Sign Language [mre]
+  Urub\'u-Kaapor Sign Language [uks]
+  Chatino Sign Language [NOCODE_Chatino-Sign]
+  Mardin Sign Language [NOCODE_Mardin-Sign]
+  Adamorobe Sign Language [ads]
+  Alipur Sign Language [NOCODE_Alipur-Sign]
+  Nicaraguan Sign Language [ncs]
+  Kata Kolok [bqy]
+  Yucatec Maya Sign Language [msd]
+  Ban Khor Sign Language [bfk]
+  Inuit Sign Language [NOCODE_Inuit-Sign]
+  Ghardaia Sign Language [NOCODE_Ghardaia-Sign-Language]
+  Original Costa Rican Sign Language [NOCODE_Original-Costa-Rican-Sign]
+  Brunca Sign Language [NOCODE_Brunca-Sign]
+  Bribri Sign Language [NOCODE_Bribri-Sign]
+  Bura Sign Language [NOCODE_Bura-Sign]
+  Enga Sign Language [NOCODE_Enga-Sign]
+  Guinea-Bissau Sign Language [NOCODE_Guinea-Bissau-Sign]
+  Tebul Sign Language [tsy]
+  Jhankot Sign Language [jhs]
+  Jumla Sign Language [jus]
+  Ghandruk Sign Language [gds]
+  Old Kentish Sign Language [okl]
+  Mbour Sign Language [NOCODE_Mbour-Sign]
+  Nanabin Sign Language [NOCODE_Nanabin-Sign]
+  Kajana Sign Language [NOCODE_Kajana-Sign]
+Sign Language, Deaf Sign Language, Russian Sign
+  Ukrainian Sign Language [ukl]
+  Moldova Sign Language [vsi]
+  Lithuanian Sign Language [lls]
+  Russian Sign Language [rsl]
+  Mongolian Sign Language [msr]
+  Georgian Sign Language [NOCODE_Georgian-Sign]
+Sign Language, Deaf Sign Language, Paraguay-Uruguay Sign
+  Paraguayan Sign Language [pys]
+  Uruguayan Sign Language [ugy]
+Sign Language, Deaf Sign Language, Spanish Sign, Mexican Sign
+  Mexican Sign Language [mfs]
+  Honduras Sign Language [hds]
+Sign Language, Deaf Sign Language, Spanish Sign
+  Spanish Sign Language [ssp]
+Sign Language, Deaf Sign Language, Arab Sign
+  Kuwaiti Sign Language [NOCODE_Kuwaiti-Sign]
+  Syro-Palestinian Sign Language [jos]
+  Libyan Sign Language [lbs]
+Sign Language, Deaf Sign Language, Unclassified Deaf Sign Language
+  Cuba Sign Language [csf]
+  Guyana Sign Language [NOCODE_Guyana-Sign]
+Sign Language, Deaf Sign Language, Old Chiangmai-Bangkok-Haiphong Sign, Old Chiangmai-Bangkok Sign
+  Chiangmai Sign Language [csd]
+  Old Bangkok Sign Language [NOCODE_Old-Bangkok-Sign]
+Sign Language, Deaf Sign Language, Old Chiangmai-Bangkok-Haiphong Sign
+  Haiphong Sign Language [haf]
+Sign Language, Deaf Sign Language
+  Yoruba Sign Language [NOCODE_Yoruba-Sign]
+  Armenian Sign Language [aen]
+  Indian Sign Language [ins]
+  Lyons Sign Language [lsg]
+  Salvadoran Sign Language [esn]
+  Ecuadorian Sign Language [ecs]
+  Pakistan Sign Language [pks]
+  Nepalese Sign Language [nsp]
+  Peruvian Sign Language [prl]
+  Penang Sign Language [psg]
+  Rennellese Sign Language [rsi]
+  Saudi Arabian Sign Language [sdl]
+  Sri Lankan Sign Language [sqs]
+  Venezuelan Sign Language [vsl]
+  Hausa Sign Language [hsl]
+  Mauritian Sign Language [lsy]
+  Albanian Sign Language [sqk]
+  Afghan Sign Language [afg]
+  Turkish Sign Language [tsm]
+  Egypt Sign Language [esl]
+  Maltese Sign Language [mdl]
+  Langue de Signes Malienne [bog]
+  Burkina Faso Sign Language [NOCODE_Burkina-Faso-Sign]  
+  Brazilian Sign Language [bzs]
+  Guatemalan Sign Language [gsm]
+  Argentine Sign Language [aed]
+  Mofu-Gudur Sign Language [NOCODE_Mofu-Gudur-Sign-Language]
+  Tanzanian Sign Language [tza]
+  Zimbabwe Sign Language [zib]
+  Persian Sign Language [psc]
+  Mozambican Sign Language [mzy]
+  Kenyan Sign Language [xki]
+  Estonian Sign Language [eso]
+  Zambian Sign Language [zsl]
+  Tijuana Sign Language [NOCODE_Tijuana-Sign]
+Sign Language, Pidgin Sign Language
+  International Sign [ils]
+Sign Language, Auxiliary Sign Systems
+  Monastic Sign Language [mzg]
+  Australian Aborigines Sign Language [asw]
+  Plains Indian Sign Language [psd]
+Mixed Language, Gurindji-Kriol
+  Gurindji Kriol [NOCODE_Gurinji-Kriol]
+Mixed Language, Warlpiri-Kriol
+  Light Warlpiri [NOCODE_Light-Warlpiri]
+Mixed Language, Bantu-Cushitic
+  Mbugu [mhd]
+Mixed Language, Cakchiquel-Quiche
+  Cakchiquel-Quich\'e Mixed Language [ckz]
+Mixed Language, Danish-Romani
+  Traveller Danish [rmd]
+Mixed Language, English-Romani
+  Angloromani [rme]
+Mixed Language, French-Cree
+  Michif [crg]
+Mixed Language, German-Yiddish-Romani-Rotwelsch
+  Yeniche [yec]
+Mixed Language, Greek-Romani
+  Romano-Greek [rge]
+Mixed Language, Iberian-Romani
+  Cal\'o [rmq]
+Mixed Language, Basque-Romani
+  Erromintxela [emx]
+Mixed Language, Irish-undocumented
+  Shelta [sth]
+Mixed Language, Makhua-Nyanja
+  Malawi Lomwe [lon]
+Mixed Language, Norwegian-Romani
+  Traveller Norwegian [rmg]
+Mixed Language, Quechua-Puquina
+  Callawalla [caw]
+Mixed Language, Russian-Aleut
+  Mednyj Aleut [mud]
+Mixed Language, Serbian-Romani
+  Romano-Serbian [rsb]
+Mixed Language, Spanish-Quechua
+  Media Lengua [mue]
+Mixed Language, Swedish-Romani
+  Tavringer Romani [rmu]
+Mixed Language, Yapese-Ulithi
+  Nguluwan [nuw]
+Mixed Language, Zulu-Bantu
+  Camtho [cmt]
+Pidgin, Chinook based
+  Pidgin Chinook Jargon [NOCODE_Pidgin-Chinook-Jargon]
+Pidgin, Mekeo based
+  Imunga Trade Language [NOCODE_Imunga-Trade]
+  Ioi Trade Jargon [NOCODE_Ioi]
+Pidgin, Spanish based
+  Panare Trade Spanish [NOCODE_Panare-Trade-Spanish]
+  Roquetas Pidgin Spanish [NOCODE_Roquetas-Pidgin-Spanish]
+Pidgin, Dutch based
+  Hottentot Dutch [NOCODE_Hottentot-Dutch]
+Pidgin, German based
+  WW2 Pidgin German [NOCODE_WW2-Pidgin-German]
+  Kiautschou Pidgin German [NOCODE_Kiautschou-Pidgin-German]
+Pidgin, Icelandic based
+  Icelandic-Basque Pidgin [NOCODE_Icelandic-Basque-Pidgin]
+Pidgin, Portuguese based
+  Macao Pidgin Portuguese [NOCODE_Macao-Pidgin-Portuguese]
+Pidgin, Hindustani based
+  Pidgin Hindustani [NOCODE_Pidgin-Hindustani]
+Pidgin, Japanese based
+  Yokohama Pidgin [NOCODE_Yokohama-Pidgin]
+Pidgin, Ewondo based
+  Ewondo Populaire [NOCODE_Ewondo-Populaire]
+Pidgin, Russian based
+  Chinese Pidgin Russian [NOCODE_Kjachta-Pidgin]
+  Russenorsk [NOCODE_Russenorsk]
+  Taimyr Pidgin Russian [NOCODE_Taimyr-Pidgin-Russian]
+Pidgin, Kaurna based
+  Pidgin Kaurna [NOCODE_Pidgin-Kaurna]
+Pidgin, Ngarluma based
+  Pidgin Ngarluma [NOCODE_Pidgin-Ngarluma]
+Pidgin, Fijian based
+  Pidgin Fijian [NOCODE_Pidgin-Fijian]
+Pidgin, Galibi based
+  Pidgin Carib [NOCODE_Pidgin-Carib]
+  Joeka-Oajana Pidgin [NOCODE_Ndyuka-Wayana-Pidgin]
+Pidgin, Trio based
+  Ndyuka-Trio Pidgin [njt]
+Pidgin, Minigir based
+  Tolai-Nakanai-Trade [NOCODE_Tolai-Nakanai-Trade]
+Pidgin, Amerindian pidgin
+  Pidgin Delaware [dep]
+  Mobilian [mod]
+Pidgin, Arabic based pidgin
+  Turku [NOCODE_Turku]
+  Early East African Pidgin Arabic [NOCODE_Early-East-African-Pidgin-Arabic]
+  Pidgin Gulf Arabic [NOCODE_Pidgin-Gulf-Arabic]
+  Romanian Pidgin Arabic [NOCODE_Romanian-Pidgin-Arabic]
+  Pidgin Madam [NOCODE_Pidgin-Madam]
+  Jordanian Bengali Pidgin Arabic [NOCODE_Jordanian-Bengali-Pidgin-Arabic]
+Pidgin, Assamese based pidgin
+  Nefamese [nef]
+Pidgin, Manambu based pidgin
+  Kwoma-Manambu Pidgin [NOCODE_Kwoma-Manambu-Pidgin]
+Pidgin, Duvle based pidgin
+  Duvle-Wano-Pidgin [NOCODE_Duvle-Wano-Pidgin]
+Pidgin, English based pidgin
+  Solombala English [NOCODE_Solombala-English]
+  Papuan Pidgin English [NOCODE_Papuan-Pidgin-English]
+  New South Wales Pidgin [NOCODE_New-South-Wales-Pidgin]
+  South Australian Pidgin English [NOCODE_South-Australian-Pidgin-English]
+  Butler English [NOCODE_Butler-English]
+  Samoan Plantation Pidgin [NOCODE_Samoan-Plantation-Pidgin]
+  Kru Pidgin English [lir]
+  Chinese Pidgin English [cpi]
+  Queensland Kanaka English [NOCODE_Queensland-Kanaka-English]
+  Bonin English Pidgin [NOCODE_Bonin-English-Pidgin]
+  American Indian Pidgin English [NOCODE_American-Indian-Pidgin-English]
+Pidgin, French based pidgin
+  Tay Boi [tas]
+  Francais Tirailleur [NOCODE_Francais-Tirailleur]
+  Bauxite Pidgin [NOCODE_Bauxite]
+  Belle-Isle Pidgin [NOCODE_Belle-Isle-Pidgin]
+  New Caledonian Pidgin French [NOCODE_New-Caledonian-Pidgin-French]
+  Burundi Pidgin French [NOCODE_Burundi-Pidgin-French]
+Pidgin, French based pidgin, Slavey-French based pidgin
+  Broken Slavey [NOCODE_Broken-Slavey]
+  Jargon Loucheux [NOCODE_Jargon-Loucheux]
+Pidgin, Hausa based pidgin
+  Gibanawa [gib]
+  Barikanchi [bxo]
+Pidgin, Iha based pidgin
+  Iha Based Pidgin [ihb]
+Pidgin, Malay based pidgin
+  Broome Pearling Lugger Pidgin [bpl]
+Pidgin, Eskimo based pidgin
+  West Greenlandic Eskimo Pidgin [NOCODE_West-Greenlandic-Eskimo-Pidgin]
+  Herschel Island Eskimo Trade Jargon [NOCODE_Pidgin-Herschel-Eskimo]
+Pidgin, Hawaiian based
+  Pidgin Hawaiian [NOCODE_Pidgin-Hawaiian]
+Pidgin, Motu based pidgin
+  Hiri-Motu-Trading-Koriki [NOCODE_Hiri-Motu-Trading-Koriki]
+  Hiri Motu [hmo]
+  Hiri-Motu-Trading-Eleman [NOCODE_Hiri-Motu-Trading-Eleman]
+Pidgin, Onin based pidgin
+  Onin Pidgin [onx]
+Pidgin, Romance based pidgin
+  Mediterranean Lingua Franca [pml]
+Pidgin, Swahili based pidgin
+  Settla [sta]
+  KiKAR [NOCODE_KiKar]
+Pidgin, Basque based pidgin
+  Basque-Amerindian Pidgin [NOCODE_Basque-Amerindian-Pidgin]
+Pidgin, Yimas based pidgin
+  Yimas-Alamblak-Pidgin [NOCODE_Yimas-Alamblak-Pidgin]
+  Yimas-Arafundi-Pidgin [NOCODE_Yimas-Arafundi-Pidgin]
+  Yimas-Karawari Pidgin [NOCODE_Yimas-Karawari-Pidgin]
+  Yimas-Iatmul Pidgin [NOCODE_Yimas-Iatmul-Pidgin]
+Pidgin, Swedish based
+  Borgarmalet [NOCODE_Borgarmalet]
+Pidgin, Tobi based
+  Horace Holden's Pidgin Tobi [NOCODE_Horace-Holdens-Pidgin-Tobi]
+Pidgin, Sepik Iwam based pidgin
+  Hauna Trade Langauge [NOCODE_Hauna]
+Pidgin, Enga based pidgin
+  Arafundi-Enga Pidgin [NOCODE_Arafundi-Enga-Pidgin]
+Pidgin, Tukang Besi based
+  Pidgin Tukang Besi [NOCODE_Tukang-Besi-Pidgin]
+Pidgin, Zulu based pidgin
+  Fanagalo [fng]
+Speech Register, Atlantic-Congo, Volta-Congo, Benue-Congo, Igboid, Nuclear Igboid
+  Agbirigba [NOCODE_Agbirigba]
+Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian, Mercian, Macro-English, Pacific Creole English
+  Ngatik Men's Creole [ngm]
+Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Franconian, Low Franconian, Afrikaansic
+  Tsotsitaal [fly]
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
+  Khao [xao]
+Spurious, Sign Language, Deaf Sign Language
+  Singapore Sign Language [sls]
+  Yiddish Sign Language [yds]
+  Laos Sign Language [lso]
+Spurious, Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, South-Western Tibetic
+  Thudam [thw]
+Spurious, Panoan, Mainline Pano
+  Nocam\'an [nom]
+Spurious, Afro-Asiatic, Berber, Kabyle-Atlas Berber, Atlas Berber
+  Judeo-Berber [jbe]
+Spurious
+  Alaguilac [NOCODE_Alaguilac]
+  Iapama [iap]
+  Tapeba [tbb]
+  Tushan Names [NOCODE_Tushan]
+Spurious, Tai-Kadai, Kam-Tai, Be-Tai, Daic, Central-Southwestern Tai, Wenma-Southwestern Tai, Sapa-Southwestern Tai, Southwestern Tai, Southwestern Tai P, Red Tai, Tai Doic, Tai Muong
+  Tai Pao [tpo]
+Spurious, Retired, Pama-Nyungan, Arandic-Thura-Yura, Thura-Yura
+  Wirangu-Nauo [wiw]
+Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic
+  Jiarong [jya]
+Spurious, Retired, Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, South Peripheral Kuki-Chin, Paletwa
+  Khumi Awa Chin [cka]
+Spurious, Austroasiatic, Katuic, Ta'oihic, Nuclear Ta'oihic
+  Ir [irr]
+Spurious, Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil
+  Shuadit [sdt]
+Spurious, Salishan, Central Salish, Lushootseed-Puget
+  Skagit [ska]
+  Snohomish [sno]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental Central Indo-Aryan, Khandesic
+  Ahirani [ahr]
+Spurious, Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan I, Bara-Tatuyo
+  Pokang\'a [pok]
+Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Hani-Jino, Bisoid-Hanic, Hanic
+  Mahei [mja]
+Spurious, Athapaskan-Eyak-Tlingit, Athapaskan-Eyak, Athapaskan, Pacific Coast Athapaskan, Oregon Athapaskan
+  Chetco [ctc]
+Spurious, Retired, Misumalpan, Sumalpan, Sumuic
+  Sumu [sum]
+Spurious, Pama-Nyungan, Paman, Rarmul Pama
+  Gugu Mini [ggm]
+Spurious, Retired, Pama-Nyungan, Paman, Southwest Pama, Coastal Southwest Paman
+  Yir Yoront [yiy]
+Spurious, Retired, Nuclear_Trans_New_Guinea, Finisterre-Huon, Finisterre-Saruwaged, Yupna, Bwana-Moam-Tapen
+  Gabutamon [gav]
+Spurious, Pidgin
+  Maskoy Pidgin [mhh]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Greater Central Philippine, Central Philippine, Bisayan, South Bisayan, Surigao
+  Surigaonon [sul]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Northern Luzon, Meso-Cordilleran, South-Central Cordilleran, Central Cordilleran, North Central Cordilleran, Kalinga-Itneg, Kalinga, Central and South Kalinga, South Kalinga, Southeastern Kalinga
+  Upper Tanudan Kalinga [kgh]
+Spurious, Retired, Uto-Aztecan, Southern Uto-Aztecan, Corachol-Aztecan, Aztec, Western Nahuatl, Western Periphery-North Guerrero Nahuatl, Western Periphery Nahuatl, Durango Nahuatl
+  Durango Nahuatl [nln]
+Spurious, Retired, Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Southwestern Shifted Romance, West Ibero-Romance, Galician Romance, Macro-Portuguese, Indo-Portuguesic
+  Indo-Portuguese [idb]
+Spurious, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.B
+  Guajaj\'ara [gub]
+Spurious, Retired, Dogon, Nangan Dogon
+  Walo Kumbe Dogon [dwl]
+Spurious, Retired, Tai-Kadai, Kadaic, Southwestern Kra, Western Kra, Gelaoic
+  Gelao [gio]
+Spurious, Retired, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, West Mbam (A.40), Mandi-Nyokon
+  Tunen [baz]
+Spurious, Sino-Tibetan, Macro-Tani, Tani, Pre-Western Tani, Western Tani
+  Dafla [dap]
+Spurious, Yuat
+  Maramba [myd]
+Spurious, Pama-Nyungan, Southeastern Pama-Nyungan, New South Wales Pama-Nyungan, Bandjalangic
+  Arakwal [rkw]
+Spurious, Geelvink_Bay
+  Anasi [bpo]
+Spurious
+  Yar\'i [yri]
+Spurious, Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian, Mercian, Macro-English
+  Yola [yol]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, Sarawak-Melanau-Kajang, Melanau-Kajang, Melanau
+  Seru [szd]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental Central Indo-Aryan, Western Hindi, Unclassified Western Hindi
+  Chamari [cdg]
+  Gowli [gok]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Unclassified Indo-Aryan
+  Mina (India) [myi]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone
+  Degaru [dgu]
+Spurious, Mande, Western Mande, Manding-Kpelle, Central Mande, Manding-Jogo, Manding-Vai, Manding-Mokole, Manding, East Manding, Manenkan
+  Forest Maninka [myq]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu
+  Bubia [bbx]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Ngbele-Ngenda, Extreme North Vestigial Suffixes Bantu
+  Gbati-ri [gti]
+Spurious, Tucanoan, Western Tucanoan, Maijiki-Siona, Coreguaje-Siona, Siona-Secoya
+  Tetete [teb]
+Spurious, Arawakan
+  Omejes [ome]
+  Ponares [pod]
+  Tomedes [toe]
+  Cumeral [cum]
+Spurious, Dravidian, South Dravidian, South Dravidian I, Tamil-Kannada, Badaga-Kannada, Kannadoid
+  Kurumba, Kannada [kfi]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Northern Vanuatu, Torres-Banks linkage
+  Vatrata [vlr]
+Spurious, Afro-Asiatic, Chadic, Biu-Mandara, North Biu-Mandara, Margi-Mandara-Mofu, Bura-Marghi, Buraic
+  Kofa [kso]
+Spurious, Turkic, Common Turkic, Oghuz-Kipchak-Uyghur, Oghuz, West Oghuz, Nuclear West Oghuz
+  Old Turkish [otk]
+Spurious, Otomanguean, Western Otomanguean, Tlapanec-Manguean, Manguean
+  Chorotega [cjr]
+Spurious
+  Taensa [NOCODE_Taensa]
+  Tingui-Boto [tgv]
+  Imeraguen [ime]
+  Yauma [yax]
+  Rufiji [rui]
+  Ngong [nnx]
+  Dombe [dov]
+  Beti (Cameroon) [btb]
+  Subi [xsj]
+  Mawayana [mzx]
+  Khuai [NOCODE_Khuai]
+  Oropom [NOCODE_Oropom]
+  Kukura [NOCODE_Kukura]
+  Kwak [kwq]
+  Potigu\'ara [pog]
+  Coxima [kox]
+  Chipiajes [cbe]
+  Cagua [cbh]
+  Adabe [adb]
+  Chumash [chs]
+  Kakauhua [kbf]
+  Yangho [ynh]
+  Takpa [tkk]
+  Toala' [tlz]
+  Aariya [aay]
+  N'Ko [nqo]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Senufo, Central Senufo 
+  Syenara Senoufo [shz]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Senufo, North Senufo, Supyiric
+  Shempire Senoufo [seb]
+Spurious, Central_Sudanic, Sara-Bongo-Bagirmi, SBB Occidental, Nuclear SBB Occidental, Saraic, Sara Peripherique, Barh Keita, Sara-Kaba
+  Sara Dunjo [koj]
+Spurious, Sino-Tibetan, Nungish, Gunong
+  Norra [nrr]
+Spurious, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup III
+  Tupinikin [tpk]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Dayic, Kelabitic
+  Putoh [put]
+Spurious, Atlantic-Congo, North-Central Atlantic, North Atlantic, Eastern Senegal-Guinea, Bainounk
+  Bainouk-Samik [bcb]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, East Central Maluku, Nunusaku, Piru Bay, East Piru Bay, Solehua, Seram Straits, Uliase, Hatuhaha, Saparuan, Elpaputi
+  Elpaputih [elp]
+Spurious, Chiquitano
+  Kamba (Brazil) [xba]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Zandic, Zande-Nzakara
+  Kpatili [kym]
+Spurious, Nuclear_Trans_New_Guinea, Enga-Kewa-Huli, Engan, Outer Enga
+  Bikaru-Bragge [bic]
+Spurious, Atlantic-Congo, Mansoanka-Fore-Mboteni
+  Baga Binari [bcg]
+  Baga Soban\'e [bsv]
+Spurious, Nuclear_Trans_New_Guinea, Kainantu-Goroka, Kainantu, Gauwa, Gadsup-Agarabi
+  Ontenu [ont]
+Spurious, Atlantic-Congo, Mel, Temne-Baga
+  Baga Kaloum [bqf]
+Spurious, Austroasiatic, Mundaic, North Munda, Kherwarian, Mundaric, Ho-Mundari
+  Munda [unx]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid
+  Aduge [adu]
+Spurious, Indo-European, Indo-Iranian, Iranian, Western Iranian, Northwestern Iranian
+  Khalaj [kjf]
+Spurious, Afro-Asiatic, Chadic, East Chadic, East Chadic A, East Chadic A.1
+  Buso [bso]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, North-Central Edoid, Central Plains Edoid
+  Uokha [uok]
+  Ihievbe [ihi]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid
+  Ibilo [ibi]
+Spurious, Cariban
+  Coyaima [coy]
+  Natagaimas [nts]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Lega
+  Songa [sgo]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Delta Cross, Upper Cross, Kiong-Korop
+  Odut [oda]
+Spurious, Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan
+  South Ucayali Ash\'eninka [cpy]
+Spurious, Quechuan, Quechua II, Quechua IIC, Bolivian Quechua IIC
+  Chilean Quechua [cqu]
+Spurious, Indo-European, Indo-Iranian, Iranian, Western Iranian, Northwestern Iranian, Kermanic, Central Iran Kermanic, Yazdi-Kermani-Nayini
+  Parsi-Dari [prd]
+  Parsi [prp]
+Spurious, Mixe-Zoque, Mixe, Oaxaca Mixe, Lowland-Midland-South Highland Mixe, Lowland-Midland Mixe, Midland Mixe
+  Quetzaltepec Mixe [pxm]
+Spurious, Tai-Kadai
+  Kang [kyp]
+Spurious, Tai-Kadai, Kam-Tai, Be-Tai, Daic, Central-Southwestern Tai, Wenma-Southwestern Tai
+  Thu Lao [tyl]
+Spurious, Tai-Kadai, Kam-Tai, Be-Tai, Daic, Central-Southwestern Tai, Wenma-Southwestern Tai, Sapa-Southwestern Tai, Southwestern Tai
+  Pu Ko [puk]
+Spurious, Sino-Tibetan, Karenic, Northern Karen
+  Lahta Karen [kvt]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Samba Duru-Mumuye Yendang, Samba Duru, Duru
+  Gey [guv]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Central Kainji, Kambari-Cicipu
+  Kakihum [kxe]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Monzomboic
+  Bonjo [bok]
+Spurious, Afro-Asiatic, Semitic, West Semitic, Central Semitic, Northwest Semitic, Canaanite, Hebrewic
+  Moabite [obm]
+  Ammonite [qgg]
+  Edomite [xdm]
+Spurious, Katukinan
+  Katuk\'ina [kav]
+Spurious, Indo-European, Indo-Iranian, Iranian, Western Iranian, Southwestern Iranian, Farsic-Caucasian Tat, Farsic, Eastern Farsic, Tajikic
+  Tangshewi [tnf]
+  Warduji [wrd]
+Spurious, Indo-European, Indo-Iranian, Iranian, Eastern Iranian, Southeastern Iranian, Ormuri-Parachi
+  Malakhel [mld]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Burmish, Southern Burmish
+  Chaungtha [ccq]
+  Yangbye [ybd]
+Spurious, Sino-Tibetan, Unclassified Sino-Tibetan
+  Palu [pbz]
+  Lui [lba]
+Spurious, Sino-Tibetan, Nungish
+  Lama (Myanmar) [lay]
+Spurious, Sino-Tibetan, Kuki-Chin-Naga, Naga, Zemeic
+  Inpui Naga [nkf]
+  Puimei Naga [npu]
+Spurious, Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, North Peripheral Kuki-Chin, Thadoic
+  Purum [puz]
+Spurious, Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, North Peripheral Kuki-Chin, Sizangic
+  Yos [yos]
+Spurious, Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, South Peripheral Kuki-Chin, Choic
+  Welaung [weu]
+Spurious, Sino-Tibetan, Himalayish, Mahakiranti, Kiranti, Eastern Kiranti, Greater Yakkha
+  Lumba-Yakkha [luu]
+  Phangduwali [phw]
+  Lambichhong [lmh]
+Spurious, Sino-Tibetan, Himalayish, Mahakiranti, Kiranti, Central Kiranti, Khambu
+  Lingkhim [lii]
+Spurious, Sino-Tibetan, Bodic, Kaike-Ghale-Tamangic, Ghale-Tamangic, Tamangic, Nuclear Tamang
+  Northwestern Tamang [tmk]
+  Southwestern Tamang [tsf]
+Spurious, Sino-Tibetan, Himalayish
+  Pongyong [pgy]
+Spurious, Dravidian, Central Dravidian, Teluguic
+  Savara [svr]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Oriya-Gauda-Kamrupa, Gauda-Kamrupa, Gauda-Banga
+  Kayort [kyv]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental Central Indo-Aryan, Gujarati-Rajasthani, Rajasthani
+  Loarki [lrk]
+Spurious, Austroasiatic, Bahnaric, North Bahnaric, Lamamic
+  Lamam [lmm]
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic
+  Con [cno]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Samba Duru-Mumuye Yendang, Mumuye-Yandang
+  Gengle [geg]
+Spurious, Austroasiatic
+  Kuanhua [xnh]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Western Oceanic linkage, North New Guinea linkage, Sarmi-Jayapura Bay, Sarmi
+  Yarsun [yrs]
+Spurious, Chapacuran, Moreic-Waric, Waric, Wanham-Wari-Oro Win
+  Kabix\'i [xbx]
+Spurious, Kxa, Ju-Kung
+  Vasekela Bushman [vaj]
+  Maligo [mwj]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan
+  Old Indic [qmx]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental Central Indo-Aryan, Western Hindi
+  Pao [ppa]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental Central Indo-Aryan, Eastern Hindi
+  Dhanwar (India) [dha]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Southern zone
+  Bhalay [bhx]
+  Gowlan [goj]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Malayo-Sumbawan, North and East Malayo-Sumbawan, Malayic, Nuclear Malayic, Ibanic
+  Balau [blg]
+Spurious, Pama-Nyungan, Paman, Compromise Middle Pama, Wik, Kuku-Wik-Ep, Kuku-Wik, Paman Kuku
+  Kuku-Mangk [xmq]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Bembe-Buyu-Binja
+  Bemba (Democratic Republic of Congo) [bmy]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene
+  Buya [byy]
+  Borna (Democratic Republic of Congo) [bxx]
+Spurious, Nilotic, Southern Nilotic, Kalenjin, Okiek-Mosiro
+  Aramanik [aam]
+  Mediak [mwx]
+  Kisankasa [kqh]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Southeastern Ngwi, Nisoid, Nisu-Nyisu, Nisu
+  Southwestern Nisu [nsv]
+Spurious, Sino-Tibetan, Bodic, Bodish, Tshangla-East Bodish, Tshanglic
+  Tawang Monpa [twm]
+Spurious, Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, Southern Tibetic, Dzongkhic, Nuclear Dzongkhic
+  Adap [adp]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Lisoid, Lipo-Lolopo
+  Southern Lolopo [ysp]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Lisoid, Nuclear Lisoid, Lisu-Laluba-Lavu, Laluba-Lavu, Lalo
+  Eastern Lalu [yit]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Lisoid, Lipo-Lolopo, Unclassified Lipo-Lolopo
+  Sansu [sca]
+Spurious, Rashad
+  Tingal [tie]
+Spurious, Retired, Mixed Language, Iberian-Romani
+  Calo [rmr]
+Spurious, Retired, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Samba Duru-Mumuye Yendang, Mumuye-Yandang, Yandang, Waka-Yendang-Teme, Waka-Yandang
+  Yendang [yen]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Timoric A, Northern Timoric A
+  Talur [ilw]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, East Central Maluku, Nunusaku, Three Rivers
+  South Wemale [tlw]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, East Central Maluku, Nunusaku, Three Rivers, Amalumute
+  Horuru [hrr]
+Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Burmish, Northern Burmish, High Northern Burmish
+  Xiandao [xia]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Rufiji-Ruvuma, Ruvuma
+  Ndonde Hamba [njd]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Southern Melanesian, New Caledonian, Southern New Caledonian
+  Mea [meg]
+Spurious, Retired, Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic
+  Panang [pcr]
+Spurious, Retired, Pama-Nyungan, Yarli-Baagandji
+  Bandjigali [bjd]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Greater Barito, East Greater Barito, Malagasic, North-Central Malagasic, Central Malagasic, North Central Malagasic
+  Southern Betsimisaraka Malagasy [bjq]
+Spurious, Retired, Turama-Kikori, Turama-Omatian
+  Omati [mgx]
+Spurious, Retired, Sino-Tibetan, Himalayish, Mahakiranti, Kiranti, Eastern Kiranti, Upper Arun, Lohorung-Yamphu
+  Yamphe [yma]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Greater Central Philippine, Central Philippine, Mansakan, Eastern Mansakan
+  Cataelano Mandaya [mst]
+  Sangab Mandaya [myt]
+Spurious, Retired, Atlantic-Congo, Volta-Congo, Benue-Congo, Benue-Congo Plateau
+  Nyeng [nfg]
+  Shakara [nfk]
+Spurious, Retired
+  Uradhi [urf]
+  Guliguli [gli]
+  Dororo [drr]
+  Xinca [xin]
+  Tasmanian [xtz]
+  Lenca [len]
+  Mam, Tajumulco [mpf]
+  Chol, Tila [cti]
+  Malinguat [sic]
+  Nootka [noo]
+  K'iche', West Central [qut]
+  Mam, Southern [mms]
+  K'iche', Joyabaj [quj]
+  Maya, Chan Santa Cruz [yus]
+  Mam, Central [mvc]
+  Mam, Todos Santos Cuchumat\'an [mvj]
+  Nat\"ugu [stc]
+  Kaqchikel, Eastern [cke]
+  Kaqchikel, South Central [ckd]
+  Kaqchikel, Southern [ckf]
+  Kaqchikel, Northern [ckc]
+  Kaqchikel, Santa Mar\'ia de Jes\'us [cki]
+  Kaqchikel, Akatenango Southwestern [ckk]
+  Kaqchikel, Santo Domingo Xenacoj [ckj]
+  Kaqchikel, Western [ckw]
+  Jakalteko, Western [jai]
+  Emiliano-Romagnolo [eml]
+  Huastec, San Lu\'is Potos\'i [hva]
+  Poqomam, Southern [pou]
+  Poqomchi', Western [pob]
+  Poqomam, Eastern [poa]
+  Tzotzil, San Andr\'es Larrainzar [tzs]
+  Tzotzil, Huixt\'an [tzu]
+  Tz'utujil, Western [tzt]
+  Tzotzil, Zinacant\'an [tzz]
+  Tzotzil, Chamula [tzc]
+  Tzeltal, Bachaj\'on [tzb]
+  Tzotzil, Chenalh\'o [tze]
+  K'iche', Eastern [quu]
+  Kolum So Dogon [dkl]
+  Gamo-Gofa-Dawro [gmo]
+  K'iche', Cun\'en [cun]
+  K'iche', San Andr\'es [qxi]
+  Chuj, Ixtat\'an [cnm]
+  Huastec, Southeastern [hsf]
+  Achi', Cubulco [acc]
+  Ixil, Chajul [ixj]
+  Ixil, Nebaj [ixi]
+  Tacanec [mtz]
+  Kaqchikel, Yepocapa Southwestern [cbm]
+Spurious, Retired, Chimakuan
+  Chimakum [cmk]
+Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, East Central Maluku, Nunusaku, Piru Bay, West Piru Bay, Hoamoal, West Hoamoal
+  Piru [ppr]
+Spurious, Chocoan
+  Cauca [cca]
+Spurious, Sino-Tibetan, Unclassified Sino-Tibetan
+  Ayi (China) [ayx]
+  Lang'e [yne]
+Spurious, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Unclassified Loloish
+  Lopi [lov]
+  Laopang [lbg]
+Spurious, Pama-Nyungan, Paman, Norman Pama
+  Kunggara [kvs]
+Spurious, Hmong-Mien, Hmongic, Nuclear Hmongic-Ho Ne, Nuclear Hmongic, West Hmongic
+  Chuanqiandian Cluster Miao [cqd]
+Spurious, Tupian, Tupi-Guarani
+  Karipuna do Amapa [kgm]
+Spurious, Indo-European, Germanic, Northwest Germanic, North Germanic, West Scandinavian
+  Norwegian Bokm\aa{}l [nob]
+Spurious, Retired, Garrwan
+  Garawa [gbc]
+Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Naic, Naish
+  Naxi [nbf]
+Spurious, Retired
+  Bugan [bgh]
+Unattested
+  Harappan [NOCODE_Harappan]
+  Guale [NOCODE_Guale]
+  Yamasee [NOCODE_Yamasee]
+  Truk\'a [tka]
+  Mawa (Nigeria) [wma]
+  Wasu [wsu]
+  Trememb\'e [tme]
+  Miarr\~a [xmi]
+  Arusha [NOCODE_Arusha]
+  Rer Bare [rer]
+  Jumano [NOCODE_Jumano]
+  Apoto [NOCODE_Apoto]
+  Lumbee [lmz]
+  Kwisi [NOCODE_Kwisi]
+  Weyto [woy]
+  Sentinel [std]
+  \'Anc\'a [acb]
+  Pankarar\'e [pax]
+  Giyug [giy]
+  Palumata [pmc]
+  Moksela [vms]
+  Flecheiros [NOCODE_Flecheiros]
+  Wakon\'a [waf]
+Unattested, Umbugarla
+  Ngurmbur [nrx]
+Unattested, Tor-Orya, Tor
+  Wares [wai]
+Unattested, Panoan
+  Papav\^o [ppv]
+Unattested, Arawan
+  Himarim\~a [hir]
+Unattested, Barbacoan
+  Barbacoas [bpb]
+Unattested, Atlantic-Congo, Volta-Congo, Kwa Volta-Congo, Nyo, Potou-Tano, Tano, Western Tano
+  Esuma [esm]
+Unattested, Chocoan
+  Arma [aoh]
+  Runa [rna]
+Unattested, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Unclassified Bantoid
+  Nshi [nsc]
+Unattested, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VI
+  Tukumanf\'ed [tkf]
+  Morerebi [xmo]
+Unattested, Arawakan, Central Maipuran
+  Agavotaguerra [avo]
+Unattested, Arawakan, Southern Maipuran, Pre-Andine
+  Aguano [aga]
+Unattested, Afro-Asiatic, Chadic, West Chadic, West Chadic A
+  Daza [dzd]
+Unattested, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, East Nyanza, Nyanza Mara, North Mara
+  Ware [NOCODE_Ware]
+Unattested, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone
+  Badeshi [bdz]
+Unattested, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Mbum-Day, Mbumic
+  Dek [dek]
+Unattested, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Greater Central Philippine
+  Tayabas Ayta [ayy]
+  Katabaga [ktq]
+  Sorsogon Ayta [ays]
+  Villa Viciosa Agta [dyg]
+Unattested, Pama-Nyungan, Paman, Compromise Middle Pama
+  Wik-Keyangan [wif]
+Unattested, Mangarrayi-Maran, Maran, Mara-Warndarang
+  Yugul [NOCODE-Yugul]
+Unattested, Dravidian, South Dravidian, South Dravidian II, Gondi
+  Nagarchal [nbg]
+  Pardhan [pch]
+  Agariya [agi]
+Unattested, Cariban, Parukotoan, Waiwaian, Nuclear Waiwaian
+  Karahawyana [xkh]
+Unattested, Iwaidjan_Proper, Central Iwaidjic
+  Manangkari [znk]
+Unattested, Nambiquaran, Nambikwara Complex, Northern Nambiquaran
+  Alapmunte [apv]
+  Yelelihre [NOCODE_Yelelihre]
+  Yalakalore [xyl]
+  Tawend\^e [NOCODE_Tawende]
+Unattested, Panoan
+  Shinabo [snh]
+  Xipin\'awa [xip]
+Unattested, Panoan, Mayoruna Branch
+  Mayo [NOCODE_Mayo]
+  Pisabo [pig]
+  Kontan\'awa [NOCODE_Kuntanawa]
+Unattested, Worrorran
+  Gulunggulu [NOCODE_Gulunggulu]
+Unclassifiable, Afro-Asiatic, Berber
+  Numidian [nxm]
+Unclassifiable, Uralic, Saami, Eastern Saami
+  Kainuu Saami [NOCODE_Kainuu-Saami]
+Unclassifiable
+  Cueva [NOCODE_Cueva]
+  Ancient Ligurian [NOCODE_Ancient-Ligurian]
+  Cusabo [NOCODE_Cusabo]
+  Querandi [NOCODE_Querandi]
+  Quinigua [NOCODE_Quinigua]
+  Koguryo [zkg]
+  Paekche [pkc]
+  Silla [NOCODE_Silla]
+  Calusa [NOCODE_Calusa]
+  Chacha [NOCODE_Chacha]
+  North Picene [nrp]
+  Eteocretan [ecr]
+  Lemnian [xle]
+  Eteocypriot [ecy]
+  Camunic [xcc]
+  Elymian [xly]
+  Tartessian [txr]
+  Minoan [omn]
+  Bazigar [bfr]
+  Quepos [NOCODE_Quepos]
+  Mangio [NOCODE_Mangio]
+  Malibu [NOCODE_Malibu]
+  Kantarur\'e [NOCODE_Kantarure]
+  Ambermo [NOCODE_Ambermo]
+  Xoco [NOCODE_Xoco]
+  Yanacona [NOCODE_Yanacona]
+  Calchaqui [NOCODE_Calchaqui]
+  Catuquinaru-Bach [NOCODE_Catuquinaru-Bach]
+  Patagon [NOCODE_Patagon]
+  Serengeti-Dorobo [NOCODE_Serengeti-Dorobo]
+  Traveller Scottish [trl]
+  Cushitic Taita [NOCODE_Taita]
+  Komta [NOCODE_Komta]
+  Colima [NOCODE_Colima]
+  Dama (Sierra Leone) [NOCODE_Dama]
+  Idabaez [NOCODE_Idabaez]
+  Payaya [NOCODE_Payaya]
+  Aranama [NOCODE_Aranama]
+  Sacata [NOCODE_Sacata]
+  Kara [NOCODE_Kara]
+  Puruguay [NOCODE_Puruguay]
+  Tapaj\'o [NOCODE_Tapajo]
+  Urucuc\'us [NOCODE_Urucucus]
+  Fayjatases [NOCODE_Fayjatases]
+  Guachipas [NOCODE_Guachipas]
+  Tembey [NOCODE_Tembey]
+  Okwa [NOCODE_Okwa]
+  Wavu-II [NOCODE_Wavu-II]
+  Mangree [NOCODE_Mangree]
+  San Francisco Solano [NOCODE_San-Francisco-Solano]
+  Gamella [NOCODE_Gamella]
+  Nat\'u [NOCODE_Natu]
+  N\'a-Meo [neo]
+  Poya [NOCODE_Poya]
+  Kassite [NOCODE_Kassite]
+  Quinqui [quq]
+  Karir\'i-Xoc\'o [kzw]
+  Pictish [xpi]
+  South-Arabian-Unknown-k [NOCODE_South-Arabian-Unknown-k]
+  Polari [pld]
+  Panzaleo [NOCODE_Panzaleo]
+  Bagua [NOCODE_Bagua]
+  Dume [NOCODE_Dume]
+  Imbabura [NOCODE_Imbabura]
+  Guaicaro [NOCODE_Guaicaro]
+  Kaimb\'e [xai]
+  Haitian Vodoun Culture Language [hvc]
+  Chholo [NOCODE_Chholo]
+  Panche [NOCODE_Panche]
+  Hamba [NOCODE_Hamba]
+  Kapinaw\'a [xpn]
+  Pitaguary [NOCODE_Pitaguary]
+  Dima-Bottego [NOCODE_Dima-Bottego]
+  Quignam [NOCODE_Quignam]
+  Gail [gic]
+  Aruba [NOCODE_Aruba]
+  Tarairiu [NOCODE_Tarairiu]
+  Baenan [NOCODE_Baenan]
+  Pijao [pij]
+  Uamu\'e [uam]
+  Bhatola [btl]
+  Carabayo [cby]
+  Degere [NOCODE_Degere]
+  Sansimoniano [NOCODE_Sansimoniano]
+  Aracaju [NOCODE_Aracaju]
+  Uru-Pa-In [urp]
+  Jenipapo-Kanind\'e [NOCODE_Jenipapo-Kanind\'e]
+  Pasto [NOCODE_Pasto]
+  Pacahuaras-Castillo [NOCODE_Pacahuaras-Castillo]
+  Quillacinga [NOCODE_Quillacinga]
+  Kambiw\'a [xbw]
+  Muzo [NOCODE_Muzo]
+  Naolan [NOCODE_Naolan]
+  Pamunkey [NOCODE_Pamunkey]
+  Gutian [NOCODE_Gutian]
+  Monqui [NOCODE_Monqui]
+  Peric\'u [NOCODE_Pericu]
+  Vazimba [NOCODE_Vazimba]
+  Muellamues [NOCODE_Muellamues]
+  Tabancal [NOCODE_Tabancale]
+  Copallen [NOCODE_Copallen]
+  Hoxa [NOCODE_Hoxa]
+  Envuelto [NOCODE_Envuelto]
+Unclassifiable, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Southeast Solomonic, Longgu-Malaita-Makira, Malaita-Makira, Makira
+  Marau Wawa [NOCODE_Marau-Wawa]
+Unclassifiable, Kalkatungic
+  Wakabunga [wwb]
+Unclassifiable, Indo-European
+  Illyrian [xil]
+Unclassifiable, Shastan
+  Okwanuchu [NOCODE_Okwanuchu]
+Unclassifiable, Iroquoian, Northern Iroquoian
+  Meherrin [NOCODE_Meherrin]
+  Wenro [NOCODE_Wenro]
+  Neutral-Atiouandaronk [NOCODE_Neutral-Atiouandaronk]
+  Erie [NOCODE_Erie]
+Unclassifiable, Sonoran
+  Concho [NOCODE_Concho]
+  Amotomanco [NOCODE_Amotomanco]
+  Tanpachoa [NOCODE_Tanpachoa]
