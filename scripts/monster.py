@@ -87,9 +87,9 @@ def trickle(m, tricklefields = ['isbn'], datadir = ""):
         ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
         for (src, us) in bib.grp2(ups).iteritems():
             try:
-                te = bib.get(fn = [datadir + src + ".bib"])
+                te = bib.get(fn = [os.path.join(datadir, '%s.bib' % src)])
             except IOError:
-                print "No such file", datadir + src + ".bib"
+                print "No such file", os.path.join(datadir, '%s.bib' % src)
                 continue
             mktk = findidks(te, dict([(mk, m[mk]) for (mk, f, newd) in us]))
             r = {}
@@ -102,7 +102,7 @@ def trickle(m, tricklefields = ['isbn'], datadir = ""):
                 
             
             fnups = [(tk, f, newd) for (tks, f, newd) in r.itervalues() for tk in tks if te.has_key(tk) and te[tk][1].get(f, '') != newd]
-            print len(fnups), "changes to", datadir + src
+            print len(fnups), "changes to", os.path.join(datadir, src)
             warnings = [tk for (tks, f, newd) in r.itervalues() for tk in tks if not te.has_key(tk)]
             if warnings:
                 print src, "Warning, the following keys do not exist anymore:", warnings
@@ -110,8 +110,8 @@ def trickle(m, tricklefields = ['isbn'], datadir = ""):
             #for a in trace[:10]:
             #    print a
             t2 = renfn(te, fnups)
-            bib.bak(datadir + src + ".bib")
-            bib.sav(bib.put(t2), datadir + src + '.bib')                
+            bib.bak(os.path.join(datadir, '%s.bib' % src))
+            bib.sav(bib.put(t2), os.path.join(datadir, '%s.bib' % src))               
     return
 
 def argm(d, f = max):
@@ -293,15 +293,20 @@ def compile_annotate_monster(fs, monster, hhbib):
 #5. A final monster.bib/monsterutf8.bib is written 
 
 
-from path import path
-import re
-DATA_DIR = path("..\\references\\")
-reold = re.compile(".+old(v\d+)?\.bib$")
-source_bibs = dict([(fn.basename(), fn) for fn in DATA_DIR.listdir('*.bib') if not reold.match(fn)])
 
+import os
+import glob
+import re
+
+DATA_DIR = os.path.join(os.pardir, 'references')
+reold = re.compile(".+old(v\d+)?\.bib$")
+source_bibs = {os.path.basename(fn): fn
+    for fn in glob.glob(os.path.join(DATA_DIR, '*.bib'))
+    if not reold.match(fn)}
+               
 monster = 'monster.bib'
 bib.bak(monster)
-compile_annotate_monster(source_bibs, monster, hhbib = DATA_DIR + "hh.bib")
+compile_annotate_monster(source_bibs, monster, hhbib=os.path.join(DATA_DIR, 'hh.bib'))
 killold_ids(fn = monster, idfield = 'glotto_id')
 killold_ids(fn = monster, idfield = 'numnote')
 unduplicate_ids_smart(fn = monster, idfield = 'glottolog_ref_id')
