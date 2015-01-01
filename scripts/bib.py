@@ -1,9 +1,17 @@
+# bib.py
+
+import os
+import shutil
 import re
+import codecs
+
 import latexutf8
 
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
 reext = "(?:" + '|'.join(["(?:" + z + ")" for z in exts + [z.upper() for z in exts]]) + ")"
 rev2 = re.compile("(v\d+)?((?:\_o)?\.%s)" % reext)
+
+
 def incv(s):
     def ivh(o):
         if o.group(1):
@@ -12,8 +20,8 @@ def incv(s):
             return "v2" + o.group(2)
     return rev2.sub(ivh, s)
 
+
 def bak(fn, ext = 'old'):
-    import os
     if not os.path.exists(fn):
         print fn, "not saved in since it doesn't exist"
         return True
@@ -25,10 +33,9 @@ def bak(fn, ext = 'old'):
             print newf, "not saved in since", fn, "has same size"
             return False
         newf = incv(newf)
-    os.system("copy " + fn + " " + newf)
+    shutil.copyfile(fn, newf)
     print newf, "saved"
     return True
-
 
 
 def delta(a, b, case_sensitive = False, inscost = 1, subcost = 0.5):
@@ -42,6 +49,7 @@ def delta(a, b, case_sensitive = False, inscost = 1, subcost = 0.5):
             return subcost
     else:
         return inscost
+
 
 def align(d, x, y):
     i = len(x)
@@ -64,7 +72,8 @@ def align(d, x, y):
             i = i - 1
         k = k + 1
     return [r[k] for k in sorted(r, reverse=True)]
-        
+
+
 def edist(x, y, delta = delta, case_sensitive = False):
     lx = len(x)
     ly = len(y)
@@ -86,6 +95,7 @@ def edist(x, y, delta = delta, case_sensitive = False):
     (md, _) = d[(lx, ly)]
     return (md/nrm, align(d, x, y))
 
+
 def inv(d):
     r = {}
     for (k, v) in d.iteritems():
@@ -95,11 +105,13 @@ def inv(d):
             r[v] = set([k])
     return r
 
+
 def takeuntil(s, q, plus = 0):
     i = s.find(q)
     if i >= 0:
         return s[:i+plus]
     return s
+
 
 def takeafter(s, q):
     i = s.find(q)
@@ -107,18 +119,23 @@ def takeafter(s, q):
         return s[i+len(q):]
     return s
 
+
 def pairs(xs):
     return [(x, y) for x in xs for y in xs if x < y]
 
+
 renewline = re.compile("[\\n\\r]")
+
 def ptab(fn, i=1, spl = "\t"):
     lines = renewline.split(load(fn))[i:]
     li = [tuple([x.strip() for x in l.split(spl)]) for l in lines if l != ""]
     return li
 
+
 def ptabd(fn, spl = "\t"):
     ll = ptab(fn, i = 0)
     return dict([(l[0], dict(zip(ll[0][1:], l[1:]))) for l in ll[1:]])
+
 
 def setd3(ds, k1, k2, k3, v = None):
     if ds.has_key(k1):
@@ -145,6 +162,7 @@ def fd(ws):
         d[w] = d.get(w, 0) + 1
     return d
 
+
 def fdall(chunks):
     d = {}
     for ws in chunks:
@@ -159,8 +177,10 @@ def opv(d, func):
         n[i] = func(v)
     return n
 
+
 def sumds(ds, f = sum):
     return opv(grp2l([(i, v) for d in ds for (i, v) in d.iteritems()]), f)
+
 
 def grp2fd(l):
     r = {}
@@ -171,11 +191,13 @@ def grp2fd(l):
             r[a] = {b: 1}
     return r
 
+
 def grp2(l):
     r = {}
     for (a, b) in l:
         setd(r, a, b)
     return opv(r, lambda x: x.keys())
+
 
 def grp2l(l):
     r = {}
@@ -183,7 +205,6 @@ def grp2l(l):
         r[a] = r.get(a, [])
         r[a].append(b)
     return r
-
 
 
 reauthor = {}
@@ -197,6 +218,7 @@ reauthor[6] = re.compile("\{(?P<lastname>[\s\S]+)\}$")
 reauthor[7] = re.compile("(?P<lastname>[aA]nonymous)$")
 reauthor[8] = re.compile("(?P<lastname>\?)$")
 reauthor[9] = re.compile("(?P<lastname>[\s\S]+)$")
+
 def psingleauthor(n, vonlastname = True):
     for i in sorted(reauthor.iterkeys()):
         o = reauthor[i].match(n)
@@ -208,15 +230,20 @@ def psingleauthor(n, vonlastname = True):
         print "Couldn't parse name:", n
     return None
 
+
 anonymous = ['Anonymous', 'No Author Stated', 'An\'onimo', 'Peace Corps'] 
+
 def authorhash(author):
     return author['lastname'] + ", " + latexutf8.undiacritic(author.get('firstname', ''))[:1] + "."
 
+
 rebrackauthor = re.compile("([\s\S]+) \{([\s\S]+)\}$")
+
 def commaauthor(a):
     xos = [(rebrackauthor.match(x), x) for x in a.split(' and ')]
     xs = ["%s, %s" % (xo.group(2), xo.group(1)) if xo else x for (xo, x) in xos]
     return ' and '.join(xs)
+
 
 def pauthor(s):
     pas = [psingleauthor(a) for a in s.split(' and ')]
@@ -224,6 +251,7 @@ def pauthor(s):
         if s:
             print s
     return [a for a in pas if a]
+
 
 def syncauthor(pa, pb, diacritic_sensitive = False):
     pal = pa['lastname']
@@ -246,6 +274,7 @@ def syncauthor(pa, pb, diacritic_sensitive = False):
         jr = pa.get('jr')
     return {'lastname': lastlonger, 'firstname': firstlonger, 'jr': jr}
 
+
 def syncauthors((at, af), (bt, bf)):
     paa = pauthor(af.get('author', ''))
     pab = pauthor(bf.get('author', ''))
@@ -255,8 +284,10 @@ def syncauthors((at, af), (bt, bf)):
     print "Authors don't match", sa, paa, pab
     return (at, af)
 
+
 def standardize_author(s):
     return ' and '.join([yankauthorbib(x) for x in pauthor(s)])
+
 
 def stdauthor(fields):
     if fields.has_key('author'):
@@ -264,6 +295,7 @@ def stdauthor(fields):
     if fields.has_key('editor'):
         fields['editor'] = standardize_author(fields['editor'])
     return fields
+
 
 def authalpha(s):
     return ', '.join([latexutf8.undiacritic(unvonstr(x)) for x in pauthor(s)])
@@ -273,6 +305,7 @@ def authalpha(s):
 #"Karen Adams, Linda Lauck, J. Miedema, F.I. Welling, W.A.L. Stokhof, Don A.L. Flassy, Hiroko Oguri, Kenneth Collier, Kenneth Gregerson, Thomas R. Phinnemore, David Scorza, John Davies, Bernard Comrie & Stan Abbott"
 
 reca = re.compile("\s*[,\&]\s*")
+
 def decommaauthor(a):
     ns = [(n, len(n.split(" "))) for n in reca.split(a)]
     #TODO what is more than the first author is lastname, firstname
@@ -287,6 +320,7 @@ def decommaauthor(a):
 
 relu = re.compile("\s+|(d\')(?=[A-Z])")
 recapstart = re.compile("\[?[A-Z]")
+
 def lowerupper(s):
     parts = [x for x in relu.split(s) if x]
     lower = []
@@ -298,6 +332,7 @@ def lowerupper(s):
             upper = parts[i:]
             break
     return (lower, upper)
+
 
 def unvon(author):
     r = {}
@@ -312,6 +347,7 @@ def unvon(author):
     
     return r
 
+
 def lastvon(author):
     if not author.has_key('firstname'):
         return author
@@ -324,15 +360,18 @@ def lastvon(author):
     
     return r
 
+
 def unvonstr(author):
     a = unvon(author)
     return ' '.join([a[k] for k in ['lastname', 'firstname', 'jr'] if a.has_key(k) and a[k]])
+
 
 def lastnamekey(s):
     (_, upper) = lowerupper(s)
     if not upper:
         return ''
     return max(upper)
+
 
 def yankauthorrev(author):
     author = unvon(author)
@@ -345,6 +384,7 @@ def yankauthorrev(author):
         r += " " + author['jr']
     return r
 
+
 def yankauthorbib(author):
     r = author['lastname']
     if author.has_key('jr') and author['jr']:
@@ -354,6 +394,7 @@ def yankauthorbib(author):
         #    print "Warning:", author
         r += ", " + author['firstname']
     return r
+
 
 def yankauthor(author):
     r = ""
@@ -366,6 +407,7 @@ def yankauthor(author):
     if author.has_key('jr') and author['jr']:
         r += " " + author['jr']
     return r
+
 
 def yankindexauthors(authors, iseditor = False, style = "unified"):
     if authors:
@@ -424,6 +466,7 @@ def yankauthors(authors, iseditor = False, style = "unified"):
                 print "UNKNOWN STYLE:", style
     return r
 
+
 def authoryear((typ, fields)):
     r = ""
     if fields.has_key('author'):
@@ -436,13 +479,16 @@ def authoryear((typ, fields)):
         r = r[5:]
     return r + " " + fields.get('year', 'no date')
 
+
 def rangecomplete(incomplete, complete):
     if len(complete) > len(incomplete):
         return complete[:len(complete)-len(incomplete)] + incomplete
     return incomplete
 
+
 rebracketyear = re.compile("\[([\d\,\-\/]+)\]")
 reyl = re.compile("[\,\-\/\s\[\]]+")
+
 def pyear(s):
     if rebracketyear.search(s):
         s = rebracketyear.search(s).group(1)
@@ -453,18 +499,23 @@ def pyear(s):
         return my[0] + "-" + rangecomplete(my[-1], my[0])
     return my[-1]
 
+
 re4y = re.compile("\d\d\d\d$")
+
 def yeartoint(s):
     a = pyear(s)[-4:]
     if re4y.match(a):
         return int(a)
     return None
 
+
 def getyear((typ, fields), default = lambda x: "no date"):
     return yeartoint(fields.get("year", default((typ, fields))))
 
+
 def pall(txt):
     return reitem.findall(txt)
+
 
 refields = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[{"](?P<data>.*)[}"],\n')
 refieldsnum = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*(?P<data>\d+),\n')
@@ -488,11 +539,11 @@ def pitem(item):
 
 
 def savu(txt, fn):
-    import codecs
     f = codecs.open(fn, 'w', encoding = "utf-8")
     f.write(txt)
     f.close()
     return
+
 
 def sav(txt, fn):
     f = open(fn, 'w')
@@ -500,9 +551,11 @@ def sav(txt, fn):
     f.close()
     return
 
+
 def tabtxt(rows):
     tab = u''.join([u'\t'.join(["%s" % x for x in row]) + u'\n' for row in rows])
     return tab
+
 
 def load(fn):
     f = open(fn, 'r')
@@ -510,19 +563,23 @@ def load(fn):
     f.close()
     return txt
 
+
 def get2(fn = ['eva.bib']):
     if type(fn) != type([]):
         fn = [fn]
     return get2txt('\n'.join([load(f) for f in fn]))
+
 
 def get(fn = []):
     if type(fn) != type([]):
         fn = [fn]
     return gettxt('\n'.join([load(f) for f in fn]))
 
+
 def getu(fn = "monsterutf8.bib"):
     txt = loadunicode(fn)
     return gettxt(txt)
+
 
 def gettxt(txt):
     pentries = [pitem(x) for x in pall(txt)]
@@ -535,6 +592,7 @@ def gettxt(txt):
         e[key] = (typ, fields)
 
     return e
+
 
 def get2txt(txt):
     pentries = [pitem(x) for x in pall(txt)]
@@ -551,9 +609,12 @@ def get2txt(txt):
 
     return e
 
+
 reka = re.compile("([A-Z]+[a-z]*)|(?<![a-z])(de|van|von)")
+
 def sepkeyauthor(k):
     return [x for x in reka.split(k) if x and x != "-"]
+
 
 def sepkeyauthorform(k):
     auths = sepkeyauthor(k)
@@ -566,6 +627,7 @@ def sepkeyauthorform(k):
             xs.append(c + a)
             c = ''
     return [a.lower() for a in xs]
+
 
 def key_to_author(k):
     i = k.find(":")
@@ -580,14 +642,17 @@ def key_to_author(k):
 
 
 reabbs = re.compile('@[Ss]tring\{(?P<abb>[A-Za-z]+)\s*\=\s*[\{\"](?P<full>[^\\n]+)[\}\"]\}\\n')
+
 def getabbs(fn):
     txt = load(fn)
     return dict(reabbs.findall(txt))
+
 
 reabbrep1 = re.compile("\s*\=\s*([A-Za-z]+)\,\n")
 reabbrep2 = re.compile("\s*\=\s*([A-Za-z]+)\s*\#\s*\{")
 reabbrep3 = re.compile("\}\s*\#\s*([A-Za-z]+)\s*\#\s*\{")
 reabbrep4 = re.compile("\}\s*\#\s*([A-Za-z]+)\,\n")
+
 def killabbs(fn, outfn = None):
     def sb(o, ins = " = {%s},\n"):
         z = o.group(1).upper()
@@ -606,9 +671,6 @@ def killabbs(fn, outfn = None):
 
 #	Author = ac # { and Howard Coate},
 #	Author = ad,
-
-
-
 
 
 bibord = {}
@@ -640,20 +702,25 @@ def showbib((key, (typ, bib)), abbs = {}):
     #print r
     return r
 
+
 def srtyear(e, descending = True):
     order = [(fields.get('year', '[n.d.]'), k) for (k, (typ, fields)) in e.iteritems()]
     return [(k, e[k]) for (sk, k) in sorted(order, reverse = descending)]
 
+
 def srtauthor(e):
     order = [(authalpha(fields.get('author', fields.get('editor', '{[No author stated]}'))) + "-" + fields.get('year', '[n.d.]') + "-" + takeafter(k, ":"), k) for (k, (typ, fields)) in e.iteritems()]
     return [(k, e[k]) for (sk, k) in sorted(order)]
-    
+
+
 def put(e, abbs = {}, srtkey = "author"):
     order = [(fields.get(srtkey, '') + takeafter(k, ":"), k) for (k, (typ, fields)) in e.iteritems()]
     return ''.join([showbib((k, e[k]), abbs) for (sk, k) in sorted(order)])
 
+
 resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
 resplittittok = re.compile("([\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=\'" + '\"' + "])")
+
 def wrds(txt):
     return [x for x in resplittit.split(latexutf8.undiacritic(txt.lower()).replace("'", "").replace('"', "")) if x]
 
@@ -678,6 +745,7 @@ def etos(e):
                     w = roman(w).lower()
                 setd3(r, f, w, k)
     return r
+
 
 #If publisher has Place: Publisher, then don't take address
 def fuse(dps, union = ['lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'], onlyifnot = {'address': 'publisher', 'lgfamily': 'lgcode', 'publisher': 'school', 'journal': 'booktitle'}):
@@ -704,6 +772,7 @@ def add_inlg(into = 'hh.bib'):
     e = get(into)
     sav(put(add_inlg_e(e), srtkey = 'macro_area'), into)
 
+
 def renfn(e, ups):
     for (k, field, newvalue) in ups:
         (typ, fields) = e[k]
@@ -711,6 +780,7 @@ def renfn(e, ups):
         fields[field] = newvalue
         e[k] = (typ, fields)
     return e
+
 
 def add_inlg_e(e):
     h = {}
@@ -762,9 +832,9 @@ def maphhtype(fn = 'hh.bib'):
     sav(put(dict(e2.items() + e3.items())), fn)
 
 
-
 rerpgs = re.compile("([xivmcl]+)\-?([xivmcl]*)")
 repgs = re.compile("([\d]+)\-?([\d]*)")
+
 def pagecount(pgstr):
     rpgs = rerpgs.findall(pgstr)
     pgs = repgs.findall(pgstr)
@@ -776,6 +846,7 @@ def pagecount(pgstr):
         return ''
     return str(rsump+sump)
 
+
 def fullpage(pgstr):
     def fullify(o):
         (a, b) = (o.group(1), o.group(2))
@@ -786,10 +857,12 @@ def fullpage(pgstr):
         return a + "-" + b
     return repgs.sub(fullify, pgstr) 
 
+
 def putfield((k, v), d):
     r = dict([(x, y) for (x, y) in d.iteritems()])
     r[k] = v
     return r
+
 
 def introman(i):
     z = {'m': 1000, 'd': 500, 'c': 100, 'l': 50, 'x': 10, 'v': 5, 'i': 1}
@@ -803,6 +876,7 @@ def introman(i):
             x = x + ''.join([c for i in range(q)])
         i = r
     return x
+
 
 def romanint(r):
     z = {'m': 1000, 'd': 500, 'c': 100, 'l': 50, 'x': 10, 'v': 5, 'i': 1}
@@ -819,6 +893,7 @@ def romanint(r):
 
 
 rerom = re.compile("(\d+)")
+
 def roman(x):
     return rerom.sub(lambda o: introman(int(o.group(1))), x).upper()
 
@@ -843,6 +918,7 @@ bibe['number'] = 7
 
 rewrdtok = re.compile("[a-zA-Z].+")
 reokkey = re.compile("[^a-z\d\-\_\[\]]")
+
 def keyid(fields, fd = {}, ti = 2):
     if not fields.has_key('author'):
         if not fields.has_key('editor'):
@@ -878,10 +954,12 @@ def keyid(fields, fd = {}, ti = 2):
 reisobrack = re.compile("\[([a-z][a-z][a-z]|NOCODE\_[A-Z][^\s\]]+)\]")
 recomma = re.compile("[\,\/]\s?")
 reiso = re.compile("[a-z][a-z][a-z]$|NOCODE\_[A-Z][^\s\]]+$")
+
 def lgcode((typ, fields)):
     if not fields.has_key('lgcode'):
         return []
     return lgcodestr(fields['lgcode'])
+
 
 def lgcodestr(lgcstr):
     lgs = reisobrack.findall(lgcstr)
@@ -893,6 +971,7 @@ def lgcodestr(lgcstr):
     if len(codes) == len(parts):
         return codes
     return []
+
 
 ret = {}
 respcomma = re.compile(",\s*")
@@ -913,18 +992,23 @@ ret['keywords'] = lambda x: [z for z in respcomsemic.split(x) if z]
 ret['lgcode'] = lgcodestr
 ret['macro_area'] = lambda x: [x]
 
+
 #siltype, hhtype, mahotype, evatype, macro_area
 def bibtoann((typ, fields)):
     return [(k, ann) for (k, v) in ret.iteritems() if fields.has_key(k) for ann in v(fields[k])]
 
+
 def hhtypestr(s):
     return ret['hhtype'](s)
+
 
 def hhtype((t, f)):
     return hhtypestr(f.get("hhtype", "unknown"))
 
+
 def matchtrig(ws, t):
     return all([(w in ws) == stat for (stat, w) in t])
+
 
 def matchtrigsig((typ, fields), ts):
     ws = set(wrds(fields.get('title', '')))
@@ -933,9 +1017,11 @@ def matchtrigsig((typ, fields), ts):
     mstr = ';'.join([' and '.join([ifel(stat, '', 'not ') + w for (stat, w) in m]) for m in ms])
     return mstr
 
+
 def indextrigs(ts):
     return grp2([(tuple(sorted(disj)), clslab) for (clslab, t) in ts.iteritems() for disj in t])
-    
+
+
 def sd(es):
     #most signficant piece of descriptive material
     #hhtype, pages, year
@@ -944,16 +1030,19 @@ def sd(es):
     ordd = [sorted([(p, y, k, t) for (k, (p, y)) in d[t].iteritems()], reverse = True) for t in hhtyperank if d.has_key(t)]
     return ordd
 
+
 def msd(es):
     #most signficant piece of descriptive material
     #hhtype, pages, year
     return flatten(sd(es))[:1]
+
 
 def pcy(pagecountstr):
     #print pagecountstr
     if not pagecountstr:
         return 0
     return eval(pagecountstr) #int(takeafter(pagecountstr, "+"))
+
 
 def getpages((typ, fields)):
     return pcy(pagecount(fields.get("pages", "")))
@@ -967,6 +1056,7 @@ def accd(mi):
             setd(r, t, k, (pci/float(len(hhts)), year))
     return r
 
+
 def byid(es, idf = lgcode, unsorted = False):
     def tftoids(tf):
         z = idf(tf)
@@ -974,6 +1064,7 @@ def byid(es, idf = lgcode, unsorted = False):
             return ['!Unsorted']
         return z
     return grp2([(cfn, k) for (k, tf) in es.iteritems() for cfn in tftoids(tf)])
+
 
 hhtypes = {}
 hhtypes['unknown'] = (1, 'unknown', 'U', 'unknown')
@@ -993,6 +1084,7 @@ hhtypes['dictionary'] = (15, 'dictionary', 'D', 'd')
 hhtypes['grammar_sketch'] = (16, 'grammar sketch', 'S', 's')
 hhtypes['grammar'] = (17, 'grammar', 'G', 'g')
 
+
 wcs = dict([(bibabbv, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
 hhtyperank = [hht for (n, expl, abbv, bibabbv, hht) in sorted([info + (hht,) for (hht, info) in hhtypes.iteritems()], reverse=True)]
 #wcrank = [hhtypes[hht][-1] for hht in hhtyperank]
@@ -1003,11 +1095,13 @@ hhtype_to_expl = dict([(hht, expl) for (hht, (n, expl, abbv, bibabbv)) in hhtype
 expl_to_hhtype = dict([(expl, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
 hhtype_to_abbv = dict([(hht, abbv) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
 
+
 def sdlgs(e, unsorted = False):
     eindex = byid(e, unsorted = unsorted)
     fes = opv(eindex, lambda ks: dict([(k, e[k]) for k in ks]))
     fsd = opv(fes, sd)
     return (fsd, fes)
+
 
 def pcat(ok):
     r = []
@@ -1027,6 +1121,7 @@ def lstat(e, unsorted = False):
     (lsd, lse) = sdlgs(e, unsorted = unsorted)
     return opv(lsd, lambda xs: (xs + [[[None]]])[0][0][-1])
 
+
 def lstat_numeric(e, unsorted = False):
     (lsd, lse) = sdlgs(e, unsorted = unsorted)
     lsdd = opv(lsd, lambda xs: (xs + [[(0, "", "", None)]])[0][0])
@@ -1041,6 +1136,7 @@ def lstat_witness(e, unsorted = False):
         return (typ, ks)
     (lsd, lse) = sdlgs(e, unsorted = unsorted)
     return opv(lsd, statwit)
+
 
 def mrg(fs = []):
     if type(fs) == type([]):
@@ -1063,6 +1159,7 @@ def mrg(fs = []):
 
 
 reyear = re.compile("\d\d\d\d")
+
 def same23((at, af), (bt, bf)):
     alastnames = [x['lastname'] for x in pauthor(latexutf8.undiacritic(af.get("author", "")))]
     blastnames = [x['lastname'] for x in pauthor(latexutf8.undiacritic(bf.get("author", "")))]
@@ -1078,10 +1175,9 @@ def same23((at, af), (bt, bf)):
         return True
     return False
 
+
 def bibminus(p = "aymeric_refgrams.bib", minus = "hh.bib"):
     (e, r) = mrg([p, minus])
     sm = [k for ks in r.itervalues() if len(ks) != 1 for (f, k) in ks.iterkeys() if f == p]
     df = set(e[p].iterkeys()).difference(sm)
     return dict([(k, e[p][k]) for k in df])
-
-
