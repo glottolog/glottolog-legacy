@@ -3272,20 +3272,20 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Flores Barat, Ngada-Lio-Paluqe, Ngada-Lio, Ende-Lio, Nage-Keo
   Nage [nxe]
   Ke'o [xxk]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Kamberaic
-  Kambera [xbr]
-  Mamboru [mvd]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Central-East Sumbanese, Central Sumbanese
   Anakalangu [akg]
   Wanukaka [wnk]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Central-East Sumbanese
+  Mamboru [mvd]
+  Kambera [xbr]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Wewewa-Laboya
   Lamboya [lmy]
-  Wejewa [wew]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Kodi-Laura
-  Laura [lur]
-  Kodi [kod]
+  Wewewa [wew]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba
+  Kodi-Gaura [kod]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Hawu-Dhao
   Dhao [nfa]
-  Sabu [hvn]
+  Hawu [hvn]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, Teor-Kur
   Kur [kuv]
   Teor [tev]
@@ -4204,8 +4204,9 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Western Oceanic linkage, Papuan Tip linkage, Peripheral Papuan Tip linkage, Nimoa-Sudest
   Nimoa [nmw]
   Sudest [tgo]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Yapesic
   Yapese [yap]
+  Nguluwan [nuw]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Greater SHWNG, South Halmahera-West New Guinea
   Mor (Mor Islands) [mhz]
   Waropen [wrp]
@@ -4357,7 +4358,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Land Dayak, Southern Land
   Semandang [sdm]
   Ribun [rir]
   Jangkang [djo]
-  Kembayan [xem]
+  Mateq [xem]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Malayo-Sumbawan, Maduresic
   Kangean [kkv]
   Madurese [mad]
@@ -6780,7 +6781,7 @@ Iroquoian
 Itonama
   Itonama [ito]
 Iwaidjan_Proper
-  Amarag [amg]
+  Amurdak [amg]
   Maung [mph]
 Iwaidjan_Proper, Central Iwaidjic
   Garig-Ilgar [ilg]
@@ -8906,8 +8907,9 @@ Sino-Tibetan, Himalayish, Mahakiranti, Kiranti, Western Kiranti, Northwestern Ki
   Bahing [bhj]
   Sunwar [suz]
   Wayu [vay]
-Sino-Tibetan, Himalayish, Mahakiranti, Newaric
-  Newari [new]
+Sino-Tibetan, Himalayish, Mahakiranti, Newaric, Newar
+  Eastern Newari [NOCODE_Dolakha-Newari]
+  Kathmandu Valley Newari [new]
 Sino-Tibetan, Himalayish, Mahakiranti, Newaric, Thangmi-Baram
   Thangmi [thf]
   Baraamu [brd]

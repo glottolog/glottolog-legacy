@@ -245,8 +245,6 @@ Mixed Language, Spanish-Quechua
   Media Lengua [mue]
 Mixed Language, Swedish-Romani
   Tavringer Romani [rmu]
-Mixed Language, Yapese-Ulithi
-  Nguluwan [nuw]
 Mixed Language, Zulu-Bantu
   Camtho [cmt]
 Pidgin, Chinook based
@@ -522,6 +520,8 @@ Spurious, Sino-Tibetan, Nungish, Gunong
   Norra [nrr]
 Spurious, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup III
   Tupinikin [tpk]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Wewewa-Laboya
+  Laura [lur]
 Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Dayic, Kelabitic
   Putoh [put]
 Spurious, Atlantic-Congo, North-Central Atlantic, North Atlantic, Eastern Senegal-Guinea, Bainounk
