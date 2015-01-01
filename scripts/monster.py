@@ -59,6 +59,7 @@ the process
 import os
 import glob
 import re
+import zipfile
 
 import latexutf8
 
@@ -69,6 +70,14 @@ HHBIB = os.path.join(DATA_DIR, 'hh.bib')
 HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.txt')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.tsv')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.tsv')
+MONSTER = 'monster.bib'
+MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
+
+PRIOS = {
+    'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
+    'volume': 'hh.bib', 'series': 'hh.bib', 'publisher': 'hh.bib', 'pages': 'hh.bib',
+    'title': 'hh.bib', 'author': 'hh.bib', 'booktitle': 'hh.bib', 'note': 'hh.bib',
+}
 
 
 def intersectall(xs):
@@ -91,7 +100,7 @@ def groupsame(ks, e):
     return bib.inv(r).values()
 
 
-def unduplicate_ids_smart(fn="monster.bib", idfield="glottolog_ref_id"):
+def unduplicate_ids_smart(fn=MONSTER, idfield="glottolog_ref_id"):
     # check for duplicates
     e = bib.get(fn)
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
@@ -123,7 +132,7 @@ def unduplicate_ids_smart(fn="monster.bib", idfield="glottolog_ref_id"):
     bib.sav(bib.put(e), fn)
 
 
-def handout_ids(fn="monster.bib", idfield="glottolog_ref_id"):
+def handout_ids(fn=MONSTER, idfield="glottolog_ref_id"):
     e = bib.get(fn)
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
 
@@ -137,7 +146,7 @@ def handout_ids(fn="monster.bib", idfield="glottolog_ref_id"):
     bib.sav(bib.put(e), fn)
 
 
-def killold_ids(fn="monster.bib", idfield="glotto_id"):
+def killold_ids(fn=MONSTER, idfield="glotto_id"):
     e = bib.get(fn)
     for (k, (t, f)) in e.iteritems():
         if f.has_key(idfield):
@@ -192,7 +201,7 @@ def argm(d, f=max):
     return m
 
 
-def compile_monster((e, r), prios={'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib', 'volume': 'hh.bib', 'series': 'hh.bib', 'publisher': 'hh.bib', 'pages': 'hh.bib', 'title': 'hh.bib', 'author': 'hh.bib', 'booktitle': 'hh.bib', 'note': 'hh.bib'}):
+def compile_monster((e, r), prios=PRIOS):
     o = {}
     for (hk, dps) in r.iteritems():
         src = ', '.join(set([dpf.replace(".bib", "") for (dpf, _) in dps.iterkeys()]))
@@ -347,19 +356,22 @@ def compile_annotate_monster(fs, monster, hhbib):
     annstats(m)
 
 
+if not os.path.exists(MONSTER):
+    with zipfile.ZipFile(MONSTER_ZIP) as z:
+        z.extract(MONSTER)
+
 reold = re.compile(".+old(v\d+)?\.bib$")
 source_bibs = {os.path.basename(fn): fn
     for fn in glob.glob(os.path.join(DATA_DIR, '*.bib'))
     if not reold.match(fn)}
 
-monster = 'monster.bib'
-bib.bak(monster)
-compile_annotate_monster(source_bibs, monster, hhbib=HHBIB)
-killold_ids(fn=monster, idfield='glotto_id')
-killold_ids(fn=monster, idfield='numnote')
-unduplicate_ids_smart(fn=monster, idfield='glottolog_ref_id')
-handout_ids(fn=monster, idfield='glottolog_ref_id')
+bib.bak(MONSTER)
+compile_annotate_monster(source_bibs, MONSTER, hhbib=HHBIB)
+killold_ids(fn=MONSTER, idfield='glotto_id')
+killold_ids(fn=MONSTER, idfield='numnote')
+unduplicate_ids_smart(fn=MONSTER, idfield='glottolog_ref_id')
+handout_ids(fn=MONSTER, idfield='glottolog_ref_id')
 
 # Trickling back
-trickle(bib.get(monster), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
-bib.savu(latexutf8.latex_to_utf8(bib.load(monster)), 'monsterutf8.bib')
+trickle(bib.get(MONSTER), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
+bib.savu(latexutf8.latex_to_utf8(bib.load(MONSTER)), 'monsterutf8.bib')
