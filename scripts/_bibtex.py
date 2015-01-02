@@ -39,13 +39,9 @@ def iterentries(source):
         raise
 
 
-def main(pattern='../../references/bibtex/*.bib'):
-    for filename in glob.glob(pattern):
+if __name__ == '__main__':    
+    for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)
         print(len(entries))
         pprint(next(entries.iteritems()))
-
-
-if __name__ == '__main__':
-    main()
