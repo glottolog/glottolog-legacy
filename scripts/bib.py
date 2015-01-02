@@ -4,7 +4,9 @@ import os
 import shutil
 import re
 import codecs
+from collections import defaultdict
 
+from pybtex.database.input import bibtex
 import latexutf8
 
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
@@ -97,30 +99,22 @@ def edist(x, y, delta = delta, case_sensitive = False):
 
 
 def inv(d):
-    r = {}
-    for (k, v) in d.iteritems():
-        if r.has_key(v):
-            r[v].add(k)
-        else:
-            r[v] = set([k])
+    r = defaultdict(set)
+    for k, v in d.items():
+        r[v].add(k)
     return r
 
 
-def takeuntil(s, q, plus = 0):
-    i = s.find(q)
-    if i >= 0:
-        return s[:i+plus]
-    return s
+def takeuntil(s, q):
+    return s.split(q, 1)[0]
 
 
 def takeafter(s, q):
-    i = s.find(q)
-    if i >= 0:
-        return s[i+len(q):]
-    return s
+    return s.split(q, 1)[-1]
 
 
 def pairs(xs):
+    # FIXME: return itertools.combinations(xs, 2)
     return [(x, y) for x in xs for y in xs if x < y]
 
 
@@ -539,46 +533,31 @@ def pitem(item):
 
 
 def savu(txt, fn):
-    f = codecs.open(fn, 'w', encoding = "utf-8")
-    f.write(txt)
-    f.close()
-    return
+    with codecs.open(fn, 'w', encoding = "utf-8") as f:
+        f.write(txt)
 
 
 def sav(txt, fn):
-    f = open(fn, 'w')
-    f.write(txt)
-    f.close()
-    return
+    with open(fn, 'w') as f:
+        f.write(txt)
 
 
 def tabtxt(rows):
-    tab = u''.join([u'\t'.join(["%s" % x for x in row]) + u'\n' for row in rows])
-    return tab
+    return u''.join([u'\t'.join(["%s" % x for x in row]) + u'\n' for row in rows])
 
 
 def load(fn):
-    f = open(fn, 'r')
-    txt = f.read()
-    f.close()
+    with open(fn, 'r') as f:
+        txt = f.read()
     return txt
 
 
-def get2(fn = ['eva.bib']):
-    if type(fn) != type([]):
-        fn = [fn]
-    return get2txt('\n'.join([load(f) for f in fn]))
+def get2(fn=['eva.bib']):
+    return get2txt('\n'.join([load(f) for f in (fn if isinstance(fn, list) else [fn])]))
 
 
-def get(fn = []):
-    if type(fn) != type([]):
-        fn = [fn]
-    return gettxt('\n'.join([load(f) for f in fn]))
-
-
-def getu(fn = "monsterutf8.bib"):
-    txt = loadunicode(fn)
-    return gettxt(txt)
+def get(fn=[]):
+    return gettxt('\n'.join([load(f) for f in (fn if isinstance(fn, list) else [fn])]))
 
 
 def gettxt(txt):
@@ -690,7 +669,8 @@ bibord['year'] = 30
 bibord['issn'] = 40
 bibord['url'] = 50
 
-def showbib((key, (typ, bib)), abbs = {}):    
+
+def showbib((key, (typ, bib)), abbs={}):
     r = "@" + typ + "{" + str(key) + ",\n"
     
     order = [(bibord.get(x, 1000), x) for x in bib.keys()]
@@ -1031,12 +1011,6 @@ def sd(es):
     return ordd
 
 
-def msd(es):
-    #most signficant piece of descriptive material
-    #hhtype, pages, year
-    return flatten(sd(es))[:1]
-
-
 def pcy(pagecountstr):
     #print pagecountstr
     if not pagecountstr:
@@ -1108,6 +1082,7 @@ def pcat(ok):
     k = ok
     while k:
         try:
+            # FIXME: hhcats not defined!
             (_, m) = max([(len(x), x) for x in hhcats if k.startswith(x)])
         except ValueError:
             print ok, k
@@ -1175,9 +1150,3 @@ def same23((at, af), (bt, bf)):
         return True
     return False
 
-
-def bibminus(p = "aymeric_refgrams.bib", minus = "hh.bib"):
-    (e, r) = mrg([p, minus])
-    sm = [k for ks in r.itervalues() if len(ks) != 1 for (f, k) in ks.iterkeys() if f == p]
-    df = set(e[p].iterkeys()).difference(sm)
-    return dict([(k, e[p][k]) for k in df])
