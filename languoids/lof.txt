@@ -552,6 +552,8 @@ Spurious, Afro-Asiatic, Chadic, East Chadic, East Chadic A, East Chadic A.1
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, North-Central Edoid, Central Plains Edoid
   Uokha [uok]
   Ihievbe [ihi]
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Baka-Gundi
+  Ngombe (Central African Republic) [nmj]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid
   Ibilo [ibi]
 Spurious, Cariban

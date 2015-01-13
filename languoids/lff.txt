@@ -2616,7 +2616,7 @@ Atlantic-Congo, Volta-Congo, North Volta-Congo, Gbaya-Manza-Ngbaka, Gbaya Meridi
   Suma [sqm]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Gbaya-Manza-Ngbaka, Gbaya Meridional-Occidental, Gbaya Meridional
   Southwest Gbaya [gso]
-  Bangandu [bgf]
+  Ngombe-Bangandu [bgf]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Ngbandi-Mongoba-Kazibati
   Mongoba-Kazibati [NOCODE_Mongoba-Kazibati]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Ngbandi-Mongoba-Kazibati, Ngbandic
@@ -2646,7 +2646,6 @@ Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngb
   Ganzi [gnz]
   Gundi [gdi]
   Limassa [bme]
-  Ngombe (Central African Republic) [nmj]
   Baka (Cameroon) [bkc]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Monzomboic
   Monzombo [moj]
@@ -3736,7 +3735,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Lonwolwol [crc]
   North Ambrym [mmg]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Ambrym, Orkon-Port Vato-Dakaka, Port Vato-Dakaka
-  Port Vato [ptv]
+  Daakie [ptv]
   Dakaka [bpa]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Ambrym, Orkon-Port Vato-Dakaka
   Orkon [NOCODE_Orkon]
@@ -9470,7 +9469,7 @@ Sino-Tibetan, Macro-Tani, Tani, Pre-Western Tani, Damu-Tangam
   Tangam [NOCODE_Tangam]
 Sino-Tibetan, Macro-Tani, Tani, Pre-Western Tani, Western Tani
   Apatani [apt]
-  Bokar-Ramo-Pailibo [NOCODE_Bokar]
+  Bokar-Ramo [NOCODE_Bokar]
 Sino-Tibetan, Macro-Tani, Tani, Pre-Western Tani, Western Tani, Subansiri
   Nyishi-Hill Miri [njz]
   Galo [adl]
