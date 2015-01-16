@@ -9,8 +9,20 @@ from collections import defaultdict
 from pybtex.database.input import bibtex
 import latexutf8
 
+__all__ = [
+    'get', 'put', 'mrg', 'fuse',
+    'bak', 'load', 'sav', 'savu', 'tabtxt', 'putfield', 'fd', 'fdt',
+    'add_inlg_e', 'stdauthor',
+    'grp2', 'grp2l', 'keyid', 'edist', 'ptab', 'same23', 'inv',
+    'wrds', 'setd', 'setd3', 'indextrigs',
+    'lstat', 'lstat_witness', 
+    'pairs', 'takeuntil', 'takeafter',
+    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'ptabd',
+    
+]
+
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
-reext = "(?:" + '|'.join(["(?:" + z + ")" for z in exts + [z.upper() for z in exts]]) + ")"
+reext = "(?:" + '|'.join("(?:" + z + ")" for z in exts + [z.upper() for z in exts]) + ")"
 rev2 = re.compile("(v\d+)?((?:\_o)?\.%s)" % reext)
 
 
@@ -122,13 +134,13 @@ renewline = re.compile("[\\n\\r]")
 
 def ptab(fn, i=1, spl="\t"):
     lines = renewline.split(load(fn))[i:]
-    li = [tuple([x.strip() for x in l.split(spl)]) for l in lines if l != ""]
+    li = [tuple(x.strip() for x in l.split(spl)) for l in lines if l != ""]
     return li
 
 
 def ptabd(fn, spl="\t"):
     ll = ptab(fn, i=0)
-    return dict([(l[0], dict(zip(ll[0][1:], l[1:]))) for l in ll[1:]])
+    return dict((l[0], dict(zip(ll[0][1:], l[1:]))) for l in ll[1:])
 
 
 def setd3(ds, k1, k2, k3, v=None):
@@ -274,13 +286,13 @@ def syncauthors((at, af), (bt, bf)):
     pab = pauthor(bf.get('author', ''))
     sa = [syncauthor(pa, pb) for (pa, pb) in zip(paa, pab)]
     if all(sa):
-        return (at, putfield(('author', ' and '.join([yankauthorbib(x) for x in sa])), af))
+        return (at, putfield(('author', ' and '.join(yankauthorbib(x) for x in sa)), af))
     print "Authors don't match", sa, paa, pab
     return (at, af)
 
 
 def standardize_author(s):
-    return ' and '.join([yankauthorbib(x) for x in pauthor(s)])
+    return ' and '.join(yankauthorbib(x) for x in pauthor(s))
 
 
 def stdauthor(fields):
@@ -292,7 +304,7 @@ def stdauthor(fields):
 
 
 def authalpha(s):
-    return ', '.join([latexutf8.undiacritic(unvonstr(x)) for x in pauthor(s)])
+    return ', '.join(latexutf8.undiacritic(unvonstr(x)) for x in pauthor(s))
 
 
 #"Adam, A., W.B. Wood, C.P. Symons, I.G. Ord & J. Smith"
@@ -309,7 +321,7 @@ def decommaauthor(a):
     except IndexError:
         print ns
         raise IndexError
-    return " and ".join([n for (n, l) in ns])
+    return " and ".join(n for (n, l) in ns)
 
 
 relu = re.compile("\s+|(d\')(?=[A-Z])")
@@ -357,7 +369,7 @@ def lastvon(author):
 
 def unvonstr(author):
     a = unvon(author)
-    return ' '.join([a[k] for k in ['lastname', 'firstname', 'jr'] if a.has_key(k) and a[k]])
+    return ' '.join(a[k] for k in ('lastname', 'firstname', 'jr') if a.has_key(k) and a[k])
 
 
 def lastnamekey(s):
@@ -507,10 +519,6 @@ def getyear((typ, fields), default=lambda x: "no date"):
     return yeartoint(fields.get("year", default((typ, fields))))
 
 
-def pall(txt):
-    return reitem.findall(txt)
-
-
 refields = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[{"](?P<data>.*)[}"],\n')
 refieldsnum = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*(?P<data>\d+),\n')
 refieldsacronym = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*(?P<data>[A-Za-z]+),\n')
@@ -521,15 +529,17 @@ reitem = re.compile("@[a-zA-Z]+{[^@]+}")
 
 trf = '@Book{g:Fourie:Mbalanhu,\n  author =   {David J. Fourie},\n  title =    {Mbalanhu},\n  publisher =    LINCOM,\n  series =       LWM,\n  volume =       03,\n  year = 1993\n}'
 
-def pitem(item):
-    o = retypekey.search(item)
-    if not o:
-        return None
-    key = o.group("key")
-    typ = o.group("type")
-    fields = refields.findall(item) + refieldsacronym.findall(item) + refieldsnum.findall(item) + refieldslast.findall(item)
-    fieldslower = map(lambda (x, y): (x.lower(), y), fields)
-    return key, typ.lower(), dict(fieldslower)
+def pitems(txt):
+    for m in reitem.finditer(txt):
+        item = m.group()
+        o = retypekey.search(item)
+        if o is None:
+            continue
+        key = o.group("key")
+        typ = o.group("type")
+        fields = refields.findall(item) + refieldsacronym.findall(item) + refieldsnum.findall(item) + refieldslast.findall(item)
+        fieldslower = ((x.lower(), y) for x, y in fields)
+        yield key, typ.lower(), dict(fieldslower)
 
 
 def savu(txt, fn):
@@ -543,7 +553,7 @@ def sav(txt, fn):
 
 
 def tabtxt(rows):
-    return u''.join([u'\t'.join(["%s" % x for x in row]) + u'\n' for row in rows])
+    return u''.join(u'\t'.join("%s" % x for x in row) + u'\n' for row in rows)
 
 
 def load(fn):
@@ -553,19 +563,16 @@ def load(fn):
 
 
 def get2(fn=['eva.bib']):
-    return get2txt('\n'.join([load(f) for f in (fn if isinstance(fn, list) else [fn])]))
+    return get2txt('\n'.join(load(f) for f in (fn if isinstance(fn, list) else [fn])))
 
 
 def get(fn=[]):
-    return gettxt('\n'.join([load(f) for f in (fn if isinstance(fn, list) else [fn])]))
+    return gettxt('\n'.join(load(f) for f in (fn if isinstance(fn, list) else [fn])))
 
 
 def gettxt(txt):
-    pentries = [pitem(x) for x in pall(txt)]
-    entries = [x for x in pentries if x]
-
     e = {}
-    for (key, typ, fields) in entries:
+    for (key, typ, fields) in pitems(txt):
         if e.has_key(key):
             print "Duplicate key: ", key
         e[key] = (typ, fields)
@@ -574,12 +581,9 @@ def gettxt(txt):
 
 
 def get2txt(txt):
-    pentries = [pitem(x) for x in pall(txt)]
-    entries = [x for x in pentries if x]
-
     e = {}
     i = 0
-    for (key, typ, fields) in entries:
+    for (key, typ, fields) in pitems(txt):
         while e.has_key(key):
             i = i + 1
             key = str(i)
@@ -780,10 +784,10 @@ def add_inlg_e(e):
     h['Finnish [fin]'] = ['suomen', 'kielen', 'ja']
     h['Turkish [tur]'] = ['turkce', 'uzerine', 'terimleri', 'turkiye', 'hakkinda', 'halk', 'uzerinde', 'turkcede', 'tarihi', 'kilavuzu']
 
-    dh = dict([(v, k) for (k, vs) in h.iteritems() for v in vs])
+    dh = dict((v, k) for (k, vs) in h.iteritems() for v in vs)
     ts = [(k, wrds(fields['title']) + wrds(fields.get('booktitle', ''))) for (k, (typ, fields)) in e.iteritems() if fields.has_key('title') and not fields.has_key('inlg')]
     print len(ts), "without", 'inlg'
-    ann = [(k, set([dh[w] for w in tit if dh.has_key(w)])) for (k, tit) in ts]
+    ann = [(k, set(dh[w] for w in tit if dh.has_key(w))) for (k, tit) in ts]
     unique = [(k, lgs.pop()) for (k, lgs) in ann if len(lgs) == 1]
     print len(unique), "cases of unique hits"
     fnups = [(k, 'inlg', v) for (k, v) in unique]
@@ -793,7 +797,7 @@ def add_inlg_e(e):
     newtrain = grp2fd([(lgcodestr(fields['inlg'])[0], w) for (k, (typ, fields)) in t2.iteritems() if fields.has_key('title') and fields.has_key('inlg') if len(lgcodestr(fields['inlg'])) == 1 for w in wrds(fields['title'])])
     #newtrain = grp2fd([(cname(lgc), w) for (lgcs, w) in alc if len(lgcs) == 1 for lgc in lgcs])
     for (lg, wf) in sorted(newtrain.iteritems(), key=lambda x: len(x[1])):
-        cm = [(1+f, float(1-f+sum([owf.get(w, 0) for owf in newtrain.itervalues()])), w) for (w, f) in wf.iteritems() if f > 9]
+        cm = [(1+f, float(1-f+sum(owf.get(w, 0) for owf in newtrain.itervalues())), w) for (w, f) in wf.iteritems() if f > 9]
         cms = [(f/fn, f, fn, w) for (f, fn, w) in cm]
         cms.sort(reverse=True)
         ##print lg, cms[:10]
@@ -804,8 +808,8 @@ def add_inlg_e(e):
 def maphhtype(fn='hh.bib'):
     bak(fn)
     e = get([fn])
-    e2 = dict([(k, (typ, putfield(('hhtype', ';'.join([wcs[x] for x in pcat(takeuntil(k, ":"))])), fields))) for (k, (typ, fields)) in e.iteritems() if k.find(":") != -1])
-    e3 = dict([(k, (typ, fields)) for (k, (typ, fields)) in e.iteritems() if k.find(":") == -1])
+    e2 = dict((k, (typ, putfield(('hhtype', ';'.join(wcs[x] for x in pcat(takeuntil(k, ":")))), fields))) for (k, (typ, fields)) in e.iteritems() if k.find(":") != -1)
+    e3 = dict((k, (typ, fields)) for (k, (typ, fields)) in e.iteritems() if k.find(":") == -1)
     if len(e3) > 0:
         print len(e3), "without colon-key-hhtype"
         print e3.keys()[:100]
@@ -839,14 +843,14 @@ def fullpage(pgstr):
 
 
 def putfield((k, v), d):
-    r = dict([(x, y) for (x, y) in d.iteritems()])
+    r = dict((x, y) for (x, y) in d.iteritems())
     r[k] = v
     return r
 
 
 def introman(i):
     z = {'m': 1000, 'd': 500, 'c': 100, 'l': 50, 'x': 10, 'v': 5, 'i': 1}
-    iz = dict([(v, k) for (k, v) in z.iteritems()])
+    iz = dict((v, k) for (k, v) in z.iteritems())
     x = ""
     for (v, c) in sorted(iz.items(), reverse=True):
         (q, r) = divmod(i, v)
@@ -914,10 +918,10 @@ def keyid(fields, fd={}, ti=2):
         print "   ", astring, astring.split(' and ')
         print fields['title']
 
-    ak = [latexutf8.undiacritic(x) for x in sorted([lastnamekey(a['lastname']) for a in authors])]
+    ak = [latexutf8.undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
     yk = pyear(fields.get('year', '[nd]'))[:4]
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
-    tkf = list(sorted([w for w in tks if rewrdtok.match(w)], key=lambda w: fd.get(w, 0), reverse=True))
+    tkf = list(sorted((w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True))
     tk = tkf[-ti:]
     if fields.has_key('volume') and not fields.has_key('journal') and not fields.has_key('booktitle') and not fields.has_key('series'):
         vk = roman(fields['volume'])
@@ -987,14 +991,14 @@ def hhtype((t, f)):
 
 
 def matchtrig(ws, t):
-    return all([(w in ws) == stat for (stat, w) in t])
+    return all((w in ws) == stat for (stat, w) in t)
 
 
 def matchtrigsig((typ, fields), ts):
     ws = set(wrds(fields.get('title', '')))
     chks = [(t, matchtrig(ws, t)) for t in ts]
     ms = [t for (t, m) in chks if m]
-    mstr = ';'.join([' and '.join([ifel(stat, '', 'not ') + w for (stat, w) in m]) for m in ms])
+    mstr = ';'.join(' and '.join(ifel(stat, '', 'not ') + w for (stat, w) in m) for m in ms)
     return mstr
 
 
@@ -1007,7 +1011,7 @@ def sd(es):
     #hhtype, pages, year
     mi = [(k, (hhtypestr(fields.get('hhtype', 'unknown')), fields.get('pages', ''), fields.get('year', ''))) for (k, (typ, fields)) in es.iteritems()]
     d = accd(mi)
-    ordd = [sorted([(p, y, k, t) for (k, (p, y)) in d[t].iteritems()], reverse=True) for t in hhtyperank if d.has_key(t)]
+    ordd = [sorted(((p, y, k, t) for (k, (p, y)) in d[t].iteritems()), reverse=True) for t in hhtyperank if d.has_key(t)]
     return ordd
 
 
@@ -1059,20 +1063,20 @@ hhtypes['grammar_sketch'] = (16, 'grammar sketch', 'S', 's')
 hhtypes['grammar'] = (17, 'grammar', 'G', 'g')
 
 
-wcs = dict([(bibabbv, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
-hhtyperank = [hht for (n, expl, abbv, bibabbv, hht) in sorted([info + (hht,) for (hht, info) in hhtypes.iteritems()], reverse=True)]
+wcs = dict((bibabbv, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
+hhtyperank = [hht for (n, expl, abbv, bibabbv, hht) in sorted((info + (hht,) for (hht, info) in hhtypes.iteritems()), reverse=True)]
 #wcrank = [hhtypes[hht][-1] for hht in hhtyperank]
 #hhcats = wcrank
-#hhtype_to_n = dict([(hht, n) for (i, hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
-hhtype_to_n = dict([(x, len(hhtyperank)-i) for (i, x) in enumerate(hhtyperank)])
-hhtype_to_expl = dict([(hht, expl) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
-expl_to_hhtype = dict([(expl, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
-hhtype_to_abbv = dict([(hht, abbv) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems()])
+#hhtype_to_n = dict((hht, n) for (i, hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
+hhtype_to_n = dict((x, len(hhtyperank)-i) for (i, x) in enumerate(hhtyperank))
+hhtype_to_expl = dict((hht, expl) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
+expl_to_hhtype = dict((expl, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
+hhtype_to_abbv = dict((hht, abbv) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
 
 
 def sdlgs(e, unsorted=False):
     eindex = byid(e, unsorted=unsorted)
-    fes = opv(eindex, lambda ks: dict([(k, e[k]) for k in ks]))
+    fes = opv(eindex, lambda ks: dict((k, e[k]) for k in ks))
     fsd = opv(fes, sd)
     return (fsd, fes)
 
@@ -1083,7 +1087,7 @@ def pcat(ok):
     while k:
         try:
             # FIXME: hhcats not defined!
-            (_, m) = max([(len(x), x) for x in hhcats if k.startswith(x)])
+            (_, m) = max((len(x), x) for x in hhcats if k.startswith(x))
         except ValueError:
             print ok, k
 
@@ -1114,8 +1118,8 @@ def lstat_witness(e, unsorted=False):
 
 
 def mrg(fs=[]):
-    if type(fs) == type([]):
-        fs = dict([(f, f) for f in fs])
+    if isinstance(fs, list):
+        fs = dict((f, f) for f in fs)
     e = {}
     r = {}
     for (f, fullpath) in fs.iteritems():
