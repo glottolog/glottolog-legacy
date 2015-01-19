@@ -698,8 +698,11 @@ def srtauthor(e):
 
 
 def put(e, abbs={}, srtkey="author"):
-    order = [(fields.get(srtkey, '') + takeafter(k, ":"), k) for (k, (typ, fields)) in e.iteritems()]
-    return ''.join([showbib((k, e[k]), abbs) for (sk, k) in sorted(order)])
+    if srtkey == 'bibkey':
+        key = lambda (k, (typ, fields)): k.lower()
+    else:
+        key = lambda (k, (typ, fields)): fields.get(srtkey, '') + takeafter(k, ":")
+    return ''.join(showbib((k, e), abbs) for k, e in sorted(e.iteritems(), key=key))
 
 
 resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
@@ -857,7 +860,7 @@ def introman(i):
         if q == 4 and c != 'm':
             x = x + c + iz[5*v]
         else:
-            x = x + ''.join([c for i in range(q)])
+            x = x + ''.join(c for i in range(q))
         i = r
     return x
 

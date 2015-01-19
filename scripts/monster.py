@@ -120,7 +120,7 @@ def unduplicate_ids_smart(fn=MONSTER, idfield="glottolog_ref_id"):
     dups = [(idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups]
     fnb = bib.takeuntil(fn, ".")
     print "Finding previous version for", fnb
-    (ft, previous) = max([(os.stat(f).st_mtime, f) for f in os.listdir(".") if f.startswith(fnb) and f.endswith('.bib') and f != fn and not f.endswith("-prio.bib")])
+    (ft, previous) = max((os.stat(f).st_mtime, f) for f in os.listdir(".") if f.startswith(fnb) and f.endswith('.bib') and f != fn and not f.endswith("-prio.bib"))
     qp = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in bib.get(previous).iteritems() if fields.has_key(idfield)])
     for (idn, ks) in dups:
         (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
@@ -170,7 +170,7 @@ def trickle(m, tricklefields=['isbn'], datadir=""):
             except IOError:
                 print "No such file", os.path.join(datadir, '%s.bib' % src)
                 continue
-            mktk = findidks(te, dict([(mk, m[mk]) for (mk, f, newd) in us]))
+            mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
             r = {}
             for (mk, f, newd) in us:
                 if m[mk][1].has_key('srctrickle'):
