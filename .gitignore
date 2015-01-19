@@ -1,4 +1,10 @@
 *.py[cod]
+references/bibtex/*old.bib
+scripts/monster.bib
+scripts/monsterutf8.bib
+scripts/monsterold*.bib
+scripts/monstermarkhht.txt
+scripts/monstermarklgc.txt
 
 # C extensions
 *.so
