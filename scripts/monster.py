@@ -88,12 +88,12 @@ def intersectall(xs):
 
 
 def alt4lgcode(fn=LGCODE):
-    return bib.grp2l([((x, y), eval(z)) for [x, y, z] in bib.ptab(fn)])
+    return bib.grp2l([((x, y), eval(z)) for (x, y, z) in bib.ptab(fn)])
 
 
 def groupsame(ks, e):
     ksame = [((k1, k2), bib.same23(e[k1], e[k2])) for (k1, k2) in bib.pairs(ks)]
-    r = dict([(k, i) for (i, k) in enumerate(ks)])
+    r = dict((k, i) for (i, k) in enumerate(ks))
     for ((k1, k2), s23) in ksame:
         if s23:
             r[k2] = r[k1]
@@ -120,7 +120,7 @@ def unduplicate_ids_smart(fn=MONSTER, idfield="glottolog_ref_id"):
     dups = [(idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups]
     fnb = bib.takeuntil(fn, ".")
     print "Finding previous version for", fnb
-    (ft, previous) = max([(os.stat(f).st_mtime, f) for f in os.listdir(".") if f.startswith(fnb) and f.endswith('.bib') and f != fn and not f.endswith("-prio.bib")])
+    (ft, previous) = max((os.stat(f).st_mtime, f) for f in os.listdir(".") if f.startswith(fnb) and f.endswith('.bib') and f != fn and not f.endswith("-prio.bib"))
     qp = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in bib.get(previous).iteritems() if fields.has_key(idfield)])
     for (idn, ks) in dups:
         (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
@@ -136,13 +136,13 @@ def handout_ids(fn=MONSTER, idfield="glottolog_ref_id"):
     e = bib.get(fn)
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
 
-    tid = max([int(x) for x in q.iterkeys()] + [300000])+1
+    tid = max([int(x) for x in q.iterkeys()] + [300000]) + 1
     print "NEW UNIQUE ID", tid
     for (k, (t, f)) in e.iteritems():
         if not f.has_key(idfield):
             f[idfield] = str(tid)
             tid = tid + 1
-    print "ADDED IDS", tid-max([int(x) for x in q.iterkeys()])-1
+    print "ADDED IDS", tid - max(int(x) for x in q.iterkeys()) - 1
     bib.sav(bib.put(e), fn)
 
 
@@ -158,7 +158,7 @@ def findidks(e, mks):
     ft = bib.fdt(e)
     ekis = bib.grp2([(bib.keyid(fields, ft), ek) for (ek, (typ, fields)) in e.iteritems()])
     mkis = [(mk, bib.keyid(fields, ft)) for (mk, (typ, fields)) in mks.iteritems()]
-    return dict([(mk, ekis.get(kid, [])) for (mk, kid) in mkis])
+    return dict((mk, ekis.get(kid, [])) for (mk, kid) in mkis)
 
 
 def trickle(m, tricklefields=['isbn'], datadir=""):
@@ -170,7 +170,7 @@ def trickle(m, tricklefields=['isbn'], datadir=""):
             except IOError:
                 print "No such file", os.path.join(datadir, '%s.bib' % src)
                 continue
-            mktk = findidks(te, dict([(mk, m[mk]) for (mk, f, newd) in us]))
+            mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
             r = {}
             for (mk, f, newd) in us:
                 if m[mk][1].has_key('srctrickle'):
@@ -204,8 +204,8 @@ def argm(d, f=max):
 def compile_monster((e, r), prios=PRIOS):
     o = {}
     for (hk, dps) in r.iteritems():
-        src = ', '.join(set([dpf.replace(".bib", "") for (dpf, _) in dps.iterkeys()]))
-        srctrickle = ', '.join([dpf.replace(".bib", "")+"#"+dpk for (dpf, dpk) in dps.iterkeys()])
+        src = ', '.join(set(dpf.replace(".bib", "") for (dpf, _) in dps.iterkeys()))
+        srctrickle = ', '.join(dpf.replace(".bib", "") + "#" + dpk for (dpf, dpk) in dps.iterkeys())
         (typ, fields) = bib.fuse([e[dpf][dpk] for (dpf, dpk) in dps.iterkeys()])
 
         ofs = bib.putfield(('srctrickle', srctrickle), bib.putfield(('src', src), fields))
@@ -255,8 +255,8 @@ def markconservative(m, trigs, ref, outfn="monstermarkrep.txt", blamefield="hhty
 
 
 def markall(e, trigs, labelab=lambda x: x):
-    clss = set([cls for (cls, _) in trigs.iterkeys()])
-    ei = dict([(k, (typ, fields)) for (k, (typ, fields)) in e.iteritems() if [c for c in clss if not fields.has_key(c)]])
+    clss = set(cls for (cls, _) in trigs.iterkeys())
+    ei = dict((k, (typ, fields)) for (k, (typ, fields)) in e.iteritems() if [c for c in clss if not fields.has_key(c)])
 
     wk = {}
     for (k, (typ, fields)) in ei.iteritems():
@@ -275,9 +275,9 @@ def markall(e, trigs, labelab=lambda x: x):
 
     for (k, cd) in u.iteritems():
         (t, f) = e[k]
-        f2 = dict([(a, b) for (a, b) in f.iteritems()])
+        f2 = dict((a, b) for (a, b) in f.iteritems())
         for ((cls, lab), ms) in cd.iteritems():
-            a = ';'.join([' and '.join([('' if stat else 'not ') + w for (stat, w) in m]) for m in ms])
+            a = ';'.join(' and '.join(('' if stat else 'not ') + w for (stat, w) in m) for m in ms)
             f2[cls] = labelab(lab) + ' (computerized assignment from "' + a + '")'
             e[k] = (t, f2)
     print "trigs", len(trigs)
@@ -319,13 +319,13 @@ def macro_area_from_lgcode(m):
     def inject_macro_area((typ, fields), lgd):
         if not fields.has_key('macro_area'):
             return (typ, fields)
-        mas = set([lgd[x]["macro_area"] for x in bib.lgcode((typ, fields)) if lgd.get(x, {}).get("macro_area")])
+        mas = set(lgd[x]["macro_area"] for x in bib.lgcode((typ, fields)) if lgd.get(x, {}).get("macro_area"))
         if mas:
-            fields['macro_area'] = ', '.join([rpl.get(x, x) for x in mas])
+            fields['macro_area'] = ', '.join(rpl.get(x, x) for x in mas)
         return (typ, fields)
 
     lgd = bib.ptabd(LGINFO)
-    return dict([(k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems()])
+    return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
 def compile_annotate_monster(fs, monster, hhbib):
@@ -336,7 +336,7 @@ def compile_annotate_monster(fs, monster, hhbib):
     m = macro_area_from_lgcode(m)
 
     # Annotate with hhtype
-    hht = dict([((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in hhttxt(bib.load(HHTYPE)).iteritems()])
+    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in hhttxt(bib.load(HHTYPE)).iteritems())
     m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
 
     # Annotate with lgcode
@@ -347,7 +347,7 @@ def compile_annotate_monster(fs, monster, hhbib):
     m = bib.add_inlg_e(m)
 
     # Standardize author list
-    m = dict([(k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems()])
+    m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
 
     # Save
     bib.sav(bib.put(m), monster)
