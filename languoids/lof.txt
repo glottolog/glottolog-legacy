@@ -155,8 +155,12 @@ Sign Language, Deaf Sign Language, Spanish Sign
   Spanish Sign Language [ssp]
 Sign Language, Deaf Sign Language, Arab Sign
   Kuwaiti Sign Language [NOCODE_Kuwaiti-Sign]
-  Syro-Palestinian Sign Language [jos]
+  Yemeni Sign Language [NOCODE_Yemeni-Sign]
   Libyan Sign Language [lbs]
+  Egypt Sign Language [esl]
+Sign Language, Deaf Sign Language, Arab Sign, Levantine-Iraqi Sign
+  Levantine Arabic Sign Language [jos]
+  Iraqi Sign Language [NOCODE_Iraqi-Sign]
 Sign Language, Deaf Sign Language, Unclassified Deaf Sign Language
   Cuba Sign Language [csf]
   Guyana Sign Language [NOCODE_Guyana-Sign]
@@ -185,7 +189,6 @@ Sign Language, Deaf Sign Language
   Albanian Sign Language [sqk]
   Afghan Sign Language [afg]
   Turkish Sign Language [tsm]
-  Egypt Sign Language [esl]
   Maltese Sign Language [mdl]
   Langue de Signes Malienne [bog]
   Burkina Faso Sign Language [NOCODE_Burkina-Faso-Sign]  
@@ -373,6 +376,8 @@ Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Nor
   Ngatik Men's Creole [ngm]
 Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Franconian, Low Franconian, Afrikaansic
   Tsotsitaal [fly]
+Spurious, Maybrat
+  Karon Dori [kgw]
 Spurious, Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
   Khao [xao]
 Spurious, Sign Language, Deaf Sign Language
@@ -385,6 +390,8 @@ Spurious, Panoan, Mainline Pano
   Nocam\'an [nom]
 Spurious, Afro-Asiatic, Berber, Kabyle-Atlas Berber, Atlas Berber
   Judeo-Berber [jbe]
+Spurious, Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Eastern Huon
+  Tobo [tbv]
 Spurious
   Alaguilac [NOCODE_Alaguilac]
   Iapama [iap]

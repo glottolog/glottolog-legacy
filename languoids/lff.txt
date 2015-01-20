@@ -1621,6 +1621,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Lundu-Balong (A.10), Lekongo-Manenguba, Bafaw-Balong-Manenguba
   Bafaw-Balong [bwt]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Makaa-Njem (A.80), Mvumboic
+  Shiwa [NOCODE_Shiwa]
   Kwasio [nmg]
   Gyele [gyi]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Makaa-Njem (A.80), Pomo-Bomwali, Kako (A.90)
@@ -6140,7 +6141,7 @@ Indo-European, Graeco-Phrygian, Greek, Attic
   Ancient Greek [grc]
 Indo-European, Graeco-Phrygian, Greek, Attic, Koineic Greek
   Modern Greek [ell]
-  Calabrian Greek [NOCODE_Calabrian-Greek]
+  Apulia-Calabrian Greek [NOCODE_Calabrian-Greek]
   Yevanic [yej]
   Cypriot Greek [NOCODE_Cypriot-Greek]
 Indo-European, Graeco-Phrygian, Greek, Attic, Koineic Greek, Pontic-Cappadocian Greek
@@ -7070,7 +7071,7 @@ Kwomtari-Nai
   Nai [bio]
   Kwomtari [kwo]
 Kxa
-  Amkhoe [NOCODE_Hoa]
+  Amkhoe [huc]
 Kxa, Ju-Kung
   North-Central Ju [knw]
   Central Ju [NOCODE_Central-Ju]
@@ -7396,56 +7397,55 @@ Mawes
 Mayan, Huastecan Mayan
   Chicomuceltec [cob]
   Huastec [hus]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Cholan-Tzeltalan, Cholan
+Mayan, Core Mayan, Western Mayan, Cholan-Tzeltalan, Cholan
   Epigraphic Mayan [emy]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Cholan-Tzeltalan, Cholan, Chol-Chontal
+Mayan, Core Mayan, Western Mayan, Cholan-Tzeltalan, Cholan, Chol-Chontal
   Chol [ctu]
   Tabasco Chontal [chf]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Cholan-Tzeltalan, Cholan, Chorti-Cholti
+Mayan, Core Mayan, Western Mayan, Cholan-Tzeltalan, Cholan, Chorti-Cholti
   Cholti [NOCODE_Cholti]
   Chort\'i [caa]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Cholan-Tzeltalan, Tzeltalan
+Mayan, Core Mayan, Western Mayan, Cholan-Tzeltalan, Tzeltalan
   Tzeltal [tzh]
   Tzotzil [tzo]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Kanjobalan-Chujean, Chujean
+Mayan, Core Mayan, Western Mayan, Kanjobalan-Chujean, Chujean
   Tojolabal [toj]
   Chuj [cac]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Kanjobalan-Chujean, Kanjobalan, Kanjobal-Jacaltec
+Mayan, Core Mayan, Western Mayan, Kanjobalan-Chujean, Kanjobalan, Kanjobal-Jacaltec
   Q'anjob'al [kjb]
-  Western Kanjobal [knj]
+  Akateko [knj]
   Popti' [jac]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Kanjobalan-Chujean, Kanjobalan
+Mayan, Core Mayan, Western Mayan, Kanjobalan-Chujean, Kanjobalan
   Mocho [mhc]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Mamean, Ixilan
+Mayan, Core Mayan, Quichean-Mamean, Greater Mamean, Ixilan
   Aguacateco [agu]
   Ixil [ixl]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Mamean, Mamean
+Mayan, Core Mayan, Quichean-Mamean, Greater Mamean, Mamean
   Tektiteko [ttc]
   Mam [mam]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Quichean
+Mayan, Core Mayan, Quichean-Mamean, Greater Quichean
   Kekch\'i [kek]
   Uspanteco [usp]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Poqom-Quichean, Core Quichean
+Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Core Quichean
   Sipacapense [qum]
   Sacapulteco [quv]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Poqom-Quichean, Core Quichean, Cakchiquel-Tzutujil
+Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Core Quichean, Cakchiquel-Tzutujil
   Kaqchikel [cak]
   Tz'utujil [tzj]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Poqom-Quichean, Core Quichean, Quiche-Achi
+Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Core Quichean, Quiche-Achi
   Achi [acr]
   K'iche' [quc]
-Mayan, Yucatecan-Core Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Poqom-Quichean, Pocom
+Mayan, Core Mayan, Quichean-Mamean, Greater Quichean, Poqom
   Poqomam [poc]
   Poqomchi' [poh]
-Mayan, Yucatecan-Core Mayan, Yucatecan, Mopan-Itza
+Mayan, Core Mayan, Yucatecan, Mopan-Itza
   Mop\'an Maya [mop]
   Itz\'a [itz]
-Mayan, Yucatecan-Core Mayan, Yucatecan, Yucatec-Lacandon
+Mayan, Core Mayan, Yucatecan, Yucatec-Lacandon
   Yucateco [yua]
   Lacandon [lac]
 Maybrat
-  Karon Dori [kgw]
-  Mai Brat [ayz]
+  Mai Brat-Karon [ayz]
 Meroitic
   Meroitic [xmr]
 Mimi-Gaudefroy
@@ -10333,10 +10333,8 @@ Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Eastern Huon, Kate-Mape-Sene
 Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Eastern Huon, Momare-Migabac
   Momare [msz]
   Migabac [mpp]
-Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Eastern Huon, Tobo-Kube
-  Kube [kgf]
-  Tobo [tbv]
 Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Eastern Huon
+  Kulungtfu-Yuanggeng-Tobo [kgf]
   Kovai [kqb]
   Dedua [ded]
 Nuclear_Trans_New_Guinea, Finisterre-Huon, Huon, Western Huon, Nabak-Momolili
@@ -10649,8 +10647,8 @@ Tuu, !Kwi
 Tuu, Hua
   Lower-Nosop [NOCODE_Lower-Nosop]
 Tuu, Hua, Taa
-  !X\'o\~o [nmn]
-  Hua (Tuu) [huc]
+  West !Xoon [NOCODE_West-Taa]
+  East Taa [nmn]
 Tuxa
   Tux\'a [tud]
 Uhunduni
