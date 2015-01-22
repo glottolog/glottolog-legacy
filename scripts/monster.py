@@ -23,7 +23,7 @@ the process
 3.1   macro_area is added based on the lgcode field if any. The mapping between
       lgcode:s and macro_area:s are taken from "../languoids/lginfo.tsv"
 3.2   hhtype is added based on a small set of trigger words that may occur in
-      the titles of bibentries which are taken from 'alt4hhtype.txt'. A hhtype
+      the titles of bibentries which are taken from 'alt4hhtype.ini'. A hhtype
       is not inferred if it would change the "descriptive status" of a language
       taken from hh.bib.
 3.3   lgcode is added based on a large and dirty set of trigger words that
@@ -69,7 +69,7 @@ import bib
 
 DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
 HHBIB = os.path.join(DATA_DIR, 'hh.bib')
-HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.txt')
+HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.tsv')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.tsv')
 MONSTER = 'monster.bib'
