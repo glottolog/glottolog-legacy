@@ -21,7 +21,7 @@ the process
 3.    Four steps of annotation are added to the merged entries, but only if
       there isn't already such annotation
 3.1   macro_area is added based on the lgcode field if any. The mapping between
-      lgcode:s and macro_area:s are taken from "../languoids/lginfo.tsv"
+      lgcode:s and macro_area:s are taken from "../languoids/lginfo.csv"
 3.2   hhtype is added based on a small set of trigger words that may occur in
       the titles of bibentries which are taken from 'alt4hhtype.ini'. A hhtype
       is not inferred if it would change the "descriptive status" of a language
@@ -71,7 +71,7 @@ DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
 HHBIB = os.path.join(DATA_DIR, 'hh.bib')
 HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
-LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.tsv')
+LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
 MONSTER = 'monster.bib'
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
 
@@ -317,12 +317,12 @@ def macro_area_from_lgcode(m):
     def inject_macro_area((typ, fields), lgd):
         if not fields.has_key('macro_area'):
             return (typ, fields)
-        mas = set(lgd[x]["macro_area"] for x in bib.lgcode((typ, fields)) if lgd.get(x, {}).get("macro_area"))
+        mas = set(lgd[x].macro_area for x in bib.lgcode((typ, fields)) if x in lgd and lgd[x].macro_area)
         if mas:
-            fields['macro_area'] = ', '.join(rpl.get(x, x) for x in mas)
+            fields['macro_area'] = ', '.join(sorted(mas))
         return (typ, fields)
-
-    lgd = bib.ptabd(LGINFO)
+    
+    lgd = bib.read_csv_dict(LGINFO)
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 

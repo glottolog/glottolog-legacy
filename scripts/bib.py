@@ -4,7 +4,8 @@ import os
 import shutil
 import re
 import codecs
-from collections import defaultdict
+import csv
+from collections import defaultdict, namedtuple
 
 from pybtex.database.input import bibtex
 import latexutf8
@@ -13,11 +14,11 @@ __all__ = [
     'get', 'put', 'mrg', 'fuse',
     'bak', 'load', 'sav', 'savu', 'tabtxt', 'putfield', 'fd', 'fdt',
     'add_inlg_e', 'stdauthor',
-    'grp2', 'grp2l', 'keyid', 'edist', 'ptab', 'same23', 'inv',
+    'grp2', 'grp2l', 'keyid', 'edist', 'same23', 'inv',
     'wrds', 'setd', 'setd3', 'indextrigs',
     'lstat', 'lstat_witness', 
     'pairs', 'takeuntil', 'takeafter',
-    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'ptabd',
+    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict',
     
 ]
 
@@ -130,17 +131,17 @@ def pairs(xs):
     return [(x, y) for x in xs for y in xs if x < y]
 
 
-renewline = re.compile("[\\n\\r]")
-
-def ptab(fn, i=1, spl="\t"):
-    lines = renewline.split(load(fn))[i:]
-    li = [tuple(x.strip() for x in l.split(spl)) for l in lines if l != ""]
-    return li
+def read_csv_dict(filename):
+    return dict(_csv_iteritems(filename))
 
 
-def ptabd(fn, spl="\t"):
-    ll = ptab(fn, i=0)
-    return dict((l[0], dict(zip(ll[0][1:], l[1:]))) for l in ll[1:])
+def _csv_iteritems(filename):
+    with open(filename) as fd:
+        reader = csv.reader(fd)
+        header = next(reader)
+        make_row = namedtuple('Row', header)._make
+        for row in reader:
+            yield row[0], make_row(row)
 
 
 def setd3(ds, k1, k2, k3, v=None):
