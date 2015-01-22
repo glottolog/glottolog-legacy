@@ -28,7 +28,7 @@ the process
       taken from hh.bib.
 3.3   lgcode is added based on a large and dirty set of trigger words that
       may/may not occur in the titles of bibentries which are taken from
-      'alt4lgcode.tsv'. A lgcode is not inferred if it would change the
+      'alt4lgcode.ini'. A lgcode is not inferred if it would change the
       "descriptive status" of a language taken from hh.bib.
 3.4   inlg is added based on a small set of trigger words that may occur in the
       titles of bibentries which are specified directly in the code of the
@@ -61,7 +61,7 @@ import io
 import glob
 import re
 import zipfile
-from ConfigParser import SafeConfigParser
+from ConfigParser import RawConfigParser
 
 import latexutf8
 
@@ -70,7 +70,7 @@ import bib
 DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
 HHBIB = os.path.join(DATA_DIR, 'hh.bib')
 HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
-LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.tsv')
+LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.tsv')
 MONSTER = 'monster.bib'
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
@@ -87,10 +87,6 @@ def intersectall(xs):
     for x in xs[1:]:
         a.intersection_update(x)
     return a
-
-
-def alt4lgcode(fn=LGCODE):
-    return bib.grp2l([((x, y), eval(z)) for (x, y, z) in bib.ptab(fn)])
 
 
 def groupsame(ks, e):
@@ -304,13 +300,13 @@ def annstats(e):
     print "with macro_area", count(e.itervalues(), cf=lambda (t, f): f.has_key('macro_area'))
 
 
-def hhttxt(filename):
-    p = SafeConfigParser()
+def load_triggers(filename, mangle_sec=lambda s: s):
+    p = RawConfigParser()
     with open(filename) as fp:
         p.readfp(fp)
     result = {}
     for s in p.sections():
-        cls, _, lab = s.partition(',')
+        cls, _, lab = mangle_sec(s).partition(', ')
         triggers = p.get(s, 'triggers').strip().splitlines()
         result[(cls, lab)] = [[(False, w[4:].strip()) if w.startswith('NOT ') else (True, w.strip())
           for w in t.split(' AND ')] for t in triggers]
@@ -338,11 +334,11 @@ def compile_annotate_monster(fs, monster, hhbib):
     m = macro_area_from_lgcode(m)
 
     # Annotate with hhtype
-    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in hhttxt(HHTYPE).iteritems())
+    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in load_triggers(HHTYPE).iteritems())
     m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
 
     # Annotate with lgcode
-    lgc = alt4lgcode()
+    lgc = load_triggers(LGCODE, lambda s: s.replace('{', '[').replace('}', ']'))
     m = markconservative(m, lgc, hhe, outfn="monstermarklgc.txt", blamefield="hhtype")
 
     # Annotate with inlg
