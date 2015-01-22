@@ -57,9 +57,11 @@ the process
 """
 
 import os
+import io
 import glob
 import re
 import zipfile
+from ConfigParser import SafeConfigParser
 
 import latexutf8
 
@@ -302,17 +304,17 @@ def annstats(e):
     print "with macro_area", count(e.itervalues(), cf=lambda (t, f): f.has_key('macro_area'))
 
 
-def hhttxt(txt):
-    ls = [l for l in txt.split("\n") if l.strip()]
-    r = {}
-    thisclf = None
-    for l in ls:
-        if l.startswith("  "):
-            f = [(not x.startswith("NOT "), bib.takeafter(x, "NOT ").strip()) for x in l[2:].split(" AND ")]
-            r[(cls, lab)] = [f] + r.get((cls, lab), [])
-        elif l.find(", ") != -1:
-            [cls, lab] = l.strip().split(", ")
-    return r
+def hhttxt(filename):
+    p = SafeConfigParser()
+    with open(filename) as fp:
+        p.readfp(fp)
+    result = {}
+    for s in p.sections():
+        cls, _, lab = s.partition(',')
+        triggers = p.get(s, 'triggers').strip().splitlines()
+        result[(cls, lab)] = [[(False, w[4:].strip()) if w.startswith('NOT ') else (True, w.strip())
+          for w in t.split(' AND ')] for t in triggers]
+    return result
 
 
 def macro_area_from_lgcode(m):
@@ -336,7 +338,7 @@ def compile_annotate_monster(fs, monster, hhbib):
     m = macro_area_from_lgcode(m)
 
     # Annotate with hhtype
-    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in hhttxt(bib.load(HHTYPE)).iteritems())
+    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in hhttxt(HHTYPE).iteritems())
     m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
 
     # Annotate with lgcode
