@@ -6,8 +6,8 @@ import re
 import codecs
 import csv
 from collections import defaultdict, namedtuple
+from ConfigParser import RawConfigParser
 
-from pybtex.database.input import bibtex
 import latexutf8
 
 __all__ = [
@@ -18,9 +18,11 @@ __all__ = [
     'wrds', 'setd', 'setd3', 'indextrigs',
     'lstat', 'lstat_witness', 
     'pairs', 'takeuntil', 'takeafter',
-    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict',
+    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict', 'load_triggers',
     
 ]
+
+INLG = os.path.join(os.pardir, 'references', 'alt4inlg.ini')
 
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
 reext = "(?:" + '|'.join("(?:" + z + ")" for z in exts + [z.upper() for z in exts]) + ")"
@@ -142,6 +144,23 @@ def _csv_iteritems(filename):
         make_row = namedtuple('Row', header)._make
         for row in reader:
             yield row[0], make_row(row)
+
+
+def load_triggers(filename, sec_curly_to_square=False):
+    if sec_curly_to_square:
+        mangle_sec = lambda s: s.replace('{', '[').replace('}', ']')
+    else:
+        mangle_sec = lambda s: s
+    p = RawConfigParser()
+    with open(filename) as fp:
+        p.readfp(fp)
+    result = {}
+    for s in p.sections():
+        cls, _, lab = mangle_sec(s).partition(', ')
+        triggers = p.get(s, 'triggers').strip().splitlines()
+        result[(cls, lab)] = [[(False, w[4:].strip()) if w.startswith('NOT ') else (True, w.strip())
+          for w in t.split(' AND ')] for t in triggers]
+    return result
 
 
 def setd3(ds, k1, k2, k3, v=None):
@@ -771,24 +790,10 @@ def renfn(e, ups):
 
 
 def add_inlg_e(e):
-    h = {}
-    h['English [eng]'] = ['the', 'of', 'and', 'for', 'its', 'among', 'study', 'indians', 'sociolinguistic', 'coast', 'sketch', 'native', 'other', 'literacy', 'among', 'sociolinguistic', 'sketch', 'indians', 'native', 'coast', 'literacy', 'its', 'towards', 'eastern', 'clause', 'southeastern', 'grammar', 'linguistic', 'syntactic', 'morphology', 'spoken', 'dictionary', 'morphosyntax', 'course', 'language', 'primer', 'yourself', 'chrestomathy', 'colloquial', "sentence", "sentences", "phonetics", "phonology", "vocabulary"]
-    h['French [fra]'] = ['et', 'du', 'le', 'verbe', 'grammaire', 'sociolinguistique', 'syntaxe', 'dune', 'au', 'chez', 'avec', 'langue', 'langues', 'grammaire', 'au', 'aux', 'chez', 'et', 'le', 'du', 'dune', 'verbe', 'syntaxe', 'grammaire', 'au', 'haut', 'dictionnaire', 'pratique', 'parlons', 'parlers', 'parler', 'lexique', "linguistique"]
-    h['German [deu]'] = ['eine', 'das', 'reise', 'beitrag', 'unter', 'die', 'jahren', 'und', 'stellung', 'einer', 'ihrer', 'reise', 'beitrag', 'unter', 'jahren', 'die', 'stellung', 'und', 'eine', 'jahre', 'bemerkungen', 'sprache', 'sprachkontakt', 'untersuchungen', 'zu', 'zur', 'auf', 'aus']
-    h['Spanish [spa]'] = ['los', 'las', 'lengua', 'lenguas', 'y', 'pueblos', 'algunos', 'educacion', 'castellano', 'poblacion', 'diccionario', "conversemos", "investigaciones", "consideraciones", "hablado", "vocabulario"]
-    h['Portuguese [por]'] = ['do', 'dos', 'os', 'regiao', 'anais', 'povos', 'seus', 'mudanca', 'dicionario', 'falantes']
-    h['Italian [ita]'] = ['della', 'dello', 'vocabolario', 'vocaboli', 'dizionario', 'dei', 'lessico', 'linguaggio', 'sulla', 'grammaticali', 'studi', 'degli']
-    h['Russian [rus]'] = ['v', 'jazyk', 'yazyk', 'jazyka', 'yazyka', 'slov', 'iazyke', 'okolo', 'jazykach', 'jazyke', 'jazyka', 'yazyki']
-    h['Dutch [nld]'] = ['van', 'het', 'kommunikasieaangeleenthede', 'deel', 'morfologie', 'onderzoek', 'gebied', 'spraakleer', 'reis', 'een', 'goede', 'taal', 'taalstudien']
-    h['Mandarin Chinese [cmn]'] = ['jianzhi', 'jiu', 'jian', 'qian', 'yan', 'hui', 'wen', 'ci', 'zang', 'dian', "cidian", "zidian"]
-    h['Tibetan [bod]'] = ['bod', 'kyi']
-    h['Hindi [hin]'] = ['hindi', 'vyakaran']
-    h['Thai [tha]'] = ['phasa', 'laksana', 'akson', 'lae', 'siang', 'khong']
-    h['Vietnamese [vie]'] = ['viec', 'cach', 'trong', 'phap', 'hien', 'dung', 'nghia', 'dien', 'thong', 'ngu']
-    h['Finnish [fin]'] = ['suomen', 'kielen', 'ja']
-    h['Turkish [tur]'] = ['turkce', 'uzerine', 'terimleri', 'turkiye', 'hakkinda', 'halk', 'uzerinde', 'turkcede', 'tarihi', 'kilavuzu']
-
-    dh = dict((v, k) for (k, vs) in h.iteritems() for v in vs)
+    inlg = load_triggers(INLG, sec_curly_to_square=True)
+    # FIXME: does not honor 'NOT' for now
+    dh = {word: label  for (cls, label), triggers in inlg.iteritems()
+        for t in triggers for flag, word in t}  
     ts = [(k, wrds(fields['title']) + wrds(fields.get('booktitle', ''))) for (k, (typ, fields)) in e.iteritems() if fields.has_key('title') and not fields.has_key('inlg')]
     print len(ts), "without", 'inlg'
     ann = [(k, set(dh[w] for w in tit if dh.has_key(w))) for (k, tit) in ts]

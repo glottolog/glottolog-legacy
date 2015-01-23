@@ -31,8 +31,7 @@ the process
       'alt4lgcode.ini'. A lgcode is not inferred if it would change the
       "descriptive status" of a language taken from hh.bib.
 3.4   inlg is added based on a small set of trigger words that may occur in the
-      titles of bibentries which are specified directly in the code of the
-      bib.py module (this should be changed, of course)
+      titles of bibentries which are specified in "../references/alt4inlg.ini".
 
 4.    Once all merging and annotation is done, it's time for the
       glottolog_ref_id:s are dole:ed out
@@ -57,11 +56,9 @@ the process
 """
 
 import os
-import io
 import glob
 import re
 import zipfile
-from ConfigParser import RawConfigParser
 
 import latexutf8
 
@@ -300,17 +297,6 @@ def annstats(e):
     print "with macro_area", count(e.itervalues(), cf=lambda (t, f): f.has_key('macro_area'))
 
 
-def load_triggers(filename, mangle_sec=lambda s: s):
-    p = RawConfigParser()
-    with open(filename) as fp:
-        p.readfp(fp)
-    result = {}
-    for s in p.sections():
-        cls, _, lab = mangle_sec(s).partition(', ')
-        triggers = p.get(s, 'triggers').strip().splitlines()
-        result[(cls, lab)] = [[(False, w[4:].strip()) if w.startswith('NOT ') else (True, w.strip())
-          for w in t.split(' AND ')] for t in triggers]
-    return result
 
 
 def macro_area_from_lgcode(m):
@@ -334,11 +320,11 @@ def compile_annotate_monster(fs, monster, hhbib):
     m = macro_area_from_lgcode(m)
 
     # Annotate with hhtype
-    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in load_triggers(HHTYPE).iteritems())
+    hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in bib.load_triggers(HHTYPE).iteritems())
     m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
 
     # Annotate with lgcode
-    lgc = load_triggers(LGCODE, lambda s: s.replace('{', '[').replace('}', ']'))
+    lgc = bib.load_triggers(LGCODE, sec_curly_to_square=True)
     m = markconservative(m, lgc, hhe, outfn="monstermarklgc.txt", blamefield="hhtype")
 
     # Annotate with inlg
