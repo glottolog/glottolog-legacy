@@ -542,7 +542,7 @@ refields = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[{"](?P<data>.*)[}"],\n')
 refieldsnum = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*(?P<data>\d+),\n')
 refieldsacronym = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*(?P<data>[A-Za-z]+),\n')
 #refieldslast = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[{"]*(?P<data>.+?)[}"]*\n}')
-refieldslast = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[\{\"]?(?P<data>[^\n]+?)[\}\"]?(?<!\,)[$\n]')
+refieldslast = re.compile('\s*(?P<field>[a-zA-Z\_]+)\s*=\s*[\{\"]?(?P<data>[^\n]+?)[\}\"]?(?<!\,)(?:$|\n)')
 retypekey = re.compile("@(?P<type>[a-zA-Z]+){(?P<key>[^,\s]*)[,\n]")
 reitem = re.compile("@[a-zA-Z]+{[^@]+}")
 
@@ -579,10 +579,6 @@ def load(fn):
     with open(fn, 'r') as f:
         txt = f.read()
     return txt
-
-
-def get2(fn=['eva.bib']):
-    return get2txt('\n'.join(load(f) for f in (fn if isinstance(fn, list) else [fn])))
 
 
 def get(fn=[]):
