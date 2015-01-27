@@ -5,12 +5,13 @@ import shutil
 import re
 import codecs
 import csv
-from collections import defaultdict, namedtuple
+from collections import defaultdict, namedtuple, Counter
 from ConfigParser import RawConfigParser
 
 import latexutf8
 
 __all__ = [
+    'Bib',
     'get', 'put', 'mrg', 'fuse',
     'bak', 'load', 'sav', 'savu', 'tabtxt', 'putfield', 'fd', 'fdt',
     'add_inlg_e', 'stdauthor',
@@ -27,6 +28,20 @@ INLG = os.path.join(os.pardir, 'references', 'alt4inlg.ini')
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
 reext = "(?:" + '|'.join("(?:" + z + ")" for z in exts + [z.upper() for z in exts]) + ")"
 rev2 = re.compile("(v\d+)?((?:\_o)?\.%s)" % reext)
+
+
+class Bib(object):
+
+    def __init__(self, filename):
+        self.filename = filename
+        self.name = os.path.basename(filename)
+
+    @property
+    def entries(self):
+        with open(self.filename) as fd:
+            data = fd.read()
+        result = self.__dict__['entries'] = get2txt(data)
+        return result
 
 
 def incv(s):
@@ -189,23 +204,8 @@ def fd(ws):
     return d
 
 
-def fdall(chunks):
-    d = {}
-    for ws in chunks:
-        for w in ws:
-            d[w] = d.get(w, 0) + 1
-    return d
-
-
 def opv(d, func):
-    n = {}
-    for (i, v) in d.iteritems():
-        n[i] = func(v)
-    return n
-
-
-def sumds(ds, f=sum):
-    return opv(grp2l([(i, v) for d in ds for (i, v) in d.iteritems()]), f)
+    return {i: func(v) for i, v in d.iteritems()}
 
 
 def grp2fd(l):
@@ -228,8 +228,7 @@ def grp2(l):
 def grp2l(l):
     r = {}
     for (a, b) in l:
-        r[a] = r.get(a, [])
-        r[a].append(b)
+        r.setdefault(a, []).append(b)
     return r
 
 
@@ -729,11 +728,15 @@ resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
 resplittittok = re.compile("([\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=\'" + '\"' + "])")
 
 def wrds(txt):
-    return [x for x in resplittit.split(latexutf8.undiacritic(txt.lower()).replace("'", "").replace('"', "")) if x]
+    txt = latexutf8.undiacritic(txt.lower())
+    txt = txt.replace("'", "").replace('"', "")
+    return [x for x in resplittit.split(txt) if x]
 
 
-def fdt(e):
-    return fdall([wrds(fields['title']) for (typ, fields) in e.itervalues() if fields.has_key('title')])
+def fdt(e, fieldname='title'):
+    words = (w for typ, fields in e.itervalues() if fieldname in fields
+        for w in wrds(fields[fieldname]))
+    return Counter(words)
 
 
 def etos(e):
@@ -1126,23 +1129,20 @@ def lstat_witness(e, unsorted=False):
     return opv(lsd, statwit)
 
 
-def mrg(fs=[]):
-    if isinstance(fs, list):
-        fs = dict((f, f) for f in fs)
+def mrg(bibs=()):
     e = {}
+    ft = Counter()
+    for b in bibs:
+        e[b.name] = b.entries
+        print b.name, len(e[b.name])
+        ft.update(fdt(e[b.name]))
+
     r = {}
-    for (f, fullpath) in fs.iteritems():
-        e[f] = get2(fullpath)
-        print f, len(e[f])
-
-    ft = sumds([fdt(e[f]) for f in fs])
-
-    for f in fs:
+    for b in bibs:
         rp = len(r)
-        bk = [(keyid(fields, ft), (f, k)) for (k, (typ, fields)) in e[f].iteritems()]
-        for (hk, k) in bk:
-            setd(r, hk, k)
-        print len(r) - rp, "new from total", len(e[f])
+        for (k, (typ, fields)) in e[b.name].iteritems():
+            r.setdefault(keyid(fields, ft), {})[(b.name, k)] = None
+        print b.name, len(r) - rp, "new from total", len(e[b.name])
     return (e, r)
 
 

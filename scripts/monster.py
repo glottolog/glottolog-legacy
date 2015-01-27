@@ -65,6 +65,8 @@ import latexutf8
 import bib
 
 DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
+BIBFILES = [bib.Bib(fn) for fn in glob.glob(os.path.join(DATA_DIR, '*.bib'))
+    if not re.match(".+old(v\d+)?\.bib$", fn)]
 HHBIB = os.path.join(DATA_DIR, 'hh.bib')
 HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
@@ -297,8 +299,6 @@ def annstats(e):
     print "with macro_area", count(e.itervalues(), cf=lambda (t, f): f.has_key('macro_area'))
 
 
-
-
 def macro_area_from_lgcode(m):
     def inject_macro_area((typ, fields), lgd):
         if not fields.has_key('macro_area'):
@@ -312,8 +312,8 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
-def compile_annotate_monster(fs, monster, hhbib):
-    (e, r) = bib.mrg(fs=fs)
+def compile_annotate_monster(bibs, monster, hhbib):
+    (e, r) = bib.mrg(bibs)
     m = compile_monster((e, r))
     hhe = bib.get(hhbib)
     # Annotate with macro_area
@@ -343,14 +343,10 @@ def compile_annotate_monster(fs, monster, hhbib):
 if not os.path.exists(MONSTER):
     with zipfile.ZipFile(MONSTER_ZIP) as z:
         z.extract(MONSTER)
+else:
+    bib.bak(MONSTER)
 
-reold = re.compile(".+old(v\d+)?\.bib$")
-source_bibs = {os.path.basename(fn): fn
-    for fn in glob.glob(os.path.join(DATA_DIR, '*.bib'))
-    if not reold.match(fn)}
-
-bib.bak(MONSTER)
-compile_annotate_monster(source_bibs, MONSTER, hhbib=HHBIB)
+compile_annotate_monster(BIBFILES, MONSTER, hhbib=HHBIB)
 killold_ids(fn=MONSTER, idfield='glotto_id')
 killold_ids(fn=MONSTER, idfield='numnote')
 unduplicate_ids_smart(fn=MONSTER, idfield='glottolog_ref_id')
