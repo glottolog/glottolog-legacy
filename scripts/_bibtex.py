@@ -17,15 +17,25 @@ __all__ = ['load']
 
 def load(filename, encoding=None):
     if encoding is None:
-        with open(filename) as fd:
-            with contextlib.closing(mmap.mmap(fd.fileno(), 0,  access=mmap.ACCESS_READ)) as m:
-                result = dict(iterentries(m))
+        with memorymapped(filename) as source:
+            result = dict(iterentries(source))
     else:
         with io.open(filename, encoding=encoding) as fd:
             source = fd.read()
         result = dict(iterentries(source))
     return result
 
+
+@contextlib.contextmanager
+def memorymapped(filename, access=mmap.ACCESS_READ):
+    try:
+        fd = open(filename)
+        m = mmap.mmap(fd.fileno(), 0,  access=access)
+        yield m
+    finally:
+        m.close()
+        fd.close()
+    
 
 def iterentries(source):
     try:
@@ -58,7 +68,7 @@ class CheckParser(Parser):
             self.error_count +=1
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)
