@@ -5,12 +5,15 @@ import glob
 import io
 import mmap
 import contextlib
+import collections
 from pprint import pprint
 
 from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser
 from pybtex.scanner import PybtexSyntaxError
 from pybtex.exceptions import PybtexError
 from pybtex.textutils import normalize_whitespace
+from pybtex.bibtex.utils import split_name_list
+from pybtex.database import Person
 
 __all__ = ['load']
 
@@ -67,6 +70,27 @@ class CheckParser(Parser):
             print e
             self.error_count +=1
 
+
+def contributors(s):
+    for name in split_name_list(s):
+        try:
+            yield Name.from_string(name)
+        except PybtexError as e:
+            print e
+
+
+class Name(collections.namedtuple('Name', 'prelast last given lineage')):
+
+    __slots__ = ()
+
+    @classmethod
+    def from_string(cls, name):
+        person = Person(name)
+        prelast, last, first, middle, lineage = (' '.join(getattr(person, part))
+            for part in ('_prelast', '_last', '_first', '_middle', '_lineage'))
+        given = ' '.join(n for n in (first, middle) if n)
+        return cls(prelast, last, given, lineage)
+    
 
 if __name__ == '__main__':
     for filename in glob.glob('../references/bibtex/*.bib'):
