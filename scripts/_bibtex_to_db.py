@@ -11,8 +11,7 @@ import _bibtex
 
 DB = 'postgresql://postgres@/bibfiles'
 BIBS = [(f, os.path.basename(f))
-    for f in glob.glob('../references/bibtex/*.bib')
-    if not f.endswith('hh.bib')]
+    for f in glob.glob('../references/bibtex/*.bib')]
 
 
 class Entry(declarative_base()):
