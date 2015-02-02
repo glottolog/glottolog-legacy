@@ -232,6 +232,15 @@ Mixed Language, Iberian-Romani
   Cal\'o [rmq]
 Mixed Language, Basque-Romani
   Erromintxela [emx]
+Mixed Language, Serbian-Romani
+  Romano-Serbian [rsb]
+Mixed Language, Swedish-Romani
+  Tavringer Romani [rmu]
+Mixed Language, Persian-Romani
+  Central-Southern Persian Gypsy [NOCODE_Central-Southern-Persian-Gypsy]
+  Caspian and eastern Persia Gypsy [NOCODE_Caspian-Eastern-Persia-Gypsy]
+  Magati [NOCODE_Magati]
+  Afghanistan Gorbat [NOCODE_Afghanistan-Gorbati]
 Mixed Language, Irish-undocumented
   Shelta [sth]
 Mixed Language, Makhua-Nyanja
@@ -242,12 +251,8 @@ Mixed Language, Quechua-Puquina
   Callawalla [caw]
 Mixed Language, Russian-Aleut
   Mednyj Aleut [mud]
-Mixed Language, Serbian-Romani
-  Romano-Serbian [rsb]
 Mixed Language, Spanish-Quechua
   Media Lengua [mue]
-Mixed Language, Swedish-Romani
-  Tavringer Romani [rmu]
 Mixed Language, Zulu-Bantu
   Camtho [cmt]
 Pidgin, Chinook based
@@ -372,10 +377,20 @@ Pidgin, Zulu based pidgin
   Fanagalo [fng]
 Speech Register, Atlantic-Congo, Volta-Congo, Benue-Congo, Igboid, Nuclear Igboid
   Agbirigba [NOCODE_Agbirigba]
+Speech Register, Atlantic-Congo, Volta-Congo, Benue-Congo, Delta Cross, Lower Cross, Central Lower Cross, Efik-Ibibio
+  Medefidrin [NOCODE_Medefidrin]
 Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian, Mercian, Macro-English, Pacific Creole English
   Ngatik Men's Creole [ngm]
+Speech Register, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa
+  La'bi [lbi]
 Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Franconian, Low Franconian, Afrikaansic
   Tsotsitaal [fly]
+Speech Register, Indo-European, Indo-Iranian, Iranian, Western Iranian, Southwestern Iranian, Farsic-Caucasian Tat, Farsic, Eastern Farsic
+  Adurgari [NOCODE_Adurgari]
+Spurious, Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric
+  The [thx]
+Spurious, Yeniseian, Northern Yeniseian
+  Yugh [yuu]
 Spurious, Maybrat
   Karon Dori [kgw]
 Spurious, Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
@@ -591,8 +606,6 @@ Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamaw
   Gey [guv]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Central Kainji, Kambari-Cicipu
   Kakihum [kxe]
-Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Monzomboic
-  Bonjo [bok]
 Spurious, Afro-Asiatic, Semitic, West Semitic, Central Semitic, Northwest Semitic, Canaanite, Hebrewic
   Moabite [obm]
   Ammonite [qgg]

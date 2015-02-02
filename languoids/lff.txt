@@ -1735,7 +1735,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi
   Sighu [sxe]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi, Njebi (B.50)
-  Vili of Ngouie[NOCODE_Vili]
+  Vili of Ngouie [NOCODE_Vili]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi, Njebi (B.50), Ndjavi A
   Tsaangi [tsa]
   Njebi [nzb]
@@ -1799,6 +1799,8 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Likouala-Sangha
   Dibole [bvx]
   Bomitaba [zmx]
+  Impfondo [bok]
+  Mikaya-Bambengangale-Baluma [NOCODE_Mikaya-Bambengangale-Baluma]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Likouala-Sangha, Bwamba-Ngondi-Pande-Mbati-Aka
   Ngundi [ndn]
   Pande [bkj]
@@ -2149,7 +2151,6 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, North-Central Edoi
 Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid, Okpe-Akuku-Idesa
   Okpe (Northwestern Edo) [okx]
   Akuku [ayk]
-  Idesa [ids]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid
   Okpamheri [opa]
   Oloma [olm]
@@ -2489,7 +2490,6 @@ Atlantic-Congo, Volta-Congo, Unclassified Volta-Congo, Adamawa Fali
   South Fali [fal]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa
   Kam [kdx]
-  La'bi [lbi]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Samba Duru-Mumuye Yendang, Samba Duru, Unclassified Samba Duru
   Nimbari [nmr]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Samba Duru-Mumuye Yendang, Samba Duru, Duru, Diic
@@ -2911,9 +2911,7 @@ Austroasiatic, Bahnaric, West Bahnaric
 Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric
   Nyaheun [nev]
   Jeng [jeg]
-Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric, Oi-The
   Oy [oyb]
-  The [thx]
 Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric, Loven-Suq
   Laven [lbo]
   Sou [sqq]
@@ -3509,7 +3507,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Eastern Admiralty Islands, South-East Admiralty
   Lou [loj]
   Lenkau [ler]
-  Baluan-Pam [blq]
+  Paluai [blq]
   Nauna [ncn]
   Penchal [pek]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Western Admiralty Islands
@@ -6154,6 +6152,7 @@ Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone
   Lomavren [rmi]
   Domari [rmt]
   Domaaki [dmk]
+  Seb Seliyer [NOCODE_Seb-Seliyer]
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Romani
   Vlax Romani [rmy]
   Balkan Romani [rmn]
@@ -6404,9 +6403,10 @@ Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone, Sindhi-La
   Northern Hindko [hno]
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone, Sindhi-Lahnda, Lahnda
   Pahari Potwari [phr]
+Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone, Sindhi-Lahnda, Lahnda, Siraikic
   Seraiki [skr]
+  Inku [jat]
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone, Sindhi-Lahnda, Lahnda, Panjabic
-  Jakati [jat]
   Mirpur Panjabi [pmu]
   Western Panjabi [pnb]
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone, Sindhi-Lahnda, Eastern Panjabic
@@ -10983,7 +10983,7 @@ Yeli_Dnye
   Yele [yle]
 Yeniseian, Northern Yeniseian
   Ket [ket]
-  Yugh [yuu]
+  Yugh [yug]
 Yeniseian, Southern Yeniseian, Arin-Pumpokol
   Arin [xrn]
   Pumpokol [xpm]
