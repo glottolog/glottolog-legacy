@@ -1,12 +1,10 @@
 # bibtex.py - basic bibtex file parsing
 
-import os
 import glob
 import io
 import mmap
 import contextlib
 import collections
-from pprint import pprint
 
 from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser
 from pybtex.scanner import PybtexSyntaxError
@@ -15,7 +13,15 @@ from pybtex.textutils import normalize_whitespace
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
-__all__ = ['load']
+import latexutf8
+
+__all__ = ['load', 'dump']
+
+FIELDS = [
+    'author', 'editor', 'title', 'booktitle', 'journal',
+    'school', 'publisher', 'address',
+    'series', 'volume', 'number', 'pages', 'year', 'issn', 'url',
+]
 
 
 def load(filename, encoding=None):
@@ -71,7 +77,7 @@ class CheckParser(Parser):
             self.error_count +=1
 
 
-def contributors(s):
+def names(s):
     for name in split_name_list(s):
         try:
             yield Name.from_string(name)
@@ -90,12 +96,74 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
             for part in ('_prelast', '_last', '_first', '_middle', '_lineage'))
         given = ' '.join(n for n in (first, middle) if n)
         return cls(prelast, last, given, lineage)
-    
+
+
+def dump(entries, fd, srtkey='author'):
+    items = sorted(entries.iteritems(), key=sortkeys[srtkey])
+    for bibkey, (entrytype, fields) in items:
+        lines = ['@%s{%s' % (entrytype, bibkey)]
+        for k, v in fieldorder.sorteddict(fields):
+            v = latexutf8.utf8_to_latex(v.strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
+            lines.append('    %s = {%s}' % (k, v))
+        data = '%s\n}\n' % ',\n'.join(lines)
+        fd.write(data)
+
+
+def numkey(bibkey, nondigits=re.compile('(\D+)')):
+    return tuple(try_int(s) for s in nondigit.split(bibkey))
+
+
+def try_int(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+
+sortkeys = {
+    'author': lambda (k, (typ, fields)): fields.get('author', '') + k.split(':', 1)[-1],
+    'bibkey': lambda (k, (typ, fields)): k.lower(),
+    'numkey': lambda (k, (typ, fields)): numkey(k.lower())
+}
+
+
+class Ordering(dict):
+
+    _missing = float('inf')
+
+    @classmethod
+    def fromlist(cls, keys):
+        return cls((k, i) for i, k in enumerate(keys))
+
+    def sorteddict(self, dct):
+         return sorted(dct.iteritems(), key=self._sorteddictkey)
+
+    def _sorteddictkey(self, (key, value)):
+         return self[key], key
+
+    def __missing__(self, key):
+        return self._missing
+
+
+fieldorder = Ordering.fromlist(FIELDS)
+
+
+def _test_dump():
+    import bib
+    from cStringIO import StringIO
+    for filename in glob.glob('../references/bibtex/*.bib'):
+        print filename
+        entries = load(filename)
+        a = bib.put(entries)
+        s = StringIO()
+        dump(entries, s)
+        b = s.getvalue()
+        assert a == b
+
 
 if __name__ == '__main__':
     for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)
         print(len(entries))
-        #pprint(next(entries.iteritems()))
         print('%d invalid' % check(filename))

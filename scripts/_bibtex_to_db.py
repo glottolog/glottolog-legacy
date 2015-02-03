@@ -73,7 +73,7 @@ for filepath, filename in BIBS:
                 'lineage': lineage}
                 for role in ('author', 'editor')
                 for i, (prelast, last, given, lineage)
-                in enumerate(_bibtex.contributors(fields.get(role, '')), 1)]
+                in enumerate(_bibtex.names(fields.get(role, '')), 1)]
             if contribs:
                 insert_contrib(contribs)
                     

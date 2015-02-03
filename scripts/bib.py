@@ -671,22 +671,23 @@ def killabbs(fn, outfn=None):
 #	Author = ad,
 
 
-bibord = {}
-bibord['author'] = 0
-bibord['editor'] = 1
-bibord['title'] = 2
-bibord['booktitle'] = 3
-bibord['journal'] = 5
-bibord['school'] = 6
-bibord['publisher'] = 7
-bibord['address'] = 8
-bibord['series'] = 9
-bibord['volume'] = bibord['series'] + 1
-bibord['number'] = bibord['volume'] + 1
-bibord['pages'] = 20
-bibord['year'] = 30
-bibord['issn'] = 40
-bibord['url'] = 50
+bibord = {k: i for i, k in enumerate([
+    'author',
+    'editor',
+    'title',
+    'booktitle',
+    'journal',
+    'school',
+    'publisher',
+    'address',
+    'series',
+    'volume',
+    'number',
+    'pages',
+    'year',
+    'issn',
+    'url',
+])}
 
 
 def showbib((key, (typ, bib)), abbs={}):
