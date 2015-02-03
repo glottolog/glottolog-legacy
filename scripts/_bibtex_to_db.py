@@ -23,6 +23,12 @@ class Entry(declarative_base()):
     bibkey = sa.Column(sa.Text, nullable=False)
     entrytype = sa.Column(sa.Text, nullable=False)
     fields = sa.Column(JSONB, nullable=False)
+    glottolog_ref_id = sa.Column(sa.Integer)
+    author = sa.Column(sa.Text)
+    editor = sa.Column(sa.Text)
+    year = sa.Column(sa.Text)
+    title = sa.Column(sa.Text)
+
     __table_args__ = (sa.UniqueConstraint(filename, bibkey),)
 
 
@@ -57,7 +63,11 @@ for filepath, filename in BIBS:
         insert_contrib = Contributor.__table__.insert(bind=conn).execute
         for bibkey, (entrytype, fields) in _bibtex.iterentries(m):
             pk, = insert_entry(filename=filename, bibkey=bibkey,
-                entrytype=entrytype, fields=fields).inserted_primary_key
+                entrytype=entrytype, fields=fields,
+                glottolog_ref_id=fields.get('glottolog_ref_id'),
+                author=fields.get('author'), editor=fields.get('editor'),
+                year=fields.get('year'), title=fields.get('title')
+                ).inserted_primary_key
             contribs = [{'entry_pk': pk, 'role': role, 'index': i,
                 'prelast': prelast, 'last': last, 'given': given,
                 'lineage': lineage}
