@@ -1,6 +1,7 @@
 # bibtex.py - basic bibtex file parsing
 
 import glob
+import re
 import io
 import mmap
 import contextlib
