@@ -232,21 +232,22 @@ def grp2l(l):
     return r
 
 
-reauthor = {}
-reauthor[0] = re.compile("(?P<lastname>[^,]+),\s((?P<jr>[JS]r\.|[I]+),\s)?(?P<firstname>[^,]+)$")
-reauthor[1] = re.compile("(?P<firstname>[^{][\S]+(\s[A-Z][\S]+)*)\s(?P<lastname>([a-z]+\s)*[A-Z\\\\][\S]+)(?P<jr>,\s[JS]r\.|[I]+)?$")
-reauthor[2] = re.compile("(?P<firstname>\\{[\S]+\\}[\S]+(\s[A-Z][\S]+)*)\s(?P<lastname>([a-z]+\s)*[A-Z\\\\][\S]+)(?P<jr>,\s[JS]r\.|[I]+)?$")
-reauthor[3] = re.compile("(?P<firstname>[\s\S]+?)\s\{(?P<lastname>[\s\S]+)\}(?P<jr>,\s[JS]r\.|[I]+)?$")
-reauthor[4] = re.compile("\{(?P<firstname>[\s\S]+)\}\s(?P<lastname>[\s\S]+?)(?P<jr>,\s[JS]r\.|[I]+)?$")
-reauthor[5] = re.compile("(?P<lastname>[A-Z][\S]+)$")
-reauthor[6] = re.compile("\{(?P<lastname>[\s\S]+)\}$")
-reauthor[7] = re.compile("(?P<lastname>[aA]nonymous)$")
-reauthor[8] = re.compile("(?P<lastname>\?)$")
-reauthor[9] = re.compile("(?P<lastname>[\s\S]+)$")
+reauthor = [re.compile(pattern) for pattern in [
+    "(?P<lastname>[^,]+),\s((?P<jr>[JS]r\.|[I]+),\s)?(?P<firstname>[^,]+)$",
+    "(?P<firstname>[^{][\S]+(\s[A-Z][\S]+)*)\s(?P<lastname>([a-z]+\s)*[A-Z\\\\][\S]+)(?P<jr>,\s[JS]r\.|[I]+)?$",
+    "(?P<firstname>\\{[\S]+\\}[\S]+(\s[A-Z][\S]+)*)\s(?P<lastname>([a-z]+\s)*[A-Z\\\\][\S]+)(?P<jr>,\s[JS]r\.|[I]+)?$",
+    "(?P<firstname>[\s\S]+?)\s\{(?P<lastname>[\s\S]+)\}(?P<jr>,\s[JS]r\.|[I]+)?$",
+    "\{(?P<firstname>[\s\S]+)\}\s(?P<lastname>[\s\S]+?)(?P<jr>,\s[JS]r\.|[I]+)?$",
+    "(?P<lastname>[A-Z][\S]+)$",
+    "\{(?P<lastname>[\s\S]+)\}$",
+    "(?P<lastname>[aA]nonymous)$",
+    "(?P<lastname>\?)$",
+    "(?P<lastname>[\s\S]+)$",
+]]
 
 def psingleauthor(n, vonlastname=True):
-    for i in sorted(reauthor.iterkeys()):
-        o = reauthor[i].match(n)
+    for pattern in reauthor:
+        o = pattern.match(n)
         if o:
             if vonlastname:
                 return lastvon(o.groupdict())

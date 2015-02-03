@@ -59,6 +59,7 @@ import os
 import glob
 import re
 import zipfile
+import time
 
 import latexutf8
 
@@ -143,11 +144,12 @@ def handout_ids(fn=MONSTER, idfield="glottolog_ref_id"):
     bib.sav(bib.put(e), fn)
 
 
-def killold_ids(fn=MONSTER, idfield="glotto_id"):
+def killold_fields(fn=MONSTER, fieldnames=("glotto_id",)):
     e = bib.get(fn)
     for (k, (t, f)) in e.iteritems():
-        if f.has_key(idfield):
-            del f[idfield]
+        for field in fieldnames:
+            if field in f:
+                del f[field]
     bib.sav(bib.put(e), fn)
 
 
@@ -312,31 +314,45 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
+import time
 def compile_annotate_monster(bibs, monster, hhbib):
+    print '%s mrg' % time.ctime()
     (e, r) = bib.mrg(bibs)
+
+    print '%s compile_monster' % time.ctime()
     m = compile_monster((e, r))
+
+    print '%s get hhbib' % time.ctime()
     hhe = bib.get(hhbib)
+
     # Annotate with macro_area
+    print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
 
     # Annotate with hhtype
+    print '%s annotate hhtype' % time.ctime()
     hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in bib.load_triggers(HHTYPE).iteritems())
     m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
 
     # Annotate with lgcode
+    print '%s annotate lgcode' % time.ctime()
     lgc = bib.load_triggers(LGCODE, sec_curly_to_square=True)
     m = markconservative(m, lgc, hhe, outfn="monstermarklgc.txt", blamefield="hhtype")
 
     # Annotate with inlg
+    print '%s add_inlg_e' % time.ctime()
     m = bib.add_inlg_e(m)
 
     # Standardize author list
+    print '%s stdauthor' % time.ctime()
     m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
 
     # Save
+    print '%s sav' % time.ctime()
     bib.sav(bib.put(m), monster)
 
     # Print some statistics
+    print '%s annstats' % time.ctime()
     annstats(m)
 
 
@@ -347,11 +363,15 @@ else:
     bib.bak(MONSTER)
 
 compile_annotate_monster(BIBFILES, MONSTER, hhbib=HHBIB)
-killold_ids(fn=MONSTER, idfield='glotto_id')
-killold_ids(fn=MONSTER, idfield='numnote')
+print '%s killold_fields glotto_id/numnote' % time.ctime()
+killold_fields(fn=MONSTER, fieldnames=['glotto_id', 'numnote'])
+print '%s unduplicate_ids_smart' % time.ctime()
 unduplicate_ids_smart(fn=MONSTER, idfield='glottolog_ref_id')
+print '%s handout_ids' % time.ctime()
 handout_ids(fn=MONSTER, idfield='glottolog_ref_id')
 
 # Trickling back
+print '%s trickle' % time.ctime()
 trickle(bib.get(MONSTER), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
+print '%s savu' % time.ctime()
 bib.savu(latexutf8.latex_to_utf8(bib.load(MONSTER)), 'monsterutf8.bib')
