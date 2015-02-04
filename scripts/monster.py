@@ -96,9 +96,8 @@ def groupsame(ks, e):
     return bib.inv(r).values()
 
 
-def unduplicate_ids_smart(fn=MONSTER, idfield="glottolog_ref_id"):
+def unduplicate_ids_smart(e, fn=MONSTER, idfield="glottolog_ref_id"):
     # check for duplicates
-    e = bib.get(fn)
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
     dups = [(idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1]
 
@@ -125,11 +124,9 @@ def unduplicate_ids_smart(fn=MONSTER, idfield="glottolog_ref_id"):
             if k != remaink:
                 del e[k][1][idfield]
                 print "DELETED", idn, "FOR", k
-    bib.sav(bib.put(e), fn)
 
 
-def handout_ids(fn=MONSTER, idfield="glottolog_ref_id"):
-    e = bib.get(fn)
+def handout_ids(e, idfield="glottolog_ref_id"):
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
 
     tid = max([int(x) for x in q.iterkeys()] + [300000]) + 1
@@ -139,16 +136,6 @@ def handout_ids(fn=MONSTER, idfield="glottolog_ref_id"):
             f[idfield] = str(tid)
             tid = tid + 1
     print "ADDED IDS", tid - max(int(x) for x in q.iterkeys()) - 1
-    bib.sav(bib.put(e), fn)
-
-
-def killold_fields(fn=MONSTER, fieldnames=("glotto_id",)):
-    e = bib.get(fn)
-    for (k, (t, f)) in e.iteritems():
-        for field in fieldnames:
-            if field in f:
-                del f[field]
-    bib.sav(bib.put(e), fn)
 
 
 def findidks(e, mks):
@@ -285,20 +272,6 @@ def markall(e, trigs, labelab=lambda x: x):
     return e
 
 
-def annstats(e):
-    def count(ixs, cf=lambda x: x):
-        r = 0
-        for x in ixs:
-            if cf(x):
-                r = r + 1
-        return r
-
-    print "# entries", len(e)
-    print "with lgcode", count(e.itervalues(), cf=lambda (t, f): f.has_key('lgcode'))
-    print "with hhtype", count(e.itervalues(), cf=lambda (t, f): f.has_key('hhtype'))
-    print "with macro_area", count(e.itervalues(), cf=lambda (t, f): f.has_key('macro_area'))
-
-
 def macro_area_from_lgcode(m):
     def inject_macro_area((typ, fields), lgd):
         if not fields.has_key('macro_area'):
@@ -319,12 +292,12 @@ def compile_annotate_monster(bibs, monster, hhbib):
     print '%s compile_monster' % time.ctime()
     m = compile_monster((e, r))
 
-    print '%s get hhbib' % time.ctime()
-    hhe = bib.get(hhbib)
-
     # Annotate with macro_area
     print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
+
+    print '%s get hhbib' % time.ctime()
+    hhe = bib.get(hhbib)
 
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()
@@ -344,13 +317,29 @@ def compile_annotate_monster(bibs, monster, hhbib):
     print '%s stdauthor' % time.ctime()
     m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
 
+    # Print some statistics
+    print time.ctime()
+    print "# entries", len(m)
+    print "with lgcode", sum(1 for t, f in m.itervalues() if 'lgcode' in f)
+    print "with hhtype", sum(1 for t, f in m.itervalues() if 'hhtype' in f)
+    print "with macro_area", sum(1 for t, f in m.itervalues() if 'macro_area' in f)
+
+    # Remove old fields
+    print '%s remove glotto_id/numnote' % time.ctime()
+    for k, (t, f) in m.iteritems():
+        for field in ('glotto_id', 'numnote'):
+            if field in f:
+                del f[field]
+
+    print '%s unduplicate_ids_smart' % time.ctime()
+    unduplicate_ids_smart(m, monster, idfield='glottolog_ref_id')
+
+    print '%s handout_ids' % time.ctime()
+    handout_ids(m, idfield='glottolog_ref_id')
+
     # Save
     print '%s sav' % time.ctime()
     bib.sav(bib.put(m), monster)
-
-    # Print some statistics
-    print '%s annstats' % time.ctime()
-    annstats(m)
 
 
 if not os.path.exists(MONSTER):
@@ -360,12 +349,6 @@ else:
     bib.bak(MONSTER)
 
 compile_annotate_monster(BIBFILES, MONSTER, hhbib=HHBIB)
-print '%s killold_fields glotto_id/numnote' % time.ctime()
-killold_fields(fn=MONSTER, fieldnames=['glotto_id', 'numnote'])
-print '%s unduplicate_ids_smart' % time.ctime()
-unduplicate_ids_smart(fn=MONSTER, idfield='glottolog_ref_id')
-print '%s handout_ids' % time.ctime()
-handout_ids(fn=MONSTER, idfield='glottolog_ref_id')
 
 # Trickling back
 print '%s trickle' % time.ctime()
