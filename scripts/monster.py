@@ -66,13 +66,12 @@ import _bibfiles
 
 DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
 BIBFILES = _bibfiles.Collection(DATA_DIR)
-HHBIB = BIBFILES['hh.bib'].filepath
 HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
-MONSTER = 'monster.bib'
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
 MONSTER_PRV = 'monster_zip.bib'
+MONSTER = 'monster.bib'
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
@@ -296,7 +295,7 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
-def compile_annotate_monster(bibs, monster, hhbib):
+def compile_annotate_monster(bibs, monster):
     print '%s compile_monster' % time.ctime()
     m = compile_monster(bibs)
 
@@ -304,7 +303,7 @@ def compile_annotate_monster(bibs, monster, hhbib):
     print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
 
-    print '%s get hhbib' % time.ctime()
+    print '%s get hh.bib' % time.ctime()
     hhe = dict(bibs['hh.bib'].iterentries())
 
     # Annotate with hhtype
@@ -354,7 +353,7 @@ if not os.path.exists(MONSTER_PRV):  # extract old version for unduplicate_ids_s
     zip_extract(MONSTER_ZIP, MONSTER, MONSTER_PRV)
     
 
-compile_annotate_monster(BIBFILES, MONSTER, hhbib=HHBIB)
+compile_annotate_monster(BIBFILES, MONSTER)
 
 # Trickling back
 print '%s trickle' % time.ctime()
