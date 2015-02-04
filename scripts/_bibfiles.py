@@ -5,10 +5,13 @@ import io
 import glob
 import json
 import sqlite3
+import operator
+import itertools
+import contextlib
 import collections
 import ConfigParser
 
-__all__ = ['Collection']
+__all__ = ['Collection', 'Database']
 
 DIR = '../references/bibtex'
 DBFILE = 'monster.sqlite3'
@@ -42,7 +45,8 @@ class Collection(list):
         if os.path.exists(filename):
             os.remove(filename)
 
-        db = sqlite3.connect(filename)
+        result = DataBase(filename)
+        db = result.connect()
 
         db.execute('CREATE TABLE entry ('
             'filename TEXT NOT NULL, '
@@ -84,7 +88,7 @@ class Collection(list):
         db.execute('CREATE INDEX IF NOT EXISTS ix_hash ON entry(hash)')
         print '%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone()
         db.close()
-        return filename
+        return result
 
 
 class BibFile(object):
@@ -109,6 +113,30 @@ class BibFile(object):
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
+
+
+class Database(object):
+
+    def __init__(self, filename=DBFILE):
+        self.filename = filename
+
+    def connect(self):
+        return sqlite3.connect(self.filename)
+
+    def _iter(self):
+        with contextlib.closing(self.connect()) as db:
+            result = db.execute('SELECT hash, filename, bibkey, entrytype, fields '
+                'FROM entry ORDER BY hash, filename, bibkey')
+            while True:
+                rows = result.fetchmany(100)
+                if not rows:
+                    return
+                for hs, fn, bk, et, fs in rows:
+                    yield hs, fn, bk, et, json.loads(fs)
+
+    def __iter__(self):
+        for hs, group in itertools.groupby(self._iter(), operator.itemgetter(0)):
+            yield hs, [(fn, bk, et, fs) for hs, fn, bk, et, fs in group]
 
 
 if __name__ == '__main__':
