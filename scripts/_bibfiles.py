@@ -45,7 +45,7 @@ class Collection(list):
         if os.path.exists(filename):
             os.remove(filename)
 
-        result = DataBase(filename)
+        result = Database(filename)
         db = result.connect()
 
         db.execute('CREATE TABLE entry ('
