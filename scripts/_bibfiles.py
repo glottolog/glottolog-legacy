@@ -1,27 +1,35 @@
 # _bibfiles.py
 
 import os
+import io
 import glob
-import re
 import json
 import sqlite3
 import collections
+import ConfigParser
 
 __all__ = ['Collection']
 
 DIR = '../references/bibtex'
-MATCH = '*.bib'
-EXCLUDE = '.+old(v\d+)?\.bib$'
 DBFILE = 'monster.sqlite3'
 
 
 class Collection(list):
 
-    def __init__(self, directory=DIR, match=MATCH, exclude=EXCLUDE):
+    _encoding = 'utf-8-sig'
+
+    def __init__(self, directory=DIR, config='BIBFILES.ini', endwith='.bib'):
         self.directory = directory
-        super(Collection, self).__init__(BibFile(fp)
-            for fp in glob.glob(os.path.join(directory, match))
-            if not re.match(exclude, fp))
+        config = os.path.join(directory, config)
+        p = ConfigParser.RawConfigParser()
+        with io.open(config, encoding=self._encoding) as fp:
+            p.readfp(fp)
+        kwargs = [{'filepath': os.path.join(directory, s),
+            'priority': p.getint(s, 'priority'),
+            'name': p.get(s, 'name'), 'title': p.get(s, 'title'),
+            'description': p.get(s, 'description'), 'abbr': p.get(s, 'abbr')}
+            for s in p.sections() if s.endswith(endwith)]
+        super(Collection, self).__init__(BibFile(**kw) for kw in kwargs)
         self._map = {b.filename: b for b in self}
 
     def __getitem__(self, index_or_filename):
@@ -81,9 +89,15 @@ class Collection(list):
 
 class BibFile(object):
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, priority, name, title, description, abbr):
+        assert os.path.exists(filepath)
         self.filepath = filepath
         self.filename = os.path.basename(filepath)
+        self.priority = priority
+        self.name = name
+        self.title = title
+        self.description = description
+        self.abbr = abbr
 
     @property
     def entries(self):
