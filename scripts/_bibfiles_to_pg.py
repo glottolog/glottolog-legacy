@@ -1,17 +1,14 @@
-# _bibtex_to_db.py - parse bibfiles into postgres 9.4 database
-
-import os
-import glob
+# _bifiles_to_pg.py - parse bibfiles into postgres 9.4 database
 
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.declarative import declarative_base
 
+import _bibfiles
 import _bibtex
 
 DB = 'postgresql://postgres@/bibfiles'
-BIBS = [(f, os.path.basename(f))
-    for f in glob.glob('../references/bibtex/*.bib')]
+BIBFILES = _bibfiles.Collection()
 
 
 class Entry(declarative_base()):
@@ -56,13 +53,13 @@ def vacuum(engine):
         conn.execute('VACUUM ANALYZE')
 
 
-for filepath, filename in BIBS:
-    print filepath
-    with engine.begin() as conn, _bibtex.memorymapped(filepath) as m:
+for b in BIBFILES:
+    print b.filepath
+    with engine.begin() as conn, _bibtex.memorymapped(b.filepath) as m:
         insert_entry = Entry.__table__.insert(bind=conn).execute
         insert_contrib = Contributor.__table__.insert(bind=conn).execute
         for bibkey, (entrytype, fields) in _bibtex.iterentries(m):
-            pk, = insert_entry(filename=filename, bibkey=bibkey,
+            pk, = insert_entry(filename=b.filename, bibkey=bibkey,
                 entrytype=entrytype, fields=fields,
                 glottolog_ref_id=fields.get('glottolog_ref_id'),
                 author=fields.get('author'), editor=fields.get('editor'),

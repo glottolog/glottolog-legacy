@@ -11,7 +11,6 @@ from ConfigParser import RawConfigParser
 import latexutf8
 
 __all__ = [
-    'Bib',
     'get', 'put', 'mrg', 'fuse',
     'bak', 'load', 'sav', 'savu', 'tabtxt', 'putfield', 'fd', 'fdt',
     'add_inlg_e', 'stdauthor',
@@ -20,7 +19,6 @@ __all__ = [
     'lstat', 'lstat_witness', 
     'pairs', 'takeuntil', 'takeafter',
     'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict', 'load_triggers',
-    
 ]
 
 INLG = os.path.join(os.pardir, 'references', 'alt4inlg.ini')
@@ -28,20 +26,6 @@ INLG = os.path.join(os.pardir, 'references', 'alt4inlg.ini')
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
 reext = "(?:" + '|'.join("(?:" + z + ")" for z in exts + [z.upper() for z in exts]) + ")"
 rev2 = re.compile("(v\d+)?((?:\_o)?\.%s)" % reext)
-
-
-class Bib(object):
-
-    def __init__(self, filename):
-        self.filename = filename
-        self.name = os.path.basename(filename)
-
-    @property
-    def entries(self):
-        with open(self.filename) as fd:
-            data = fd.read()
-        result = self.__dict__['entries'] = get2txt(data)
-        return result
 
 
 def incv(s):
@@ -1131,16 +1115,16 @@ def mrg(bibs=()):
     e = {}
     ft = Counter()
     for b in bibs:
-        e[b.name] = b.entries
-        print b.name, len(e[b.name])
-        ft.update(fdt(e[b.name]))
+        e[b.filename] = b.entries
+        print b.filename, len(e[b.filename])
+        ft.update(fdt(e[b.filename]))
 
     r = {}
     for b in bibs:
         rp = len(r)
-        for (k, (typ, fields)) in e[b.name].iteritems():
-            r.setdefault(keyid(fields, ft), {})[(b.name, k)] = None
-        print b.name, len(r) - rp, "new from total", len(e[b.name])
+        for (k, (typ, fields)) in e[b.filename].iteritems():
+            r.setdefault(keyid(fields, ft), {})[(b.filename, k)] = None
+        print b.filename, len(r) - rp, "new from total", len(e[b.filename])
     return (e, r)
 
 
