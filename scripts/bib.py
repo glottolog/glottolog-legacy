@@ -1123,7 +1123,7 @@ def mrg(bibs=()):
     for b in bibs:
         rp = len(r)
         for (k, (typ, fields)) in e[b.filename].iteritems():
-            r.setdefault(keyid(fields, ft), {})[(b.filename, k)] = None
+            r.setdefault(keyid(fields, ft), []).append((b.filename, k))
         print b.filename, len(r) - rp, "new from total", len(e[b.filename])
     return (e, r)
 

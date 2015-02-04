@@ -72,12 +72,21 @@ LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
 MONSTER = 'monster.bib'
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
+MONSTER_PRV = 'monster_zip.bib'
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
     'volume': 'hh.bib', 'series': 'hh.bib', 'publisher': 'hh.bib', 'pages': 'hh.bib',
     'title': 'hh.bib', 'author': 'hh.bib', 'booktitle': 'hh.bib', 'note': 'hh.bib',
 }
+
+
+def zip_extract(zip_archive, filename, target_name=None):
+    with zipfile.ZipFile(zip_archive) as z:
+        zi = next(zi for zi in z.filelist if zi.filename == filename)
+        if target_name:
+            zi.filename = target_name
+        z.extract(zi)
 
 
 def intersectall(xs):
@@ -185,21 +194,23 @@ def argm(d, f=max):
     return m
 
 
-def compile_monster((e, r), prios=PRIOS):
+def compile_monster(bibs, prios=PRIOS):
+    (e, r) = bib.mrg(bibs)
     o = {}
     for (hk, dps) in r.iteritems():
-        src = ', '.join(set(dpf.replace(".bib", "") for (dpf, _) in dps.iterkeys()))
-        srctrickle = ', '.join(dpf.replace(".bib", "") + "#" + dpk for (dpf, dpk) in dps.iterkeys())
-        (typ, fields) = bib.fuse([e[dpf][dpk] for (dpf, dpk) in dps.iterkeys()])
+        src = ', '.join(sorted(set(dpf.replace(".bib", "") for (dpf, _) in dps)))
+        srctrickle = ', '.join(sorted('%s#%s' % (dpf.replace(".bib", ""), dpk) for (dpf, dpk) in dps))
+        (typ, fields) = bib.fuse(e[dpf][dpk] for (dpf, dpk) in dps)
 
-        ofs = bib.putfield(('srctrickle', srctrickle), bib.putfield(('src', src), fields))
+        ofs = fields
+        ofs.update(srctrickle=srctrickle, src=src)
 
         for (what, where) in prios.iteritems():
-            (_, fields) = bib.fuse([e[dpf][dpk] for (dpf, dpk) in dps.iterkeys() if dpf == where])
+            (_, fields) = bib.fuse(e[dpf][dpk] for (dpf, dpk) in dps if dpf == where)
             if fields.has_key(what):
                 ofs[what] = fields[what]
         if prios.has_key('typ'):
-            priotyp = bib.fd([e[dpf][dpk][0] for (dpf, dpk) in dps.iterkeys() if dpf == prios['typ']])
+            priotyp = bib.fd(e[dpf][dpk][0] for (dpf, dpk) in dps if dpf == prios['typ'])
             if priotyp:
                 typ = argm(priotyp)
 
@@ -286,11 +297,8 @@ def macro_area_from_lgcode(m):
 
 
 def compile_annotate_monster(bibs, monster, hhbib):
-    print '%s mrg' % time.ctime()
-    (e, r) = bib.mrg(bibs)
-
     print '%s compile_monster' % time.ctime()
-    m = compile_monster((e, r))
+    m = compile_monster(bibs)
 
     # Annotate with macro_area
     print '%s macro_area_from_lgcode' % time.ctime()
@@ -342,11 +350,9 @@ def compile_annotate_monster(bibs, monster, hhbib):
     bib.sav(bib.put(m), monster)
 
 
-if not os.path.exists(MONSTER):
-    with zipfile.ZipFile(MONSTER_ZIP) as z:
-        z.extract(MONSTER)
-else:
-    bib.bak(MONSTER)
+if not os.path.exists(MONSTER_PRV):  # extract old version for unduplicate_ids_smart
+    zip_extract(MONSTER_ZIP, MONSTER, MONSTER_PRV)
+    
 
 compile_annotate_monster(BIBFILES, MONSTER, hhbib=HHBIB)
 
