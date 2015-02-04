@@ -2,6 +2,7 @@
 
 import os
 import io
+import mmap
 import glob
 import json
 import sqlite3
@@ -65,7 +66,7 @@ class Collection(list):
             db.executemany('INSERT INTO entry '
                 '(filename, bibkey, entrytype, fields, title) VALUES (?, ?, ?, ?, ?)',
                 ((b.filename, bibkey, entrytype, json.dumps(fields), fields.get('title'))
-                for bibkey, (entrytype, fields) in bib.get(b.filepath).iteritems()))
+                for bibkey, (entrytype, fields) in b.iterentries()))
             db.commit()
         print '\n'.join('%d %s' % (n, f) for f, n in db.execute(
             'SELECT filename, count(*) FROM entry GROUP BY filename'))
@@ -103,16 +104,34 @@ class BibFile(object):
         self.description = description
         self.abbr = abbr
 
-    @property
-    def entries(self):
-        import bib
-        with open(self.filepath) as fd:
-            data = fd.read()
-        result = self.__dict__['entries'] = bib.get2txt(data)
-        return result
+    def memorymapped(self):
+        return memorymapped(self.filepath)
+
+    def iterentries(self, use_pybtex=False):
+        if use_pybtex:
+            import _bibtex
+            with self.memorymapped() as source:
+                for entry in _bibtex.iterentries(source):
+                    yield entry
+        else:
+            import bib
+            with self.memorymapped() as source:
+                for bk, et, fs  in bib.pitems(source):
+                    yield bk, (et, fs)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
+
+
+@contextlib.contextmanager
+def memorymapped(filename, access=mmap.ACCESS_READ):
+    try:
+        fd = open(filename)
+        m = mmap.mmap(fd.fileno(), 0,  access=access)
+        yield m
+    finally:
+        m.close()
+        fd.close()
 
 
 class Database(object):
@@ -140,4 +159,5 @@ class Database(object):
 
 
 if __name__ == '__main__':
-    Collection().to_sqlite()
+    c = Collection()
+    c.to_sqlite()

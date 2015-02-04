@@ -305,7 +305,7 @@ def compile_annotate_monster(bibs, monster, hhbib):
     m = macro_area_from_lgcode(m)
 
     print '%s get hhbib' % time.ctime()
-    hhe = bib.get(hhbib)
+    hhe = dict(bibs['hh.bib'].iterentries())
 
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()

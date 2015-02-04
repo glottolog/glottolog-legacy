@@ -580,19 +580,6 @@ def gettxt(txt):
     return e
 
 
-def get2txt(txt):
-    e = {}
-    i = 0
-    for (key, typ, fields) in pitems(txt):
-        while e.has_key(key):
-            i = i + 1
-            key = str(i)
-            #print "Duplicate key: ", key
-        e[key] = (typ, fields)
-
-    return e
-
-
 reka = re.compile("([A-Z]+[a-z]*)|(?<![a-z])(de|van|von)")
 
 def sepkeyauthor(k):
@@ -1115,7 +1102,7 @@ def mrg(bibs=()):
     e = {}
     ft = Counter()
     for b in bibs:
-        e[b.filename] = b.entries
+        e[b.filename] = dict(b.iterentries())
         print b.filename, len(e[b.filename])
         ft.update(fdt(e[b.filename]))
 

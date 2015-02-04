@@ -3,8 +3,6 @@
 import glob
 import re
 import io
-import mmap
-import contextlib
 import collections
 
 from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser
@@ -14,6 +12,7 @@ from pybtex.textutils import normalize_whitespace
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
+import _bibfiles
 import latexutf8
 
 __all__ = ['load', 'dump']
@@ -27,24 +26,13 @@ FIELDS = [
 
 def load(filename, encoding=None):
     if encoding is None:
-        with memorymapped(filename) as source:
+        with _bibfiles.memorymapped(filename) as source:
             result = dict(iterentries(source))
     else:
         with io.open(filename, encoding=encoding) as fd:
             source = fd.read()
         result = dict(iterentries(source))
     return result
-
-
-@contextlib.contextmanager
-def memorymapped(filename, access=mmap.ACCESS_READ):
-    try:
-        fd = open(filename)
-        m = mmap.mmap(fd.fileno(), 0,  access=access)
-        yield m
-    finally:
-        m.close()
-        fd.close()
     
 
 def iterentries(source):
