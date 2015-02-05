@@ -97,26 +97,34 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def save(entries, filename, srtkey, encoding=None, use_pybtex=False):
+def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
     if not use_pybtex:
-        if endoding not in (None, 'ascii'):
+        if encoding not in (None, 'ascii'):
             raise NotImplementedError
-        with open(filename, 'wb') as fd:
-            dump(entries, fd, srtkey)
+        with open(filename, 'w') as fd:
+            dump(entries, fd, sortkey)
     else:
         raise NotImplementedError
 
 
-def dump(entries, fd, srtkey):
-    items = sorted(entries.iteritems(), key=sortkeys[srtkey])
+def dump(entries, fd, sortkey, chunksize=10000):
+    items = sorted(entries.iteritems(), key=sortkeys[sortkey])
+    entries = []
     for bibkey, (entrytype, fields) in items:
         lines = ['@%s{%s' % (entrytype, bibkey)]
-        for k, v in fieldorder.sorteddict(fields):
-            v = latexutf8.utf8_to_latex(v.strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
-            lines.append('    %s = {%s}' % (k, v))
-        data = '%s\n}\n' % ',\n'.join(lines)
-        fd.write(data)
+        lines.extend('    %s = {%s}' % (k,
+            latexutf8.utf8_to_latex(v.strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&"))
+            for k, v in fieldorder.sorteddict(fields))
+        entries.append('%s\n}\n' % ',\n'.join(lines))
+        if len(entries) == chunksize:
+            fd.write(''.join(entries))
+            entries = []
+    fd.write(''.join(entries))
 
+
+def authorbibkey_colon(author, bibkey):
+    return author + ':'.join(bibkey.split(':', 1)[::-1])
+    
 
 def numkey(bibkey, nondigits=re.compile('(\D+)')):
     return tuple(try_int(s) for s in nondigit.split(bibkey))
@@ -130,7 +138,8 @@ def try_int(s):
 
 
 sortkeys = {
-    'authorbibkey': lambda (k, (typ, fields)): fields.get('author', '') + k.split(':', 1)[-1],
+    'authorbibkey': lambda (k, (typ, fields)): (fields.get('author', '') + k),
+    'authorbibkey_colon': lambda (k, (typ, fields)): authorbibkey_colon(fields.get('author', ''), k),
     'bibkey': lambda (k, (typ, fields)): k.lower(),
     'numbibkey': lambda (k, (typ, fields)): numkey(k.lower())
 }

@@ -71,7 +71,7 @@ LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
 MONSTER_PRV = 'monster_zip.bib'
-MONSTER = 'monster.bib'
+MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
@@ -104,7 +104,7 @@ def groupsame(ks, e):
     return bib.inv(r).values()
 
 
-def unduplicate_ids_smart(e, fn=MONSTER, idfield="glottolog_ref_id"):
+def unduplicate_ids_smart(e, fn=MONSTER.filename, idfield="glottolog_ref_id"):
     # check for duplicates
     q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
     dups = [(idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1]
@@ -336,24 +336,24 @@ def compile_annotate_monster(bibs, monster):
                 del f[field]
 
     print '%s unduplicate_ids_smart' % time.ctime()
-    unduplicate_ids_smart(m, monster, idfield='glottolog_ref_id')
+    unduplicate_ids_smart(m, monster.filename, idfield='glottolog_ref_id')
 
     print '%s handout_ids' % time.ctime()
     handout_ids(m, idfield='glottolog_ref_id')
 
     # Save
     print '%s sav' % time.ctime()
-    bib.sav(bib.put(m), monster)
+    monster.save(m)
 
 
 if not os.path.exists(MONSTER_PRV):  # extract old version for unduplicate_ids_smart
-    zip_extract(MONSTER_ZIP, MONSTER, MONSTER_PRV)
+    zip_extract(MONSTER_ZIP, MONSTER.filename, MONSTER_PRV)
     
 
 compile_annotate_monster(BIBFILES, MONSTER)
 
 # Trickling back
 print '%s trickle' % time.ctime()
-trickle(bib.get(MONSTER), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
+trickle(MONSTER.load(), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
 print '%s savu' % time.ctime()
-bib.savu(latexutf8.latex_to_utf8(bib.load(MONSTER)), 'monsterutf8.bib')
+bib.savu(latexutf8.latex_to_utf8(bib.load(MONSTER.filename)), 'monsterutf8.bib')

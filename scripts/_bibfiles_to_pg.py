@@ -54,7 +54,7 @@ def vacuum(engine):
 
 
 for b in BIBFILES:
-    print b.filepath
+    print(b.filepath)
     with engine.begin() as conn:
         insert_entry = Entry.__table__.insert(bind=conn).execute
         insert_contrib = Contributor.__table__.insert(bind=conn).execute

@@ -11,7 +11,7 @@ import contextlib
 import collections
 import ConfigParser
 
-__all__ = ['Collection', 'Database']
+__all__ = ['Collection', 'BibFile', 'Database']
 
 DIR = '../references/bibtex'
 DBFILE = 'monster.sqlite3'
@@ -28,6 +28,8 @@ class Collection(list):
         with io.open(config, encoding=self._encoding) as fp:
             p.readfp(fp)
         kwargs = [{'filepath': os.path.join(directory, s),
+            'encoding': p.get(s, 'encoding'), 'sortkey': p.get(s, 'sortkey'),
+            'use_pybtex': p.getboolean(s, 'use_pybtex'),
             'priority': p.getint(s, 'priority'),
             'name': p.get(s, 'name'), 'title': p.get(s, 'title'),
             'description': p.get(s, 'description'), 'abbr': p.get(s, 'abbr')}
@@ -39,6 +41,11 @@ class Collection(list):
         if isinstance(index_or_filename, basestring):
             return self._map[index_or_filename]
         return super(Collection, self).__getitem__(index_or_filename)
+
+    def roundtrip_all(self):
+        for b in self:
+            print(b)
+            b.save(b.load())
 
     def to_sqlite(self, filename=DBFILE):
         import bib
@@ -61,20 +68,20 @@ class Collection(list):
         db.execute('PRAGMA journal_mode = MEMORY')
 
         for b in self:
-            print b.filepath
+            print(b.filepath)
             db.executemany('INSERT INTO entry '
                 '(filename, bibkey, entrytype, fields, title) VALUES (?, ?, ?, ?, ?)',
                 ((b.filename, bibkey, entrytype, json.dumps(fields), fields.get('title'))
                 for bibkey, (entrytype, fields) in b.iterentries()))
             db.commit()
-        print '\n'.join('%d %s' % (n, f) for f, n in db.execute(
-            'SELECT filename, count(*) FROM entry GROUP BY filename'))
-        print '%d entries' % db.execute('SELECT count(*) FROM entry').fetchone()
+        print('\n'.join('%d %s' % (n, f) for f, n in db.execute(
+            'SELECT filename, count(*) FROM entry GROUP BY filename')))
+        print('%d entries' % db.execute('SELECT count(*) FROM entry').fetchone())
 
         words = collections.Counter()
         for title, in db.execute('SELECT title FROM entry WHERE title IS NOT NULL'):
             words.update(bib.wrds(title))
-        print '%d title words' % len(words)
+        print('%d title words' % len(words))
 
         result = db.execute('SELECT filename, bibkey, fields FROM entry')
         while True:
@@ -86,34 +93,38 @@ class Collection(list):
                 for filename, bibkey, fields in rows))
             db.commit()
         db.execute('CREATE INDEX IF NOT EXISTS ix_hash ON entry(hash)')
-        print '%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone()
+        print('%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone())
         db.close()
         return result
 
 
 class BibFile(object):
 
-    def __init__(self, filepath, priority, name, title, description, abbr):
+    def __init__(self, filepath, encoding, sortkey, use_pybtex=False, priority=0,
+                 name=None, title=None, description=None, abbr=None):
         assert os.path.exists(filepath)
         self.filepath = filepath
         self.filename = os.path.basename(filepath)
+        self.encoding = encoding
+        self.sortkey = sortkey
+        self.use_pybtex = use_pybtex
         self.priority = priority
         self.name = name
         self.title = title
         self.description = description
         self.abbr = abbr
 
-    def iterentries(self, encoding=None, use_pybtex=False):
+    def iterentries(self):
         import _bibtex
-        return _bibtex.iterentries(self.filepath, encoding, use_pybtex)
+        return _bibtex.iterentries(self.filepath, self.encoding, self.use_pybtex)
 
-    def load(self, encoding=None, use_pybtex=False):
+    def load(self):
         import _bibtex
-        return _bibtex.load(self.filepath, encoding, use_pybtex)
+        return _bibtex.load(self.filepath, self.encoding, self.use_pybtex)
 
-    def save(self, entries, srtkey, encoding=None, use_pybtex=False):
+    def save(self, entries):
         import _bibtex
-        _bibtex.save(entries, self.filepath, encoding, use_pybtex)
+        _bibtex.save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
@@ -145,4 +156,5 @@ class Database(object):
 
 if __name__ == '__main__':
     c = Collection()
-    c.to_sqlite()
+    #c.to_sqlite()
+    c.roundtrip_all()

@@ -1102,7 +1102,7 @@ def mrg(bibs=()):
     e = {}
     ft = Counter()
     for b in bibs:
-        e[b.filename] = dict(b.iterentries())
+        e[b.filename] = b.load()
         print b.filename, len(e[b.filename])
         ft.update(fdt(e[b.filename]))
 
