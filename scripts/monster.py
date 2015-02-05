@@ -215,7 +215,7 @@ def compile_monster(bibs, prios=PRIOS):
 
         o[hk] = (typ, ofs)
 
-    return o
+    return o, e['hh.bib']
 
 
 def renfn(e, ups):
@@ -297,14 +297,11 @@ def macro_area_from_lgcode(m):
 
 def compile_annotate_monster(bibs, monster):
     print '%s compile_monster' % time.ctime()
-    m = compile_monster(bibs)
+    m, hhe = compile_monster(bibs)
 
     # Annotate with macro_area
     print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
-
-    print '%s get hh.bib' % time.ctime()
-    hhe = dict(bibs['hh.bib'].iterentries())
 
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()
