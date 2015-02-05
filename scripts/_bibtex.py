@@ -1,77 +1,87 @@
 # bibtex.py - basic bibtex file parsing
 
-import glob
+import mmap
 import re
-import io
+import string
+import contextlib
 import collections
 
 from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser
 from pybtex.scanner import PybtexSyntaxError
 from pybtex.exceptions import PybtexError
-from pybtex.textutils import normalize_whitespace
+from pybtex.textutils import whitespace_re
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
-import _bibfiles
 import latexutf8
 
-__all__ = ['load', 'dump']
+__all__ = ['load', 'memorymapped', 'iterentries', 'names', 'dump', 'check']
 
-FIELDS = [
+FIELDORDER = [
     'author', 'editor', 'title', 'booktitle', 'journal',
     'school', 'publisher', 'address',
     'series', 'volume', 'number', 'pages', 'year', 'issn', 'url',
 ]
 
 
-def load(filename, encoding=None):
-    if encoding is None:
-        with _bibfiles.memorymapped(filename) as source:
-            result = dict(iterentries(source))
-    else:
-        with io.open(filename, encoding=encoding) as fd:
-            source = fd.read()
-        result = dict(iterentries(source))
-    return result
-    
+def load(filename, encoding=None, use_pybtex=True):
+    return dict(iterentries(filename, encoding, use_pybtex))
 
-def iterentries(source):
+
+@contextlib.contextmanager
+def memorymapped(filename, access=mmap.ACCESS_READ):
     try:
-        for entrytype, (bibkey, fields) in BibTeXEntryIterator(source):
-            fields = {name.lower(): normalize_whitespace(''.join(values))
-                for name, values in fields}
-            yield bibkey, (entrytype, fields)
-    except PybtexSyntaxError as e:
-        start, line, pos = e.error_context_info
-        print('BIBTEX ERROR on line %d, last parsed entry:' % line)
-        print(source[start:start+500] + '...')
-        raise
+        fd = open(filename)
+        m = mmap.mmap(fd.fileno(), 0,  access=access)
+        yield m
+    finally:
+        m.close()
+        fd.close()
 
 
-def check(filename):
-    parser = CheckParser()
-    parser.parse_file(filename)
-    return parser.error_count
+def iterentries(filename, encoding=None, use_pybtex=True):
+    if not use_pybtex:
+        if encoding is not None:
+            raise NotImplementedError
+        import bib
+        with memorymapped(filename) as source:
+                for bibkey, entrytype, fields in bib.pitems(source):
+                    yield bibkey, (entrytype, fields)  
+    elif encoding is None:
+        with memorymapped(filename) as source:
+            try:
+                for entrytype, (bibkey, fields) in BibTeXEntryIterator(source):
+                    fields = {name.lower():
+                        whitespace_re.sub(' ', ''.join(values).strip())
+                        for name, values in fields}
+                    yield bibkey, (entrytype, fields)
+            except PybtexSyntaxError as e:
+                debug_pybtex(source, e)
+    else:
+        with memorymapped(filename) as source:
+            try:
+                for entrytype, (bibkey, fields) in BibTeXEntryIterator(source):
+                    fields = {name.decode(encoding).lower():
+                        whitespace_re.sub(' ', ''.join(values).decode(encoding).strip())
+                        for name, values in fields}
+                    yield bibkey.decode(encoding), (entrytype.decode(encoding), fields)
+            except PybtexSyntaxError as e:
+                    debug_pybtex(source, e)
+
+
+def debug_pybtex(source, e):
+    start, line, pos = e.error_context_info
+    print('BIBTEX ERROR on line %d, last parsed lines:' % line)
+    print(source[start:start+500] + '...')
+    raise
     
-
-class CheckParser(Parser):
-    def __init__(self, *args, **kwargs):
-        super(CheckParser, self).__init__(*args, **kwargs)
-        self.error_count = 0
-    def process_entry(self, *args, **kwargs):
-        try:
-            super(CheckParser, self).process_entry(*args, **kwargs)
-        except PybtexError as e:
-            print e
-            self.error_count +=1
-
 
 def names(s):
     for name in split_name_list(s):
         try:
             yield Name.from_string(name)
         except PybtexError as e:
-            print e
+            print(e)
 
 
 class Name(collections.namedtuple('Name', 'prelast last given lineage')):
@@ -134,14 +144,33 @@ class Ordering(dict):
         return self._missing
 
 
-fieldorder = Ordering.fromlist(FIELDS)
+fieldorder = Ordering.fromlist(FIELDORDER)
+
+
+def check(filename):
+    parser = CheckParser()
+    parser.parse_file(filename)
+    return parser.error_count
+    
+
+class CheckParser(Parser):
+    def __init__(self, *args, **kwargs):
+        super(CheckParser, self).__init__(*args, **kwargs)
+        self.error_count = 0
+    def process_entry(self, *args, **kwargs):
+        try:
+            super(CheckParser, self).process_entry(*args, **kwargs)
+        except PybtexError as e:
+            print(e)
+            self.error_count +=1
 
 
 def _test_dump():
     import bib
+    import glob
     from cStringIO import StringIO
     for filename in glob.glob('../references/bibtex/*.bib'):
-        print filename
+        print(filename)
         entries = load(filename)
         a = bib.put(entries)
         s = StringIO()
@@ -151,6 +180,7 @@ def _test_dump():
 
 
 if __name__ == '__main__':
+    import glob
     for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)

@@ -2,7 +2,6 @@
 
 import os
 import io
-import mmap
 import glob
 import json
 import sqlite3
@@ -104,34 +103,12 @@ class BibFile(object):
         self.description = description
         self.abbr = abbr
 
-    def memorymapped(self):
-        return memorymapped(self.filepath)
-
-    def iterentries(self, use_pybtex=False):
-        if use_pybtex:
-            import _bibtex
-            with self.memorymapped() as source:
-                for entry in _bibtex.iterentries(source):
-                    yield entry
-        else:
-            import bib
-            with self.memorymapped() as source:
-                for bk, et, fs  in bib.pitems(source):
-                    yield bk, (et, fs)
+    def iterentries(self, encoding=None, use_pybtex=False):
+        import _bibtex
+        return _bibtex.iterentries(self.filepath, encoding, use_pybtex)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
-
-
-@contextlib.contextmanager
-def memorymapped(filename, access=mmap.ACCESS_READ):
-    try:
-        fd = open(filename)
-        m = mmap.mmap(fd.fileno(), 0,  access=access)
-        yield m
-    finally:
-        m.close()
-        fd.close()
 
 
 class Database(object):
