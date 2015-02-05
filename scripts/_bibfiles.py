@@ -107,6 +107,14 @@ class BibFile(object):
         import _bibtex
         return _bibtex.iterentries(self.filepath, encoding, use_pybtex)
 
+    def load(self, encoding=None, use_pybtex=False):
+        import _bibtex
+        return _bibtex.load(self.filepath, encoding, use_pybtex)
+
+    def save(self, entries, srtkey, encoding=None, use_pybtex=False):
+        import _bibtex
+        _bibtex.save(entries, self.filepath, encoding, use_pybtex)
+
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
 

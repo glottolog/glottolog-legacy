@@ -15,7 +15,7 @@ from pybtex.database import Person
 
 import latexutf8
 
-__all__ = ['load', 'memorymapped', 'iterentries', 'names', 'dump', 'check']
+__all__ = ['load', 'memorymapped', 'iterentries', 'names', 'save', 'check']
 
 FIELDORDER = [
     'author', 'editor', 'title', 'booktitle', 'journal',
@@ -41,7 +41,7 @@ def memorymapped(filename, access=mmap.ACCESS_READ):
 
 def iterentries(filename, encoding=None, use_pybtex=True):
     if not use_pybtex:
-        if encoding is not None:
+        if encoding not in (None, 'ascii'):
             raise NotImplementedError
         import bib
         with memorymapped(filename) as source:
@@ -97,7 +97,17 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def dump(entries, fd, srtkey='author'):
+def save(entries, filename, srtkey, encoding=None, use_pybtex=False):
+    if not use_pybtex:
+        if endoding not in (None, 'ascii'):
+            raise NotImplementedError
+        with open(filename, 'wb') as fd:
+            dump(entries, fd, srtkey)
+    else:
+        raise NotImplementedError
+
+
+def dump(entries, fd, srtkey):
     items = sorted(entries.iteritems(), key=sortkeys[srtkey])
     for bibkey, (entrytype, fields) in items:
         lines = ['@%s{%s' % (entrytype, bibkey)]
@@ -120,9 +130,9 @@ def try_int(s):
 
 
 sortkeys = {
-    'author': lambda (k, (typ, fields)): fields.get('author', '') + k.split(':', 1)[-1],
+    'authorbibkey': lambda (k, (typ, fields)): fields.get('author', '') + k.split(':', 1)[-1],
     'bibkey': lambda (k, (typ, fields)): k.lower(),
-    'numkey': lambda (k, (typ, fields)): numkey(k.lower())
+    'numbibkey': lambda (k, (typ, fields)): numkey(k.lower())
 }
 
 
@@ -174,15 +184,20 @@ def _test_dump():
         entries = load(filename)
         a = bib.put(entries)
         s = StringIO()
-        dump(entries, s)
+        dump(entries, s, 'authorbibkey')
         b = s.getvalue()
         assert a == b
 
 
-if __name__ == '__main__':
+def _test_load():
     import glob
     for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)
         print(len(entries))
         print('%d invalid' % check(filename))
+
+
+if __name__ == '__main__':
+    #_test_dump()
+    _test_load()
