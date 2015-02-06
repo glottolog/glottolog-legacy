@@ -191,9 +191,9 @@ def _test_dump():
     for filename in glob.glob('../references/bibtex/*.bib'):
         print(filename)
         entries = load(filename)
-        a = bib.put(entries)
+        a = bib.put(entries, srtkey='bibkey')
         s = StringIO()
-        dump(entries, s, 'authorbibkey')
+        dump(entries, s, sortkey='bibkey')
         b = s.getvalue()
         assert a == b
 
