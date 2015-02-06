@@ -156,5 +156,5 @@ class Database(object):
 
 if __name__ == '__main__':
     c = Collection()
-    #c.to_sqlite()
-    c.roundtrip_all()
+    c.to_sqlite()
+    #c.roundtrip_all()

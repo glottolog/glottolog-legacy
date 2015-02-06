@@ -55,10 +55,11 @@ def vacuum(engine):
 
 for b in BIBFILES:
     print(b.filepath)
+    b.use_pybtex = True
     with engine.begin() as conn:
         insert_entry = Entry.__table__.insert(bind=conn).execute
         insert_contrib = Contributor.__table__.insert(bind=conn).execute
-        for bibkey, (entrytype, fields) in b.iterentries(use_pybtex=True):
+        for bibkey, (entrytype, fields) in b.iterentries():
             pk, = insert_entry(filename=b.filename, bibkey=bibkey,
                 entrytype=entrytype, fields=fields,
                 glottolog_ref_id=fields.get('glottolog_ref_id'),

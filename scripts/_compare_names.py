@@ -18,7 +18,8 @@ def names2(s):
 
 for b in _bibfiles.Collection():
     print b.filename.center(80, '#')
-    for bibkey, (entrytype, fields) in b.iterentries(use_pybtex=True):
+    b.use_pybtex = True
+    for bibkey, (entrytype, fields) in b.iterentries():
         for role in ('author', 'editor'):
             names = fields.get(role, '')
             n1, n2 = names1(names), names2(names)

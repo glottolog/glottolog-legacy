@@ -208,5 +208,5 @@ def _test_load():
 
 
 if __name__ == '__main__':
-    #_test_dump()
     _test_load()
+    #_test_dump()
