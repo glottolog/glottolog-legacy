@@ -14,7 +14,7 @@ import ConfigParser
 __all__ = ['Collection', 'BibFile', 'Database']
 
 DIR = '../references/bibtex'
-DBFILE = 'monster.sqlite3'
+DBFILE = '_bibfiles.sqlite3'
 
 
 class Collection(list):
@@ -48,62 +48,7 @@ class Collection(list):
             b.save(b.load())
 
     def to_sqlite(self, filename=DBFILE):
-        import bib
-        if os.path.exists(filename):
-            os.remove(filename)
-
-        result = Database(filename)
-        db = result.connect()
-
-        db.execute('CREATE TABLE file ('
-            'name TEXT NOT NULL, '
-            'priority INTEGER NOT NULL, '
-            'PRIMARY KEY (name))')
-        db.execute('CREATE TABLE entry ('
-            'filename TEXT NOT NULL, '
-            'bibkey TEXT NOT NULL, '
-            'entrytype TEXT NOT NULL, '
-            'hash TEXT, '
-            'fields TEXT NOT NULL, '
-            'title TEXT, '
-            'PRIMARY KEY (filename, bibkey), '
-            'FOREIGN KEY(filename) REFERENCES file(name))')
-
-        db.execute('PRAGMA synchronous = OFF')
-        db.execute('PRAGMA journal_mode = MEMORY')
-
-        for b in self:
-            print(b.filepath)
-            db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
-                (b.filename, b.priority))  
-            db.executemany('INSERT INTO entry '
-                '(filename, bibkey, entrytype, fields, title) VALUES (?, ?, ?, ?, ?)',
-                ((b.filename, bibkey, entrytype, json.dumps(fields), fields.get('title'))
-                for bibkey, (entrytype, fields) in b.iterentries()))
-            db.commit()
-        print('\n'.join('%d %s' % (n, f) for f, n in db.execute(
-            'SELECT filename, count(*) FROM entry GROUP BY filename')))
-        print('%d entries' % db.execute('SELECT count(*) FROM entry').fetchone())
-
-        words = collections.Counter()
-        for title, in db.execute('SELECT title FROM entry WHERE title IS NOT NULL'):
-            words.update(bib.wrds(title))
-        print('%d title words' % len(words))
-
-        result = db.execute('SELECT filename, bibkey, fields FROM entry')
-        while True:
-            rows = result.fetchmany(1000)
-            if not rows:
-                break
-            db.executemany('UPDATE entry SET hash = ? WHERE filename = ? AND bibkey = ?',
-                ((bib.keyid(json.loads(fields), words), filename, bibkey)
-                for filename, bibkey, fields in rows))
-            db.commit()
-        db.execute('CREATE INDEX ix_hash ON entry(hash)')
-        print('%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone())
-        print('%d distinct keyids' % db.execute('SELECT count(DISTINCT hash) FROM entry').fetchone())
-        db.close()
-        return result
+        return Database.from_collection(self, filename)
 
 
 class BibFile(object):
@@ -140,6 +85,66 @@ class BibFile(object):
 
 class Database(object):
 
+    @classmethod
+    def from_collection(cls, bibfiles, filename):
+        import bib
+        if os.path.exists(filename):
+            os.remove(filename)
+
+        self = cls(filename)
+        db = self.connect()
+
+        db.execute('CREATE TABLE file ('
+            'name TEXT NOT NULL, '
+            'priority INTEGER NOT NULL, '
+            'PRIMARY KEY (name))')
+        db.execute('CREATE TABLE entry ('
+            'filename TEXT NOT NULL, '
+            'bibkey TEXT NOT NULL, '
+            'entrytype TEXT NOT NULL, '
+            'hash TEXT, '
+            'fields TEXT NOT NULL, '
+            'title TEXT, '
+            'PRIMARY KEY (filename, bibkey), '
+            'FOREIGN KEY(filename) REFERENCES file(name))')
+
+        db.execute('PRAGMA synchronous = OFF')
+        db.execute('PRAGMA journal_mode = MEMORY')
+
+        for b in bibfiles:
+            print(b.filepath)
+            db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
+                (b.filename, b.priority))  
+            db.executemany('INSERT INTO entry '
+                '(filename, bibkey, entrytype, fields, title) VALUES (?, ?, ?, ?, ?)',
+                ((b.filename, bibkey, entrytype, json.dumps(fields), fields.get('title'))
+                for bibkey, (entrytype, fields) in b.iterentries()))
+            db.commit()
+        print('\n'.join('%d %s' % (n, f) for f, n in db.execute(
+            'SELECT filename, count(*) FROM entry GROUP BY filename')))
+        print('%d entries' % db.execute('SELECT count(*) FROM entry').fetchone())
+
+        words = collections.Counter()
+        for title, in db.execute('SELECT title FROM entry WHERE title IS NOT NULL'):
+            words.update(bib.wrds(title))
+        print('%d title words' % len(words))
+
+        cursor = db.execute('SELECT filename, bibkey, fields FROM entry')
+        while True:
+            rows = cursor.fetchmany(1000)
+            if not rows:
+                cursor.close()
+                break
+            db.executemany('UPDATE entry SET hash = ? WHERE filename = ? AND bibkey = ?',
+                ((bib.keyid(json.loads(fields), words), filename, bibkey)
+                for filename, bibkey, fields in rows))
+            db.commit()
+        db.execute('CREATE INDEX ix_hash ON entry(hash)')
+        print('%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone())
+        print('%d distinct keyids' % db.execute('SELECT count(DISTINCT hash) FROM entry').fetchone())
+        db.close()
+        return self
+
     def __init__(self, filename=DBFILE):
         self.filename = filename
 
@@ -152,12 +157,13 @@ class Database(object):
                 'WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert not nopriority
-            result = db.execute('SELECT hash, filename, bibkey, entrytype, fields '
+            cursor = db.execute('SELECT hash, filename, bibkey, entrytype, fields '
                 'FROM entry JOIN file ON filename = name '
                 'ORDER BY hash, priority DESC, filename, bibkey')
             while True:
-                rows = result.fetchmany(100)
+                rows = cursor.fetchmany(1000)
                 if not rows:
+                    cursor.close()
                     return
                 for hs, fn, bk, et, fs in rows:
                     yield hs, fn, bk, et, json.loads(fs)

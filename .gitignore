@@ -6,7 +6,7 @@ scripts/monsterold*.bib
 scripts/monster_zip.bib
 scripts/monstermarkhht.txt
 scripts/monstermarklgc.txt
-scripts/monster.sqlite3
+scripts/*.sqlite3
 
 # C extensions
 *.so
