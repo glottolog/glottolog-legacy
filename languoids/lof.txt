@@ -565,6 +565,8 @@ Spurious, Atlantic-Congo, Mel, Temne-Baga
   Baga Kaloum [bqf]
 Spurious, Austroasiatic, Mundaic, North Munda, Kherwarian, Mundaric, Ho-Mundari
   Munda [unx]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid, Okpe-Akuku-Idesa
+  Idesa [ids]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid
   Aduge [adu]
 Spurious, Indo-European, Indo-Iranian, Iranian, Western Iranian, Northwestern Iranian

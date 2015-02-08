@@ -830,6 +830,7 @@ Atlantic-Congo, North-Central Atlantic, North Atlantic, Tenda, Bassari-Bedik-Bap
   Bapen [NOCODE_Bapen]
 Atlantic-Congo, North-Central Atlantic, North Atlantic, Wolofic
   Wolof [wol]
+  Lebu Wolof [NOCODE_Lebu]
   Gambian Wolof [wof]
 Atlantic-Congo, North-Central Atlantic, North Atlantic, Peul-Serer, Fula, Fula-East Central
   Nigerian Fulfulde [fuv]
@@ -3504,10 +3505,11 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Mokerang [mft]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Eastern Admiralty Islands, Manus
   Pak-Tong [pkg]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Eastern Admiralty Islands, South-East Admiralty
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Eastern Admiralty Islands, South-East Admiralty, Lou-Paluai
   Lou [loj]
-  Lenkau [ler]
   Paluai [blq]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Eastern Admiralty Islands, South-East Admiralty
+  Lenkau [ler]
   Nauna [ncn]
   Penchal [pek]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Admiralty Islands, Western Admiralty Islands
@@ -5792,8 +5794,12 @@ Gunwinyguan, Gunwinyguan Bak, Eastern Gunwinyguan
 Gunwinyguan, Gunwinyguan Bak, Eastern Gunwinyguan, Jala
   Rembarunga [rmb]
   Ngalakan [nig]
+Gunwinyguan, Western Gunwinyguan, Warrayic
+  Warray [wrz]
+  Uwinymil [NOCODE_Uwinymil]
+Gunwinyguan, Western Gunwinyguan, Warrayic, Unclassified Warrayic
+  Wulwulam [NOCODE_Wulwulam]
 Gunwinyguan, Western Gunwinyguan
-  Waray (Australia) [wrz]
   Jawoyn [djn]
 Guriaso
   Guriaso [grx]
