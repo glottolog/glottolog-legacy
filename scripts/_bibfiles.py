@@ -15,6 +15,7 @@ __all__ = ['Collection', 'BibFile', 'Database']
 
 DIR = '../references/bibtex'
 DBFILE = '_bibfiles.sqlite3'
+BIBFILE = '_bibfiles.bib'
 
 
 class Collection(list):
@@ -68,16 +69,16 @@ class BibFile(object):
         self.abbr = abbr
 
     def iterentries(self):
-        import _bibtex
-        return _bibtex.iterentries(self.filepath, self.encoding, self.use_pybtex)
+        from _bibtex import iterentries
+        return iterentries(self.filepath, self.encoding, self.use_pybtex)
 
     def load(self):
-        import _bibtex
-        return _bibtex.load(self.filepath, self.encoding, self.use_pybtex)
+        from _bibtex import load
+        return load(self.filepath, self.encoding, self.use_pybtex)
 
     def save(self, entries):
-        import _bibtex
-        _bibtex.save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex)
+        from _bibtex import save
+        save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
@@ -87,12 +88,11 @@ class Database(object):
 
     @classmethod
     def from_collection(cls, bibfiles, filename):
-        import bib
         if os.path.exists(filename):
             os.remove(filename)
 
         self = cls(filename)
-        db = self.connect()
+        db = self.connect(async=True)
 
         db.execute('CREATE TABLE file ('
             'name TEXT NOT NULL, '
@@ -118,88 +118,127 @@ class Database(object):
             'PRIMARY KEY (filename, bibkey, field), '
             'FOREIGN KEY(filename, bibkey) REFERENCES entry(filename, bibkey))')
 
-        db.execute('PRAGMA synchronous = OFF')
-        db.execute('PRAGMA journal_mode = MEMORY')
-
         for b in bibfiles:
             print(b.filepath)
             db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
                 (b.filename, b.priority))
             for bibkey, (entrytype, fields) in b.iterentries():
-                db.execute('INSERT INTO entry '
-                    '(filename, bibkey) VALUES (?, ?)',
+                db.execute('INSERT INTO entry (filename, bibkey) VALUES (?, ?)',
                     (b.filename, bibkey))
+                fields = itertools.chain([('ENTRYTYPE', entrytype)], fields.iteritems())
                 db.executemany('INSERT INTO value '
                     '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
-                    ((b.filename, bibkey, field, value) for field, value in
-                     itertools.chain([('ENTRYTYPE', entrytype)], fields.iteritems())))
+                    ((b.filename, bibkey, field, value) for field, value in fields))
             db.commit()
-        print('\n'.join('%d %s' % (n, f) for f, n in db.execute(
+        print('\n'.join('%s %d' % (f, n) for f, n in db.execute(
             'SELECT filename, count(*) FROM entry GROUP BY filename')))
-        print('%d entries' % db.execute('SELECT count(*) FROM entry').fetchone())
+        print('%d entries total' % db.execute('SELECT count(*) FROM entry').fetchone())
 
+        self._generate_hashes(db)
+        db.close()
+        return self
+
+    @classmethod
+    def _generate_hashes(cls, conn):
+        from bib import wrds, keyid
         words = collections.Counter()
-        for title, in db.execute('SELECT value FROM value WHERE field = ?', ('title',)):
-            words.update(bib.wrds(title))
-        print('%d title words' % len(words))
+        cursor = conn.execute('SELECT value FROM value WHERE field = ?', ('title',))
+        while True:
+            rows = cursor.fetchmany(10000)
+            if not rows:
+                break
+            for title, in rows:
+                words.update(wrds(title))
+        print('%d title words (from %d tokens)' % (len(words), sum(words.itervalues())))
 
-        for filename, in db.execute('SELECT name FROM file ORDER BY name'):
-            cursor = db.execute('SELECT bibkey FROM entry WHERE filename = ? '
+        get_bibkey = operator.itemgetter(0)
+        for filename, first, last in cls._windowed_entries(conn, 500):
+            rows = conn.execute('SELECT bibkey, field, value FROM value '
+                'WHERE filename = ? AND bibkey BETWEEN ? AND ? '
+                'ORDER BY bibkey', (filename, first, last))
+            conn.executemany('UPDATE entry SET hash = ? WHERE filename = ? AND bibkey = ?',
+                ((keyid({k: v for b, k, v in grp}, words), filename, bibkey)
+                for bibkey, grp in itertools.groupby(rows, get_bibkey)))
+        conn.commit()
+        conn.execute('CREATE INDEX IF NOT EXISTS ix_hash ON entry(hash)')
+        cls._showstats(conn)
+
+    @staticmethod
+    def _showstats(conn):
+        print('%d\tdistinct keyids (from %d total)' % conn.execute(
+            'SELECT count(DISTINCT hash), count(hash) FROM entry').fetchone())
+        print('\n'.join('%d\t%s (from %d distinct of %d total)' % row
+            for row in conn.execute('SELECT coalesce(c2.unq, 0), '
+            'c1.filename,c1.dst, c1.tot FROM (SELECT filename, '
+            'count(hash) AS tot, count(DISTINCT hash) AS dst  '
+            'FROM entry GROUP BY filename) AS c1 LEFT JOIN '
+            '(SELECT filename, count(DISTINCT hash) AS unq '
+            'FROM entry AS e WHERE NOT EXISTS (SELECT 1 FROM entry '
+            'WHERE hash = e.hash AND filename != e.filename) '
+            'GROUP BY filename) AS c2 ON c1.filename = c2.filename '
+            'ORDER BY c1.filename')))
+        print('%d\tin multiple files' % conn.execute('SELECT count(*) FROM '
+            '(SELECT 1 FROM entry GROUP BY hash '
+            'HAVING COUNT(DISTINCT filename) > 1)').fetchone())
+
+    @staticmethod
+    def _windowed_entries(conn, chunksize):
+        for filename, in conn.execute('SELECT name FROM file ORDER BY name'):
+            cursor = conn.execute('SELECT bibkey FROM entry WHERE filename = ? '
                 'ORDER BY bibkey', (filename,))
             while True:
-                bibkeys = cursor.fetchmany(1000)
+                bibkeys = cursor.fetchmany(chunksize)
                 if not bibkeys:
                     cursor.close()
                     break
                 (first,), (last,) = bibkeys[0], bibkeys[-1]
-                rows = db.execute('SELECT bibkey, field, value FROM value '
-                    'WHERE filename = ? AND bibkey BETWEEN ? AND ? '
-                    'ORDER BY bibkey', (filename, first, last))
-                db.executemany('UPDATE entry SET hash = ? WHERE filename = ? AND bibkey = ?',
-                    ((bib.keyid({k: v for b, k, v in grp}, words), filename, bibkey)
-                    for bibkey, grp in itertools.groupby(rows, operator.itemgetter(0))))
-            db.commit()
-        db.execute('CREATE INDEX ix_hash ON entry(hash)')
-        print('%d keyids' % db.execute('SELECT count(hash) FROM entry').fetchone())
-        print('%d distinct keyids' % db.execute('SELECT count(DISTINCT hash) FROM entry').fetchone())
-        db.close()
-        return self
+                yield filename, first, last
+
+    @staticmethod
+    def _windowed_hashes(conn, chunksize):
+        cursor = conn.execute('SELECT DISTINCT hash FROM entry ORDER BY hash')
+        while True:
+            hashes = cursor.fetchmany(chunksize)
+            if not hashes:
+                cursor.close()
+                break
+            (first,), (last,) = hashes[0], hashes[-1]
+            yield first, last
 
     def __init__(self, filename=DBFILE):
         self.filename = filename
 
-    def connect(self):
-        return sqlite3.connect(self.filename)
+    def connect(self, async=False):
+        conn = sqlite3.connect(self.filename)
+        if async:
+            conn.execute('PRAGMA synchronous = OFF')
+            conn.execute('PRAGMA journal_mode = MEMORY')
+        return conn
 
-    def _iter(self, chunksize=1000):
+    def __iter__(self, chunksize=100):
         with contextlib.closing(self.connect()) as db:
             nopriority, = db.execute('SELECT EXISTS (SELECT 1 FROM entry '
                 'WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert not nopriority
-            cursor = db.execute('SELECT e.hash, v.field, v.value, v.filename, v.bibkey '
-                'FROM value AS v '
-                'JOIN entry AS e ON v.filename = e.filename AND v.bibkey = e.bibkey '
-                'JOIN file AS f ON v.filename = f.name '
-                'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
-                'ORDER BY e.hash, v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey')
-            while True:
-                rows = cursor.fetchmany(chunksize)
-                if not rows:
-                    cursor.close()
-                    return
-                for r in rows:
-                    yield r
-
-    def __iter__(self, get_hash=operator.itemgetter(0), get_field=operator.itemgetter(1)):
-        for hash, grp in itertools.groupby(self._iter(), get_hash):
-            yield (hash, [(field, [(vl, fn, bk) for hs, fd, vl, fn, bk in g])
-                for field, g in itertools.groupby(grp, get_field)])
+            get_hash, get_field = operator.itemgetter(0), operator.itemgetter(1)
+            for first, last in self._windowed_hashes(db, chunksize):
+                cursor = db.execute('SELECT e.hash, v.field, v.value, v.filename, v.bibkey '
+                    'FROM entry AS e '
+                    'JOIN file AS f ON e.filename = f.name '
+                    'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
+                    'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
+                    'WHERE e.hash BETWEEN ? AND ? '
+                    'ORDER BY e.hash, v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey',
+                    (first, last))
+                for hash, grp in itertools.groupby(cursor, get_hash):
+                    yield (hash, [(field, [(vl, fn, bk) for hs, fd, vl, fn, bk in g])
+                        for field, g in itertools.groupby(grp, get_field)])
 
     def merged(self, union={'lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'}):
         for hash, grp in self:
             fields = {field: values[0][0] if field not in union
-                else ', '.join(vl for vl, fn, bk in values)
+                else ', '.join(unique(vl for vl, fn, bk in values))
                 for field, values in grp}
             fields['src'] = ', '.join(sorted(set(fn
                 for field, values in grp for vl, fn, bk in values)))
@@ -208,10 +247,22 @@ class Database(object):
             entrytype = fields.pop('ENTRYTYPE')
             yield hash, (entrytype, fields)
 
+    def to_bibtex(self, filename=BIBFILE, encoding='utf-8'):
+        from _bibtex import dump
+        with io.open(filename, 'w', encoding=encoding) as fd:
+            dump(fd, self.merged())
+
+
+def unique(iterable):
+    seen = set()
+    for item in iterable:
+        if item not in seen:
+            seen.add(item)
+            yield item
+
 
 def _test_merge():
     import sqlalchemy as sa
-    from itertools import chain
 
     engine = sa.create_engine('postgresql://postgres@/overrides')
     metadata = sa.MetaData()

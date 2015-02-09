@@ -107,19 +107,17 @@ def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
         raise NotImplementedError
 
 
-def dump(entries, fd, sortkey, chunksize=10000):
-    items = sorted(entries.iteritems(), key=sortkeys[sortkey])
-    entries = []
+def dump(entries, fd, sortkey=None):
+    if sortkey is None:
+        items = entries
+    else:
+        items = sorted(entries.iteritems(), key=sortkeys[sortkey])
     for bibkey, (entrytype, fields) in items:
         lines = ['@%s{%s' % (entrytype, bibkey)]
         lines.extend('    %s = {%s}' % (k,
             latexutf8.utf8_to_latex(v.strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&"))
             for k, v in fieldorder.sorteddict(fields))
-        entries.append('%s\n}\n' % ',\n'.join(lines))
-        if len(entries) == chunksize:
-            fd.write(''.join(entries))
-            entries = []
-    fd.write(''.join(entries))
+        fd.write('%s\n}\n' % ',\n'.join(lines))
 
 
 def authorbibkey_colon(author, bibkey):
