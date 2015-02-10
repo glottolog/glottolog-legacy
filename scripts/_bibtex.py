@@ -108,7 +108,9 @@ def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
 
 
 def dump(entries, fd, sortkey=None):
-    if sortkey is None:
+    if sortkey is None and isinstance(entries, collections.OrderedDict):
+        items = entries.iteritems()
+    elif sortkey is None:
         items = entries
     else:
         items = sorted(entries.iteritems(), key=sortkeys[sortkey])

@@ -11,31 +11,48 @@ import contextlib
 import collections
 import ConfigParser
 
-__all__ = ['Collection', 'BibFile', 'Database']
+__all__ = ['to_string', 'Collection', 'BibFile', 'Database']
 
 DIR = '../references/bibtex'
 DBFILE = '_bibfiles.sqlite3'
 BIBFILE = '_bibfiles.bib'
 
 
+def to_string(entries, sortkey):
+    from StringIO import StringIO
+    from _bibtex import dump
+    with contextlib.closing(StringIO) as fd:
+        dump(entries, fd, sortkey)
+        return fd.getvalue()
+
+
 class Collection(list):
 
     _encoding = 'utf-8-sig'
 
+    @classmethod
+    def _bibfiles(cls, directory, config, endwith):
+        config = os.path.join(directory, config)
+        cfg = ConfigParser.RawConfigParser()
+        with io.open(config, encoding=cls._encoding) as fp:
+            cfg.readfp(fp)
+        for s in cfg.sections():
+            if not s.endswith(endwith):
+                continue
+            filepath = os.path.join(directory, s)
+            assert os.path.exists(filepath)
+            yield BibFile(filepath=filepath,
+                encoding=cfg.get(s, 'encoding'), sortkey=cfg.get(s, 'sortkey'),
+                use_pybtex=cfg.getboolean(s, 'use_pybtex'),
+                priority=cfg.getint(s, 'priority'),
+                name=cfg.get(s, 'name'), title=cfg.get(s, 'title'),
+                description=cfg.get(s, 'description'),
+                abbr=cfg.get(s, 'abbr'))
+
     def __init__(self, directory=DIR, config='BIBFILES.ini', endwith='.bib'):
         self.directory = directory
-        config = os.path.join(directory, config)
-        p = ConfigParser.RawConfigParser()
-        with io.open(config, encoding=self._encoding) as fp:
-            p.readfp(fp)
-        kwargs = [{'filepath': os.path.join(directory, s),
-            'encoding': p.get(s, 'encoding'), 'sortkey': p.get(s, 'sortkey'),
-            'use_pybtex': p.getboolean(s, 'use_pybtex'),
-            'priority': p.getint(s, 'priority'),
-            'name': p.get(s, 'name'), 'title': p.get(s, 'title'),
-            'description': p.get(s, 'description'), 'abbr': p.get(s, 'abbr')}
-            for s in p.sections() if s.endswith(endwith)]
-        super(Collection, self).__init__(BibFile(**kw) for kw in kwargs)
+        bibfiles = self._bibfiles(directory, config, endwith)
+        super(Collection, self).__init__(bibfiles)
         self._map = {b.filename: b for b in self}
 
     def __getitem__(self, index_or_filename):
@@ -56,7 +73,6 @@ class BibFile(object):
 
     def __init__(self, filepath, encoding, sortkey, use_pybtex=False, priority=0,
                  name=None, title=None, description=None, abbr=None):
-        assert os.path.exists(filepath)
         self.filepath = filepath
         self.filename = os.path.basename(filepath)
         self.encoding = encoding
@@ -120,6 +136,7 @@ class Database(object):
 
         for b in bibfiles:
             print(b.filepath)
+            b.use_pybtex = True
             db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
                 (b.filename, b.priority))
             for bibkey, (entrytype, fields) in b.iterentries():
@@ -340,5 +357,5 @@ def _test_merge():
 if __name__ == '__main__':
     c = Collection()
     #c.roundtrip_all()
-    #c.to_sqlite()
+    c.to_sqlite()
     #_test_merge()

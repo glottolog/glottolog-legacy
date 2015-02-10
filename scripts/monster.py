@@ -56,6 +56,7 @@ the process
 """
 
 import os
+import glob
 import zipfile
 import time
 
@@ -70,7 +71,7 @@ HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
 LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
 LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
 MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
-MONSTER_PRV = 'monster_zip.bib'
+MONSTER_UNZIP = 'monster_zip.bib'
 MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
 
 PRIOS = {
@@ -104,9 +105,9 @@ def groupsame(ks, e):
     return bib.inv(r).values()
 
 
-def unduplicate_ids_smart(e, fn=MONSTER.filename, idfield="glottolog_ref_id"):
+def unduplicate_ids_smart(e, previous, idfield="glottolog_ref_id"):
     # check for duplicates
-    q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
+    q = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield))
     dups = [(idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1]
 
     # if are same? then merge
@@ -121,10 +122,8 @@ def unduplicate_ids_smart(e, fn=MONSTER.filename, idfield="glottolog_ref_id"):
                 del e[k]
 
     dups = [(idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups]
-    fnb = bib.takeuntil(fn, ".")
-    print "Finding previous version for", fnb
-    (ft, previous) = max((os.stat(f).st_mtime, f) for f in os.listdir(".") if f.startswith(fnb) and f.endswith('.bib') and f != fn and not f.endswith("-prio.bib"))
-    qp = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in bib.get(previous).iteritems() if fields.has_key(idfield)])
+    print "Using previous version %s" % previous.filename
+    qp = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in previous.iterentries() if fields.has_key(idfield))
     for (idn, ks) in dups:
         (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
         print remaink, "RETAINS", idn, "BECAUSE IN OLD VER"
@@ -135,7 +134,7 @@ def unduplicate_ids_smart(e, fn=MONSTER.filename, idfield="glottolog_ref_id"):
 
 
 def handout_ids(e, idfield="glottolog_ref_id"):
-    q = bib.grp2([(fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield)])
+    q = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield))
 
     tid = max([int(x) for x in q.iterkeys()] + [300000]) + 1
     print "NEW UNIQUE ID", tid
@@ -148,7 +147,7 @@ def handout_ids(e, idfield="glottolog_ref_id"):
 
 def findidks(e, mks):
     ft = bib.fdt(e)
-    ekis = bib.grp2([(bib.keyid(fields, ft), ek) for (ek, (typ, fields)) in e.iteritems()])
+    ekis = bib.grp2((bib.keyid(fields, ft), ek) for (ek, (typ, fields)) in e.iteritems())
     mkis = [(mk, bib.keyid(fields, ft)) for (mk, (typ, fields)) in mks.iteritems()]
     return dict((mk, ekis.get(kid, [])) for (mk, kid) in mkis)
 
@@ -183,7 +182,6 @@ def trickle(m, tricklefields=['isbn'], datadir=""):
             t2 = renfn(te, fnups)
             bib.bak(os.path.join(datadir, '%s.bib' % src))
             bib.sav(bib.put(t2), os.path.join(datadir, '%s.bib' % src))
-    return
 
 
 def argm(d, f=max):
@@ -295,7 +293,7 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
-def compile_annotate_monster(bibs, monster):
+def main(bibs, monster, monster_prv):
     print '%s compile_monster' % time.ctime()
     m, hhe = compile_monster(bibs)
 
@@ -336,7 +334,7 @@ def compile_annotate_monster(bibs, monster):
                 del f[field]
 
     print '%s unduplicate_ids_smart' % time.ctime()
-    unduplicate_ids_smart(m, monster.filename, idfield='glottolog_ref_id')
+    unduplicate_ids_smart(m, monster_prv, idfield='glottolog_ref_id')
 
     print '%s handout_ids' % time.ctime()
     handout_ids(m, idfield='glottolog_ref_id')
@@ -345,15 +343,22 @@ def compile_annotate_monster(bibs, monster):
     print '%s sav' % time.ctime()
     monster.save(m)
 
+    # Trickling back
+    print '%s trickle' % time.ctime()
+    trickle(m, tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
 
-if not os.path.exists(MONSTER_PRV):  # extract old version for unduplicate_ids_smart
-    zip_extract(MONSTER_ZIP, MONSTER.filename, MONSTER_PRV)
-    
+    print '%s savu' % time.ctime()
+    s = _bibfiles.to_string(m, sortkey='bibkey')
+    bib.savu(latexutf8.latex_to_utf8(s), 'monsterutf8.bib')
 
-compile_annotate_monster(BIBFILES, MONSTER)
 
-# Trickling back
-print '%s trickle' % time.ctime()
-trickle(MONSTER.load(), tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
-print '%s savu' % time.ctime()
-bib.savu(latexutf8.latex_to_utf8(bib.load(MONSTER.filename)), 'monsterutf8.bib')
+if __name__ == '__main__':
+    if not os.path.exists(MONSTER_UNZIP):  # extract old version for unduplicate_ids_smart
+        zip_extract(MONSTER_ZIP, MONSTER.filename, MONSTER_UNZIP)
+
+    MONSTER_PRV = _bibfiles.BibFile(max(
+        (f for f in glob.glob('monster?*.bib') if not f.endswith('-prio.bib')),
+        key=lambda f: os.stat(f).st_mtime),
+        encoding='ascii', sortkey=None)
+
+    main(BIBFILES, MONSTER, MONSTER_PRV)
