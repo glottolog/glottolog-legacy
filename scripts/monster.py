@@ -276,7 +276,7 @@ def markall(e, trigs, labelab=lambda x: x):
 
 def macro_area_from_lgcode(m):
     def inject_macro_area((typ, fields), lgd):
-        if not fields.has_key('macro_area'):
+        if fields.has_key('macro_area'):
             return (typ, fields)
         mas = set(lgd[x].macro_area for x in bib.lgcode((typ, fields)) if x in lgd and lgd[x].macro_area)
         if mas:
