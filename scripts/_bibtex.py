@@ -24,8 +24,9 @@ FIELDORDER = [
 ]
 
 
-def load(filename, encoding=None, use_pybtex=True):
-    return dict(iterentries(filename, encoding, use_pybtex))
+def load(filename, encoding=None, use_pybtex=True, preserve_order=False):
+    cls = collections.OrderedDict if preserve_order else dict
+    return cls(iterentries(filename, encoding, use_pybtex))
 
 
 @contextlib.contextmanager

@@ -65,12 +65,11 @@ import bib
 
 import _bibfiles
 
-DATA_DIR = os.path.join(os.pardir, 'references', 'bibtex')
-BIBFILES = _bibfiles.Collection(DATA_DIR)
-HHTYPE = os.path.join(os.pardir, 'references', 'alt4hhtype.ini')
-LGCODE = os.path.join(os.pardir, 'references', 'alt4lgcode.ini')
-LGINFO = os.path.join(os.pardir, 'languoids', 'lginfo.csv')
-MONSTER_ZIP = os.path.join(os.pardir, 'references', 'monster.zip')
+BIBFILES = _bibfiles.Collection('../references/bibtex')
+HHTYPE = '../references/alt4hhtype.ini'
+LGCODE = '../references/alt4lgcode.ini'
+LGINFO = '../languoids/lginfo.csv'
+MONSTER_ZIP = '../references/monster.zip'
 MONSTER_UNZIP = 'monster_zip.bib'
 MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
 
@@ -152,15 +151,11 @@ def findidks(e, mks):
     return dict((mk, ekis.get(kid, [])) for (mk, kid) in mkis)
 
 
-def trickle(m, tricklefields=['isbn'], datadir=""):
+def trickle(m, bibfiles, tricklefields=['isbn']):
     for f in tricklefields:
         ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
         for (src, us) in bib.grp2(ups).iteritems():
-            try:
-                te = bib.get(fn=[os.path.join(datadir, '%s.bib' % src)])
-            except IOError:
-                print "No such file", os.path.join(datadir, '%s.bib' % src)
-                continue
+            te = bibfiles['%s.bib' % src].load()
             mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
             r = {}
             for (mk, f, newd) in us:
@@ -172,7 +167,7 @@ def trickle(m, tricklefields=['isbn'], datadir=""):
 
 
             fnups = [(tk, f, newd) for (tks, f, newd) in r.itervalues() for tk in tks if te.has_key(tk) and te[tk][1].get(f, '') != newd]
-            print len(fnups), "changes to", os.path.join(datadir, src)
+            print len(fnups), "changes to", src
             warnings = [tk for (tks, f, newd) in r.itervalues() for tk in tks if not te.has_key(tk)]
             if warnings:
                 print src, "Warning, the following keys do not exist anymore:", warnings
@@ -180,8 +175,7 @@ def trickle(m, tricklefields=['isbn'], datadir=""):
             #for a in trace[:10]:
             #    print a
             t2 = renfn(te, fnups)
-            bib.bak(os.path.join(datadir, '%s.bib' % src))
-            bib.sav(bib.put(t2), os.path.join(datadir, '%s.bib' % src))
+            bibfiles['%s.bib' % src].save(t2)
 
 
 def argm(d, f=max):
@@ -293,9 +287,9 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
-def main(bibs, monster, monster_prv):
+def main(bibfiles, monster, monster_prv):
     print '%s compile_monster' % time.ctime()
-    m, hhe = compile_monster(bibs)
+    m, hhe = compile_monster(bibfiles)
 
     # Annotate with macro_area
     print '%s macro_area_from_lgcode' % time.ctime()
@@ -345,7 +339,7 @@ def main(bibs, monster, monster_prv):
 
     # Trickling back
     print '%s trickle' % time.ctime()
-    trickle(m, tricklefields=['glottolog_ref_id'], datadir=DATA_DIR)
+    trickle(m, bibfiles, tricklefields=['glottolog_ref_id'])
 
     print '%s savu' % time.ctime()
     s = _bibfiles.to_string(m, sortkey='bibkey')

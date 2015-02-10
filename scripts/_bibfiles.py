@@ -41,8 +41,11 @@ class Collection(list):
                 continue
             filepath = os.path.join(directory, s)
             assert os.path.exists(filepath)
+            sortkey = cfg.get(s, 'sortkey')
+            if sortkey.lower() == 'none':
+                sortkey = None
             yield BibFile(filepath=filepath,
-                encoding=cfg.get(s, 'encoding'), sortkey=cfg.get(s, 'sortkey'),
+                encoding=cfg.get(s, 'encoding'), sortkey=sortkey,
                 use_pybtex=cfg.getboolean(s, 'use_pybtex'),
                 priority=cfg.getint(s, 'priority'),
                 name=cfg.get(s, 'name'), title=cfg.get(s, 'title'),
@@ -90,7 +93,8 @@ class BibFile(object):
 
     def load(self):
         from _bibtex import load
-        return load(self.filepath, self.encoding, self.use_pybtex)
+        preserve_order = self.sortkey is None
+        return load(self.filepath, self.encoding, self.use_pybtex, preserve_order)
 
     def save(self, entries):
         from _bibtex import save
