@@ -45,8 +45,8 @@ def iterentries(filename, encoding=None, use_pybtex=True):
             raise NotImplementedError
         import bib
         with memorymapped(filename) as source:
-                for bibkey, entrytype, fields in bib.pitems(source):
-                    yield bibkey, (entrytype, fields)  
+            for bibkey, entrytype, fields in bib.pitems(source):
+                yield bibkey, (entrytype, fields)  
     elif encoding is None:
         with memorymapped(filename) as source:
             try:

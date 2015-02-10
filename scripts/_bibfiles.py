@@ -130,9 +130,8 @@ class Database(object):
                     '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
                     ((b.filename, bibkey, field, value) for field, value in fields))
             db.commit()
-        print('\n'.join('%s %d' % (f, n) for f, n in db.execute(
-            'SELECT filename, count(*) FROM entry GROUP BY filename')))
-        print('%d entries total' % db.execute('SELECT count(*) FROM entry').fetchone())
+        self._entrystats(db)
+        self._fieldstats(db)
 
         self._generate_hashes(db)
         db.close()
@@ -161,15 +160,33 @@ class Database(object):
                 for bibkey, grp in itertools.groupby(rows, get_bibkey)))
         conn.commit()
         conn.execute('CREATE INDEX IF NOT EXISTS ix_hash ON entry(hash)')
-        cls._showstats(conn)
+        cls._hashstats(conn)
+        cls._hashidstats(conn)
 
     @staticmethod
-    def _showstats(conn):
+    def _entrystats(conn):
+        print('\n'.join('%s %d' % (f, n) for f, n in conn.execute(
+            'SELECT filename, count(*) FROM entry GROUP BY filename')))
+        print('%d entries total' % conn.execute('SELECT count(*) FROM entry').fetchone())
+
+    @staticmethod
+    def _fieldstats(conn, with_files=False):
+        if with_files:
+            print('\n'.join('%d\t%s\t%s' % (n, f, b) for f, n, b in conn.execute(
+                'SELECT field, count(*) AS n, replace(group_concat(DISTINCT filename), ",", ", ") '
+                'FROM value GROUP BY field ORDER BY n DESC, field')))
+        else:
+            print('\n'.join('%d\t%s' % (n, f) for f, n in conn.execute(
+                'SELECT field, count(*) AS n '
+                'FROM value GROUP BY field ORDER BY n DESC, field')))
+
+    @staticmethod
+    def _hashstats(conn):
         print('%d\tdistinct keyids (from %d total)' % conn.execute(
             'SELECT count(DISTINCT hash), count(hash) FROM entry').fetchone())
         print('\n'.join('%d\t%s (from %d distinct of %d total)' % row
             for row in conn.execute('SELECT coalesce(c2.unq, 0), '
-            'c1.filename,c1.dst, c1.tot FROM (SELECT filename, '
+            'c1.filename, c1.dst, c1.tot FROM (SELECT filename, '
             'count(hash) AS tot, count(DISTINCT hash) AS dst  '
             'FROM entry GROUP BY filename) AS c1 LEFT JOIN '
             '(SELECT filename, count(DISTINCT hash) AS unq '
@@ -180,6 +197,23 @@ class Database(object):
         print('%d\tin multiple files' % conn.execute('SELECT count(*) FROM '
             '(SELECT 1 FROM entry GROUP BY hash '
             'HAVING COUNT(DISTINCT filename) > 1)').fetchone())
+
+    @staticmethod
+    def _hashidstats(conn):
+        print('\n'.join('1 keyid %d glottolog_ref_ids: %d' % (hash_nid, n)
+            for (hash_nid, n) in conn.execute(
+            'SELECT hash_nid, count(*) AS n FROM '
+            '(SELECT count(DISTINCT v.value) AS hash_nid FROM entry AS e '
+            'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey AND v.field = ? '
+            'GROUP BY e.hash HAVING count(DISTINCT v.value) > 1) '
+            'GROUP BY hash_nid ORDER BY n desc', ('glottolog_ref_id',))))
+        print('\n'.join('1 glottolog_ref_id %d keyids: %d' % (id_nhash, n)
+            for (id_nhash, n) in conn.execute(
+            'SELECT id_nhash, count(*) AS n FROM '
+            '(SELECT count(DISTINCT hash) AS id_nhash FROM entry AS e '
+            'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey AND v.field = ? '
+            'GROUP BY v.value HAVING count(DISTINCT e.hash) > 1) '
+            'GROUP BY id_nhash ORDER BY n desc', ('glottolog_ref_id',))))
 
     @staticmethod
     def _windowed_entries(conn, chunksize):
@@ -207,6 +241,13 @@ class Database(object):
 
     def __init__(self, filename=DBFILE):
         self.filename = filename
+
+    def stats(self, field_files=False):
+        with contextlib.closing(self.connect()) as conn:
+            self._entrystats(conn)
+            self._fieldstats(conn, field_files)
+            self._hashstats(conn)
+            self._hashidstats(conn)
 
     def connect(self, async=False):
         conn = sqlite3.connect(self.filename)
@@ -298,6 +339,6 @@ def _test_merge():
 
 if __name__ == '__main__':
     c = Collection()
-    c.to_sqlite()
     #c.roundtrip_all()
+    #c.to_sqlite()
     #_test_merge()
