@@ -74,6 +74,7 @@ LGINFO = '../languoids/lginfo.csv'
 MONSTER_ZIP = '../references/monster.zip'
 MONSTER_UNZIP = 'monster_zip.bib'
 MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
+UMONSTER = _bibfiles.BibFile('monsterutf8.bib', encoding='utf-8', sortkey='bibkey')
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
@@ -289,7 +290,7 @@ def macro_area_from_lgcode(m):
     return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
 
 
-def main(bibfiles, monster, monster_prv):
+def main(bibfiles, monster, monster_prv, umonster):
     print '%s compile_monster' % time.ctime()
     m, hhe = compile_monster(bibfiles)
 
@@ -336,16 +337,15 @@ def main(bibfiles, monster, monster_prv):
     handout_ids(m, idfield='glottolog_ref_id')
 
     # Save
-    print '%s sav' % time.ctime()
+    print '%s save' % time.ctime()
     monster.save(m)
 
     # Trickling back
     print '%s trickle' % time.ctime()
     trickle(m, bibfiles, tricklefields=['glottolog_ref_id'])
 
-    print '%s savu' % time.ctime()
-    s = _bibtex.to_string(m, sortkey='bibkey')
-    bib.savu(latex_to_utf8(s), 'monsterutf8.bib')
+    print '%s save as utf8' % time.ctime()
+    umonster.save(m)
 
 
 if __name__ == '__main__':
@@ -357,4 +357,4 @@ if __name__ == '__main__':
         key=lambda f: os.stat(f).st_mtime),
         encoding='ascii', sortkey=None)
 
-    main(BIBFILES, MONSTER, MONSTER_PRV)
+    main(BIBFILES, MONSTER, MONSTER_PRV, UMONSTER)

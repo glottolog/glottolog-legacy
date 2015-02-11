@@ -1,7 +1,8 @@
 # bibtex.py - basic bibtex file parsing
 
-import mmap
+import io
 import re
+import mmap
 import string
 import StringIO
 import contextlib
@@ -32,9 +33,13 @@ FIELDORDER = [
 
 @contextlib.contextmanager
 def memorymapped(filename, access=mmap.ACCESS_READ):
+    fd = open(filename)
     try:
-        fd = open(filename)
         m = mmap.mmap(fd.fileno(), 0,  access=access)
+    except:
+        fd.close()
+        raise
+    try:
         yield m
     finally:
         m.close()
@@ -106,10 +111,12 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
 
 def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
     if not use_pybtex:
-        if encoding not in (None, 'ascii'):
-            raise NotImplementedError
-        with open(filename, 'w') as fd:
-            dump(entries, fd, sortkey)
+        if encoding in (None, 'ascii'):
+            with open(filename, 'w') as fd:
+                dump(entries, fd, sortkey, encoding)
+        else:
+            with io.open(filename, 'w', encoding=encoding) as fd:
+                dump(entries, fd, sortkey, encoding)
     else:
         raise NotImplementedError
 
@@ -120,19 +127,32 @@ def to_string(entries, sortkey):
         return fd.getvalue()
 
 
-def dump(entries, fd, sortkey=None):
-    if sortkey is None and isinstance(entries, collections.OrderedDict):
-        items = entries.iteritems()
-    elif sortkey is None:
-        items = entries
+def dump(entries, fd, sortkey=None, encoding=None):
+    if sortkey is None:
+        if isinstance(entries, collections.OrderedDict):
+            items = entries.iteritems()
+        elif isinstance(entries, dict):
+            raise ValueError('dump needs sortkey or ordered entries')
+        else:
+            items = entries
     else:
         items = sorted(entries.iteritems(), key=sortkeys[sortkey])
-    for bibkey, (entrytype, fields) in items:
-        lines = ['@%s{%s' % (entrytype, bibkey)]
-        lines.extend('    %s = {%s}' % (k,
-            v.strip().encode('latex').replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&"))
-            for k, v in fieldorder.sorteddict(fields))
-        fd.write('%s\n}\n' % ',\n'.join(lines))
+
+    if encoding in (None, 'ascii'):
+        for bibkey, (entrytype, fields) in items:
+            fd.write('@%s{%s' % (entrytype, bibkey))
+            for k, v in fieldorder.sorteddict(fields):
+                v = v.strip().encode('latex').replace(r'\_', '_').replace(r'\#', '#').replace(r'\\&', r'\&')
+                fd.write(',\n    %s = {%s}' % (k, v))
+            fd.write('\n}\n' if fields else ',\n}\n')
+    else:
+        from latexutf8 import latex_to_utf8
+        for bibkey, (entrytype, fields) in items:
+            fd.write(u'@%s{%s' % (entrytype, bibkey))
+            for k, v in fieldorder.sorteddict(fields):
+                v = latex_to_utf8(v.strip())
+                fd.write(u',\n    %s = {%s}' % (k, v))
+            fd.write(u'\n}\n' if fields else u',\n}\n')
 
 
 def authorbibkey_colon(author, bibkey):

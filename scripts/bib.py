@@ -3,7 +3,6 @@
 import os
 import shutil
 import re
-import codecs
 import csv
 from collections import defaultdict, namedtuple, Counter
 from ConfigParser import RawConfigParser
@@ -13,7 +12,7 @@ assert u'\xe4'.encode('latex') == r'\"a'
 
 __all__ = [
     'get', 'put', 'mrg', 'fuse',
-    'bak', 'load', 'sav', 'savu', 'tabtxt', 'putfield', 'fd', 'fdt',
+    'bak', 'load', 'sav', 'tabtxt', 'putfield', 'fd', 'fdt',
     'add_inlg_e', 'stdauthor',
     'grp2', 'grp2l', 'keyid', 'edist', 'same23', 'inv',
     'wrds', 'setd', 'setd3', 'indextrigs',
@@ -22,7 +21,7 @@ __all__ = [
     'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict', 'load_triggers',
 ]
 
-INLG = os.path.join(os.pardir, 'references', 'alt4inlg.ini')
+INLG = '../references/alt4inlg.ini'
 
 exts = ['zip', 'pdf', 'doc', 'djvu', 'bib', 'html', 'txt']
 reext = "(?:" + '|'.join("(?:" + z + ")" for z in exts + [z.upper() for z in exts]) + ")"
@@ -545,11 +544,6 @@ def pitems(txt):
         fields = refields.findall(item) + refieldsacronym.findall(item) + refieldsnum.findall(item) + refieldslast.findall(item)
         fieldslower = ((x.lower(), y) for x, y in fields)
         yield key, typ.lower(), dict(fieldslower)
-
-
-def savu(txt, fn):
-    with codecs.open(fn, 'w', encoding="utf-8") as f:
-        f.write(txt)
 
 
 def sav(txt, fn):
