@@ -3,6 +3,7 @@
 import mmap
 import re
 import string
+import StringIO
 import contextlib
 import collections
 
@@ -16,18 +17,17 @@ from pybtex.database import Person
 import latexcodec
 assert u'\xe4'.encode('latex') == r'\"a'
 
-__all__ = ['load', 'memorymapped', 'iterentries', 'names', 'save', 'check']
+__all__ = [
+    'load', 'iterentries', 'names',
+    'save', 'to_string', 'dump',
+    'check',
+]
 
 FIELDORDER = [
     'author', 'editor', 'title', 'booktitle', 'journal',
     'school', 'publisher', 'address',
     'series', 'volume', 'number', 'pages', 'year', 'issn', 'url',
 ]
-
-
-def load(filename, encoding=None, use_pybtex=True, preserve_order=False):
-    cls = collections.OrderedDict if preserve_order else dict
-    return cls(iterentries(filename, encoding, use_pybtex))
 
 
 @contextlib.contextmanager
@@ -39,6 +39,11 @@ def memorymapped(filename, access=mmap.ACCESS_READ):
     finally:
         m.close()
         fd.close()
+
+
+def load(filename, encoding=None, use_pybtex=True, preserve_order=False):
+    cls = collections.OrderedDict if preserve_order else dict
+    return cls(iterentries(filename, encoding, use_pybtex))
 
 
 def iterentries(filename, encoding=None, use_pybtex=True):
@@ -107,6 +112,12 @@ def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
             dump(entries, fd, sortkey)
     else:
         raise NotImplementedError
+
+
+def to_string(entries, sortkey):
+    with contextlib.closing(StringIO.StringIO()) as fd:
+        dump(entries, fd, sortkey)
+        return fd.getvalue()
 
 
 def dump(entries, fd, sortkey=None):

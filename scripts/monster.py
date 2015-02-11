@@ -65,6 +65,7 @@ from latexutf8 import latex_to_utf8
 import bib
 
 import _bibfiles
+import _bibtex
 
 BIBFILES = _bibfiles.Collection('../references/bibtex')
 HHTYPE = '../references/alt4hhtype.ini'
@@ -343,7 +344,7 @@ def main(bibfiles, monster, monster_prv):
     trickle(m, bibfiles, tricklefields=['glottolog_ref_id'])
 
     print '%s savu' % time.ctime()
-    s = _bibfiles.to_string(m, sortkey='bibkey')
+    s = _bibtex.to_string(m, sortkey='bibkey')
     bib.savu(latex_to_utf8(s), 'monsterutf8.bib')
 
 

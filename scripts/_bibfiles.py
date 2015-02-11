@@ -2,28 +2,21 @@
 
 import os
 import io
-import glob
-import json
 import sqlite3
+
 import operator
 import itertools
 import contextlib
 import collections
 import ConfigParser
 
-__all__ = ['to_string', 'Collection', 'BibFile', 'Database']
+import _bibtex
+
+__all__ = ['Collection', 'BibFile', 'Database']
 
 DIR = '../references/bibtex'
 DBFILE = '_bibfiles.sqlite3'
 BIBFILE = '_bibfiles.bib'
-
-
-def to_string(entries, sortkey):
-    from StringIO import StringIO
-    from _bibtex import dump
-    with contextlib.closing(StringIO) as fd:
-        dump(entries, fd, sortkey)
-        return fd.getvalue()
 
 
 class Collection(list):
@@ -88,17 +81,14 @@ class BibFile(object):
         self.abbr = abbr
 
     def iterentries(self):
-        from _bibtex import iterentries
-        return iterentries(self.filepath, self.encoding, self.use_pybtex)
+        return _bibtex.iterentries(self.filepath, self.encoding, self.use_pybtex)
 
     def load(self):
-        from _bibtex import load
         preserve_order = self.sortkey is None
-        return load(self.filepath, self.encoding, self.use_pybtex, preserve_order)
+        return _bibtex.load(self.filepath, self.encoding, self.use_pybtex, preserve_order)
 
     def save(self, entries):
-        from _bibtex import save
-        save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex)
+        _bibtex.save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
@@ -310,9 +300,8 @@ class Database(object):
             yield hash, (entrytype, fields)
 
     def to_bibtex(self, filename=BIBFILE, encoding='utf-8'):
-        from _bibtex import dump
         with io.open(filename, 'w', encoding=encoding) as fd:
-            dump(fd, self.merged())
+            _bibtex.dump(fd, self.merged())
 
 
 def unique(iterable):
