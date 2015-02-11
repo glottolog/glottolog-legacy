@@ -1,5 +1,6 @@
 *.py[cod]
 references/bibtex/*old.bib
+references/bibtex/*-utf8.bib
 scripts/monster.bib
 scripts/monsterutf8.bib
 scripts/monsterold*.bib

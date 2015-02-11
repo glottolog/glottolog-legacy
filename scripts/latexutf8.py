@@ -78,7 +78,7 @@ def undiacritic_utf8(input_str):
     return u"".join(c for c in nkfd_form if not unicodedata.combining(c))
 
 
-def _test_undiacritic(field='author'):
+def _test_undiacritic(field='title'):
     import sqlalchemy as sa
 
     engine = sa.create_engine('postgresql://postgres@/bibfiles')

@@ -138,11 +138,28 @@ def dump(entries, fd, sortkey=None, encoding=None):
     else:
         items = sorted(entries.iteritems(), key=sortkeys[sortkey])
 
+    """
+    #: \#
+    $: \$
+    %: \%
+    ^: \^{} \textasciicircum
+    &: \&
+    _: \_
+    {: \{
+    }: \}
+    ~: \~{} \textasciitilde
+    \: \textbackslash{}
+    <: \textless
+    >: \textgreater
+    """
+    raw = {'url', 'fnnote'}  # TODO: undo & -> \& for these in bibiles
     if encoding in (None, 'ascii'):
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.sorteddict(fields):
-                v = v.strip().encode('latex').replace(r'\_', '_').replace(r'\#', '#').replace(r'\\&', r'\&')
+                # FIXME
+                if k not in raw:
+                    v = v.strip().encode('latex').replace(r'\_', '_').replace(r'\#', '#').replace(r'\\&', r'\&')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     else:
@@ -150,7 +167,9 @@ def dump(entries, fd, sortkey=None, encoding=None):
         for bibkey, (entrytype, fields) in items:
             fd.write(u'@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.sorteddict(fields):
-                v = latex_to_utf8(v.strip())
+                # FIXME
+                if k not in raw:
+                    v = latex_to_utf8(v.strip(), verbose=False)
                 fd.write(u',\n    %s = {%s}' % (k, v))
             fd.write(u'\n}\n' if fields else u',\n}\n')
 
@@ -240,6 +259,23 @@ def _test_load():
         print('%d invalid' % check(filename))
 
 
+def _test_unicode():
+    import os
+    import glob
+    for filename in glob.glob('../references/bibtex/*.bib'):
+        if filename.endswith('-utf8.bib'):
+            continue
+        print(filename)
+        dst = os.path.join(os.path.dirname(filename),
+            '%s-utf8%s' % os.path.splitext(os.path.basename(filename)))
+        try:
+            save(iterentries(filename), dst, sortkey=None, encoding='utf-8')
+        except ValueError as e:
+            print(repr(e))
+        os.remove(dst)
+
+
 if __name__ == '__main__':
     _test_load()
     #_test_dump()
+    #_test_unicode()
