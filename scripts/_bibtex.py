@@ -13,7 +13,8 @@ from pybtex.textutils import whitespace_re
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
-import latexutf8
+import latexcodec
+assert u'\xe4'.encode('latex') == r'\"a'
 
 __all__ = ['load', 'memorymapped', 'iterentries', 'names', 'save', 'check']
 
@@ -118,7 +119,7 @@ def dump(entries, fd, sortkey=None):
     for bibkey, (entrytype, fields) in items:
         lines = ['@%s{%s' % (entrytype, bibkey)]
         lines.extend('    %s = {%s}' % (k,
-            latexutf8.utf8_to_latex(v.strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&"))
+            v.strip().encode('latex').replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&"))
             for k, v in fieldorder.sorteddict(fields))
         fd.write('%s\n}\n' % ',\n'.join(lines))
 

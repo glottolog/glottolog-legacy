@@ -8,7 +8,8 @@ import csv
 from collections import defaultdict, namedtuple, Counter
 from ConfigParser import RawConfigParser
 
-import latexutf8
+from latexutf8 import undiacritic
+assert u'\xe4'.encode('latex') == r'\"a'
 
 __all__ = [
     'get', 'put', 'mrg', 'fuse',
@@ -244,7 +245,7 @@ def psingleauthor(n, vonlastname=True):
 anonymous = ['Anonymous', 'No Author Stated', 'An\'onimo', 'Peace Corps']
 
 def authorhash(author):
-    return author['lastname'] + ", " + latexutf8.undiacritic(author.get('firstname', ''))[:1] + "."
+    return author['lastname'] + ", " + undiacritic(author.get('firstname', ''))[:1] + "."
 
 
 rebrackauthor = re.compile("([\s\S]+) \{([\s\S]+)\}$")
@@ -267,7 +268,7 @@ def syncauthor(pa, pb, diacritic_sensitive=False):
     pal = pa['lastname']
     pbl = pb['lastname']
     if not diacritic_sensitive:
-        if latexutf8.undiacritic(pal) != latexutf8.undiacritic(pbl):
+        if undiacritic(pal) != undiacritic(pbl):
             return None
     else:
         if pal != pbl:
@@ -308,7 +309,7 @@ def stdauthor(fields):
 
 
 def authalpha(s):
-    return ', '.join(latexutf8.undiacritic(unvonstr(x)) for x in pauthor(s))
+    return ', '.join(undiacritic(unvonstr(x)) for x in pauthor(s))
 
 
 #"Adam, A., W.B. Wood, C.P. Symons, I.G. Ord & J. Smith"
@@ -336,7 +337,7 @@ def lowerupper(s):
     lower = []
     upper = []
     for (i, x) in enumerate(parts):
-        if not recapstart.match(latexutf8.undiacritic(x)):
+        if not recapstart.match(undiacritic(x)):
             lower.append(x)
         else:
             upper = parts[i:]
@@ -668,7 +669,7 @@ def showbib((key, (typ, bib)), abbs={}):
     order = [(bibord.get(x, 1000), x) for x in bib.keys()]
     order.sort()
     for (_, k) in order:
-        v = latexutf8.utf8_to_latex(bib[k].strip()).replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
+        v = bib[k].strip().encode('latex').replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
         r = r + "    " + k + " = {" + abbs.get(v, v) + "},\n"
     r = r[:-2] + "\n" + "}\n"
     #print r
@@ -697,7 +698,7 @@ resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
 resplittittok = re.compile("([\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=\'" + '\"' + "])")
 
 def wrds(txt):
-    txt = latexutf8.undiacritic(txt.lower())
+    txt = undiacritic(txt.lower())
     txt = txt.replace("'", "").replace('"', "")
     return [x for x in resplittit.split(txt) if x]
 
@@ -899,7 +900,7 @@ def keyid(fields, fd={}, ti=2):
         print "   ", astring, astring.split(' and ')
         print fields['title']
 
-    ak = [latexutf8.undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
+    ak = [undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
     yk = pyear(fields.get('year', '[nd]'))[:4]
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
     tkf = list(sorted((w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True))
@@ -1118,12 +1119,12 @@ def mrg(bibs=()):
 reyear = re.compile("\d\d\d\d")
 
 def same23((at, af), (bt, bf)):
-    alastnames = [x['lastname'] for x in pauthor(latexutf8.undiacritic(af.get("author", "")))]
-    blastnames = [x['lastname'] for x in pauthor(latexutf8.undiacritic(bf.get("author", "")))]
+    alastnames = [x['lastname'] for x in pauthor(undiacritic(af.get("author", "")))]
+    blastnames = [x['lastname'] for x in pauthor(undiacritic(bf.get("author", "")))]
     ay = reyear.findall(af.get('year', ""))
     by = reyear.findall(bf.get('year', ""))
-    ta = latexutf8.undiacritic(takeuntil(af.get("title", ""), ":"))
-    tb = latexutf8.undiacritic(takeuntil(bf.get("title", ""), ":"))
+    ta = undiacritic(takeuntil(af.get("title", ""), ":"))
+    tb = undiacritic(takeuntil(bf.get("title", ""), ":"))
     if ta == tb and set(ay).intersection(by):
         return True
     if set(ay).intersection(by) and set(alastnames).intersection(blastnames):

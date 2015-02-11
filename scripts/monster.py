@@ -60,7 +60,8 @@ import glob
 import zipfile
 import time
 
-import latexutf8
+from latexutf8 import latex_to_utf8
+
 import bib
 
 import _bibfiles
@@ -343,7 +344,7 @@ def main(bibfiles, monster, monster_prv):
 
     print '%s savu' % time.ctime()
     s = _bibfiles.to_string(m, sortkey='bibkey')
-    bib.savu(latexutf8.latex_to_utf8(s), 'monsterutf8.bib')
+    bib.savu(latex_to_utf8(s), 'monsterutf8.bib')
 
 
 if __name__ == '__main__':
