@@ -682,10 +682,11 @@ def srtauthor(e):
     return [(k, e[k]) for (sk, k) in sorted(order)]
 
 
-def put(e, abbs={}, srtkey="author"):
+def put(e, abbs={}, srtkey="bibkey"):
     if srtkey == 'bibkey':
         key = lambda (k, (typ, fields)): k.lower()
     else:
+        raise NotImplementedError
         key = lambda (k, (typ, fields)): fields.get(srtkey, '') + takeafter(k, ":")
     return ''.join(showbib((k, e), abbs) for k, e in sorted(e.iteritems(), key=key))
 
