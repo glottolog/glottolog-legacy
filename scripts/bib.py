@@ -7,8 +7,10 @@ import csv
 from collections import defaultdict, namedtuple, Counter
 from ConfigParser import RawConfigParser
 
-from latexutf8 import undiacritic
+import latexcodec
 assert u'\xe4'.encode('latex') == r'\"a'
+
+from undiacritic import undiacritic
 
 __all__ = [
     'get', 'put', 'mrg', 'fuse',

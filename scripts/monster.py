@@ -60,12 +60,8 @@ import glob
 import zipfile
 import time
 
-from latexutf8 import latex_to_utf8
-
-import bib
-
 import _bibfiles
-import _bibtex
+import bib
 
 BIBFILES = _bibfiles.Collection('../references/bibtex')
 HHTYPE = '../references/alt4hhtype.ini'
@@ -336,16 +332,16 @@ def main(bibfiles, monster, monster_prv, umonster):
     print '%s handout_ids' % time.ctime()
     handout_ids(m, idfield='glottolog_ref_id')
 
-    # Save
-    print '%s save' % time.ctime()
-    monster.save(m)
-
     # Trickling back
     print '%s trickle' % time.ctime()
     trickle(m, bibfiles, tricklefields=['glottolog_ref_id'])
 
+    # Save
     print '%s save as utf8' % time.ctime()
     umonster.save(m)
+
+    print '%s save as escaped ascii' % time.ctime()
+    monster.save(m)
 
 
 if __name__ == '__main__':

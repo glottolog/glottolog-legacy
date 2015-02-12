@@ -18,6 +18,8 @@ from pybtex.database import Person
 import latexcodec
 assert u'\xe4'.encode('latex') == r'\"a'
 
+from latexutf8 import latex_to_utf8
+
 __all__ = [
     'load', 'iterentries', 'names',
     'save', 'dump',
@@ -163,15 +165,17 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     else:
-        from latexutf8 import latex_to_utf8
         for bibkey, (entrytype, fields) in items:
             fd.write(u'@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.sorteddict(fields):
                 # FIXME
+                # ---, --, ``'', {},\ng, \textdot, \textsubdot,  \v{j} -> \v\j
+                # {\N}?
+                # see also http://github.com/clld/clld/blob/master/clld/lib/bibtex.py
                 if k in verbatim:
                     v = v.strip().decode('ascii')
                 else:
-                    v = latex_to_utf8(v.strip(), verbose=False)
+                    v = latex_to_utf8(v.strip(), verbose=True)
                 fd.write(u',\n    %s = {%s}' % (k, v))
             fd.write(u'\n}\n' if fields else u',\n}\n')
 
@@ -261,7 +265,7 @@ def _test_load():
         print('%d invalid' % check(filename))
 
 
-def _test_unicode():
+def _test_unicode(remove=False):
     import os
     import glob
     for filename in glob.glob('../references/bibtex/*.bib'):
@@ -274,7 +278,8 @@ def _test_unicode():
             save(iterentries(filename), dst, sortkey=None, encoding='utf-8')
         except ValueError as e:
             print(repr(e))
-        os.remove(dst)
+        if remove:
+            os.remove(dst)
 
 
 if __name__ == '__main__':
