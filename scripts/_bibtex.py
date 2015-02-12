@@ -20,7 +20,7 @@ assert u'\xe4'.encode('latex') == r'\"a'
 
 __all__ = [
     'load', 'iterentries', 'names',
-    'save', 'to_string', 'dump',
+    'save', 'dump',
     'check',
 ]
 
@@ -29,6 +29,11 @@ FIELDORDER = [
     'school', 'publisher', 'address',
     'series', 'volume', 'number', 'pages', 'year', 'issn', 'url',
 ]
+
+VERBATIM = {'doi', 'eprint', 'file', 'url', 'pdf', 'fn', 'fnnote'}
+
+# TODO: bracket escapes r'\?\[\\u\d+\]' (possilbly with five digits)
+# FIXME: tex-escape/character entity mix in anla.bib titlealt
 
 
 @contextlib.contextmanager
@@ -121,13 +126,7 @@ def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
         raise NotImplementedError
 
 
-def to_string(entries, sortkey):
-    with contextlib.closing(StringIO.StringIO()) as fd:
-        dump(entries, fd, sortkey)
-        return fd.getvalue()
-
-
-def dump(entries, fd, sortkey=None, encoding=None):
+def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
     if sortkey is None:
         if isinstance(entries, collections.OrderedDict):
             items = entries.iteritems()
@@ -152,13 +151,14 @@ def dump(entries, fd, sortkey=None, encoding=None):
     <: \textless
     >: \textgreater
     """
-    raw = {'url', 'fnnote'}  # TODO: undo & -> \& for these in bibiles
     if encoding in (None, 'ascii'):
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.sorteddict(fields):
                 # FIXME
-                if k not in raw:
+                if k in verbatim:
+                    v = v.strip().encode('ascii')
+                else:
                     v = v.strip().encode('latex').replace(r'\_', '_').replace(r'\#', '#').replace(r'\\&', r'\&')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
@@ -168,7 +168,9 @@ def dump(entries, fd, sortkey=None, encoding=None):
             fd.write(u'@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.sorteddict(fields):
                 # FIXME
-                if k not in raw:
+                if k in verbatim:
+                    v = v.strip().decode('ascii')
+                else:
                     v = latex_to_utf8(v.strip(), verbose=False)
                 fd.write(u',\n    %s = {%s}' % (k, v))
             fd.write(u'\n}\n' if fields else u',\n}\n')
