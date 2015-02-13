@@ -1,7 +1,5 @@
 # undiacritic.py
 
-# TODO: consider \textepsilon, \textschwa, \textrhooktopd, \textthorn
-
 import re
 import unicodedata
 
@@ -13,7 +11,7 @@ def undiacritic_utf8(input_str):
     return u"".join(c for c in nkfd_form if not unicodedata.combining(c))
 
 
-spcud = {
+REPLACE = [(old + suffix, new) for old, new in {
     r'\AA': 'A',
     r'\AE': 'Ae',
     r'\aa': 'a',
@@ -27,6 +25,7 @@ spcud = {
     r'\OE': 'OE',
     r'\oe': 'oe',
     r'\i': 'i',
+    r'\j': 'j',
     r'\NG': 'NG',
     r'\ng': 'ng',
     r'\texteng': 'ng',
@@ -38,23 +37,19 @@ spcud = {
     r'\texthtd': 'd',
     r'\texthtb': 'b',
     r'\textopeno': 'o',
-}
+    r'\textepsilon': 'e',
+    r'\textschwa': 'e',
+    r'\textrhooktopd': 'd',
+    r'\textthorn': 'th',
+}.iteritems() for suffix in ('{}', '')]
+
+DROP = re.compile(r'\\[^\s{}]+\{|\\text[a-z]+|\\.|[{}]')
 
 
-def undiacritic(txt, resub=re.compile(r'\\[\S]+\{|\\.|\}|(?<!\S)\{')):
-    for (k, v) in spcud.iteritems():
-        txt = txt.replace(k + "{}", v)
-    for (k, v) in spcud.iteritems():
-        txt = txt.replace(k, v)
-    return resub.sub("", txt)
-
-
-def undiacritic2(txt, resub=re.compile(r'\\[^\s{}]+\{|\\text[a-z]+|\\.|[{}]')):
-    for (k, v) in spcud.iteritems():
-        txt = txt.replace(k + "{}", v)
-    for (k, v) in spcud.iteritems():
-        txt = txt.replace(k, v)
-    return resub.sub("", txt)
+def undiacritic(txt, replace=REPLACE, drop=DROP):
+    for old, new in replace:
+        txt = txt.replace(old, new)
+    return drop.sub('', txt)
 
 
 def _test_undiacritic(field='title'):
@@ -77,9 +72,9 @@ def _test_undiacritic(field='title'):
         rows = cursor.fetchmany(10000)
         if not rows:
             break
-        mapped = ((v, undiacritic(v), undiacritic2(v)) for v, in rows)
-        mapped = [{'value': v, 'result1': r1, 'result2': r2}
-            for (v, r1, r2) in mapped if v!= r1 or r1!=r2]
+        mapped = ((v, undiacritic(v)) for v, in rows)
+        mapped = [{'value': v, 'result1': r1}
+            for (v, r1) in mapped if v!= r1]
         if mapped:
             insert_un(mapped)
 
