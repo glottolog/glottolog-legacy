@@ -7,13 +7,20 @@ import _bibtex
 
 
 def names1(s):
-    return [(n.get('firstname', ''), n.get('lastname', ''), n.get('jr', ''))
+    return [(debr(n.get('firstname', '')), debr(n.get('lastname', '')), debr(n.get('jr', '')))
         for n in bib.pauthor(s)]
 
 
+
 def names2(s):
-    return [(first, ' '.join(n for n in (prelast, last) if n), lineage)
+    return [(debr(first), debr(' '.join(n for n in (prelast, last) if n)), debr(lineage))
         for prelast, last, first, lineage in _bibtex.names(s)]
+
+
+def debr(s):
+    if s.startswith('{') and s.endswith('}'):
+        return s[1:-1]
+    return s
 
 
 for b in _bibfiles.Collection():
