@@ -659,13 +659,15 @@ bibord = {k: i for i, k in enumerate([
 ])}
 
 
-def showbib((key, (typ, bib)), abbs={}):
+def showbib((key, (typ, bib)), abbs={}, verbatim={'doi', 'eprint', 'file', 'url', 'pdf', 'fn', 'fnnote'}):
     r = "@" + typ + "{" + str(key) + ",\n"
 
     order = [(bibord.get(x, 1000), x) for x in bib.keys()]
     order.sort()
     for (_, k) in order:
-        v = bib[k].strip().encode('latex').replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
+        v = bib[k].strip()
+        if k not in verbatim:
+            v = v.encode('latex').replace("\\_", "_").replace("\\#", "#").replace("\\\\&", "\\&")
         r = r + "    " + k + " = {" + abbs.get(v, v) + "},\n"
     r = r[:-2] + "\n" + "}\n"
     #print r
