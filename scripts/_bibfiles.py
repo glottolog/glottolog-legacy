@@ -117,9 +117,11 @@ class Database(object):
         db.execute('CREATE TABLE entry ('
             'filename TEXT NOT NULL, '
             'bibkey TEXT NOT NULL, '
+            'refid INTEGER, '
             'hash TEXT, '
             'PRIMARY KEY (filename, bibkey), '
             'FOREIGN KEY(filename) REFERENCES file(name))')
+        db.execute('CREATE INDEX ix_refid ON entry(refid)')
         db.execute('CREATE TABLE value ('
             'filename TEXT NOT NULL, '
             'bibkey TEXT NOT NULL, '
@@ -134,8 +136,8 @@ class Database(object):
             db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
                 (b.filename, b.priority))
             for bibkey, (entrytype, fields) in b.iterentries():
-                db.execute('INSERT INTO entry (filename, bibkey) VALUES (?, ?)',
-                    (b.filename, bibkey))
+                db.execute('INSERT INTO entry (filename, bibkey, refid) VALUES (?, ?, ?)',
+                    (b.filename, bibkey, fields.get('glottolog_ref_id')))
                 fields = itertools.chain([('ENTRYTYPE', entrytype)], fields.iteritems())
                 db.executemany('INSERT INTO value '
                     '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
@@ -214,17 +216,15 @@ class Database(object):
         print('\n'.join('1 keyid %d glottolog_ref_ids: %d' % (hash_nid, n)
             for (hash_nid, n) in conn.execute(
             'SELECT hash_nid, count(*) AS n FROM '
-            '(SELECT count(DISTINCT v.value) AS hash_nid FROM entry AS e '
-            'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey AND v.field = ? '
-            'GROUP BY e.hash HAVING count(DISTINCT v.value) > 1) '
-            'GROUP BY hash_nid ORDER BY n desc', ('glottolog_ref_id',))))
+            '(SELECT count(DISTINCT refid) AS hash_nid FROM entry '
+            'GROUP BY hash HAVING count(DISTINCT refid) > 1) '
+            'GROUP BY hash_nid ORDER BY n desc')))
         print('\n'.join('1 glottolog_ref_id %d keyids: %d' % (id_nhash, n)
             for (id_nhash, n) in conn.execute(
             'SELECT id_nhash, count(*) AS n FROM '
-            '(SELECT count(DISTINCT hash) AS id_nhash FROM entry AS e '
-            'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey AND v.field = ? '
-            'GROUP BY v.value HAVING count(DISTINCT e.hash) > 1) '
-            'GROUP BY id_nhash ORDER BY n desc', ('glottolog_ref_id',))))
+            '(SELECT count(DISTINCT hash) AS id_nhash FROM entry '
+            'GROUP BY refid HAVING count(DISTINCT hash) > 1) '
+            'GROUP BY id_nhash ORDER BY n desc')))
 
     @staticmethod
     def _windowed_entries(conn, chunksize):
@@ -253,6 +253,13 @@ class Database(object):
     def __init__(self, filename=DBFILE):
         self.filename = filename
 
+    def connect(self, async=False):
+        conn = sqlite3.connect(self.filename)
+        if async:
+            conn.execute('PRAGMA synchronous = OFF')
+            conn.execute('PRAGMA journal_mode = MEMORY')
+        return conn
+
     def stats(self, field_files=False):
         with contextlib.closing(self.connect()) as conn:
             self._entrystats(conn)
@@ -260,12 +267,13 @@ class Database(object):
             self._hashstats(conn)
             self._hashidstats(conn)
 
-    def connect(self, async=False):
-        conn = sqlite3.connect(self.filename)
-        if async:
-            conn.execute('PRAGMA synchronous = OFF')
-            conn.execute('PRAGMA journal_mode = MEMORY')
-        return conn
+    def unduplicate_ids(self):
+        with contextlib.closing(self.connect()) as conn:
+            for row in conn.execute('SELECT refid, hash, filename, bibkey '
+            'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+            'WHERE refid = e.refid AND hash != e.hash) '
+            'ORDER BY refid, hash, filename, bibkey'):
+                print row
 
     def __iter__(self, chunksize=100):
         with contextlib.closing(self.connect()) as db:
