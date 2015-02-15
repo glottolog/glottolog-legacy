@@ -216,13 +216,13 @@ class Database(object):
         print('\n'.join('1 keyid %d glottolog_ref_ids: %d' % (hash_nid, n)
             for (hash_nid, n) in conn.execute(
             'SELECT hash_nid, count(*) AS n FROM '
-            '(SELECT count(DISTINCT refid) AS hash_nid FROM entry '
+            '(SELECT count(DISTINCT refid) AS hash_nid FROM entry WHERE hash IS NOT NULL '
             'GROUP BY hash HAVING count(DISTINCT refid) > 1) '
             'GROUP BY hash_nid ORDER BY n desc')))
         print('\n'.join('1 glottolog_ref_id %d keyids: %d' % (id_nhash, n)
             for (id_nhash, n) in conn.execute(
             'SELECT id_nhash, count(*) AS n FROM '
-            '(SELECT count(DISTINCT hash) AS id_nhash FROM entry '
+            '(SELECT count(DISTINCT hash) AS id_nhash FROM entry WHERE refid IS NOT NULL '
             'GROUP BY refid HAVING count(DISTINCT hash) > 1) '
             'GROUP BY id_nhash ORDER BY n desc')))
 
