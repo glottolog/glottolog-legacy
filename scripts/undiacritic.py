@@ -52,6 +52,20 @@ def undiacritic(txt, replace=REPLACE, drop=DROP):
     return drop.sub('', txt)
 
 
+COMMAND1 = re.compile(r'\\text[a-z]+\{([^}]*)\}')
+COMMAND2 = re.compile(r'\\text[a-z]+')
+ACCENT = re.compile(r'''\\[`'^"H~ckl=b.druvt](\{[a-zA-Z]\}|[a-zA-Z])''')
+
+
+def undiacritic2(txt, replace=REPLACE, drop=DROP):
+    for old, new in replace:
+        txt = txt.replace(old, new)
+    txt = COMMAND1.sub(r'\1', txt)
+    txt = COMMAND2.sub('', txt)
+    txt = ACCENT.sub(r'\1', txt)
+    return drop.sub('', txt)
+
+
 def _test_undiacritic(field='title'):
     import sqlalchemy as sa
 
@@ -72,9 +86,9 @@ def _test_undiacritic(field='title'):
         rows = cursor.fetchmany(10000)
         if not rows:
             break
-        mapped = ((v, undiacritic(v)) for v, in rows)
-        mapped = [{'value': v, 'result1': r1}
-            for (v, r1) in mapped if v!= r1]
+        mapped = ((v, undiacritic(v), undiacritic2(v)) for v, in rows)
+        mapped = [{'value': v, 'result1': r1, 'result2': r2}
+            for (v, r1, r2) in mapped if v!= r1 or r1 != r2]
         if mapped:
             insert_un(mapped)
 

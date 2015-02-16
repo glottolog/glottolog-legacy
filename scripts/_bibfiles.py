@@ -269,11 +269,14 @@ class Database(object):
 
     def unduplicate_ids(self):
         with contextlib.closing(self.connect()) as conn:
-            for row in conn.execute('SELECT refid, hash, filename, bibkey '
+            cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE refid = e.refid AND hash != e.hash) '
-            'ORDER BY refid, hash, filename, bibkey'):
-                print row
+            'ORDER BY refid, hash, filename, bibkey') 
+            for refid, groups in itertools.groupby(cursor, operator.itemgetter(0)):
+                for row in groups:
+                    print row
+                print
 
     def __iter__(self, chunksize=100):
         with contextlib.closing(self.connect()) as db:
