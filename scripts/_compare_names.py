@@ -1,7 +1,6 @@
 # _compare_names.py - compare regex-based with pybtex name parsing
 
 import _bibfiles
-
 import bib
 import _bibtex
 
@@ -9,7 +8,6 @@ import _bibtex
 def names1(s):
     return [(debr(n.get('firstname', '')), debr(n.get('lastname', '')), debr(n.get('jr', '')))
         for n in bib.pauthor(s)]
-
 
 
 def names2(s):
@@ -21,6 +19,7 @@ def debr(s):
     if s.startswith('{') and s.endswith('}'):
         return s[1:-1]
     return s
+
 
 counts = {}
 
