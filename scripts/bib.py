@@ -902,7 +902,8 @@ def keyid(fields, fd={}, ti=2):
     ak = [undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
     yk = pyear(fields.get('year', '[nd]'))[:4]
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
-    tkf = list(sorted((w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True))
+    # TODO: consider a set here
+    tkf = sorted((w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True)
     tk = tkf[-ti:]
     if fields.has_key('volume') and not fields.has_key('journal') and not fields.has_key('booktitle') and not fields.has_key('series'):
         vk = roman(fields['volume'])
