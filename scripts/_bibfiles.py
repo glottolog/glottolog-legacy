@@ -267,15 +267,25 @@ class Database(object):
             self._hashstats(conn)
             self._hashidstats(conn)
 
-    def unduplicate_ids(self):
+    def unduplicate_ids(self, verbose=True):
         with contextlib.closing(self.connect()) as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE refid = e.refid AND hash != e.hash) '
             'ORDER BY refid, hash, filename, bibkey') 
             for refid, groups in itertools.groupby(cursor, operator.itemgetter(0)):
+                groups = list(groups)
                 for row in groups:
                     print row
+                if not verbose:
+                    print
+                    continue
+                for row in groups:
+                    fields = dict(conn.execute('SELECT field, value FROM value '
+                        "WHERE field IN ('author', 'editor', 'year', 'title') "
+                        'AND filename = ? AND bibkey = ? ', row[2:4]))
+                    print '\t%r, %r, %r, %r' % tuple(fields.get(f) for f in
+                        ('author', 'editor', 'year', 'title'))
                 print
 
     def __iter__(self, chunksize=100):

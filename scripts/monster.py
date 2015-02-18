@@ -273,17 +273,19 @@ def markall(e, trigs, labelab=lambda x: x):
     return e
 
 
-def macro_area_from_lgcode(m):
-    def inject_macro_area((typ, fields), lgd):
-        if fields.has_key('macro_area'):
+def macro_area_from_lgcode(m, lginfo=LGINFO):
+    lgd = bib.read_csv_dict(lginfo)
+
+    def inject_macro_area((typ, fields)):
+        # TODO: consider always injecting current value from lginfo
+        if fields.has_key('macro_area'):  
             return (typ, fields)
         mas = set(lgd[x].macro_area for x in bib.lgcode((typ, fields)) if x in lgd and lgd[x].macro_area)
         if mas:
             fields['macro_area'] = ', '.join(sorted(mas))
         return (typ, fields)
     
-    lgd = bib.read_csv_dict(LGINFO)
-    return dict((k, inject_macro_area(tf, lgd)) for (k, tf) in m.iteritems())
+    return dict((k, inject_macro_area(tf)) for k, tf in m.iteritems())
 
 
 def main(bibfiles, monster, monster_prv, umonster):
