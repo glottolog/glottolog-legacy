@@ -116,16 +116,13 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def save(entries, filename, sortkey, encoding=None, use_pybtex=False):
-    if not use_pybtex:
-        if encoding in (None, 'ascii'):
-            with open(filename, 'w') as fd:
-                dump(entries, fd, sortkey, encoding)
-        else:
-            with io.open(filename, 'w', encoding=encoding) as fd:
-                dump(entries, fd, sortkey, encoding)
+def save(entries, filename, sortkey, encoding=None):
+    if encoding in (None, 'ascii'):
+        with open(filename, 'w') as fd:
+            dump(entries, fd, sortkey, encoding)
     else:
-        raise NotImplementedError
+        with io.open(filename, 'w', encoding=encoding) as fd:
+            dump(entries, fd, sortkey, encoding)
 
 
 def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
@@ -139,19 +136,19 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
     else:
         items = sorted(entries.iteritems(), key=sortkeys[sortkey])
 
-    """
-    #: \#
-    $: \$
-    %: \%
-    ^: \^{} \textasciicircum
-    &: \&
-    _: \_
-    {: \{
-    }: \}
-    ~: \~{} \textasciitilde
-    \: \textbackslash{}
-    <: \textless
-    >: \textgreater
+    """ *: en/decoded by latexcodec
+    * #: \#
+      $: \$
+      %: \%
+      ^: \^{} \textasciicircum
+    * &: \&
+    * _: \_
+      {: \{
+      }: \}
+      ~: \~{} \textasciitilde
+      \: \textbackslash{}
+      <: \textless
+      >: \textgreater
     """
     if encoding in (None, 'ascii'):
         for bibkey, (entrytype, fields) in items:
@@ -161,7 +158,7 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
                 if k in verbatim:
                     v = v.strip().encode('ascii')
                 else:
-                    v = v.strip().encode('latex').replace(r'\_', '_').replace(r'\#', '#').replace(r'\\&', r'\&')
+                    v = v.strip().encode('latex').replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     else:
@@ -174,7 +171,7 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
                 # see also http://github.com/clld/clld/blob/master/clld/lib/bibtex.py
                 if k in verbatim:
                     v = v.strip().decode('ascii')
-                else:
+                elif isinstance(v, str):
                     v = latex_to_utf8(v.strip(), verbose=True)
                 fd.write(u',\n    %s = {%s}' % (k, v))
             fd.write(u'\n}\n' if fields else u',\n}\n')
