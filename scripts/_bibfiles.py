@@ -113,14 +113,14 @@ class Database(object):
             'field TEXT NOT NULL, '
             'priority INTEGER NOT NULL, '
             'PRIMARY KEY (filename, field), '
-            'FOREIGN KEY(filename) REFERENCES file(name))')
+            'FOREIGN KEY (filename) REFERENCES file(name))')
         db.execute('CREATE TABLE entry ('
             'filename TEXT NOT NULL, '
             'bibkey TEXT NOT NULL, '
             'refid INTEGER, '
             'hash TEXT, '
             'PRIMARY KEY (filename, bibkey), '
-            'FOREIGN KEY(filename) REFERENCES file(name))')
+            'FOREIGN KEY (filename) REFERENCES file(name))')
         db.execute('CREATE INDEX ix_refid ON entry(refid)')
         db.execute('CREATE TABLE value ('
             'filename TEXT NOT NULL, '
@@ -128,7 +128,7 @@ class Database(object):
             'field TEXT NOT NULL, '
             'value TEXT NOT NULL, '
             'PRIMARY KEY (filename, bibkey, field), '
-            'FOREIGN KEY(filename, bibkey) REFERENCES entry(filename, bibkey))')
+            'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
 
         for b in bibfiles:
             print(b.filepath)
