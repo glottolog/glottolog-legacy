@@ -6,11 +6,6 @@ import unicodedata
 __all__ = ['undiacritic']
 
 
-def undiacritic_utf8(input_str):
-    nkfd_form = unicodedata.normalize('NFKD', unicode(input_str))
-    return u"".join(c for c in nkfd_form if not unicodedata.combining(c))
-
-
 class Replace(object):
     """Multiple search-replace with mutually exclusive regexes."""
 
@@ -66,11 +61,19 @@ DROP = re.compile(r'\\[^\s{}]+\{|\\.|[{}]')
 
 
 def undiacritic(txt):
+    if isinstance(txt, unicode):
+        txt = undiacritic_unicode(txt)
     txt = REPLACE(txt)
     txt = COMMAND1.sub(r'\1', txt)
     txt = COMMAND2.sub('', txt)
     txt = ACCENT.sub(r'\1', txt)
     return DROP.sub('', txt)
+
+
+def undiacritic_unicode(s):
+    nkfd = unicodedata.normalize('NFKD', s)
+    undiac = u''.join(c for c in nkfd if not unicodedata.combining(c))
+    return undiac.encode('ascii', errors='ignore')
 
 
 def _test_undiacritic(field='title'):
