@@ -6,7 +6,7 @@ This script takes all the .bib files in the references directory and puts it
 together in a file called monster.bib with some deduplication and annotation in
 the process
 
-1.    First any existing monster.bib is backed up
+1.    The hash-id pairings of the previous monster.bib is taken from monster.csv
 
 2.    The .bib are merged in the following manner
 2.1.  A hash is computed for each bib-entry in any file
@@ -57,18 +57,16 @@ the process
 
 import os
 import glob
-import zipfile
 import time
 
 import _bibfiles
 import bib
 
 BIBFILES = _bibfiles.Collection('../references/bibtex')
+PREVIOUS = '../references/monster.csv'
 HHTYPE = '../references/alt4hhtype.ini'
 LGCODE = '../references/alt4lgcode.ini'
 LGINFO = '../languoids/lginfo.csv'
-MONSTER_ZIP = '../references/monster.zip'
-MONSTER_UNZIP = 'monster_zip.bib'
 MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
 UMONSTER = _bibfiles.BibFile('monsterutf8.bib', encoding='utf-8', sortkey='bibkey')
 
@@ -77,14 +75,6 @@ PRIOS = {
     'volume': 'hh.bib', 'series': 'hh.bib', 'publisher': 'hh.bib', 'pages': 'hh.bib',
     'title': 'hh.bib', 'author': 'hh.bib', 'booktitle': 'hh.bib', 'note': 'hh.bib',
 }
-
-
-def zip_extract(zip_archive, filename, target_name=None):
-    with zipfile.ZipFile(zip_archive) as z:
-        zi = next(zi for zi in z.filelist if zi.filename == filename)
-        if target_name:
-            zi.filename = target_name
-        z.extract(zi)
 
 
 def intersectall(xs):
@@ -106,7 +96,7 @@ def groupsame(ks, e):
 def unduplicate_ids_smart(e, previous, idfield="glottolog_ref_id"):
     # check for duplicates
     q = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield))
-    dups = [(idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1]
+    dups = sorted(((idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1), key=lambda (i, k): int(i))
 
     # if are same? then merge
     # if one same as prev keep that
@@ -119,9 +109,9 @@ def unduplicate_ids_smart(e, previous, idfield="glottolog_ref_id"):
                 print "FUSED", k, "WITH", gsort[0], "BECAUSE SAME", idfield, idn
                 del e[k]
 
-    dups = [(idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups]
-    print "Using previous version %s" % previous.filename
-    qp = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in previous.iterentries() if fields.has_key(idfield))
+    dups = sorted(((idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups), key=lambda (i, k): int(i))
+    print "%s Using previous version info from %s" % (time.ctime(), previous)
+    qp = bib.grp2((row.id, row.hash) for row in bib.csv_iterrows(previous) if row.id)
     for (idn, ks) in dups:
         (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
         print remaink, "RETAINS", idn, "BECAUSE IN OLD VER"
@@ -153,7 +143,7 @@ def findidks(e, mks):
 def trickle(m, bibfiles, tricklefields=['isbn']):
     for f in tricklefields:
         ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
-        for (src, us) in bib.grp2(ups).iteritems():
+        for (src, us) in sorted(bib.grp2(ups).iteritems()):
             te = bibfiles['%s.bib' % src].load()
             mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
             r = {}
@@ -288,7 +278,7 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
     return dict((k, inject_macro_area(tf)) for k, tf in m.iteritems())
 
 
-def main(bibfiles, monster, monster_prv, umonster):
+def main(bibfiles, monster, previous, umonster):
     print '%s compile_monster' % time.ctime()
     m, hhe = compile_monster(bibfiles)
 
@@ -329,7 +319,7 @@ def main(bibfiles, monster, monster_prv, umonster):
                 del f[field]
 
     print '%s unduplicate_ids_smart' % time.ctime()
-    unduplicate_ids_smart(m, monster_prv, idfield='glottolog_ref_id')
+    unduplicate_ids_smart(m, previous, idfield='glottolog_ref_id')
 
     print '%s handout_ids' % time.ctime()
     handout_ids(m, idfield='glottolog_ref_id')
@@ -345,14 +335,8 @@ def main(bibfiles, monster, monster_prv, umonster):
     print '%s save as escaped ascii' % time.ctime()
     monster.save(m)
 
+    print '%s done.' % time.ctime()
+
 
 if __name__ == '__main__':
-    if not os.path.exists(MONSTER_UNZIP):  # extract old version for unduplicate_ids_smart
-        zip_extract(MONSTER_ZIP, MONSTER.filename, MONSTER_UNZIP)
-
-    MONSTER_PRV = _bibfiles.BibFile(max(
-        (f for f in glob.glob('monster?*.bib') if not f.endswith('-prio.bib')),
-        key=lambda f: os.stat(f).st_mtime),
-        encoding='ascii', sortkey=None)
-
-    main(BIBFILES, MONSTER, MONSTER_PRV, UMONSTER)
+    main(BIBFILES, MONSTER, PREVIOUS, UMONSTER)

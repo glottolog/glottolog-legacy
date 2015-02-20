@@ -1,6 +1,7 @@
 # _previous.py - parse and explore monster_zip.bib
 
 import os
+import csv
 import sqlite3
 import contextlib
 
@@ -9,6 +10,7 @@ import _bibfiles
 BIBFILE = _bibfiles.BibFile('monster_zip.bib', encoding='ascii', sortkey=None, use_pybtex=False)
 DBFILE = '_previous.sqlite3'
 IDFILE = '_bibfiles.sqlite3'
+CSVFILE = 'monster.csv'
 
 
 class Database(object):
@@ -72,8 +74,22 @@ class Database(object):
                     row + result)
             conn.commit()
 
+    def to_csv(self, filename=CSVFILE, encoding='ascii'):
+        with contextlib.closing(self.connect()) as conn, open(filename, 'wb') as fd:
+            cursor = conn.execute('SELECT filename, bibkey, s.hash, CAST(e.id AS TEXT) AS id '
+                'FROM src AS s JOIN entry AS e ON s.hash = e.hash '
+                'ORDER BY lower(filename), lower(bibkey)')
+            writer = csv.writer(fd)
+            writer.writerow([d[0].encode(encoding) for d in cursor.description])
+            while True:
+                rows = cursor.fetchmany(1000)
+                if not rows:
+                    break
+                writer.writerows([[c.encode(encoding) for c in r] for r in rows])
+
 
 if __name__ == '__main__':
     Database.from_monster()
     Database().import_refids()
+    Database().to_csv()
     #d = Database()

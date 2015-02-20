@@ -20,7 +20,8 @@ __all__ = [
     'wrds', 'setd', 'setd3', 'indextrigs',
     'lstat', 'lstat_witness', 
     'pairs', 'takeuntil', 'takeafter',
-    'hhtype_to_n', 'expl_to_hhtype', 'lgcode', 'read_csv_dict', 'load_triggers',
+    'hhtype_to_n', 'expl_to_hhtype', 'lgcode',
+    'read_csv_dict', 'csv_iterrows', 'load_triggers',
 ]
 
 INLG = '../references/alt4inlg.ini'
@@ -135,16 +136,17 @@ def pairs(xs):
 
 
 def read_csv_dict(filename):
-    return dict(_csv_iteritems(filename))
+    return {row[0]: row for row in csv_iterrows(filename)}
 
 
-def _csv_iteritems(filename):
+def csv_iterrows(filename, fieldnames=None):
     with open(filename) as fd:
         reader = csv.reader(fd)
-        header = next(reader)
-        make_row = namedtuple('Row', header)._make
+        if fieldnames is None:
+            fieldnames = next(reader)
+        make_row = namedtuple('Row', fieldnames)._make
         for row in reader:
-            yield row[0], make_row(row)
+            yield make_row(row)
 
 
 def load_triggers(filename, sec_curly_to_square=False):
