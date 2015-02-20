@@ -113,6 +113,8 @@ def unduplicate_ids_smart(e, previous, idfield="glottolog_ref_id"):
     print "%s Using previous version info from %s" % (time.ctime(), previous)
     qp = bib.grp2((row.id, row.hash) for row in bib.csv_iterrows(previous) if row.id)
     for (idn, ks) in dups:
+        if len(ks) < 2:
+            continue
         (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
         print remaink, "RETAINS", idn, "BECAUSE IN OLD VER"
         for k in ks:
