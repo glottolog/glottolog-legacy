@@ -3,7 +3,6 @@
 import os
 import io
 import sqlite3
-
 import operator
 import itertools
 import contextlib

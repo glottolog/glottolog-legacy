@@ -1,8 +1,6 @@
 # _compare_names.py - compare regex-based with pybtex name parsing
 
-import _bibfiles
-import bib
-import _bibtex
+import _bibfiles, _bibtex, bib
 
 
 def names1(s):

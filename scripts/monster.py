@@ -55,8 +55,6 @@ the process
 5.    A final monster.bib/monsterutf8.bib is written
 """
 
-import os
-import glob
 import time
 
 import _bibfiles
