@@ -1,8 +1,6 @@
 # _compare_names.py - compare regex-based with pybtex name parsing
 
-import _bibfiles
-import bib
-import _bibtex
+import _bibfiles, _bibtex, bib
 
 
 def names1(s):
@@ -25,7 +23,6 @@ counts = {}
 
 for b in _bibfiles.Collection():
     print b.filename.center(80, '#')
-    b.use_pybtex = True
     count = 0
     for bibkey, (entrytype, fields) in b.iterentries():
         for role in ('author', 'editor'):

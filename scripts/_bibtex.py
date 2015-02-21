@@ -53,7 +53,7 @@ def memorymapped(filename, access=mmap.ACCESS_READ):
         fd.close()
 
 
-def load(filename, encoding=None, use_pybtex=True, preserve_order=False):
+def load(filename, preserve_order=False, encoding=None, use_pybtex=True):
     cls = collections.OrderedDict if preserve_order else dict
     return cls(iterentries(filename, encoding, use_pybtex))
 
@@ -179,24 +179,11 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
 
 def authorbibkey_colon(author, bibkey):
     return author + ':'.join(bibkey.split(':', 1)[::-1])
-    
-
-def numkey(bibkey, nondigits=re.compile('(\D+)')):
-    return tuple(try_int(s) for s in nondigit.split(bibkey))
-
-
-def try_int(s):
-    try:
-        return int(s)
-    except ValueError:
-        return s
 
 
 sortkeys = {
-    'authorbibkey': lambda (k, (typ, fields)): (fields.get('author', '') + k),
     'authorbibkey_colon': lambda (k, (typ, fields)): authorbibkey_colon(fields.get('author', ''), k),
     'bibkey': lambda (k, (typ, fields)): k.lower(),
-    'numbibkey': lambda (k, (typ, fields)): numkey(k.lower())
 }
 
 
@@ -239,13 +226,21 @@ class CheckParser(Parser):
             self.error_count +=1
 
 
+def _test_load():
+    import _bibfiles
+    for b in _bibfiles.Collection():
+        print(b.filepath)
+        entries = load(b.filepath)
+        print(len(entries))
+        print('%d invalid' % check(b.filepath))
+
+
 def _test_dump():
-    import bib
-    import glob
+    import _bibfiles, bib
     from cStringIO import StringIO
-    for filename in glob.glob('../references/bibtex/*.bib'):
-        print(filename)
-        entries = load(filename)
+    for b in _bibfiles.Collection():
+        print(b.filepath)
+        entries = load(b.filepath)
         a = bib.put(entries, srtkey='bibkey')
         s = StringIO()
         dump(entries, s, sortkey='bibkey')
@@ -253,26 +248,14 @@ def _test_dump():
         assert a == b
 
 
-def _test_load():
-    import glob
-    for filename in glob.glob('../references/bibtex/*.bib'):
-        print(filename)
-        entries = load(filename)
-        print(len(entries))
-        print('%d invalid' % check(filename))
-
-
 def _test_unicode(remove=False):
-    import os
-    import glob
-    for filename in glob.glob('../references/bibtex/*.bib'):
-        if filename.endswith('-utf8.bib'):
-            continue
-        print(filename)
-        dst = os.path.join(os.path.dirname(filename),
-            '%s-utf8%s' % os.path.splitext(os.path.basename(filename)))
+    import os, _bibfiles
+    for b in _bibfiles.Collection():
+        print(b.filepath)
+        dst = os.path.join(os.path.dirname(b.filepath),
+            '%s-utf8%s' % os.path.splitext(os.path.basename(b.filepath)))
         try:
-            save(iterentries(filename), dst, sortkey=None, encoding='utf-8')
+            save(iterentries(b.filepath), dst, sortkey=None, encoding='utf-8')
         except ValueError as e:
             print(repr(e))
         if remove:

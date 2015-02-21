@@ -3,7 +3,6 @@
 import os
 import io
 import sqlite3
-
 import operator
 import itertools
 import contextlib
@@ -67,7 +66,7 @@ class Collection(list):
 
 class BibFile(object):
 
-    def __init__(self, filepath, encoding, sortkey, use_pybtex=False, priority=0,
+    def __init__(self, filepath, encoding, sortkey, use_pybtex=True, priority=0,
                  name=None, title=None, description=None, abbr=None):
         self.filepath = filepath
         self.filename = os.path.basename(filepath)
@@ -85,7 +84,7 @@ class BibFile(object):
 
     def load(self):
         preserve_order = self.sortkey is None
-        return _bibtex.load(self.filepath, self.encoding, self.use_pybtex, preserve_order)
+        return _bibtex.load(self.filepath, preserve_order, self.encoding, self.use_pybtex)
 
     def save(self, entries):
         _bibtex.save(entries, self.filepath, self.sortkey, self.encoding)
@@ -132,7 +131,6 @@ class Database(object):
 
         for b in bibfiles:
             print(b.filepath)
-            b.use_pybtex = True
             db.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
                 (b.filename, b.priority))
             for bibkey, (entrytype, fields) in b.iterentries():
