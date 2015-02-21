@@ -677,9 +677,6 @@ Arawakan, Central Maipuran, Waura-Mehinaku
 Arawakan, Eastern Maipuran
   Marawan [NOCODE_Marawan]
   Palik\'ur [plu]
-Arawakan, Northern Maipuran, Maipure-Avane
-  Maipure [NOCODE_Maipure]
-  Baniva [bvv]
 Arawakan, Northern Maipuran, Jurua-Jutai
   Maragua [NOCODE_Maragua]
   Araicu [NOCODE_Araicu]
@@ -694,7 +691,6 @@ Arawakan, Northern Maipuran, Caribbean Arawakan, Guajiro-Paraujano
   Wayuu [guc]
 Arawakan, Northern Maipuran, Inland Northern Maipuran
   Cabiyar\'i [cbb]
-  Yavitero [yvt]
   Res\'igaro [rgr]
   Curripaco [kpc]
   Piapoco [pio]
@@ -702,9 +698,15 @@ Arawakan, Northern Maipuran, Inland Northern Maipuran
   Tariana [tae]
   Bar\'e [bae]
   Guinau [NOCODE_Guinau]
+  Mandahuaca [mht]
+Arawakan, Northern Maipuran, Maipure-Yavitero, Maipure-Avane
+  Maipure [NOCODE_Maipure]
+  Baniva [bvv]
+Arawakan, Northern Maipuran, Maipure-Yavitero, Baniva-Yavitero, Baniwaic
   Baniwa [bwi]
   Guarequena [gae]
-  Mandahuaca [mht]
+Arawakan, Northern Maipuran, Maipure-Yavitero, Baniva-Yavitero
+  Yavitero [yvt]
 Arawakan, Northern Maipuran, Inland Northern Maipuran, Yucunic
   Yucuna [ycn]
   Guaru [NOCODE_Guaru]
@@ -8669,8 +8671,8 @@ Rashad
 Sahaptian
   Nez Perce [nez]
 Sahaptian, Sahaptin, Northern Sahaptin
-  Yakima [yak]
-  Walla Walla [waa]
+  Northwest Sahaptin [yak]
+  Northeast Sahaptin [waa]
 Sahaptian, Sahaptin, Southern Sahaptin
   Tenino [tqn]
   Umatilla [uma]
@@ -9118,7 +9120,7 @@ Sino-Tibetan, Karenic, Southern Karen, Sgaw
   S'gaw Karen [ksw]
   Wewaw [wea]
 Sino-Tibetan, Karenic, Northern Karen
-  Kayan [pdu]
+  Kayan Lahwi [pdu]
   Yinbaw Karen [kvu]
   Yintale Karen [kvy]
   Lahta-Zayein Karen [kxk]
