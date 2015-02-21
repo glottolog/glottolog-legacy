@@ -67,6 +67,8 @@ LGCODE = '../references/alt4lgcode.ini'
 LGINFO = '../languoids/lginfo.csv'
 MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
 UMONSTER = _bibfiles.BibFile('monsterutf8.bib', encoding='utf-8', sortkey='bibkey')
+MARKHHTYPE = 'monstermarkhht.txt'
+MARKLGCODE = 'monstermarklgc.txt'
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
@@ -225,7 +227,7 @@ def markconservative(m, trigs, ref, outfn="monstermarkrep.txt", blamefield="hhty
                 if f.has_key(blamefield):
                     del f[blamefield]
                 mafter[k] = (t, f)
-    bib.sav(bib.tabtxt([(lg, was) + mis for (lg, miss, was) in log for mis in miss]), outfn)
+    bib.write_csv_rows(((lg, was) + mis for (lg, miss, was) in log for mis in miss), outfn, dialect='excel-tab')
     return mafter
 
 
@@ -289,12 +291,12 @@ def main(bibfiles, monster, previous, umonster):
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()
     hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in bib.load_triggers(HHTYPE).iteritems())
-    m = markconservative(m, hht, hhe, outfn="monstermarkhht.txt", blamefield="hhtype")
+    m = markconservative(m, hht, hhe, outfn=MARKHHTYPE, blamefield="hhtype")
 
     # Annotate with lgcode
     print '%s annotate lgcode' % time.ctime()
     lgc = bib.load_triggers(LGCODE, sec_curly_to_square=True)
-    m = markconservative(m, lgc, hhe, outfn="monstermarklgc.txt", blamefield="hhtype")
+    m = markconservative(m, lgc, hhe, outfn=MARKLGCODE, blamefield="hhtype")
 
     # Annotate with inlg
     print '%s add_inlg_e' % time.ctime()

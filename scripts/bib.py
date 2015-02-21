@@ -21,7 +21,7 @@ __all__ = [
     'lstat', 'lstat_witness', 
     'pairs', 'takeuntil', 'takeafter',
     'hhtype_to_n', 'expl_to_hhtype', 'lgcode',
-    'read_csv_dict', 'csv_iterrows', 'load_triggers',
+    'read_csv_dict', 'csv_iterrows', 'write_csv_rows', 'load_triggers',
 ]
 
 INLG = '../references/alt4inlg.ini'
@@ -139,14 +139,22 @@ def read_csv_dict(filename):
     return {row[0]: row for row in csv_iterrows(filename)}
 
 
-def csv_iterrows(filename, fieldnames=None):
+def csv_iterrows(filename, fieldnames=None, dialect='excel'):
     with open(filename) as fd:
-        reader = csv.reader(fd)
+        reader = csv.reader(fd, dialect=dialect)
         if fieldnames is None:
             fieldnames = next(reader)
         make_row = namedtuple('Row', fieldnames)._make
         for row in reader:
             yield make_row(row)
+
+
+def write_csv_rows(rows, filename, fieldnames=None, encoding='utf-8', dialect='excel'):
+    with open(filename, 'wb') as fd:
+        writer = csv.writer(fd, dialect=dialect)
+        if fieldnames:
+            writer.writerow([unicode(f).encode(encoding) for f in filednames])
+        writer.writerows([[unicode(c).encode(encoding) for c in r] for r in rows])
 
 
 def load_triggers(filename, sec_curly_to_square=False):

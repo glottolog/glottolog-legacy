@@ -53,7 +53,7 @@ def memorymapped(filename, access=mmap.ACCESS_READ):
         fd.close()
 
 
-def load(filename, encoding=None, use_pybtex=True, preserve_order=False):
+def load(filename, preserve_order=False, encoding=None, use_pybtex=True):
     cls = collections.OrderedDict if preserve_order else dict
     return cls(iterentries(filename, encoding, use_pybtex))
 
@@ -179,24 +179,11 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
 
 def authorbibkey_colon(author, bibkey):
     return author + ':'.join(bibkey.split(':', 1)[::-1])
-    
-
-def numkey(bibkey, nondigits=re.compile('(\D+)')):
-    return tuple(try_int(s) for s in nondigit.split(bibkey))
-
-
-def try_int(s):
-    try:
-        return int(s)
-    except ValueError:
-        return s
 
 
 sortkeys = {
-    'authorbibkey': lambda (k, (typ, fields)): (fields.get('author', '') + k),
     'authorbibkey_colon': lambda (k, (typ, fields)): authorbibkey_colon(fields.get('author', ''), k),
     'bibkey': lambda (k, (typ, fields)): k.lower(),
-    'numbibkey': lambda (k, (typ, fields)): numkey(k.lower())
 }
 
 

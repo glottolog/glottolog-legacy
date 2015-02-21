@@ -23,7 +23,6 @@ counts = {}
 
 for b in _bibfiles.Collection():
     print b.filename.center(80, '#')
-    b.use_pybtex = True
     count = 0
     for bibkey, (entrytype, fields) in b.iterentries():
         for role in ('author', 'editor'):
