@@ -133,9 +133,15 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
             raise ValueError('dump needs sortkey or ordered entries')
         else:
             items = entries
+    elif sortkey == 'bibkey':
+        items = ((bibkey, entries[bibkey]) for bibkey in
+            sorted(entries, key=lambda bibkey: bibkey.lower()))
+    elif sortkey == 'authorbibkey_colon':
+        def sortkey((bibkey, (entrytype, fields))):
+            return fields.get('author', '') + ':'.join(bibkey.split(':', 1)[::-1])
+        items = sorted(entries.iteritems(), key=sortkey)
     else:
-        items = sorted(entries.iteritems(), key=sortkeys[sortkey])
-
+        raise ValueError(sortkey)
     """ *: en/decoded by latexcodec
     * #: \#
       $: \$
@@ -153,7 +159,7 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
     if encoding in (None, 'ascii'):
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
-            for k, v in fieldorder.sorteddict(fields):
+            for k, v in fieldorder.itersorted(fields):
                 # FIXME
                 if k in verbatim:
                     v = v.strip().encode('ascii')
@@ -164,7 +170,7 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
     else:
         for bibkey, (entrytype, fields) in items:
             fd.write(u'@%s{%s' % (entrytype, bibkey))
-            for k, v in fieldorder.sorteddict(fields):
+            for k, v in fieldorder.itersorted(fields):
                 # FIXME
                 # ---, --, ``'', {},\ng, \textdot, \textsubdot,  \v{j} -> \v\j
                 # {\N}?
@@ -177,16 +183,6 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
             fd.write(u'\n}\n' if fields else u',\n}\n')
 
 
-def authorbibkey_colon(author, bibkey):
-    return author + ':'.join(bibkey.split(':', 1)[::-1])
-
-
-sortkeys = {
-    'authorbibkey_colon': lambda (k, (typ, fields)): authorbibkey_colon(fields.get('author', ''), k),
-    'bibkey': lambda (k, (typ, fields)): k.lower(),
-}
-
-
 class Ordering(dict):
 
     _missing = float('inf')
@@ -195,10 +191,11 @@ class Ordering(dict):
     def fromlist(cls, keys):
         return cls((k, i) for i, k in enumerate(keys))
 
-    def sorteddict(self, dct):
-         return sorted(dct.iteritems(), key=self._sorteddictkey)
+    def itersorted(self, dct):
+        for key in sorted(dct, key=self._itersorted_key):
+            yield key, dct[key]
 
-    def _sorteddictkey(self, (key, value)):
+    def _itersorted_key(self, key):
          return self[key], key
 
     def __missing__(self, key):
