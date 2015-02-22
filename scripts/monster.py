@@ -85,6 +85,7 @@ def intersectall(xs):
 
 
 def groupsame(ks, e):
+    # FIXME: do not consider entries with different extra_hash the same
     ksame = [((k1, k2), bib.same23(e[k1], e[k2])) for (k1, k2) in bib.pairs(ks)]
     r = dict((k, i) for (i, k) in enumerate(ks))
     for ((k1, k2), s23) in ksame:
@@ -334,8 +335,8 @@ def main(bibfiles, monster, previous, umonster):
     print '%s save as utf8' % time.ctime()
     umonster.save(m)
 
-    print '%s save as escaped ascii' % time.ctime()
-    monster.save(m)
+    #print '%s save as escaped ascii' % time.ctime()
+    #monster.save(m)
 
     print '%s done.' % time.ctime()
 

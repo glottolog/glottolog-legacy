@@ -62,7 +62,7 @@ ACCENT = re.compile(r'''\\[`'^"H~ckl=b.druvt](\{[a-zA-Z]\}|[a-zA-Z])''')
 DROP = re.compile(r'\\[^\s{}]+\{|\\.|[{}]')
 
 
-def undiacritic(txt):
+def undiacritic_(txt):
     if isinstance(txt, unicode):
         txt = undiacritic_unicode(txt)
     txt = REPLACE(txt)
@@ -72,7 +72,7 @@ def undiacritic(txt):
     return DROP.sub('', txt)
 
 
-def undiacritic2(txt):
+def undiacritic(txt):
     if isinstance(txt, unicode):
         txt = unidecode(txt)
     txt = REPLACE(txt)
@@ -110,7 +110,7 @@ def _test_undiacritic(field='title'):
         rows = cursor.fetchmany(10000)
         if not rows:
             break
-        mapped = ((v, undiacritic(v), undiacritic2(v)) for v, in rows)
+        mapped = ((v, undiacritic_(v), undiacritic(v)) for v, in rows)
         mapped = [{'value': v, 'result1': r1, 'result2': r2}
             for (v, r1, r2) in mapped if not v == r1 == r2]
         if mapped:
