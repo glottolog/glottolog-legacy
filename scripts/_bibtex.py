@@ -116,16 +116,16 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def save(entries, filename, sortkey, encoding=None):
+def save(entries, filename, sortkey, encoding=None, use_pybtex=True):
     if encoding in (None, 'ascii'):
         with open(filename, 'w') as fd:
-            dump(entries, fd, sortkey, encoding)
+            dump(entries, fd, sortkey, encoding, use_pybtex)
     else:
         with io.open(filename, 'w', encoding=encoding) as fd:
-            dump(entries, fd, sortkey, encoding)
+            dump(entries, fd, sortkey, encoding, use_pybtex)
 
 
-def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
+def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbatim=VERBATIM):
     if sortkey is None:
         if isinstance(entries, collections.OrderedDict):
             items = entries.iteritems()
@@ -156,7 +156,18 @@ def dump(entries, fd, sortkey=None, encoding=None, verbatim=VERBATIM):
       <: \textless
       >: \textgreater
     """
-    if encoding in (None, 'ascii'):
+    if not use_pybtex:
+        assert encoding in (None, 'ascii')
+        for bibkey, (entrytype, fields) in items:
+            fd.write('@%s{%s' % (entrytype, bibkey))
+            for k, v in fieldorder.itersorted(fields):
+                if k in verbatim:
+                    v = v.strip().encode('ascii')
+                else:
+                    v = v.strip().encode('latex').replace(r'\#', '#').replace(r'\&', r'&').replace(r'\_', '_')
+                fd.write(',\n    %s = {%s}' % (k, v))
+            fd.write('\n}\n' if fields else ',\n}\n')
+    elif encoding in (None, 'ascii'):
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):

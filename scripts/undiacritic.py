@@ -3,6 +3,8 @@
 import re
 import unicodedata
 
+from unidecode import unidecode
+
 __all__ = ['undiacritic']
 
 
@@ -70,6 +72,16 @@ def undiacritic(txt):
     return DROP.sub('', txt)
 
 
+def undiacritic2(txt):
+    if isinstance(txt, unicode):
+        txt = unidecode(txt)
+    txt = REPLACE(txt)
+    txt = COMMAND1.sub(r'\1', txt)
+    txt = COMMAND2.sub('', txt)
+    txt = ACCENT.sub(r'\1', txt)
+    return DROP.sub('', txt)
+
+
 def undiacritic_unicode(s):
     nkfd = unicodedata.normalize('NFKD', s)
     undiac = u''.join(c for c in nkfd if not unicodedata.combining(c))
@@ -89,7 +101,7 @@ def _test_undiacritic(field='title'):
     metadata.create_all(engine)
     insert_un = undiac.insert(bind=engine).execute
 
-    cursor = engine.execute(sa.text(
+    cursor = engine.execution_options(stream_results=True).execute(sa.text(
         "SELECT fields->>'author' FROM entry WHERE fields ? 'author' UNION "
         "SELECT fields->>'editor' FROM entry WHERE fields ? 'editor' UNION "
         "SELECT fields->>'title' FROM entry WHERE fields ? 'title'"))
@@ -98,9 +110,9 @@ def _test_undiacritic(field='title'):
         rows = cursor.fetchmany(10000)
         if not rows:
             break
-        mapped = ((v, undiacritic(v)) for v, in rows)
-        mapped = [{'value': v, 'result1': r1}
-            for (v, r1) in mapped if v!= r1]
+        mapped = ((v, undiacritic(v), undiacritic2(v)) for v, in rows)
+        mapped = [{'value': v, 'result1': r1, 'result2': r2}
+            for (v, r1, r2) in mapped if not v == r1 == r2]
         if mapped:
             insert_un(mapped)
 
