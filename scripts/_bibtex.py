@@ -100,7 +100,7 @@ def names(s):
         try:
             yield Name.from_string(name)
         except PybtexError as e:
-            print(e)
+            print(repr(e))
 
 
 class Name(collections.namedtuple('Name', 'prelast last given lineage')):
