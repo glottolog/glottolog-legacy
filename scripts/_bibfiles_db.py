@@ -76,35 +76,39 @@ class Database(object):
 
     def __iter__(self, chunksize=100):
         with self.connect() as conn:
-            allpriority, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
-                'WHERE NOT EXISTS (SELECT 1 FROM file '
+            allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
+                'WHERE id IS NULL)').fetchone()
+            assert allid
+            allpriority, = conn.execute('SELECT NOT EXISTS '
+                '(SELECT 1 FROM entry WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert allpriority
-            get_hash, get_field = operator.itemgetter(0), operator.itemgetter(1)
-            for first, last in windowed_hashes(conn, chunksize):
-                cursor = conn.execute('SELECT e.hash, v.field, v.value, v.filename, v.bibkey '
+            get_id_hash, get_field = operator.itemgetter(0, 1), operator.itemgetter(2)
+            for first, last in windowed(conn, 'id', chunksize):
+                cursor = conn.execute('SELECT e.id, e.hash, v.field, v.value, v.filename, v.bibkey '
                     'FROM entry AS e '
                     'JOIN file AS f ON e.filename = f.name '
                     'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
                     'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
-                    'WHERE e.hash BETWEEN ? AND ? '
-                    'ORDER BY e.hash, v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey',
+                    'WHERE e.id BETWEEN ? AND ? '
+                    'ORDER BY e.id, v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey',
                     (first, last))
-                for hash, grp in itertools.groupby(cursor, get_hash):
-                    yield (hash, [(field, [(vl, fn, bk) for hs, fd, vl, fn, bk in g])
+                for id_hash, grp in itertools.groupby(cursor, get_id_hash):
+                    yield (id_hash, [(field, [(vl, fn, bk) for id, hs, fd, vl, fn, bk in g])
                         for field, g in itertools.groupby(grp, get_field)])
 
     def merged(self, union=UNION_FIELDS):
-        for hash, grp in self:
+        for (id, hash), grp in self:
             fields = {field: values[0][0] if field not in union
                 else ', '.join(unique(vl for vl, fn, bk in values))
                 for field, values in grp}
+            fields['glottolog_ref_hash'] = hash
             fields['src'] = ', '.join(sorted(set(fn
                 for field, values in grp for vl, fn, bk in values)))
             fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
                 for field, values in grp for vl, fn, bk in values)))
             entrytype = fields.pop('ENTRYTYPE')
-            yield hash, (entrytype, fields)
+            yield id, (entrytype, fields)
 
     def unduplicate_ids(self, verbose=True):
         with self.connect() as conn:
@@ -259,19 +263,21 @@ def hashidstats(conn):
         'GROUP BY id_nhash ORDER BY n desc')))
 
 
-def windowed_hashes(conn, chunksize):
-    cursor = conn.execute('SELECT DISTINCT hash FROM entry ORDER BY hash')
+def windowed(conn, col, chunksize):
+    query = 'SELECT DISTINCT %(col)s FROM entry ORDER BY %(col)s' % {'col': col}
+    cursor = conn.execute(query)
     while True:
-        hashes = cursor.fetchmany(chunksize)
-        if not hashes:
+        rows = cursor.fetchmany(chunksize)
+        if not rows:
             cursor.close()
             break
-        (first,), (last,) = hashes[0], hashes[-1]
+        (first,), (last,) = rows[0], rows[-1]
         yield first, last
 
 
 def assign_ids(conn):
-    allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry WHERE hash IS NULL)').fetchone()
+    allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
+        'WHERE hash IS NULL)').fetchone()
     assert allhash
     print('%d entries' % conn.execute('UPDATE entry SET id = NULL').rowcount)
     print('%d unchanged' % conn.execute('UPDATE entry SET id = refid WHERE refid IS NOT NULL '
@@ -302,10 +308,13 @@ def assign_ids(conn):
             'WHERE id IS NULL '
             'GROUP BY hash ORDER BY hash'),
         conn.execute('SELECT coalesce(max(id), 0) + 1 FROM entry').fetchone()[0])))
-    allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry WHERE id IS NULL)').fetchone()
+    allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
+        'WHERE id IS NULL)').fetchone()
     assert allid
-    onetoone, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
-        'WHERE hash = e.hash AND id != e.id OR id = e.id AND hash != e.hash))').fetchone()
+    onetoone, = conn.execute('SELECT NOT EXISTS '
+        '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+        'WHERE hash = e.hash AND id != e.id '
+        'OR id = e.id AND hash != e.hash))').fetchone()
     assert onetoone
 
 
@@ -348,4 +357,5 @@ def _test_merge():
 
 if __name__ == '__main__':
     d = Database.from_bibfiles()
+    #d.to_bibfile()
     #_test_merge()
