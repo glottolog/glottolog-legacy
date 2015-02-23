@@ -143,6 +143,18 @@ def findidks(e, mks):
     return dict((mk, ekis.get(kid, [])) for (mk, kid) in mkis)
 
 
+def update_previous(m, previous, fieldnames=('filename', 'bibkey', 'hash', 'id')):
+    def iterrows():
+        for hash, (entrytype, fields) in m.iteritems():
+            id = fields['glottolog_ref_id']
+            for t in fields['srctrickle'].split(', '):
+                name, bibkey = t.partition('#')[::2]
+                filename = '%s.bib' % name
+                yield filename, bibkey, hash, id
+    rows = sorted(iterrows(), key=lambda (fn, bk, hs, id): (fn.lower(), bk.lower()))
+    bib.write_csv_rows(rows, previous, fieldnames=fieldnames, encoding='utf-8')
+
+
 def trickle(m, bibfiles, tricklefields=['isbn']):
     for f in tricklefields:
         ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
@@ -326,6 +338,10 @@ def main(bibfiles, monster, previous, umonster):
 
     print '%s handout_ids' % time.ctime()
     handout_ids(m, idfield='glottolog_ref_id')
+
+    # Update the CSV with the previous mappings for the next time
+    print '%s update_previous' % time.ctime()
+    update_previous(m, previous)
 
     # Trickling back
     print '%s trickle' % time.ctime()

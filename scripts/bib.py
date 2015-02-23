@@ -153,7 +153,7 @@ def write_csv_rows(rows, filename, fieldnames=None, encoding='utf-8', dialect='e
     with open(filename, 'wb') as fd:
         writer = csv.writer(fd, dialect=dialect)
         if fieldnames:
-            writer.writerow([unicode(f).encode(encoding) for f in filednames])
+            writer.writerow([unicode(f).encode(encoding) for f in fieldnames])
         writer.writerows([[unicode(c).encode(encoding) for c in r] for r in rows])
 
 
