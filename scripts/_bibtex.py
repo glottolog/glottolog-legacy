@@ -116,16 +116,16 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def save(entries, filename, sortkey, encoding=None, use_pybtex=True):
+def save(entries, filename, sortkey, encoding=None, use_pybtex=True, verbose=True):
     if encoding in (None, 'ascii'):
         with open(filename, 'w') as fd:
-            dump(entries, fd, sortkey, encoding, use_pybtex)
+            dump(entries, fd, sortkey, encoding, use_pybtex, verbose)
     else:
         with io.open(filename, 'w', encoding=encoding) as fd:
-            dump(entries, fd, sortkey, encoding, use_pybtex)
+            dump(entries, fd, sortkey, encoding, use_pybtex, verbose)
 
 
-def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbatim=VERBATIM):
+def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbose=True, verbatim=VERBATIM):
     if sortkey is None:
         if isinstance(entries, collections.OrderedDict):
             items = entries.iteritems()
@@ -189,7 +189,7 @@ def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbatim=VER
                 if k in verbatim:
                     v = v.strip().decode('ascii')
                 elif isinstance(v, str):
-                    v = latex_to_utf8(v.strip(), verbose=True)
+                    v = latex_to_utf8(v.strip(), verbose=verbose)
                 fd.write(u',\n    %s = {%s}' % (k, v))
             fd.write(u'\n}\n' if fields else u',\n}\n')
 

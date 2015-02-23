@@ -178,6 +178,8 @@ def trickle(m, bibfiles, tricklefields=['isbn']):
             #trace = [(mk, tk, f, newd) for (mk, (tks, f, newd)) in r.iteritems() for tk in tks if te[tk][1].get(f, '') != newd]
             #for a in trace[:10]:
             #    print a
+            if not fnups:
+                continue
             t2 = renfn(te, fnups)
             bibfiles['%s.bib' % src].save(t2)
 
@@ -349,7 +351,7 @@ def main(bibfiles, monster, previous, umonster):
 
     # Save
     print '%s save as utf8' % time.ctime()
-    umonster.save(m)
+    umonster.save(m, verbose=False)
 
     #print '%s save as escaped ascii' % time.ctime()
     #monster.save(m)

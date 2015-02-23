@@ -912,8 +912,7 @@ def keyid(fields, fd={}, ti=2):
     ak = [undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
     yk = pyear(fields.get('year', '[nd]'))[:4]
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
-    # TODO: consider a set here
-    tkf = sorted((w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True)
+    tkf = sorted(uniqued(w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True)
     tk = tkf[-ti:]
     if fields.has_key('volume') and not fields.has_key('journal') and not fields.has_key('booktitle') and not fields.has_key('series'):
         vk = roman(fields['volume'])
@@ -925,6 +924,11 @@ def keyid(fields, fd={}, ti=2):
 
     key = '-'.join(ak) + "_" + '-'.join(tk) + vk + yk
     return reokkey.sub("", key.lower())
+
+
+def uniqued(items):
+    seen = set()
+    return [i for i in items if i not in seen and not seen.add(i)]
 
 
 reisobrack = re.compile("\[([a-z][a-z][a-z]|NOCODE\_[A-Z][^\s\]]+)\]")
