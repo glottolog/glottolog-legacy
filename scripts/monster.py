@@ -284,9 +284,6 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
     lgd = bib.read_csv_dict(lginfo)
 
     def inject_macro_area((typ, fields)):
-        # TODO: consider always injecting current value from lginfo
-        if fields.has_key('macro_area'):  
-            return (typ, fields)
         mas = set(lgd[x].macro_area for x in bib.lgcode((typ, fields)) if x in lgd and lgd[x].macro_area)
         if mas:
             fields['macro_area'] = ', '.join(sorted(mas))
@@ -299,7 +296,7 @@ def main(bibfiles, monster, previous, umonster):
     print '%s compile_monster' % time.ctime()
     m, hhe = compile_monster(bibfiles)
 
-    # Annotate with macro_area
+    # Annotate with macro_area from lgcode when lgcode is assigned manually
     print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
 
