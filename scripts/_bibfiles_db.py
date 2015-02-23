@@ -45,6 +45,9 @@ class Database(object):
             hashstats(conn)
             hashidstats(conn)
 
+            with conn:
+                assign_ids(conn)
+
         return self
 
     def __init__(self, filename=None):
@@ -73,10 +76,10 @@ class Database(object):
 
     def __iter__(self, chunksize=100):
         with self.connect() as conn:
-            nopriority, = conn.execute('SELECT EXISTS (SELECT 1 FROM entry '
+            allpriority, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
                 'WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
-            assert not nopriority
+            assert allpriority
             get_hash, get_field = operator.itemgetter(0), operator.itemgetter(1)
             for first, last in windowed_hashes(conn, chunksize):
                 cursor = conn.execute('SELECT e.hash, v.field, v.value, v.filename, v.bibkey '
@@ -112,7 +115,7 @@ class Database(object):
             for refid, groups in itertools.groupby(cursor, operator.itemgetter(0)):
                 groups = list(groups)
                 for row in groups:
-                    print row
+                    print(row)
                 if not verbose:
                     print
                     continue
@@ -120,8 +123,8 @@ class Database(object):
                     fields = dict(conn.execute('SELECT field, value FROM value '
                         "WHERE field IN ('author', 'editor', 'year', 'title') "
                         'AND filename = ? AND bibkey = ? ', row[2:4]))
-                    print '\t%r, %r, %r, %r' % tuple(fields.get(f) for f in
-                        ('author', 'editor', 'year', 'title'))
+                    print('\t%r, %r, %r, %r' % tuple(fields.get(f) for f in
+                        ('author', 'editor', 'year', 'title')))
                 print
 
 
@@ -265,6 +268,45 @@ def windowed_hashes(conn, chunksize):
             break
         (first,), (last,) = hashes[0], hashes[-1]
         yield first, last
+
+
+def assign_ids(conn):
+    allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry WHERE hash IS NULL)').fetchone()
+    assert allhash
+    print('%d entries' % conn.execute('UPDATE entry SET id = NULL').rowcount)
+    print('%d unchanged' % conn.execute('UPDATE entry SET id = refid WHERE refid IS NOT NULL '
+        'AND NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE e.hash = entry.hash AND e.refid != entry.refid '
+        'OR e.refid = entry.refid AND e.hash != entry.hash)').rowcount)
+    print('%d merged' % conn.execute('UPDATE entry '
+        'SET id = (SELECT max(refid) FROM entry AS e WHERE e.hash = entry.hash) '
+        'WHERE refid IS NOT NULL '
+        'AND EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE e.hash = entry.hash AND e.refid != entry.refid) '
+        'AND NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE e.refid = entry.refid AND e.hash != entry.hash)').rowcount)
+    # TODO: consider same23 merge attempt
+    # TODO: let the closest match retain the id
+    print('%d splitted' % conn.execute('SELECT count(*) FROM entry '
+        'WHERE refid IS NOT NULL '
+        'AND EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE e.refid = entry.refid AND e.hash != entry.hash)').fetchone())
+    print('%d new' % conn.execute('SELECT count(*) FROM entry '
+        'WHERE refid IS NULL ').fetchone())
+    conn.execute('UPDATE entry '
+            'SET id = (SELECT id FROM entry as e WHERE e.hash = entry.hash) '
+            'WHERE id IS NULL')
+    conn.executemany('UPDATE entry SET id = ? WHERE hash = ?',
+        ((id, hash) for id, (hash,) in enumerate(
+        conn.execute('SELECT hash FROM entry '
+            'WHERE id IS NULL '
+            'GROUP BY hash ORDER BY hash'),
+        conn.execute('SELECT coalesce(max(id), 0) + 1 FROM entry').fetchone()[0])))
+    allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry WHERE id IS NULL)').fetchone()
+    assert allid
+    onetoone, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+        'WHERE hash = e.hash AND id != e.id OR id = e.id AND hash != e.hash))').fetchone()
+    assert onetoone
 
 
 def unique(iterable):
