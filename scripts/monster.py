@@ -155,11 +155,11 @@ def update_previous(m, previous, fieldnames=('filename', 'bibkey', 'hash', 'id')
     bib.write_csv_rows(rows, previous, fieldnames=fieldnames, encoding='utf-8')
 
 
-def trickle(m, bibfiles, tricklefields=['isbn']):
+def trickle(m, bibs, bibfiles, tricklefields=['isbn']):
     for f in tricklefields:
         ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
         for (src, us) in sorted(bib.grp2(ups).iteritems()):
-            te = bibfiles['%s.bib' % src].load()
+            te = bibs['%s.bib' % src]
             mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
             r = {}
             for (mk, f, newd) in us:
@@ -213,7 +213,7 @@ def compile_monster(bibs, prios=PRIOS):
 
         o[hk] = (typ, ofs)
 
-    return o, e['hh.bib']
+    return o, e
 
 
 def renfn(e, ups):
@@ -294,7 +294,7 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
 
 def main(bibfiles, monster, previous, umonster):
     print '%s compile_monster' % time.ctime()
-    m, hhe = compile_monster(bibfiles)
+    m, bibs = compile_monster(bibfiles)
 
     # Annotate with macro_area from lgcode when lgcode is assigned manually
     print '%s macro_area_from_lgcode' % time.ctime()
@@ -303,12 +303,12 @@ def main(bibfiles, monster, previous, umonster):
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()
     hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in bib.load_triggers(HHTYPE).iteritems())
-    m = markconservative(m, hht, hhe, outfn=MARKHHTYPE, blamefield="hhtype")
+    m = markconservative(m, hht, bibs['hh.bib'], outfn=MARKHHTYPE, blamefield="hhtype")
 
     # Annotate with lgcode
     print '%s annotate lgcode' % time.ctime()
     lgc = bib.load_triggers(LGCODE, sec_curly_to_square=True)
-    m = markconservative(m, lgc, hhe, outfn=MARKLGCODE, blamefield="hhtype")
+    m = markconservative(m, lgc, bibs['hh.bib'], outfn=MARKLGCODE, blamefield="hhtype")
 
     # Annotate with inlg
     print '%s add_inlg_e' % time.ctime()
@@ -344,7 +344,7 @@ def main(bibfiles, monster, previous, umonster):
 
     # Trickling back
     print '%s trickle' % time.ctime()
-    trickle(m, bibfiles, tricklefields=['glottolog_ref_id'])
+    trickle(m, bibs, bibfiles, tricklefields=['glottolog_ref_id'])
 
     # Save
     print '%s save as utf8' % time.ctime()
