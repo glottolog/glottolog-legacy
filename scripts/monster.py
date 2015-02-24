@@ -326,9 +326,9 @@ def main(bibfiles, monster, previous, umonster):
     print "with macro_area", sum(1 for t, f in m.itervalues() if 'macro_area' in f)
 
     # Remove old fields
-    print '%s remove glotto_id/numnote' % time.ctime()
+    print '%s remove crossref/glotto_id/numnote' % time.ctime()
     for k, (t, f) in m.iteritems():
-        for field in ('glotto_id', 'numnote'):
+        for field in ('crossref', 'glotto_id', 'numnote'):
             if field in f:
                 del f[field]
 

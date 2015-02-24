@@ -352,6 +352,10 @@ bibord = {k: i for i, k in enumerate([
     'url',
 ])}
 
+def bibord_iteritems(fields, sortkey=lambda f, inf=float('inf'): (bibord.get(f, inf), f)):
+    for f in sorted(fields, key=sortkey):
+        yield f, fields[f]
+
 
 resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
 resplittittok = re.compile("([\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=\'" + '\"' + "])")
@@ -477,7 +481,9 @@ reokkey = re.compile("[^a-z\d\-\_\[\]]")
 def keyid(fields, fd={}, ti=2):
     if not fields.has_key('author'):
         if not fields.has_key('editor'):
-            return reokkey.sub("_", ''.join(fields.values()))
+                values = ''.join(v for f, v in bibord_iteritems(fields)
+                    if f != 'glottolog_ref_id')
+                return '__missingcontrib__' + reokkey.sub('_', values.lower())
         else:
             astring = fields['editor']
     else:
