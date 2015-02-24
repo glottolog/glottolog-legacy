@@ -243,19 +243,6 @@ def _test_load():
         print('%d invalid' % check(b.filepath))
 
 
-def _test_dump():
-    import _bibfiles, bib
-    from cStringIO import StringIO
-    for b in _bibfiles.Collection():
-        print(b.filepath)
-        entries = load(b.filepath)
-        a = bib.put(entries, srtkey='bibkey')
-        s = StringIO()
-        dump(entries, s, sortkey='bibkey')
-        b = s.getvalue()
-        assert a == b
-
-
 def _test_unicode(remove=False):
     import os, _bibfiles
     for b in _bibfiles.Collection():
@@ -272,5 +259,4 @@ def _test_unicode(remove=False):
 
 if __name__ == '__main__':
     _test_load()
-    #_test_dump()
     #_test_unicode()
