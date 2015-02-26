@@ -126,12 +126,12 @@ def to_sqlite(filename=DBFILE):
             'name TEXT NOT NULL UNIQUE, '
             'mtime DATETIME NOT NULL UNIQUE)')
         conn.execute('CREATE TABLE entry ('
-            'monster INTEGER NOT NULL, '
             'filename TEXT NOT NULL, '
             'bibkey TEXT NOT NULL, '
+            'monster INTEGER NOT NULL, '
             'hash TEXT NOT NULL, '
             'id INTEGER, '
-            'PRIMARY KEY (monster, filename, bibkey), '
+            'PRIMARY KEY (monster, filename, bibkey, monster), '
             'FOREIGN KEY (monster) REFERENCES monster(idx))')
         conn.execute('CREATE INDEX ix_id ON entry(id)')
         for bibfile, mtime, csvfile in iterfiles():
@@ -151,9 +151,27 @@ def to_sqlite(filename=DBFILE):
                 conn.commit()
 
 
-if __name__ == '__main__':
+def build():
     for bibfile, mtime, csvfile in iterfiles():
         print bibfile, mtime
         #showstats(bibfile)
         to_csv(bibfile, csvfile)
     to_sqlite()
+
+
+def showids(filename=DBFILE):
+    with sqlite3.connect(filename) as conn:
+        cursor = conn.execute('SELECT filename, bibkey, '
+            'group_concat(id) AS ids '
+            'FROM (SELECT DISTINCT filename, bibkey, id '
+            'FROM entry ORDER BY filename, bibkey, monster) '
+            'GROUP BY filename, bibkey '
+            'HAVING count(*) > 1 '
+            'ORDER BY lower(filename), lower(bibkey)')
+        for fn, bk, ids in cursor:
+            print '%s\t%s\t%s' % (fn, bk, ids)
+
+
+if __name__ == '__main__':
+    #build()
+    showids()
