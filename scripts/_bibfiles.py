@@ -77,14 +77,23 @@ class BibFile(object):
         self.abbr = abbr
 
     def iterentries(self):
-        return _bibtex.iterentries(self.filepath, self.encoding, self.use_pybtex)
+        return _bibtex.iterentries(filename=self.filepath,
+            encoding=self.encoding,
+            use_pybtex=self.use_pybtex)
 
     def load(self):
-        preserve_order = self.sortkey is None
-        return _bibtex.load(self.filepath, preserve_order, self.encoding, self.use_pybtex)
+        return _bibtex.load(filename=self.filepath,
+            preserve_order=self.sortkey is None,
+            encoding=self.encoding,
+            use_pybtex=self.use_pybtex)
 
     def save(self, entries, verbose=True):
-        _bibtex.save(entries, self.filepath, self.sortkey, self.encoding, self.use_pybtex, verbose)
+        _bibtex.save(entries,
+            filename=self.filepath,
+            sortkey=self.sortkey,
+            encoding=self.encoding,
+            use_pybtex=self.use_pybtex,
+            verbose=verbose)
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)

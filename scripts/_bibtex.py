@@ -116,16 +116,17 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
         return cls(prelast, last, given, lineage)
 
 
-def save(entries, filename, sortkey, encoding=None, use_pybtex=True, verbose=True):
+def save(entries, filename, sortkey, encoding=None, errors='strict', use_pybtex=True, verbose=True):
     if encoding in (None, 'ascii'):
         with open(filename, 'w') as fd:
-            dump(entries, fd, sortkey, encoding, use_pybtex, verbose)
+            dump(entries, fd, sortkey, encoding, errors, use_pybtex, verbose)
     else:
-        with io.open(filename, 'w', encoding=encoding) as fd:
-            dump(entries, fd, sortkey, encoding, use_pybtex, verbose)
+        assert errors == 'strict'
+        with io.open(filename, 'w', encoding=encoding, errors=errors) as fd:
+            dump(entries, fd, sortkey, encoding, None, use_pybtex, verbose)
 
 
-def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbose=True, verbatim=VERBATIM):
+def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=True, verbose=True, verbatim=VERBATIM):
     if sortkey is None:
         if isinstance(entries, collections.OrderedDict):
             items = entries.iteritems()
@@ -162,9 +163,9 @@ def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbose=True
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
                 if k in verbatim:
-                    v = v.strip().encode('ascii')
+                    v = v.strip().encode('ascii', errors)
                 else:
-                    v = v.strip().encode('latex').replace(r'\#', '#').replace(r'\&', r'&').replace(r'\_', '_')
+                    v = v.strip().encode('latex', errors).replace(r'\#', '#').replace(r'\&', r'&').replace(r'\_', '_')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     elif encoding in (None, 'ascii'):
@@ -175,10 +176,11 @@ def dump(entries, fd, sortkey=None, encoding=None, use_pybtex=True, verbose=True
                 if k in verbatim:
                     v = v.strip().encode('ascii')
                 else:
-                    v = v.strip().encode('latex').replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
+                    v = v.strip().encode('latex', errors).replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     else:
+        assert errors is None
         for bibkey, (entrytype, fields) in items:
             fd.write(u'@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
