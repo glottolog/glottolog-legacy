@@ -2,6 +2,7 @@
 
 import os
 import io
+import datetime
 import ConfigParser
 
 import _bibtex
@@ -75,6 +76,14 @@ class BibFile(object):
         self.title = title
         self.description = description
         self.abbr = abbr
+
+    @property
+    def size(self):
+        return os.stat(self.filepath).st_size
+
+    @property
+    def mtime(self):
+        return datetime.datetime.fromtimestamp(os.stat(self.filepath).st_mtime)
 
     def iterentries(self):
         return _bibtex.iterentries(filename=self.filepath,

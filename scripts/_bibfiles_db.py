@@ -83,6 +83,7 @@ class Database(object):
                 '(SELECT 1 FROM entry WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert allpriority
+
             get_id_hash, get_field = operator.itemgetter(0, 1), operator.itemgetter(2)
             for first, last in windowed(conn, 'id', chunksize):
                 cursor = conn.execute('SELECT e.id, e.hash, v.field, v.value, v.filename, v.bibkey '
@@ -144,6 +145,8 @@ class Database(object):
 def create_tables(conn):
     conn.execute('CREATE TABLE file ('
         'name TEXT NOT NULL, '
+        'size INTEGER NOT NULL, '
+        'mtime DATETIME NOT NULL, '
         'priority INTEGER NOT NULL, '
         'PRIMARY KEY (name))')
     conn.execute('CREATE TABLE field ('
@@ -175,8 +178,8 @@ def create_tables(conn):
 def import_bibfiles(conn, bibfiles):
     for b in bibfiles:
         print(b.filepath)
-        conn.execute('INSERT INTO file (name, priority) VALUES (?, ?)',
-            (b.filename, b.priority))
+        conn.execute('INSERT INTO file (name, size, mtime, priority)'
+            'VALUES (?, ?, ?, ?)', (b.filename, b.size, b.mtime, b.priority))
         for bibkey, (entrytype, fields) in b.iterentries():
             conn.execute('INSERT INTO entry (filename, bibkey, refid) VALUES (?, ?, ?)',
                 (b.filename, bibkey, fields.get('glottolog_ref_id')))
@@ -297,6 +300,7 @@ def assign_ids(conn):
     allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
         'WHERE hash IS NULL)').fetchone()
     assert allhash
+
     print('%d entries' % conn.execute('UPDATE entry SET id = NULL').rowcount)
     print('%d unchanged' % conn.execute('UPDATE entry SET id = refid WHERE refid IS NOT NULL '
         'AND NOT EXISTS (SELECT 1 FROM entry AS e '
@@ -326,6 +330,7 @@ def assign_ids(conn):
             'WHERE id IS NULL '
             'GROUP BY hash ORDER BY hash'),
         conn.execute('SELECT coalesce(max(id), 0) + 1 FROM entry').fetchone()[0])))
+
     allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
         'WHERE id IS NULL)').fetchone()
     assert allid
