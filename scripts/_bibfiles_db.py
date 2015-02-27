@@ -110,27 +110,36 @@ class Database(object):
             entrytype = fields.pop('ENTRYTYPE')
             yield id, (entrytype, fields)
 
-    def unduplicate_ids(self, verbose=True):
+    def show_splits(self, verbose=True):
         with self.connect() as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE refid = e.refid AND hash != e.hash) '
             'ORDER BY refid, hash, filename, bibkey')
-            for refid, groups in itertools.groupby(cursor, operator.itemgetter(0)):
-                groups = list(groups)
-                for row in groups:
+            for refid, group in itertools.groupby(cursor, operator.itemgetter(0)):
+                group = list(group)
+                for row in group:
                     print(row)
-                if not verbose:
-                    print
-                    continue
-                for row in groups:
-                    fields = dict(conn.execute('SELECT field, value FROM value '
-                        "WHERE field IN ('author', 'editor', 'year', 'title') "
-                        'AND filename = ? AND bibkey = ? ', row[2:4]))
-                    print('\t%r, %r, %r, %r' % tuple(fields.get(f) for f in
-                        ('author', 'editor', 'year', 'title')))
+                if verbose:
+                    for ri, hs, fn, bk in group:
+                        print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                 print
 
+    def show_merges(self, verbose=True):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT hash, refid, filename, bibkey '
+            'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+            'WHERE hash = e.hash AND refid != e.refid) '
+            'ORDER BY hash, refid, filename, bibkey')
+            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
+                group = list(group)
+                for row in group:
+                    print(row)
+                if verbose:
+                    for hs, ri, fn, bk in group:
+                        print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                print
+            
 
 def create_tables(conn):
     conn.execute('CREATE TABLE file ('
@@ -205,6 +214,15 @@ def windowed_entries(conn, chunksize):
                 break
             (first,), (last,) = bibkeys[0], bibkeys[-1]
             yield filename, first, last
+
+
+def hashfields(conn, filename, bibkey):
+    # also: extra_hash, volume (if not journal, booktitle, or series)
+    cursor = conn.execute('SELECT field, value FROM value '
+        "WHERE field IN ('author', 'editor', 'year', 'title') "
+        'AND filename = ? AND bibkey = ? ', (filename, bibkey))
+    fields = dict(cursor)
+    return tuple(fields.get(f) for f in ('author', 'editor', 'year', 'title'))
 
 
 def generate_hashes(conn):
