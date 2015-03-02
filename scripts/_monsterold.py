@@ -121,6 +121,7 @@ def to_sqlite(filename=DBFILE):
     with sqlite3.connect(filename) as conn:
         conn.execute('PRAGMA synchronous = OFF')
         conn.execute('PRAGMA journal_mode = MEMORY')
+        conn.execute('PRAGMA page_size = 32768')
         conn.execute('CREATE TABLE monster ('
             'idx INTEGER NOT NULL PRIMARY KEY, '
             'name TEXT NOT NULL UNIQUE, '

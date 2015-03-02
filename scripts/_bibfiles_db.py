@@ -21,7 +21,7 @@ UNION_FIELDS = {'lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'}
 class Database(object):
 
     @classmethod
-    def from_bibfiles(cls, bibfiles=None, filename=None):
+    def from_bibfiles(cls, bibfiles=None, filename=None, page_size=32768):
         if bibfiles is None:
             from _bibfiles import Collection
             bibfiles = Collection()
@@ -33,7 +33,7 @@ class Database(object):
             os.remove(filename)
 
         self = cls(filename)
-        with self.connect(async=True) as conn:
+        with self.connect(async=True, page_size=page_size) as conn:
             create_tables(conn)
             with conn:
                 import_bibfiles(conn, bibfiles)
@@ -55,11 +55,13 @@ class Database(object):
             filename = DBFILE
         self.filename = filename
 
-    def connect(self, async=False, close=True):
+    def connect(self, async=False, close=True, page_size=None):
         conn = sqlite3.connect(self.filename)
         if async:
             conn.execute('PRAGMA synchronous = OFF')
             conn.execute('PRAGMA journal_mode = MEMORY')
+        if page_size is not None:
+            conn.execute('PRAGMA page_size = %d' % page_size)
         if close:
             conn = contextlib.closing(conn)
         return conn

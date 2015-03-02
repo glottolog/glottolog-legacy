@@ -218,22 +218,24 @@ class Ordering(dict):
 fieldorder = Ordering.fromlist(FIELDORDER)
 
 
-def check(filename):
-    parser = CheckParser()
+def check(filename, encoding=None):
+    parser = CheckParser(encoding=encoding)
     parser.parse_file(filename)
     return parser.error_count
     
 
 class CheckParser(Parser):
+
     def __init__(self, *args, **kwargs):
         super(CheckParser, self).__init__(*args, **kwargs)
         self.error_count = 0
+
     def process_entry(self, *args, **kwargs):
         try:
             super(CheckParser, self).process_entry(*args, **kwargs)
         except PybtexError as e:
             print(e)
-            self.error_count +=1
+            self.error_count += 1
 
 
 def _test_load():
