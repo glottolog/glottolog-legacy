@@ -55,6 +55,15 @@ class Database(object):
             filename = DBFILE
         self.filename = filename
 
+    def recompute(self):
+        with self.connect(async=True) as conn:
+            with conn:
+                generate_hashes(conn)
+            hashstats(conn)
+            hashidstats(conn)
+            with conn:
+                assign_ids(conn)
+
     def connect(self, async=False, close=True, page_size=None):
         conn = sqlite3.connect(self.filename)
         if async:

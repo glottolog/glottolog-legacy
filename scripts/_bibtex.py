@@ -8,7 +8,7 @@ import StringIO
 import contextlib
 import collections
 
-from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser
+from pybtex.database.input.bibtex import BibTeXEntryIterator, Parser, UndefinedMacro
 from pybtex.scanner import PybtexSyntaxError
 from pybtex.exceptions import PybtexError
 from pybtex.textutils import whitespace_re
@@ -229,6 +229,12 @@ class CheckParser(Parser):
     def __init__(self, *args, **kwargs):
         super(CheckParser, self).__init__(*args, **kwargs)
         self.error_count = 0
+
+    def handle_error(self, error):
+        print('%r' % error)
+        self.error_count += 1
+        if not isinstance(error, UndefinedMacro):
+            raise error
 
     def process_entry(self, *args, **kwargs):
         try:

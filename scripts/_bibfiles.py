@@ -56,7 +56,7 @@ class Collection(list):
     def roundtrip_all(self):
         for b in self:
             print(b)
-            b.save(b.load())
+            b.roundtrip()
 
     def to_sqlite(self, filename=None):
         return Database.from_bibfiles(self, filename)
@@ -103,6 +103,12 @@ class BibFile(object):
             encoding=self.encoding,
             use_pybtex=self.use_pybtex,
             verbose=verbose)
+
+    def check(self):
+        _bibtex.check(filename=self.filepath)
+
+    def roundtrip(self):
+        self.save(self.load())
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
