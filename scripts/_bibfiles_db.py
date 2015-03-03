@@ -151,7 +151,21 @@ class Database(object):
                     for hs, ri, fn, bk in group:
                         print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                 print
-            
+
+    def show_identified(self):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT hash, filename, bibkey '
+            'FROM entry AS e WHERE refid IS NULL AND EXISTS (SELECT 1 FROM entry '
+            'WHERE refid IS NULL AND hash = e.hash AND bibkey != e.bibkey) '
+            'ORDER BY hash, filename, bibkey')
+            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
+                group = list(group)
+                for row in group:
+                    print(row)
+                for hs, fn, bk in group:
+                    print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                print
+
 
 def create_tables(conn):
     conn.execute('CREATE TABLE file ('
