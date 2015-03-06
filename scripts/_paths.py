@@ -2,8 +2,9 @@
 
 import io
 import re
-import collections
+import operator
 import itertools
+import collections
 
 
 class PathsFile(object):
@@ -97,3 +98,7 @@ if __name__ == '__main__':
     lof = PathsFile('..//languoids/lof.txt').to_dict()
     print(len(lof))
     print(next(lof.iteritems()))
+
+    df = lff.to_dataframe()
+    df.insert(0, 'family', df['path'].map(operator.itemgetter(-1)))
+    assert not df['family'].duplicated().any()
