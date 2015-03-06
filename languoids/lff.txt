@@ -1114,9 +1114,10 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, Sanaga (A.60)
   Tuki [bag]
   Leti (Cameroon) [leo]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, Yambasa (A.60), Baca-Nuclear Yambasa, Nuclear Yambasa
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, Yambasa (A.60), Baca-Nuclear Yambasa, Nuclear Yambasa, Elip-Maala
   Elip [ekm]
   Mmaala [mmu]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, Yambasa (A.60), Baca-Nuclear Yambasa, Nuclear Yambasa
   Yangben [yav]
   Bati (Cameroon) [btc]
   Hijuk [hij]
@@ -2910,6 +2911,7 @@ Austroasiatic, Aslian, South Aslian, Semelai-Semaq
   Temoq [tmo]
 Austroasiatic, Bahnaric, West Bahnaric
   Lawi [NOCODE_Lawi]
+Austroasiatic, Bahnaric, West Bahnaric, Unclassified West Bahnaric
   Trieng [stg]
 Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric
   Nyaheun [nev]
@@ -2968,9 +2970,8 @@ Austroasiatic, Bahnaric, South Bahnaric, Mnong-Stieng-Chrau, Mnong, Southern-Cen
   Southern Mnong [mnn]
 Austroasiatic, Bahnaric, South Bahnaric, Mnong-Stieng-Chrau
   Chrau [crw]
-Austroasiatic, Katuic, Ta'oihic, Ngeqic
-  Ngeq [ngt]
-  Khlor [llo]
+Austroasiatic, Katuic, Ta'oihic
+  Ngeq-Khlor [ngt]
 Austroasiatic, Katuic, Ta'oihic, Nuclear Ta'oihic, Ong-Ta'oih
   Ong-Ir [oog]
   Upper Ta'oih [tth]
@@ -2981,12 +2982,10 @@ Austroasiatic, Katuic
   Pacoh [pac]
 Austroasiatic, Katuic, Katu
   Phuong [phg]
-  Tareng [tgr]
 Austroasiatic, Katuic, Katu, Nuclear Katu
   Western Katu [kuf]
   Eastern Katu [ktv]
 Austroasiatic, Katuic, West Katuic, Brou-So
-  Khua [xhv]
   S\^o [sss]
 Austroasiatic, Katuic, West Katuic, Brou-So, Bru
   Western Bru [brv]
@@ -3013,10 +3012,10 @@ Austroasiatic, Monic
   Mon [mnw]
 Austroasiatic, Nicobaric
   Car Nicobarese [caq]
-Austroasiatic, Nicobaric, Chowra-Teressa
+Austroasiatic, Nicobaric, Nuclear Nicobaric, Chowra-Teressa
   Chaura [crv]
   Teressa [tef]
-Austroasiatic, Nicobaric
+Austroasiatic, Nicobaric, Nuclear Nicobaric, Central Nicobar
   Southern Nicobarese [nik]
   Central Nicobarese [ncb]
 Austroasiatic, Khasi-Palaung, Khasian, Khasi-Pnar-Lyngngam, Khasi-Pnar
@@ -3045,14 +3044,16 @@ Austroasiatic, Khmuic, Phay-Pram, Pramic
   Theen [NOCODE_Theen]
 Austroasiatic, Khasi-Palaung, Palaungic, Mangic
   Mang [zng]
+  Kemiehua [kfj]
+Austroasiatic, Khasi-Palaung, Palaungic, Mangic, Bolyu-Bugan
   Bolyu [ply]
   Bugan [bbh]
-  Kemiehua [kfj]
 Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
   Bit [bgk]
   Kh\'ang [kjm]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic
+Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Bulangic
   Blang [blr]
+  Samtao [stu]
 Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Wa-Lawa, Lawa
   Western Lawa [lcp]
   Eastern Lawa [lwl]
@@ -3060,14 +3061,14 @@ Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Wa-Lawa, Nuclear 
   Zhenkang Wa [wbm]
   Ximeng-Menglian Awa [vwa]
   South Wa [prk]
+Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic, Kiorr-Kon
+  Kiorr [xko]
+  Kon Keu [kkn]
 Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic
   Tai Loi [tlq]
-  Kiorr [xko]
   Man Met [mml]
   U [uuu]
   Hu [huo]
-  Samtao [stu]
-  Kon Keu [kkn]
   Mok [mqt]
 Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic
   Lamet [lbn]
@@ -3081,15 +3082,15 @@ Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Palaung-Riang, Palaung,
 Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Palaung-Riang, Riang
   Riang (Myanmar) [ril]
   Yinchia [yin]
-Austroasiatic, Vietic, Chutic
+Austroasiatic, Vietic, Chutic, East Chutic
   Arem [aem]
   Maleng [pkt]
   Chut [scb]
+Austroasiatic, Vietic, Chutic
+  Thavung [thm]
 Austroasiatic, Vietic, Cuoi
   Hung [hnu]
   Tho [tou]
-Austroasiatic, Vietic
-  Aheu [thm]
 Austroasiatic, Vietic, Viet-Muong, Muongic
   Ngu\^on [nuo]
   Muong [mtq]
@@ -3119,7 +3120,6 @@ Austroasiatic, Mundaic, North Munda
 Austroasiatic, Mundaic, South Munda
   Kharia [khr]
   Juang [jun]
-Austroasiatic, Mundaic, South Munda
   Gata' [gaq]
 Austroasiatic, Mundaic, South Munda, Gutob-Remo
   Bodo Gadaba [gbj]
@@ -3765,11 +3765,12 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Mpotovoro [mvt]
   Vao [vao]
   Nese [NOCODE_Nese]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Eastern Malakula linkage
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Eastern Malakula linkage, Unua-Pangkumu
   Unua [onu]
+  Rerep [pgk]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Eastern Malakula linkage
   Avava [tmb]
   Aulua [aul]
-  Rerep [pgk]
   Maskelynes [klv]  
   Port Sandwich [psw]
   Uripiv-Wala-Rano-Atchin [upv]
@@ -6399,6 +6400,7 @@ Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northern zone, Central Pahar
   Kumaoni [kfy]
   Garhwali [gbm]
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northern zone, Eastern Pahari
+  Dotyali [dty]
   Nepali [npi]
   Jumli [jml]
   Palpa [plp]
@@ -6634,10 +6636,11 @@ Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-
   Lombard [lmo]
   Ligurian [lij]
   Venetian [vec]
-  Emiliano [egl]
-  Romagnol [rgn]
   Judeo-Italian [itk]
   Sassarese Sardinian [sdc]
+Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Italian, Emiliano-Romagnolo
+  Emiliano [egl]
+  Romagnol [rgn]
 Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian
   Romansh [roh]
   Friulian [fur]
@@ -7352,7 +7355,6 @@ Mangarrayi-Maran
   Mangarayi [mpc]
 Mangarrayi-Maran, Maran
   Alawa [alh]
-Mangarrayi-Maran, Maran, Mara-Warndarang
   Mara [mec]
   Wandarang [wnd]
 Maningrida, Burera-Nakara, Bureran
@@ -7644,9 +7646,9 @@ Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic, Tsezic, East Tsezic
   Bezhta [kap]
   Hunzib [huz]
 Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic, Tsezic, West Tsezic
-  Hinukh [gin]
-  Dido [ddo]
-  Khvarshi [khv]
+  Hinuq [gin]
+  Tsez [ddo]
+  Khwarshi-Inkhoqwari [khv]
 Nakh-Daghestanian, Daghestanian
   Dargwa [dar]
   Lak [lbe]
@@ -9397,6 +9399,7 @@ Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Hani-Jino, Bisoid-Hanic, Han
   Biyo [byo]
   Enu [enu]
   Mpi [mpz]
+  Cosao [NOCODE_Cosao]
 Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Hani-Jino, Bisoid-Hanic, Bisoid
   Sangkong [sgk]
 Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Hani-Jino, Bisoid-Hanic, Bisoid, Bisu-Pyen-Laomian

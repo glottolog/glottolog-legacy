@@ -76,6 +76,7 @@ Sign Language, Deaf Sign Language, ASLic, Nigerian Sign
   Nigerian Sign Language [nsi]
   Chadian Sign Language [cds]
 Sign Language, Deaf Sign Language, ASLic
+  Peruvian Sign Language [prl]
   Quebec Sign Language [fcs]
   Panamanian Sign Language [lsp]
   Gambian Sign Language [NOCODE_Gambian-Sign]
@@ -178,7 +179,6 @@ Sign Language, Deaf Sign Language
   Ecuadorian Sign Language [ecs]
   Pakistan Sign Language [pks]
   Nepalese Sign Language [nsp]
-  Peruvian Sign Language [prl]
   Penang Sign Language [psg]
   Rennellese Sign Language [rsi]
   Saudi Arabian Sign Language [sdl]
@@ -387,6 +387,12 @@ Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Fra
   Tsotsitaal [fly]
 Speech Register, Indo-European, Indo-Iranian, Iranian, Western Iranian, Southwestern Iranian, Farsic-Caucasian Tat, Farsic, Eastern Farsic
   Adurgari [NOCODE_Adurgari]
+Spurious, Austroasiatic, Katuic, West Katuic, Brou-So
+  Khua [xhv]
+Spurious, Austroasiatic, Katuic, Ta'oihic
+  Khlor [llo]
+Spurious, Austroasiatic, Katuic, Katu
+  Tareng [tgr]
 Spurious, Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric
   The [thx]
 Spurious, Yeniseian, Northern Yeniseian

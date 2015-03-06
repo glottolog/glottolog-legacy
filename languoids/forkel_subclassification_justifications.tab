@@ -2,6 +2,7 @@ blv	blv	**66179**
 nwr	nwr	**95319**
 Bainounk	Bainounk	**319114**:31-34
 Manding	Manding	**150936**
+Chutic	Chutic	**400007**:205
 Western Shinaic	Western Shinaic	**317094**
 mws	mws	**153468**
 mwp	mwp	**11337** **309591**:833-834
@@ -383,7 +384,9 @@ nix	nix	**122032**
 NOCODE_Mongoba-Kazibati	NOCODE_Mongoba-Kazibati	**48736**:178-184 **148614**:74 **103254**:123, 259
 Lumbuic	Lumbuic	**50530**
 kid	kid	**313566**
+Kiorr-Kon	Kiorr-Kon	**400007**:207
 Akum-Beezen	Akum-Beezen	**80024**
+Emiliano-Romagnolo	Emiliano-Romagnolo	**400008**
 Purus	Purus	**309480**
 thn	thn	**109225**
 Mundaic	Mundaic	**143632**
@@ -533,7 +536,6 @@ Tai-Kadai	Tai-Kadai	**49068**
 Guinea Coast Creole English	Guinea Coast Creole English	**175832**
 llq	llq	**318695**
 llh	llh	**56991**:104
-llo	llo	**92676**
 Chinantecan	Chinantecan	**41077**
 nlu	nlu	**23505**
 ror	ror	**156061**:90
@@ -727,7 +729,7 @@ uky	uky	**311403**
 Bantu H12-16c	Bantu H12-16c	**303567**
 Buwal-Gavar	Buwal-Gavar	**10333**
 NOCODE_Nabit	NOCODE_Nabit	**326171**
-yiq	yiq	**19425**:363, 398-399
+yiq	yiq	**400009** **19425**:363, 398-399
 yip	yip	**66356**
 Eastern Taupota	Eastern Taupota	**147394**
 Olo-Elkei	Olo-Elkei	**65275**:768
@@ -811,7 +813,7 @@ rmi	rmi	**161186**:14-48
 East Polynesian	East Polynesian	**45653**
 vkp	vkp	**104897** **49390**
 ytw	ytw	**314039**
-Khoe-Kwadi	Khoe-Kwadi	**78060**
+Iroquoian	Iroquoian	**11407**
 vki	vki	**319684**
 ytl	ytl	**56991**
 vkk	vkk	**41922**
@@ -873,6 +875,7 @@ Idomoid	Idomoid	**24448** **71664**
 pap	pap	**60127**
 paq	paq	**130125**
 pat	pat	**11049**
+Maran	Maran	**400010**
 nns	nns	**101232**
 Chokwe-Ngangela-Nyemba (K.20)	Chokwe-Ngangela-Nyemba (K.20)	**83598**
 Asmat	Asmat	**85998**
@@ -1066,6 +1069,7 @@ vig	vig	**310918**
 NOCODE_Tsixa	NOCODE_Tsixa	**309851**:148-149
 Tor	Tor	**39370**
 vis	vis	**313609**
+NOCODE_Cosao	NOCODE_Cosao	**400011**
 jrt	jrt	**83480**
 vit	vit	p.c. Roger Blench 2011
 NOCODE_Morike	NOCODE_Morike	**31931**
@@ -1206,6 +1210,8 @@ aaf	aaf	**109225**
 aab	aab	**40008**
 dtb	dtb	**34731**
 South Bauchi West	South Bauchi West	**76828** **310893**
+stu	stu	**400007**:207
+dty	dty	**400012**
 Kalikoic	Kalikoic	**92759**:35-39
 dtr	dtr	**65027**
 Tula-Waja	Tula-Waja	**108014**
@@ -1222,6 +1228,7 @@ qpp	qpp	**302848**
 bhu	bhu	**142255**:372-376
 bht	bht	**50321**
 Kisi-Pangwa	Kisi-Pangwa	**85227**:92
+Bolyu-Bugan	Bolyu-Bugan	**400007**:194
 Nyaturu-Nilamba	Nyaturu-Nilamba	**127675**
 liw	liw	**159571**
 Sogeram	Sogeram	**87992**
@@ -1260,6 +1267,7 @@ Yapen	Yapen	**324725**:138
 Paitanic	Paitanic	**51700**
 Mehek-Pahi	Mehek-Pahi	**131770**:128, 130 **138610**:48
 Ibanic	Ibanic	**106915**
+stg	stg	**114708**:83
 hif	hif	**91171**
 hii	hii	**50321**
 hij	hij	**24614**
@@ -1293,7 +1301,6 @@ Borneo Malay	Borneo Malay	**63102**
 pdi	pdi	**74416**
 pdc	pdc	**317882**
 Central Kenya Bantu	Central Kenya Bantu	**145880**
-tgr	tgr	**92676**
 bhi	bhi	**301542**
 tgt	tgt	**130643**
 tgz	tgz	**303688**
@@ -1385,6 +1392,7 @@ Tipperic	Tipperic	**72425**
 Tetela-Hamba	Tetela-Hamba	**307831**
 Stieng	Stieng	**126740**:7-9
 Raja Ampat Maya	Raja Ampat Maya	**324725**:96 **82038**
+Elip-Maala	Elip-Maala	**400013**
 cua	cua	**20943**
 NOCODE_Jumana	NOCODE_Jumana	**61736**
 Sira (B.40)	Sira (B.40)	**29588**:200
@@ -1436,6 +1444,7 @@ ylm	ylm	**56991**:104
 Gorontalic	Gorontalic	**85211**
 Inoric	Inoric	**119469**:98-103
 nsf	nsf	**40281**
+Nuclear Nicobaric	Nuclear Nicobaric	**400007**:199
 nsx	nsx	**124996**
 nsy	nsy	**300794**
 enc	enc	**307963**
@@ -1463,7 +1472,7 @@ Sayhadic	Sayhadic	**300142**
 sdc	sdc	**131937**:314
 aqn	aqn	**321219**:338-340
 Dumpas-Sukang	Dumpas-Sukang	**318351**:396-398
-Iroquoian	Iroquoian	**11407**
+Khoe-Kwadi	Khoe-Kwadi	**78060**
 Greater Luyia	Greater Luyia	**27749**
 Cariban	Cariban	**61901**, **55024**, **150026**
 sxb	sxb	**90440**
@@ -1871,6 +1880,7 @@ Nek-Nuk	Nek-Nuk	**301975**:7
 Yaoic	Yaoic	**85227**:94
 Pomo-Bomwali	Pomo-Bomwali	**56411**
 Thura-Yura	Thura-Yura	**31269** **309591**
+Unua-Pangkumu	Unua-Pangkumu	**400013**
 Ny\^alayu	Ny\^alayu	**317092**:22-25
 mfa	mfa	**76862**
 Tamangic	Tamangic	**36484** **67032**
