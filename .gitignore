@@ -1,12 +1,8 @@
 *.py[cod]
-references/bibtex/*old.bib
 references/bibtex/*-utf8.bib
-scripts/monster.bib
-scripts/monsterutf8.bib
-scripts/monsterold*.bib
-scripts/monster_zip.bib
-scripts/monstermarkhht.txt
-scripts/monstermarklgc.txt
+scripts/monster-utf8.bib
+scripts/monstermark-hht.txt
+scripts/monstermark-lgc.txt
 scripts/*.sqlite3
 
 # C extensions

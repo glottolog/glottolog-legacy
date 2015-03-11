@@ -52,7 +52,7 @@ the process
 4.3   The assigned glottolog_ref_id are burned back into the original bib:s one
       by one (via srctrickle), so that they never change
 
-5.    A final monster.bib/monsterutf8.bib is written
+5.    A final monster-utf8.bib is written
 """
 
 import time
@@ -62,13 +62,12 @@ import bib
 
 BIBFILES = _bibfiles.Collection('../references/bibtex')
 PREVIOUS = '../references/monster.csv'
+MONSTER = _bibfiles.BibFile('monster-utf8.bib', encoding='utf-8', sortkey='bibkey')
 HHTYPE = '../references/alt4hhtype.ini'
 LGCODE = '../references/alt4lgcode.ini'
 LGINFO = '../languoids/lginfo.csv'
-MONSTER = _bibfiles.BibFile('monster.bib', encoding='ascii', sortkey='bibkey')
-UMONSTER = _bibfiles.BibFile('monsterutf8.bib', encoding='utf-8', sortkey='bibkey')
-MARKHHTYPE = 'monstermarkhht.txt'
-MARKLGCODE = 'monstermarklgc.txt'
+MARKHHTYPE = 'monstermark-hht.txt'
+MARKLGCODE = 'monstermark-lgc.txt'
 
 PRIOS = {
     'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
@@ -292,7 +291,7 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
     return dict((k, inject_macro_area(tf)) for k, tf in m.iteritems())
 
 
-def main(bibfiles, monster, previous, umonster):
+def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     print '%s compile_monster' % time.ctime()
     m, bibs = compile_monster(bibfiles)
 
@@ -348,13 +347,10 @@ def main(bibfiles, monster, previous, umonster):
 
     # Save
     print '%s save as utf8' % time.ctime()
-    umonster.save(m, verbose=False)
-
-    #print '%s save as escaped ascii' % time.ctime()
-    #monster.save(m)
+    monster.save(m, verbose=False)
 
     print '%s done.' % time.ctime()
 
 
 if __name__ == '__main__':
-    main(BIBFILES, MONSTER, PREVIOUS, UMONSTER)
+    main()
