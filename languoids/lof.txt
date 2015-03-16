@@ -720,6 +720,8 @@ Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Centra
   South Wemale [tlw]
 Spurious, Retired, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Central Maluku, East Central Maluku, Nunusaku, Three Rivers, Amalumute
   Horuru [hrr]
+Spurious, North_Halmahera, Northern North Halmahera, Mainland North Halmaheran, Galela-Loloda
+  Laba [lau]
 Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Burmish, Northern Burmish, High Northern Burmish
   Xiandao [xia]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Rufiji-Ruvuma, Ruvuma

@@ -2,6 +2,7 @@ blv	blv	**66179**
 nwr	nwr	**95319**
 Bainounk	Bainounk	**319114**:31-34
 Manding	Manding	**150936**
+Mainland North Halmaheran	Mainland North Halmaheran	**35205**:51-54
 Chutic	Chutic	**400007**:205
 Western Shinaic	Western Shinaic	**317094**
 mws	mws	**153468**
@@ -16,7 +17,6 @@ mwa	mwa	**48805** **57570**
 aur	aur	**108516**:14
 aut	aut	**127986**
 aux	aux	**8645**
-mwi	mwi	**302440**
 Central Ngayarda	Central Ngayarda	**309591**
 NOCODE_Tarjumo	NOCODE_Tarjumo	**64498**
 Northern Pama	Northern Pama	**153151**
@@ -333,7 +333,7 @@ coa	coa	**49650**
 Khasian	Khasian	**314527**
 coj	coj	**75074**
 unn	unn	**140578**:xxxv, 44 **8233**
-North_Halmahera	North Halmahera	**123847** **134576**
+North_Halmahera	North Halmahera	**35205** **134576**
 NOCODE_Yagara	NOCODE_Yagara	**319375**:61-66
 kwh	kwh	**160573**
 NOCODE_Aruan	NOCODE_Aruan	**61736**
@@ -721,6 +721,7 @@ NOCODE_Orkon	NOCODE_Orkon	**35387**:96 inspection of the unpublished wordlists p
 Yoruboid	Yoruboid	**45586** **307893**
 Western Periphery-North Guerrero Nahuatl	Western Periphery-North Guerrero Nahuatl	**301134**:480-483 **303152** **159100**
 mkk	mkk	**158080**
+Kao River	Kao River	**35205**:52-53
 NOCODE_Mokpa	NOCODE_Mokpa	**307499**
 Marindic	Marindic	**128373** **300404**
 Sama-Bajaw	Sama-Bajaw	**58864**
@@ -790,6 +791,7 @@ Northern Ngayarda	Northern Ngayarda	**309591**
 nlo	nlo	**13217**
 zgm	zgm	**304878**
 xma	xma	**319130**:1
+Paguic	Paguic	**25627**:6
 NOCODE_Penange	NOCODE_Penange	**308879**
 geq	geq	**26680**
 kxk	kxk	**56991**:107
@@ -885,6 +887,7 @@ pal	pal	**137458**
 Maxakalian	Maxakalian	**102866**:68-71
 Huastecan Mayan	Huastecan Mayan	**109784**
 Flores Barat	Flores Barat	**308136**
+NOCODE_Chairel	NOCODE_Chairel	**10918**:6-7
 Dagaaric	Dagaaric	**60168**
 New South Wales Pama-Nyungan	New South Wales Pama-Nyungan	**309591**
 Temne-Baga	Temne-Baga	**142996**
@@ -895,7 +898,7 @@ ccd	ccd	**135578**
 South Bauchi East	South Bauchi East	**76828**
 Iwaidjan_Proper	Iwaidjan Proper	**127797**
 Eastern Great Lakes Algonquian	Eastern Great Lakes Algonquian	**302763**
-mlc	mlc	**15492**
+nao	nao	**320536**:108-109
 gda	gda	**55065**:10
 Ju-Kung	Ju-Kung	**131786**
 Khiamniungic	Khiamniungic	**133158**
@@ -1229,6 +1232,7 @@ bhu	bhu	**142255**:372-376
 bht	bht	**50321**
 Kisi-Pangwa	Kisi-Pangwa	**85227**:92
 Bolyu-Bugan	Bolyu-Bugan	**400007**:194
+mlc	mlc	**15492**
 Nyaturu-Nilamba	Nyaturu-Nilamba	**127675**
 liw	liw	**159571**
 Sogeram	Sogeram	**87992**
@@ -1243,7 +1247,7 @@ rhg	rhg	**308106**
 Hindko	Hindko	**115064**
 tpg	tpg	**161717**
 tpj	tpj	**48526**
-ext	ext	**85737**
+Sahuan	Sahuan	**35205**:50-52
 bzo	bzo	**148614**:73-74 **314233**:12
 Wubuy-Anindilyakwa	Wubuy-Anindilyakwa	**319123**:314-370
 cde	cde	**62252**:284-285
@@ -1484,7 +1488,7 @@ Kulin	Kulin	**44362**
 nad	nad	**1270**
 naj	naj	**306061**
 grz	grz	**74746**:493
-nao	nao	**320536**:108-109
+ext	ext	**85737**
 Membi-Mangbutu-Efe	Membi-Mangbutu-Efe	**149672**:226-234
 NOCODE_Njanga	NOCODE_Njanga	**45692**:213
 Almora	Almora	**128691** **19454** **93791**
@@ -1533,7 +1537,7 @@ Anus-Podena	Anus-Podena	**317129**
 Awyu	Awyu	**77009**:26
 West Ibero-Romance	West Ibero-Romance	**301288**:99-106
 Caddoan	Caddoan	**325893**
-Peripheral Western Malakula	Peripheral Western Malakula	**302440**
+Peripheral Western Malakula	Peripheral Western Malakula	**400014**
 rie	rie	**92676**
 South Dravidian	South Dravidian	**82475**
 Kadaic	Kadaic	**50586**

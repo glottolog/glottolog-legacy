@@ -1739,7 +1739,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi
   Sighu [sxe]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi, Njebi (B.50)
-  Vili of Ngouie [NOCODE_Vili]
+  Vili of Ngounie [NOCODE_Vili]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Sigu-Njebi, Njebi (B.50), Ndjavi A
   Tsaangi [tsa]
   Njebi [nzb]
@@ -2736,7 +2736,7 @@ Atlantic-Congo, Volta-Congo, North Volta-Congo, Gur, Central Gur, Northern Centr
   Malba Birifor [bfo]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Gur, Central Gur, Northern Central Gur, Bwamu-Oti-Volta, Oti-Volta, Nuclear Oti-Volta, Gurma-Yom-Oti-Volta Occidental, Oti-Volta Occidental, Nuclear Oti-Volta Occidental, Northwest Oti-Volta, Mossi-Farefare, Frafra
   Farefare [gur]
-  Nabit [NOCODE_Nabit] 
+  Nabit [NOCODE_Nabit]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Gur, Central Gur, Northern Central Gur, Bwamu-Oti-Volta, Oti-Volta, Nuclear Oti-Volta, Gurma-Yom-Oti-Volta Occidental, Oti-Volta Occidental, Nuclear Oti-Volta Occidental, Northwest Oti-Volta, Mossi-Farefare, Mossic
   Mossi [mos]
   Kantosi [xkt]
@@ -3717,7 +3717,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Farafi [bnr]
   Polonombauk [plb]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Northern Vanuatu, Maewo
-  Marino [mrb]
+  Sunwadia [mrb]
   Central Maewo [mwo]
   Baetora [btr]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Northern Vanuatu, Ambae
@@ -3791,12 +3791,12 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Big Nambas [nmb]
   Larevat [lrv]
   Mae [mme]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Peripheral Western Malakula, Southwest Coastal Malekula
-  Labo [mwi]
-  Na'ahai [mlx]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Peripheral Western Malakula, Southwest Coastal Malekula, Navahaq-Nati
-  Nahavaq [sns]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Peripheral Western Malakula
   Nati [NOCODE_Nati]
+  Ninde [mwi]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Peripheral Western Malakula, Southwest Coastal Malekula
+  Na'ahai [mlx]
+  Nahavaq [sns]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Malakula, Neve'ei-Naman
   Neve'ei [vnm]
   Litzlitz [lzl]
@@ -4173,7 +4173,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Buhutu [bxh]
   Bwanabwana [tte]
   Oya'oya [oyy]
-  Wagawaga [wgw]
+  Wagawaga [wgb]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Western Oceanic linkage, Papuan Tip linkage, Nuclear Papuan Tip linkage, Suauic, Suau chain
   Saliba [sbe]
   Suau [swp]
@@ -7809,27 +7809,28 @@ North_Bougainville
 North_Bougainville, Rotokas-Askopan
   Askopan [eiv]
   Rotokas [roo]
-North_Halmahera, Northern North Halmahera
-  Galela [gbi]
-  Pagu [pgu]
-North_Halmahera, Northern North Halmahera, Kao-Modole
-  Kao [kax]
-  Modole [mqo]
-North_Halmahera, Northern North Halmahera, Laba-Loloda
-  Laba [lau]
-  Loloda [loa]
-North_Halmahera, Northern North Halmahera, Sahuan
-  Sahu [saj]
-  Gamkonora [gak]
-  Ibu [ibu]
-  Waioli [wli]
-North_Halmahera, Northern North Halmahera
+North_Halmahera, Northern North Halmahera, Mainland North Halmaheran
   Tabaru [tby]
-North_Halmahera, Northern North Halmahera, Tobelo-Tugutil
+North_Halmahera, Northern North Halmahera, Mainland North Halmaheran, Galela-Loloda
+  Galela [gbi]
+  Loloda-Laba [loa]
+North_Halmahera, Northern North Halmahera, Mainland North Halmaheran, Kao River, Paguic
+  Pagu [pgu]
+  Kao [kax]
+North_Halmahera, Northern North Halmahera, Mainland North Halmaheran, Kao River
+  Modole [mqo]
+North_Halmahera, Northern North Halmahera, Mainland North Halmaheran, Tobelo-Tugutil
   Tobelo [tlb]
   Tugutil [tuj]
 North_Halmahera
   West Makian [mqs]
+North_Halmahera, Northern North Halmahera, Sahuan, Nuclear Sahuan, Sahu-Waioli
+  Sahu [saj]
+  Waioli [wli]
+North_Halmahera, Northern North Halmahera, Sahuan, Nuclear Sahuan
+  Gamkonora [gak]
+North_Halmahera, Northern North Halmahera, Sahuan
+  Ibu [ibu]
 North_Halmahera, Northern North Halmahera, Ternatean
   Ternate [tft]
   Tidore [tvo]
@@ -8233,7 +8234,7 @@ Pama-Nyungan, Arandic-Thura-Yura, Thura-Yura, Core Thura Yura, Southern Thura-Yu
   Kaurna [zku]
   Narungga [nnr]
 Pama-Nyungan, Arandic-Thura-Yura, Thura-Yura, Core Thura Yura, Unclassified Core Thura-Yura
-  Nauo [NOCODE_Nauo]
+  Nauo [nwo]
   Ngadjuri [NOCODE_Ngadjuri]
   Nugunu (Australia) [nnv]
 Pama-Nyungan, Southeastern Pama-Nyungan, Victorian Pama-Nyungan, Lower Murray, Yaraldi-Keramin-Yitha
@@ -8512,8 +8513,8 @@ Panoan, Mainline Pano
   Cashibo-Cacataibo [cbr]
 Panoan, Mainline Pano, Pano Nawa
   Tuxin\'awa [tux]
-  Cashinawa-Tarauaca-River [NOCODE_Cashinawa-Tarauaca-River]
-  Remo-Blanco-River [NOCODE_Remo-Blanco-River]
+  Cashinawa of the Tarauac\'a river [NOCODE_Cashinawa-Tarauaca-River]
+  Remo of the Blanco river [NOCODE_Remo-Blanco-River]
 Panoan, Mainline Pano, Pano Nawa, Bolivian Nawa
   Pacahuara [pcp]
   Ch\'acobo [cao]
@@ -8529,7 +8530,7 @@ Panoan, Mainline Pano, Pano Nawa, Chama subgroup, Shipibo-Konibo-Kapanawa
 Panoan, Mainline Pano, Pano Nawa, Headwaters Pano
   Cashinahua [cbs]
   Amahuaca [amc]
-  Remo [rem]
+  Remo of the Moa river [rem]
 Panoan, Mainline Pano, Pano Nawa, Headwaters Pano, Yaminawa Complex
   Shanenawa [swo]
   Yawanawa [ywn]
@@ -8546,7 +8547,7 @@ Panoan, Mainline Pano, Pano Nawa, Poyanawa Subgroup
   Isconahua [isc]
   Nawa [NOCODE_Nawa]
   Poyan\'awa [pyn]
-  Remo-Jaquirana [NOCODE_Remo-Jaquirana]
+  Remo of the Jaquirana river [NOCODE_Remo-Jaquirana]
   Nukuini [nuc]
 Panoan, Mayoruna Branch
   Mayoruna-Tabatinga [NOCODE_Mayoruna-Tabatinga]
@@ -9063,6 +9064,8 @@ Sino-Tibetan, Dhimalish
 Sino-Tibetan, Miji
   Sajalong [sjl]
   Bangru [NOCODE_Bangru]
+Sino-Tibetan, Brahmaputran, Unclassified Brahmaputran
+  Chairel [NOCODE_Chairel]
 Sino-Tibetan, Brahmaputran, Jingpho-Luish, Jingpho
   Jinghpaw [kac]
   Singpho [sgp]
@@ -10572,7 +10575,7 @@ Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Ana
   Anamb\'e [aan]
 Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe, Guaja-Aure-Aura
   Guaj\'a [gvj]
-  Aur\'a [aux]
+  Aur\^e y Aur\'a [aux]
 Tupian, Yuruna
   Jur\'una [jur]
   Xipaya [xiy]
@@ -10723,8 +10726,9 @@ Uralic, Samoyedic, Core Samoyedic, Kamas-Selkup, Kamassic
   Samoyed Koibal [zkb]
 Uralic, Samoyedic, Core Samoyedic, Kamas-Selkup
   Selkup [sel]
-Uralic, Samoyedic, Core Samoyedic, Enets-Nenets
-  Nenets [yrk]
+Uralic, Samoyedic, Core Samoyedic, Enets-Nenets, Nenets
+  Tundra Nenets [yrk]
+  Forest Nenets [NOCODE_Forest-Nenets]
 Uralic, Samoyedic, Core Samoyedic, Enets-Nenets, Enets
   Tundra Enets [enh]
   Forest Enets [enf]
