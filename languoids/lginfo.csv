@@ -1,4 +1,3 @@
-hid,longitude,latitude,macro_area,year
 NOCODE_Jan-Awei,11.384125,9.661135,Africa,2013
 xtw,-59.99245,-13.23958,South America,
 xtv,,,,2013
@@ -101,6 +100,7 @@ hoz,34.60448,9.38875,Africa,
 hoy,79.91637,21.52593,Eurasia,
 NOCODE_Maku,-66.4333333333,1.35,South America,2013
 NOCODE_New-South-Wales-Pidgin,,,Australia,
+NOCODE_Uwinymil,,,Australia,2013
 yud,34.74222,31.95667,Eurasia,
 NOCODE_Arazaire,-70.8,-13.25,South America,2013
 NOCODE_Palewyami-Yokuts,,,North America,2013
@@ -225,7 +225,7 @@ kfk,78.31478,31.36883,Eurasia,
 kfh,75.52034,11.82263,Eurasia,
 kfi,76.52555,11.38236,Eurasia,
 xia,97.90515,24.5458,Eurasia,
-NOCODE_Lule,-61.887818,-25.221839,South America,2013
+xib,0.212401,40.62396,Eurasia,2013
 xii,20.72598,-28.42578,Africa,
 NOCODE_Old-Cayman-Sign,,,North America,
 xil,,,Eurasia,
@@ -980,7 +980,7 @@ heb,35.01788,31.10565,Eurasia,
 hem,27.59128,-7.77459,Africa,
 heh,35.72547,-7.71572,Africa,
 hei,-127.22139,51.70454,North America,
-NOCODE_Sengmai,93.881401,24.945633,Eurasia,
+NOCODE_Sengmai,93.881401,24.945633,Eurasia,2013
 NOCODE_Molet,,,Papua,
 uig,79.75,43.67,Eurasia,
 uis,155.70566,-6.55533,Papua,
@@ -1184,7 +1184,7 @@ NOCODE_Mayoruna-Jandiatuba,-70.038757,-4.979863,South America,2013
 gft,39.56049,11.57637,Africa,
 trd,84.47124,22.01224,Eurasia,
 gfk,152.49294,-3.74711,Papua,
-xib,0.212401,40.62396,Eurasia,2013
+NOCODE_Lule,-61.887818,-25.221839,South America,2013
 NOCODE_Tunumiisiut,,,Eurasia,
 NOCODE_Qujiang-Hakka-Shibei-Shaoguan-Tuhua,,,Eurasia,
 NOCODE_Syriem,92.902908,24.943729,Eurasia,
@@ -1264,7 +1264,7 @@ tpe,92.07473,23.58637,Eurasia,
 tpc,-98.52413,16.75845,North America,
 tpa,150.37277,-10.2275,Papua,
 tpo,104.65808,18.55623,Eurasia,
-tpn,-63.24999,-8.16666,South America,
+tpn,-42.106389,-22.807778,South America,
 tpm,-1.35467,9.75577,Africa,
 tpl,-98.80129,17.32616,North America,
 tpk,-40.41666,-18.99999,South America,2013
@@ -1429,9 +1429,8 @@ psn,119.64982,-2.24049,Papua,
 pso,20.76105,52.00414,Eurasia,
 psl,-66.09192,18.45917,North America,
 NOCODE_Korapun-Bromley,,,Papua,
-psm,-63.19031,-12.85527,South America,2013
+psm,-63.19031,-12.85527,South America,
 NOCODE_Goo,,,Africa,
-NOCODE_Nauo,135.828014,-33.79661078,Australia,2013
 NOCODE_Cuitlatec,-100.5,18.1,North America,2013
 lxu,99.112244,25.344026,Eurasia,
 psa,139.12334,-5.98341,Papua,
@@ -1480,6 +1479,7 @@ ije,6.51646,5.40296,Africa,
 ijj,2.64262,7.09729,Africa,
 ijn,6.69539,4.53194,Africa,
 sgd,,,Papua,
+NOCODE_Lebu,,,Africa,
 NOCODE_Kwoma-Manambu-Pidgin,,,Papua,
 NOCODE_Mango,105.431392,23.742269,Eurasia,
 NOCODE_Geico,-43.0,-6.56,South America,2013
@@ -1866,7 +1866,7 @@ jaq,139.24945,-6.66632,Papua,
 jan,,,,2013
 jao,136.05506,-15.76212,Australia,
 jal,129.31549,-3.3619,Papua,
-jam,-69.33,19.25,North America,
+jam,-77.2612,18.13,North America,
 jaj,159.25532,-8.18719,Papua,
 jak,103.34214,2.64582,Eurasia,2013
 jah,102.2913,3.67619,Eurasia,2013
@@ -2117,7 +2117,7 @@ inb,-76.86062,1.00313,South America,
 wxw,,,,2013
 hps,-158.00179,21.63107,North America,
 mch,-64.387725,4.707045,South America,
-NOCODE_Ndyuka-Wayana-Pidgin,,,Papua,
+NOCODE_Ndyuka-Wayana-Pidgin,,,South America,
 hpo,97.11423,24.46064,Eurasia,
 wxa,110.3618,28.64404,Eurasia,
 NOCODE_Enga-Sign,,,Papua,
@@ -2142,7 +2142,7 @@ cwd,-99.0,57.0,North America,
 cmt,27.942,-26.247,Africa,
 cms,,,Eurasia,2013
 cmr,93.995,19.71,Eurasia,
-quq,-3.68704,40.2638,Eurasia,
+bwp,140.45116,-6.37255,Papua,
 pty,,,Eurasia,
 qup,-76.52697,-3.32733,South America,
 qus,-63.24657,-27.82096,South America,
@@ -2321,10 +2321,10 @@ xgw,,,,2013
 xgu,,,Australia,2013
 wgg,135.94079,-25.81485,Australia,2013
 wga,137.62348,-20.329,Australia,2013
+wgb,150.37814,-10.41792,Papua,
 wgo,130.91683,-0.17957,Papua,
 wgi,144.66454,-6.11629,Papua,
 wgu,,,Australia,
-wgw,150.37814,-10.41792,Papua,
 wgy,146.17863,-18.54681,Australia,
 nty,105.40476,23.18287,Eurasia,
 ntz,51.95383,33.45931,Eurasia,
@@ -3631,6 +3631,7 @@ dta,124.0,48.0,Eurasia,
 dtd,,,North America,
 woy,35.63369,11.94153,Africa,2013
 wow,123.10032,-4.13587,Papua,
+dty,,,Eurasia,
 wos,142.84869,-3.90364,Papua,
 wor,136.51899,-2.37997,Papua,
 wom,12.45334,8.92708,Africa,
@@ -3715,7 +3716,7 @@ bgi,125.3591,6.99967,Papua,
 idt,125.83176,-8.76258,Papua,
 idu,7.71261,7.19139,Africa,
 idr,25.98485,8.81513,Africa,
-ids,6.2929,7.34629,,
+ids,6.2929,7.34629,Africa,
 bgn,62.17,37.83,Eurasia,
 bgo,-13.94696,10.12862,Africa,2013
 bgp,62.0,28.0,Eurasia,
@@ -4565,7 +4566,7 @@ gyf,148.60445,-25.68965,Australia,2013
 gye,9.23923,10.41095,Africa,
 gyd,139.48903,-17.06954,Australia,
 gyb,145.68321,-4.9222,Papua,
-gya,15.17854,1.96834,Africa,
+gya,15.2569,5.9503,Africa,
 gyn,-56.94513,5.623205,South America,
 gym,-82.391125,8.825105,North America,
 gyl,36.57211,5.95034,Africa,
@@ -4655,7 +4656,7 @@ unr,87.1792,25.03911,Eurasia,
 unu,,,Papua,
 unx,87.1792,25.03911,Eurasia,
 unz,119.67323,-0.85876,Papua,
-fng,27.1400833333,-21.5025633333,Africa,
+fng,27.1400833333,-25.384842,Africa,
 una,146.21818,-6.64084,Papua,
 une,6.13427,6.97237,Africa,
 ung,126.43311,-16.40063,Australia,
@@ -5612,7 +5613,7 @@ fuh,-0.52004,14.2471,Africa,
 fui,18.346725,8.81656,Africa,
 rap,-109.34249,-27.11299,Papua,
 raq,87.95341,26.84425,Eurasia,
-ewo,4.21141,11.93646,Africa,
+ewo,11.93646,4.21141,Africa,
 tqb,-48.23594,-2.6123,South America,
 tql,167.33244,-13.5043,Papua,
 tqm,142.5676,-7.93238,Papua,
@@ -5860,7 +5861,7 @@ xbw,-37.49999,-8.16666,South America,2013
 xbp,,,,2013
 xbr,120.23531,-9.88447,Papua,
 xbo,,,Eurasia,2013
-xbn,,,Papua,2013
+xbn,,,Eurasia,2013
 xbi,142.69357,-3.48467,Papua,
 xbj,,,,2013
 xbe,,,,2013
@@ -6010,7 +6011,7 @@ cwe,38.44485,-6.50666,Africa,
 reg,33.04883,-1.83511,Africa,
 cwg,102.08116,3.83331,Eurasia,
 ree,114.16931,2.71903,Papua,
-bwp,140.45116,-6.37255,Papua,
+quq,-3.68704,40.2638,Eurasia,
 bwq,-4.26497,11.54087,Africa,
 bwr,12.30072,10.48224,Africa,
 bws,18.78408,2.40195,Africa,
@@ -6160,6 +6161,7 @@ cji,45.99496,42.50239,Eurasia,
 cjn,142.31714,-4.25154,Papua,
 cjo,-74.2014,-10.75832,South America,
 cjm,108.49012,11.28528,Eurasia,
+NOCODE_Cosao,,,Eurasia,
 cja,104.02566,12.4771133333,Eurasia,
 cje,108.52928,11.66249,Eurasia,
 ilu,125.90186,-7.84385,Papua,
@@ -6320,7 +6322,7 @@ nwg,,,,2013
 nwa,-104.45,41.316,North America,
 nwb,-6.84428,6.87615,Africa,
 nwm,30.36577,5.89708,Africa,
-nwo,,,,2013
+nwo,135.828014,-33.79661078,Australia,2013
 nwi,169.35603,-19.57953,Papua,
 mws,37.59391,-0.11968,Africa,
 mwq,94.39293,20.28901,Eurasia,
@@ -6851,7 +6853,7 @@ cnw,93.58348,21.93031,Eurasia,
 sqs,79.85696,7.10588,Eurasia,
 sqq,106.53974,14.687,Eurasia,
 squ,-123.01406,49.32306,North America,
-sqt,53.91675,12.48924,Africa,
+sqt,53.91675,12.48924,Eurasia,
 sqk,,,Eurasia,
 ich,10.35011,7.13773,Africa,
 sqo,53.21897,35.45652,Eurasia,
@@ -6947,6 +6949,7 @@ pmi,101.30511,28.66262,Eurasia,
 pmj,100.62232,27.84076,Eurasia,
 NOCODE_Aranama,,,North America,
 bvq,27.0842,5.3328,Africa,
+NOCODE_Forest-Nenets,,,Eurasia,
 esm,-3.05409,5.21504,Africa,
 msz,147.79047,-6.3409,Papua,
 msy,144.84163,-4.28957,Papua,
@@ -6973,7 +6976,7 @@ mse,15.411505,9.816115,Africa,
 msd,-88.99999,20.49999,North America,
 msc,-10.56905,10.09621,Africa,
 msb,123.63579,12.21453,Papua,
-coa,105.75,-10.33,Australia,
+coa,105.75,-10.33,Papua,
 NOCODE_Duvle-Wano-Pidgin,,,Papua,
 NOCODE_Panare-Trade-Spanish,,,South America,
 bvv,-67.56327,5.26123,South America,2013
@@ -7287,6 +7290,7 @@ quk,-77.66152,-6.27021,South America,
 uha,5.68537,7.38143,Africa,
 NOCODE_Maipure,-67.5,4.8,South America,2013
 tnh,145.23912,-4.55066,Papua,
+NOCODE_Chairel,,,Eurasia,2013
 NOCODE_Alaguilac,,,North America,
 NOCODE_Guamo,-68.98407,9.596959,South America,2013
 yhl,103.733,23.591,Eurasia,
@@ -7689,6 +7693,7 @@ arl,-75.06117,-1.96126,South America,
 tcd,0.39875,6.79522,Africa,
 arn,-71.27701,-38.73917,South America,
 aro,-67.72934,-12.42423,South America,
+NOCODE_Wulwulam,,,Australia,2013
 uuu,101.77163,22.67668,Eurasia,
 fgr,22.56115,11.31789,Africa,
 uur,169.08428,-18.67465,Papua,
