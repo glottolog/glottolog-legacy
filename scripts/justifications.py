@@ -48,7 +48,6 @@ class FamilyJust(Justifications):
         @classmethod
         def fromrow(cls, row):
             name1, name2, refs, comment = row
-            print [REF.match(r).groups() for r in refs.split(', ')]
             refs = [int(REF.match(r).group(1)) for r in refs.split(', ')]
             return cls(name1, name2, refs, comment)
 
