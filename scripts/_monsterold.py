@@ -151,7 +151,7 @@ def to_sqlite(filename=DBFILE):
             'monsteroldv76.csv')
     
     if not os.path.exists('monsteroldv77.csv'):
-        urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/0e923c3c7dabd2b901ee295a7cfa526c20f6d6c3/references/monster.csv?raw=true'
+        urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/0e923c3c7dabd2b901ee295a7cfa526c20f6d6c3/references/monster.csv?raw=true',
             'monsteroldv77.csv')
 
     if os.path.exists(filename):
