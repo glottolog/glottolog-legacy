@@ -198,24 +198,50 @@ def to_sqlite(filename=DBFILE):
                 conn.commit()
 
 
-def build():
-    to_csv()
-    to_sqlite()
+class Database(object):
 
+    @classmethod
+    def build(cls):
+        to_csv()
+        to_sqlite()
 
-def showids(filename=DBFILE):
-    with sqlite3.connect(filename) as conn:
-        cursor = conn.execute('SELECT filename, bibkey, '
-            'group_concat(id) AS ids '
-            'FROM (SELECT DISTINCT filename, bibkey, id '
-            'FROM entry ORDER BY filename, bibkey, monster) '
-            'GROUP BY filename, bibkey '
-            'HAVING count(*) > 1 '
-            'ORDER BY lower(filename), lower(bibkey)')
-        for fn, bk, ids in cursor:
-            print '%s\t%s\t%s' % (fn, bk, ids)
+    def __init__(self, filename=DBFILE):
+        self.filename = filename
+
+    def connect(self, close=True):
+        conn = sqlite3.connect(self.filename)
+        if close:
+            conn = contextlib.closing(conn)
+        return conn
+
+    def showids(self):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT filename, bibkey, '
+                'group_concat(id) AS ids '
+                'FROM (SELECT DISTINCT filename, bibkey, id '
+                'FROM entry ORDER BY filename, bibkey, monster) '
+                'GROUP BY filename, bibkey '
+                'HAVING count(*) > 1 '
+                'ORDER BY lower(filename), lower(bibkey)')
+            for fn, bk, ids in cursor:
+                print '%s\t%s\t%s' % (fn, bk, ids)
+
+    def replacements(self, old='monsteroldv76.csv', new='monsteroldv77.csv'):
+        import pandas as pd
+        with self.connect() as conn:
+            return pd.read_sql_query("""SELECT e.id AS old,
+                    CAST(group_concat(DISTINCT ee.id) AS INTEGER) AS new
+                FROM entry AS e JOIN entry AS ee
+                ON e.filename = ee.filename AND e.bibkey = ee.bibkey
+                AND e.id != ee.id
+                WHERE e.monster = (SELECT idx FROM monster WHERE name = ?)
+                AND ee.monster = (SELECT idx FROM monster WHERE name = ?)
+                GROUP BY e.id HAVING count(DISTINCT ee.id) = 1
+                ORDER BY e.id""", conn, params=(old, new))
 
 
 if __name__ == '__main__':
-    #build()
-    showids()
+    #Database.build()
+    d = Database()
+    #d.showids()
+    df = d.replacements()
