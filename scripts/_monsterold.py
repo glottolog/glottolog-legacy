@@ -12,8 +12,8 @@ import datetime
 import contextlib
 import collections
 
-BIBFILES = 'monsteroldv?*.bib'
-CSVFILES = 'monsteroldv?*.csv'
+BIBFILES = '../monsterold/monsteroldv?*.bib'
+CSVFILES = '../monsterold/monsteroldv?*.csv'
 DBFILE = '_monsterold.sqlite3'
 
 ENTRY = re.compile(r'''
@@ -131,28 +131,28 @@ def iterrows(bibfile):
 
 
 def to_csv():
-    if not os.path.exists('monsteroldv75.bib'):
+    if not os.path.exists('../monsterold/monsteroldv75.bib'):
         fn, _ = urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/41f2108121734c86e60fd51e42a8cbd60d61b2a0/references/monster.zip?raw=true',
-            'monsteroldv75.zip')
+            '../monsterold/monsteroldv75.zip')
         with zipfile.ZipFile(fn, 'r') as z:
             m = next(i for i in z.infolist() if i.filename == 'monster.bib')
             m.filename = 'monsteroldv75.bib'
-            z.extract(m)
+            z.extract(m, '../monsterold')
         
     for bibfile, mtime, csvfile in iterfiles():
-        print bibfile, mtime
+        print os.path.basename(bibfile), mtime
         #showstats(bibfile)
         bib_to_csv(bibfile, csvfile)
 
 
 def to_sqlite(filename=DBFILE):
-    if not os.path.exists('monsteroldv76.csv'):
+    if not os.path.exists('../monsterold/monsteroldv76.csv'):
         urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/ab6dcae9915834ba3940aa3225fd0a1cbfb16f0f/references/monster.csv?raw=true',
-            'monsteroldv76.csv')
+            '../monsterold/monsteroldv76.csv')
     
-    if not os.path.exists('monsteroldv77.csv'):
+    if not os.path.exists('../monsterold/monsteroldv77.csv'):
         urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/0e923c3c7dabd2b901ee295a7cfa526c20f6d6c3/references/monster.csv?raw=true',
-            'monsteroldv77.csv')
+            '../monsterold/monsteroldv77.csv')
 
     if os.path.exists(filename):
         os.remove(filename)
@@ -183,9 +183,9 @@ def to_sqlite(filename=DBFILE):
         for bibfile, mtime, csvfile in iterfiles(include_bibless=True):
             if not os.path.exists(csvfile):
                 continue
-            print csvfile
+            print ps.path.basename(csvfile)
             rowid = conn.execute('INSERT INTO monster (name, mtime) '
-                'VALUES (?, ?)', (bibfile, mtime)).lastrowid
+                'VALUES (?, ?)', (os.path.basename(bibfile), mtime)).lastrowid
             try:
                 conn.executemany('INSERT INTO entry (monster, filename, bibkey, hash, id) '
                     'VALUES (?, ?, ?, ?, ?)',
