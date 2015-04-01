@@ -183,7 +183,7 @@ def to_sqlite(filename=DBFILE):
         for bibfile, mtime, csvfile in iterfiles(include_bibless=True):
             if not os.path.exists(csvfile):
                 continue
-            print ps.path.basename(csvfile)
+            print os.path.basename(csvfile)
             rowid = conn.execute('INSERT INTO monster (name, mtime) '
                 'VALUES (?, ?)', (os.path.basename(bibfile), mtime)).lastrowid
             try:
