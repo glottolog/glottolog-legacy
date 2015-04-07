@@ -226,7 +226,7 @@ class Database(object):
             for fn, bk, ids in cursor:
                 print '%s\t%s\t%s' % (fn, bk, ids)
 
-    def replacements(self, old='monsteroldv76.csv', new='monsteroldv77.csv'):
+    def replacements(self, old='monsteroldv74.bib', new='monsteroldv75.bib'):
         import pandas as pd
         with self.connect() as conn:
             return pd.read_sql_query("""SELECT e.id AS old,
