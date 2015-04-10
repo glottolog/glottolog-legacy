@@ -1164,6 +1164,7 @@ wrz	Australia
 wrx	Indonesia (Papua)
 wry	India
 tri	Brazil	Suriname
+NOCODE_Bidai	Brazil
 tro	India
 NOCODE_Mayoruna-Jandiatuba	Brazil
 gft	Ethiopia
@@ -5437,7 +5438,7 @@ mmf	Nigeria
 sbn	Pakistan
 sbo	Malaysia (Peninsular)
 sbl	Philippines
-sbm	Tanzania
+mmb	Indonesia (Papua)
 prs	Afghanistan	Iran	Pakistan
 NOCODE_Nigilu	Papua New Guinea
 tou	Viet Nam
@@ -7431,7 +7432,7 @@ qcs	Mexico
 sbi	Papua New Guinea
 mma	Nigeria
 mmc	Mexico
-mmb	Indonesia (Papua)
+sbm	Tanzania
 NOCODE_Malabar-Sri-Lanka-Portuguese	Sri Lanka	India
 yva	Indonesia (Papua)
 anl	Myanmar

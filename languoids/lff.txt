@@ -575,12 +575,12 @@ Algic, Algonquian, Eastern Algonquian
   Carolina Algonquian [crr]
   Loup A [xlo]
   Wampanoag [wam]
-  Western Abnaki [abe]
+  Western Abenaki [abe]
   Mi'kmaq [mic]
   Malecite-Passamaquoddy [pqm]
   Mohegan-Montauk-Narragansett [mof]
   Wampano [qyp]
-  Eastern Abnaki [aaq]
+  Eastern Abenaki [aaq]
   Powhatan [pim]
 Algic, Algonquian, Eastern Algonquian, Delawaran
   Mahican [mjy]
@@ -4529,7 +4529,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polyn
   Segai [sge]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Kayan-Kenyah, Kayanic, Muller-Schwaner 'Punan'
   Aoheng [pni]
-  Hovongan [hov]
+  Hobongan [hov]
   Kereho [xke]
   Punan Merah [puf]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Kayan-Kenyah, Kayanic, Muller-Schwaner 'Punan', Aput-Bushang-Sian
@@ -4976,7 +4976,7 @@ Austronesian
   Tsou [tsu]
 Austronesian, Nuclear Austronesian, Kanakanavu-Saaroa
   Saaroa [sxr]
-  Kanakanabu [xnb]
+  Kanakanavu [xnb]
 Austronesian, Nuclear Austronesian, Western Plains Austronesian, Central Western Plains
   Babuza [bzg]
   Papora [ppu]
@@ -5007,7 +5007,7 @@ Bangi_Me
   Bangime [dba]
 Barbacoan, Cayapa-Colorado
   Cha'palaa [cbi]
-  Colorado [cof]
+  Tsafiki [cof]
 Barbacoan, Coconucan
   Totoro [ttk]
   Guambiano [gum]
@@ -5382,7 +5382,7 @@ Chonan, Insular Chonan
 Chono
   Chono [NOCODE_Chono]
 Chukotko-Kamchatkan, Chukotian
-  Chukot [ckt]
+  Chukchi [ckt]
   Kerek [krk]
   Alutor [alr]
   Koryak [kpy]
@@ -5899,11 +5899,12 @@ Hruso-Aka
 Huarpean
   Millcayac [NOCODE_Millcayac]
   Allentiac [NOCODE_Allentiac]
-Huavean
-  San Francisco Del Mar Huave [hue]
-  San Mateo Del Mar Huave [huv]
-  San Dionisio Del Mar Huave [hve]
-  Santa Mar\'ia Del Mar Huave [hvv]
+Huavean, San Francisco-Santa Mar\'ia Huave
+  San Francisco del Mar Huave [hue]
+  Santa Mar\'ia del Mar Huave [hvv]
+Huavean, San Dionisio-San Mateo Huave
+  San Mateo del Mar Huave [huv]
+  San Dionisio del Mar Huave [hve]
 Huitotoan, Nonuya-Ocaina
   Ocaina [oca]
   Nonuya [noj]
@@ -6304,8 +6305,7 @@ Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Central zone, Subcontinental
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Oriya-Gauda-Kamrupa, Macro-Oriya
   Bodo Parja [bdv]
   Oriya [ory]
-  Kotia [ort]
-  Desiya [dso]
+  Kotia-Adivasi Oriya-Desiya [ort]
   Reli [rei]
   Kupia [key]  
 Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Halbic
@@ -6897,7 +6897,7 @@ Kadugli-Krongo, Central-Western Kadugli-Krongo, Katcha-Kadugli-Miri-Kanga
 Kaki_Ae
   Kaki Ae [tbd]
 Kakua-Nukak
-  Cacua [cbv]
+  Kakua [cbv]
   Nukak Mak\'u [mbr]
 Kalapuyan
   Tualatin-Yamhill [nrt]
@@ -7452,10 +7452,10 @@ Mayan, Core Mayan, Yucatecan, Mopan-Itza
   Mop\'an Maya [mop]
   Itz\'a [itz]
 Mayan, Core Mayan, Yucatecan, Yucatec-Lacandon
-  Yucateco [yua]
+  Yucatec Maya [yua]
   Lacandon [lac]
 Maybrat
-  Mai Brat-Karon [ayz]
+  Maybrat-Karon [ayz]
 Meroitic
   Meroitic [xmr]
 Mimi-Gaudefroy
@@ -7541,7 +7541,7 @@ Mombum
 Mongolic, Unclassified Mongolic
   Kitan [zkt]
 Mongolic
-  Daur [dta]
+  Dagur [dta]
 Mongolic, Southern Periphery Mongolic
   East Yugur [yuy]
 Mongolic, Southern Periphery Mongolic, Shirongol, Baoanic
@@ -7639,7 +7639,7 @@ Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic, Andic, Bagvalal-Tindi
   Bagvalal [kva]
 Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic, Andic, Botlikh-Godoberi
   Botlikh [bph]
-  Ghodoberi [gdo]
+  Godoberi [gdo]
 Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic
   Avaric [ava]
 Nakh-Daghestanian, Daghestanian, Avar-Andic-Tsezic, Tsezic, East Tsezic
@@ -7880,7 +7880,7 @@ Nubian, West-Central Nubian, Central Nubian, Kordofan Nubian, Western Kordofan N
   El Hugeirat [elh]
 Nubian, West-Central Nubian, Central Nubian, Kordofan Nubian, Eastern Kordofan Nubian
   Dair [drb]
-  Ghulfan [ghl]
+  Uncunwee [ghl]
   Kadaru [kdu]
 Nubian, Nobiin Nubian
   Nobiin [fia]
@@ -7909,7 +7909,7 @@ Nyulnyulan, Eastern, Unclassified Eastern Nyulnyulan
 Omurano
   Omurano [omu]
 Ongota
-  Birale [bxe]
+  Ongota [bxe]
 Oti
   Oti [oti]
 Otomaco
@@ -8167,7 +8167,7 @@ Pama-Nyungan, Rockhampton-Gladstone
   Dharumbal [NOCODE_Dharumbal]
   Bayali [bjy]
 Pama-Nyungan, Yimidhirr-Yalanji-Yidinic
-  Guguyimidjir [kky]
+  Guugu Yimidhirr [kky]
 Pama-Nyungan, Yimidhirr-Yalanji-Yidinic, Yalandyic
   Muluridyi [vmu]
   Kuku-Yalanji [gvn]
@@ -8301,7 +8301,7 @@ Pama-Nyungan, Paman, Southwest Pama, Upper Southwest Paman, Kunjen-Undjan-Athima
   Kawarrang-Ogh Undjan [NOCODE_Kawarrang-Ogh-Undjan]
   Athima [NOCODE_Athima]
 Pama-Nyungan, Paman, Southwest Pama, Coastal Southwest Paman
-  Yir Yoront [yyr]
+  Yir-Yoront [yyr]
 Pama-Nyungan, Paman, Southwest Pama, Coastal Southwest Paman, Dhawa-Kaber
   Gugubera [kkp]
   Koko Dhawa [NOCODE_Koko-Dhawa]
@@ -8435,7 +8435,7 @@ Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Ngayarda, Northern Ngayarda
 Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Ngayarda, Central Ngayarda
   Panytyima [pnw]
   Tjurruru [tju]
-  Martuyhunira [vma]
+  Martuthunira [vma]
   Nijadali [nad]
 Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Ngayarda
   Nhuwala [nhf]
@@ -8680,7 +8680,7 @@ Sahaptian, Sahaptin, Southern Sahaptin
   Tenino [tqn]
   Umatilla [uma]
 Saharan, Eastern Saharan
-  Zaghawa [zag]
+  Beria [zag]
   Berti [byt]
 Saharan, Western Saharan, Kanuri-Kanembu, Kanembuic
   Tumari Kanuri [krt]
@@ -9041,7 +9041,7 @@ Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora
 Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora, Darma-Byangsi-Chaudangsi
   Chaudangsi [cdn]
 Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora, Darma-Byangsi-Chaudangsi, Darma-Byangsi
-  Darmiya [drd]
+  Darma [drd]
   Byangsi [bee]
 Sino-Tibetan, Bodic, Tibeto-Kanauri, Kinnauric
   Chitkuli Kinnauri [cik]
@@ -9159,7 +9159,7 @@ Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Central Kuki-Chin, Lai Chin, Falamic
   Bawm Chin [bgr]
   Bualkhaw Chin [cbl]
 Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Central Kuki-Chin, Mizoic
-  Lushai [lus]
+  Mizo [lus]
 Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Central Kuki-Chin, Mizoic, Hmaric
   Hmar [hmr]
   Hrangkhol [hra]
@@ -9812,7 +9812,7 @@ Teberan
 Tegem
   Lafofa [laf]
 Tekiraka
-  Aiwa [ash]
+  Aewa [ash]
 Temein
   Tese [keg]
   Temein [teq]
@@ -11024,11 +11024,12 @@ Yuat, Miyak-Bun-Biwat
   Kyenele [kql]
 Yuchi
   Yuchi [yuc]
-Yukaghir
+Yukaghir, Kolymic
   Southern Yukaghir [yux]
+  Chuvantsy [xcv]
+Yukaghir
   Northern Yukaghir [ykg]
   Yukaghir Omok [omk]
-  Chuvantsy [xcv]
 Yuki-Wappo
   Yuki [yuk]
   Wappo [wao]

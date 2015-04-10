@@ -9,7 +9,7 @@ mws	mws	**153468**
 mwp	mwp	**11337** **309591**:833-834
 aue	aue	**17198**
 Northwestern Mande	Northwestern Mande	**318601**:100 **142004**
-Huavean	Huavean	**144122**
+Huavean	Huavean	**43187**:3 **144122**
 mwz	mwz	**13449**
 auj	auj	**19499**:31 **320590**:25
 Mijikenda	Mijikenda	**31476**
@@ -235,7 +235,6 @@ Shastan	Shastan	**114836**
 Kiwaian	Kiwaian	**113279**
 Coastal Tor	Coastal Tor	**140386**
 Angan	Angan	**140544**:36
-thx	thx	**92676**
 Norman Pama	Norman Pama	**46299**
 ktr	ktr	**16728**
 ktl	ktl	**307307**:248
@@ -582,7 +581,6 @@ North_Bougainville	North Bougainville	**95683**:17-24
 Kaike-Ghale-Tamangic	Kaike-Ghale-Tamangic	**129275**
 zrn	zrn	**141918**
 Southern Melanesian	Southern Melanesian	**183885**
-xhv	xhv	**92676**
 Tupi-Guarani Subgroup VI	Tupi-Guarani Subgroup VI	**23976**
 Lower Baram	Lower Baram	**304222**
 Alabat-Manide Agta	Alabat-Manide Agta	**155200**
@@ -716,6 +714,7 @@ gir	gir	**321985**
 Nuclear Bwamu	Nuclear Bwamu	**114320**
 Mianic	Mianic	**136881**
 jwi	jwi	**149650**
+yuj	yuj	See **83861**
 Oumic	Oumic	**303299**
 NOCODE_Orkon	NOCODE_Orkon	**35387**:96 inspection of the unpublished wordlists puts it with Port Vato and Daakaka
 Yoruboid	Yoruboid	**45586** **307893**
@@ -988,6 +987,7 @@ Umbindhamuic	Umbindhamuic	**5516**
 Mansoanka-Fore-Mboteni	Mansoanka-Fore-Mboteni	**306061**
 awv	awv	**303659**:4
 Heiban	Heiban	**139267**
+Kwer-Kopkaka-Burumakok	Kwer-Kopkaka-Burumakok	**310961**
 Mbumic	Mbumic	**29992**
 Finisterre-Huon	Finisterre-Huon	**304818**
 Southwest Grassfields	Southwest Grassfields	**33956**
@@ -1352,7 +1352,7 @@ riu	riu	**309022**:16-21 **43162**
 Mangarrayi-Maran	Mangarrayi-Maran	**61985**
 NOCODE_Egbuta	NOCODE_Egbuta	**115892**
 jpr	jpr	**308907**
-NOCODE_Korapun-Bromley	NOCODE_Korapun-Bromley	**126692**
+NOCODE_Korapun-Bromley	NOCODE_Korapun-Bromley	**37015**:9 **126692** (The recognition of the separateness from Korapun-Sela of the Korapun data of Bromley is due to Tim Usher)
 psm	psm	**41201**:431
 NOCODE_Goo	NOCODE_Goo	**317987**
 NOCODE_Lebu	NOCODE_Lebu	**400002**

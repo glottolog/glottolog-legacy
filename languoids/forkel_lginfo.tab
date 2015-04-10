@@ -434,7 +434,7 @@ mbi	124.76579	7.34448	Papua
 mbj	-66.30681	-1.24449	South America	
 mbk	142.24388	-3.11695	Papua	
 mbd	126.01817	7.85664	Papua	
-mbe	-122.857	44.556	North America	
+mbe	-122.857	44.556	North America	2013
 mbf	103.07599	1.754135	Eurasia	
 soj	54.59641	31.85423	Eurasia	
 som	45.152856	4.778704	Africa	
@@ -625,7 +625,7 @@ ttm	-136.64414	62.82351	North America
 ttl	24.375105	-16.957495	Africa	
 ttc	-92.11357	15.45991	North America	
 ttb	11.96032	8.4809	Africa	
-tta	-78.75	37.67	North America	
+tta	-78.75	37.67	North America	2013
 ttg	114.63828	4.74327	Papua	
 ttf	10.65924	4.65626	Africa	
 tte	151.03439	-10.65985	Papua	
@@ -670,7 +670,7 @@ blp	159.41863	-8.15058	Papua
 bls	119.68862	-0.05644	Papua	
 blr	99.7404733333	22.0092033333	Eurasia	
 blm	29.79543	6.40428	Africa	
-bll	-89.19508	31.31999	North America	
+bll	-89.19508	31.31999	North America	2013
 blo	1.601685	9.11127	Africa	
 bln	124.28969	13.69895	Papua	
 bli	18.09748	-1.38362	Africa	
@@ -691,7 +691,7 @@ oni	132.06232	-2.75976	Papua
 onn	142.77582	-6.30876	Papua	
 ono	-78.04973	42.98638	North America	
 onb	109.97126	19.86337	Eurasia	
-ona	-68.5	-54	South America	
+ona	-68.5	-54	South America	2013
 ong	142.1308	-3.2929	Papua	
 one	-84.057715	43.77286	North America	
 onx	132.083	-2.83	Papua	2013
@@ -1179,6 +1179,7 @@ wrz	131.23575	-13.09414	Australia	2013
 wrx	120.79339	-8.74889	Papua	
 wry	74.095	26.771	Eurasia	
 tri	-55.759935	2.53616	South America	
+NOCODE_Bidai			South America	
 tro	94.17031	24.40033	Eurasia	
 NOCODE_Mayoruna-Jandiatuba	-70.038757	-4.979863	South America	2013
 gft	39.56049	11.57637	Africa	
@@ -1264,13 +1265,13 @@ tpe	92.07473	23.58637	Eurasia
 tpc	-98.52413	16.75845	North America	
 tpa	150.37277	-10.2275	Papua	
 tpo	104.65808	18.55623	Eurasia	
-tpn	-42.106389	-22.807778	South America	
+tpn	-42.106389	-22.807778	South America	2013
 tpm	-1.35467	9.75577	Africa	
 tpl	-98.80129	17.32616	North America	
 tpk	-40.41666	-18.99999	South America	2013
 tpj	-62.68397	-21.4168866667	South America	
 tpi	147.3031	-9.41971	Papua	
-tpw	-46.636	-23.534	South America	
+tpw	-46.636	-23.534	South America	2013
 tpv	145.75662	15.23702	Papua	
 ext	-6.10179	39.19261	Eurasia	
 tpt	-98.19468	20.70402	North America	
@@ -1295,7 +1296,7 @@ ojb	-87.78617	51.61918	North America
 ojc	-84.15429	46.57411	North America	
 NOCODE_Yimas-Iatmul-Pidgin			Papua	
 NOCODE_Butam	152.245674	-4.471696	Papua	2013
-crr	-77.291	35.979	North America	
+crr	-77.291	35.979	North America	2013
 crs	55.4503	-4.62314	Africa	
 crq	-62.6507666667	-22.2067066667	South America	
 crv	93.03307	8.45745	Eurasia	
@@ -1693,7 +1694,7 @@ NOCODE_Payagua	-57.857666	-25.694998	South America	2013
 xcc			Eurasia	2013
 xcg			Eurasia	2013
 xce			Eurasia	2013
-xch			North America	
+xch			North America	2013
 xcn	-97.39563	25.911609	North America	2013
 xco			Eurasia	2013
 NOCODE_Wagu			Papua	
@@ -1740,7 +1741,7 @@ mjq	76.55856	10.44682	Eurasia
 mjr	77.20382	8.85517	Eurasia	
 mjs	9.33752	9.20477	Africa	
 mjx	86.74451	22.1698	Eurasia	
-mjy	-74.266	43.903	North America	
+mjy	-74.266	43.903	North America	2013
 mjz	80.37881	29.45587	Eurasia	
 vml	114.245	-26.211	Australia	2013
 vmm	-97.17573	17.16002	North America	
@@ -2008,7 +2009,7 @@ phw	87.35371	27.15945	Eurasia
 phv	62.19785	31.32675	Eurasia	
 phu	102.19119	17.520725	Eurasia	
 pht	104.684233333	17.7544966667	Eurasia	
-ofo	-91.75	30.43	North America	
+ofo	-91.75	30.43	North America	2013
 yog	121.71773	16.70149	Papua	
 unn			Australia	
 ofu	8.35425	5.92431	Africa	
@@ -2084,7 +2085,7 @@ kri	-14.320425	10.881135	Africa
 krn	-8.49229	5.69555	Africa	
 krl	30.865535	65.16912	Eurasia	
 krm	-11.83935	7.24116	Africa	
-krb	-122.167	40.56	North America	
+krb	-122.167	40.56	North America	2013
 krc	42.26059	43.56504	Eurasia	
 kra	84.13573	27.82967	Eurasia	
 krf	167.46691	-14.29428	Papua	
@@ -2761,7 +2762,7 @@ ums	119.86161	-0.11396	Papua
 umr	131.82455	-12.93247	Australia	2013
 NOCODE_Kokenop-Mandobo			Papua	
 szn	125.9656	-2.30765	Papua	
-yvt	-67.42829	9.8194	South America	
+yvt	-67.42829	9.8194	South America	2013
 szl			Eurasia	
 NOCODE_Old-Wanji			Eurasia	2013
 szb	141.03032	-4.67682	Papua	
@@ -3449,7 +3450,7 @@ pui	-67.6886	3.92974	South America
 puj	116.25998	2.86972	Papua	
 ast	-6.02227	42.418055	Eurasia	
 pud	116.0886	1.38035	Papua	
-pue	-62.94127	-36.63757	South America	
+pue	-62.94127	-36.63757	South America	2013
 asy	138.5822	-5.61024	Papua	
 pug	-3.47165	11.02348	Africa	
 pua	-102.154	19.53924	North America	
@@ -3523,7 +3524,7 @@ dtr	116.23239	6.13732	Papua	2013
 dtp	116.68089	6.02998	Papua	
 dtu	-3.1	14.66	Africa	
 dtt	-2.22427	15.06437	Africa	
-ncz	-91.33	31.75	North America	
+ncz	-91.33	31.75	North America	2013
 lid	146.62734	-2.1143	Papua	
 lie	19.02225	1.75106	Africa	
 lif	87.885935	27.270335	Eurasia	
@@ -3738,7 +3739,7 @@ NOCODE_Quignam			South America	2013
 syc	42.143185	37.1129	Eurasia	2013
 pww	98.27092	18.01601	Eurasia	
 pwr	79.239	21.797	Eurasia	
-aqp	-93.08271	30.91207	North America	
+aqp	-93.08271	30.91207	North America	2013
 aqr	165.27269	-21.28665	Papua	
 aqz	-60.9716	-12.8322	South America	
 pwg	149.85373	-9.73317	Papua	
@@ -3750,7 +3751,7 @@ pwn	120.80566	22.32714	Papua
 pwo	97.70436	17.36215	Eurasia	
 pwm	117.056	7.61045	Papua	
 NOCODE_Mayoruna-Amazon	-70.280457	-4.322858	South America	2013
-pwi			North America	
+pwi			North America	2013
 uta	9.34019	6.54809	Africa	
 ute	-110.3055	40.09648	North America	
 NOCODE_Masacara	-40.023651	-15.611663	South America	2013
@@ -4769,7 +4770,7 @@ yer	10.02885	8.98356	Africa
 yeu	81.97482	17.37023	Eurasia	
 yet	140.65319	-4.05884	Papua	
 yev	142.43607	-3.47256	Papua	
-opt	-110.06212	31.15211	North America	
+opt	-110.06212	31.15211	North America	2013
 NOCODE_Seb-Seliyer			Eurasia	
 NOCODE_Mayo			South America	2013
 opy	-53.7227	-22.278	South America	
@@ -5180,7 +5181,7 @@ pab	-57.40595	-14.59295	South America
 pac	107.09417	16.33533	Eurasia	
 pad	-64.28035	-5.78403	South America	
 pae	22.12122	3.15636	Africa	
-paf	-59.05303	-9.34239	South America	
+paf	-59.05303	-9.34239	South America	2013
 pag	120.36519	15.93774	Papua	
 pah	-61.93599	-7.92626	South America	
 pai	9.56437	9.27191	Africa	
@@ -5439,7 +5440,7 @@ NOCODE_Queensland-Kanaka-English			Australia
 pcr	86.83169	30.72725	Eurasia	
 pcp	-65.55679	-11.99684	South America	
 pcw	9.43733	9.09539	Africa	
-pcj	83.97234	19.07501	Eurasia	2013
+pcj	83.97234	19.07501	Eurasia	
 pck	93.6136	24.03809	Eurasia	
 pch	79.77728	22.16662	Eurasia	
 pci	82.48808	19.05339	Eurasia	
@@ -5539,7 +5540,7 @@ bdb	117.94191	1.41405	Papua
 NOCODE_Natu			South America	2013
 NOCODE_Nati			Papua	
 NOCODE_Colac	143.422444	-38.471266	Australia	2013
-aes	-123.94	44.408	North America	
+aes	-123.94	44.408	North America	2013
 NOCODE_Menien	-38.8633204	-15.8436187	South America	2013
 aeu			Eurasia	
 NOCODE_Adhari			Eurasia	2013
@@ -5687,7 +5688,7 @@ rga	166.84305	-15.40476	Papua
 cuc	-96.40743	17.9184	North America	
 cub	-70.193935	1.32382	South America	
 cua	108.43092	15.16883	Eurasia	
-cuo	-63.018	10.209	South America	
+cuo	-63.018	10.209	South America	2013
 cun			North America	
 NOCODE_Jumana	-69.195557	-1.77291	South America	2013
 cul	-70.66485	-8.55268	South America	
@@ -5804,7 +5805,7 @@ sdu	119.34941	-1.7094	Papua
 sdp	92.57987	27.00345	Eurasia	
 sdr	88.91575	24.74581	Eurasia	
 sds	9.43778	34.46781	Africa	2013
-NOCODE_Bonari			South America	
+NOCODE_Bonari			South America	2013
 sdx	111.76305	2.26758	Papua	
 sdz	6.29104	52.44816	Eurasia	
 sde	8.27136	10.22536	Africa	
@@ -7160,7 +7161,7 @@ nlv	-96.97648	18.63995	North America
 nly	119.69301	-21.60924	Australia	
 nlx	74.827	21.43	Eurasia	
 tkl	-171.816101	-9.170975	Papua	
-tkm	-123.452	42.423	North America	
+tkm	-123.452	42.423	North America	2013
 tkk	88.42538	28.16517	Eurasia	
 nla	10.14461	5.70306	Africa	
 tkw	166.86796	-11.6752	Papua	
@@ -7205,7 +7206,7 @@ dya	-3.59179	10.8342	Africa
 dyb	122.52306	-17.18653	Australia	2013
 ssb	119.379615	5.075455	Papua	
 NOCODE_Kiautschou-Pidgin-German			Eurasia	2013
-NOCODE_Eudeve	-110	28.5	North America	
+NOCODE_Eudeve	-110	28.5	North America	2013
 rmr			Eurasia	
 rms	26.2924	44.92922	Eurasia	
 rmp	145.78187	-5.02487	Papua	
@@ -7247,7 +7248,7 @@ poq	-94.80765	17.89257	North America
 pon	158.22314	6.87212	Papua	
 poo	-123.66393	38.90547	North America	
 pol	18.625487	51.843923	Eurasia	
-pom	-122.5985	38.93544	North America	
+pom	-122.5985	38.93544	North America	2013
 pok	-69.56072	0.35794	South America	
 poh	-90.58131	15.35857	North America	
 poi	-94.91088	18.19804	North America	
@@ -8338,7 +8339,7 @@ myz	49.5659	36.12027	Eurasia	2013
 myq	-7.53151	9.49685	Africa	
 myp	-61.81669	-6.77713	South America	
 mys	37.57419	7.53825	Africa	2013
-myr	-76.28113	-5.80546	South America	
+myr	-76.28113	-5.80546	South America	2013
 myu	-57.69099	-8.41095	South America	
 myt	126.4086	7.39531	Papua	
 myw	152.73124	-9.195	Papua	

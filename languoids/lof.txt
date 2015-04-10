@@ -397,6 +397,8 @@ Spurious, Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric
   The [thx]
 Spurious, Yeniseian, Northern Yeniseian
   Yugh [yuu]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Oriya-Gauda-Kamrupa, Macro-Oriya
+  Desiya [dso]
 Spurious, Maybrat
   Karon Dori [kgw]
 Spurious, Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
@@ -913,6 +915,7 @@ Unclassifiable, Afro-Asiatic, Berber
 Unclassifiable, Uralic, Saami, Eastern Saami
   Kainuu Saami [NOCODE_Kainuu-Saami]
 Unclassifiable
+  Bidai [NOCODE_Bidai]
   Cueva [NOCODE_Cueva]
   Ancient Ligurian [NOCODE_Ancient-Ligurian]
   Cusabo [NOCODE_Cusabo]
