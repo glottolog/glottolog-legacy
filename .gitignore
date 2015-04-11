@@ -1,9 +1,10 @@
 *.py[cod]
-references/bibtex/*-utf8.bib
-scripts/monster-utf8.bib
-scripts/monstermark-hht.txt
-scripts/monstermark-lgc.txt
-scripts/*.sqlite3
+/monsterold/
+/references/bibtex/*-utf8.bib
+/scripts/monster-utf8.bib
+/scripts/monstermark-hht.txt
+/scripts/monstermark-lgc.txt
+/scripts/*.sqlite3
 
 # C extensions
 *.so

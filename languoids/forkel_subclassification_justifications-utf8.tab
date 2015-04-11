@@ -115,7 +115,7 @@ eno	eno	**24380** **43473** **303787**
 Zaparoan	Zaparoan	**318673**
 NOCODE_Old-Malay	NOCODE_Old-Malay	**108564**
 hor	hor	**17699**
-Southwest Coastal Malekula	Southwest Coastal Malekula	(**303389**):5
+Southwest Coastal Malekula	Southwest Coastal Malekula	**303389**:5
 South Tanimbar	South Tanimbar	**109488** **43011**
 Chuwaboic	Chuwaboic	**18147**
 hoy	hoy	**304344**
@@ -139,7 +139,7 @@ Matumbic	Matumbic	**85227**:93
 NOCODE_Nam	NOCODE_Nam	**128691**
 wud	wud	**77141**
 Makaaic	Makaaic	**400001**:516
-wuh	wuh	**109313**:11-12
+wuh	wuh	**56080**:11-12
 ima	ima	**312955**:702
 fit	fit	**307484**
 Brahmaputran	Brahmaputran	**128691** **303599**:3, 41-42
@@ -207,18 +207,18 @@ nhg	nhg	**19467**
 nhf	nhf	**96352**
 kfr	kfr	**32260**
 kfs	kfs	**44562**
-nhc	nhc	**311616** **304913**
+nhc	nhc	**311616** **130142**
 North New Guinea linkage	North New Guinea linkage	**98107**:120-132
 Inland_Gulf_of_Papua	Inland Gulf of Papua	**303435**:269-273
 nhh	nhh	**142255**
-nht	nht	**304913**
-nhq	nhq	**304913**
+nht	nht	**130142**
+nhq	nhq	**130142**
 Luric	Luric	**75848**
 kfl	kfl	**138996**
 Albanian-Tosk	Albanian-Tosk	**306632**
-nhy	nhy	**304913**
+nhy	nhy	**130142**
 kfh	kfh	**109225**
-nhz	nhz	**304913**
+nhz	nhz	**130142**
 toz	toz	**29992**
 Kesawai-Sausi	Kesawai-Sausi	**126669**:13
 Eastern Admiralty Islands	Eastern Admiralty Islands	**98107**:315-345
@@ -230,7 +230,7 @@ Markham	Markham	**158598**
 NOCODE_Tangam	NOCODE_Tangam	**318826**:9-10  **321341**
 Defoid	Defoid	**105741**
 ukh	ukh	**107997**
-gyi	gyi	**311844**
+gyi	gyi	**15234**
 Shastan	Shastan	**114836**
 Kiwaian	Kiwaian	**113279**
 Coastal Tor	Coastal Tor	**140386**
@@ -717,7 +717,7 @@ jwi	jwi	**149650**
 yuj	yuj	See **83861**
 Oumic	Oumic	**303299**
 NOCODE_Orkon	NOCODE_Orkon	**35387**:96 inspection of the unpublished wordlists puts it with Port Vato and Daakaka
-Yoruboid	Yoruboid	**45586** **307893**
+Yoruboid	Yoruboid	**45586** **9640**
 Western Periphery-North Guerrero Nahuatl	Western Periphery-North Guerrero Nahuatl	**301134**:480-483 **303152** **159100**
 mkk	mkk	**158080**
 Kao River	Kao River	**35205**:52-53
@@ -849,7 +849,7 @@ Berber	Berber	Lameen Souag p.c.~2011 and **19499**:30-31, 35-36
 Gbe	Gbe	**55833**
 Great Lakes Bantu	Great Lakes Bantu	**117144**
 Nuclear Maimai	Nuclear Maimai	**131770**:130 **138610**:48
-Mazatecan	Mazatecan	**158804** **320118**
+Mazatecan	Mazatecan	**92322** **320118**
 Koto-Olrat-Lakon	Koto-Olrat-Lakon	**315770**
 South_Bird's_Head_Family	South Bird's Head Family	**24826**
 bml	bml	**57544**:89-90
@@ -858,7 +858,7 @@ Kartvelian	Kartvelian	**93496**
 Mairasi	Mairasi	**43722**
 Manda-Ngoni	Manda-Ngoni	**85227**:92
 Lingala-Bangala	Lingala-Bangala	**176352**:11-22
-Lushootseed-Puget	Lushootseed-Puget	**132826**:i-xiii
+Lushootseed-Puget	Lushootseed-Puget	**31549**:i-xiii
 eit	eit	**138610**:41 and recent data collected by Matthew Dryer suggests that Eitiep is Kombioic language
 Na-Togo	Na-Togo	**20168**
 Eastern_Jebel	Eastern Jebel	**177847**
@@ -949,10 +949,10 @@ Yuin-Kuri	Yuin-Kuri	**309591**
 Gahuku	Gahuku	**97087**
 nmr	nmr	**128741** **74013**
 nmp	nmp	**64535**
-tdl	tdl	**26119**
+tdl	tdl	**120649**
 tdb	tdb	**59751**
 nmo	nmo	**56991**:89-90
-tdq	tdq	**94595**
+tdq	tdq	**92551**
 nmk	nmk	**13129**:21-24
 nmh	nmh	**325933**:200
 nmi	nmi	**133017**
@@ -1203,14 +1203,14 @@ koc	koc	**153586**:15
 kod	kod	**326723**
 Bena-Hehe	Bena-Hehe	**85227**:92
 Huasteca Nahuatl	Huasteca Nahuatl	**301134**:478-479
-ncx	ncx	**304913**
+ncx	ncx	**130142**
 Northern Luzon	Northern Luzon	**306857**
 Tidongic	Tidongic	**84648**
 Shughni-Yazgulami	Shughni-Yazgulami	**313694**
 Newaric	Newaric	**115607** **307156**
 aad	aad	**314585**
 aaf	aaf	**109225**
-aab	aab	**40008**
+aab	aab	**10790**
 dtb	dtb	**34731**
 South Bauchi West	South Bauchi West	**76828** **310893**
 stu	stu	**400007**:207
@@ -1224,7 +1224,7 @@ bha	bha	**304344**:640-645
 bhe	bhe	**306208**
 bhd	bhd	**138086**
 Bafia (A.50)	Bafia (A.50)	**42526**
-NOCODE_Kpeego	NOCODE_Kpeego	**303233**
+NOCODE_Kpeego	NOCODE_Kpeego	**121865**
 Madang	Madang	**108875** **302422**
 bhp	bhp	**79340**
 qpp	qpp	**302848**
@@ -1698,7 +1698,7 @@ Lahnda	Lahnda	**112308**
 Ronic	Ronic	**23859**
 aol	aol	**106522** **127725**
 bwg	bwg	**84876**
-bwh	bwh	: **64818**:104-105
+bwh	bwh	**64818**:104-105
 Semitic	Semitic	**24281**
 Bom-Kim	Bom-Kim	**163972**
 bwn	bwn	**95864**
@@ -1903,7 +1903,7 @@ Torres-Banks linkage	Torres-Banks linkage	**20545**
 Abkhaz-Adyge	Abkhaz-Adyge	**135227**
 Jivaroan	Jivaroan	**85554**:4-5
 New Ireland-Northwest Solomonic linkage	New Ireland-Northwest Solomonic linkage	**161543** **98107**:257-314
-Baka-Gundi	Baka-Gundi	**304285**
+Baka-Gundi	Baka-Gundi	**82908**
 Tsingi-Tsingi	Tsingi-Tsingi	**302165** **29588**:206, 208-209
 Samba Duru-Mumuye Yendang	Samba Duru-Mumuye Yendang	**114627**:179
 Agoan	Agoan	**37308**:166-167
@@ -1948,7 +1948,7 @@ kra	kra	**128691**:1175
 North-Central Jos	North-Central Jos	**19597**
 NOCODE_Tacunyape	NOCODE_Tacunyape	**102866**:112-113
 Southern Tanzania Highlands Bantu	Southern Tanzania Highlands Bantu	**145880**
-Njebe-Mbete-Teke	Njebe-Mbete-Teke	**21098**
+Njebe-Mbete-Teke	Njebe-Mbete-Teke	**13538**
 Melanau	Melanau	**304222**:161-162
 vaa	vaa	**313392**:i but shared numeral innovations with Bhil
 Kainantu-Goroka	Kainantu-Goroka	**111622** **24669**:245-257
@@ -1990,3 +1990,5 @@ bct	bct	**120192** **145707**:451 **149672**:226
 Bidayuh-Rejang	Bidayuh-Rejang	**88438**
 ymg	ymg	**148614**:72
 NOCODE_Ngala-Barth	NOCODE_Ngala-Barth	**19688**
+yuj	yuj	See **83861**
+NOCODE_Korapun-Bromley	NOCODE_Korapun-Bromley	**37015**:9 **126692** (The recognition of the separateness from Korapun-Sela of the Korapun data of Bromley is due to Tim Usher p.c.)

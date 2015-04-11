@@ -5,12 +5,15 @@ import re
 import csv
 import glob
 import mmap
+import urllib
+import zipfile
 import sqlite3
 import datetime
 import contextlib
 import collections
 
-FILES = 'monsteroldv?*.bib'
+BIBFILES = '../monsterold/monsteroldv?*.bib'
+CSVFILES = '../monsterold/monsteroldv?*.csv'
 DBFILE = '_monsterold.sqlite3'
 
 ENTRY = re.compile(r'''
@@ -26,18 +29,30 @@ FIELD = re.compile(r'''
 ''', re.VERBOSE | re.MULTILINE)
 
 
-def iterfiles(pattern=FILES):
+def sortedglob(pattern):
     def sortkey(filename):
         name, ext = os.path.splitext(filename)
         numeric = [int(x) if x.isdigit() else x for x in re.split('(\d+)', name) if x]
         return numeric, ext
-    
-    for bibfile in sorted(glob.glob(pattern), key=sortkey):
+    return sorted(glob.glob(pattern), key=sortkey)
+
+
+def iterfiles(pattern=BIBFILES, bibless_pattern=CSVFILES, include_bibless=False):
+    csvseen = set()
+    for bibfile in sortedglob(pattern):
         mtime = datetime.datetime.fromtimestamp(os.stat(bibfile).st_mtime)
         dirname, basename = os.path.split(bibfile)
         name, ext = os.path.splitext(basename)
         csvfile = os.path.join(dirname, '%s.csv' % name)
         yield bibfile, mtime, csvfile
+        csvseen.add(csvfile)
+    if not include_bibless:
+        return
+    for csvfile in sortedglob(bibless_pattern):
+        if csvfile in csvseen:
+            continue
+        mtime = datetime.datetime.fromtimestamp(os.stat(csvfile).st_mtime)
+        yield csvfile, mtime, csvfile
 
 
 def iterentries(filename, fieldcls=dict):
@@ -76,7 +91,7 @@ def showstats(filename, ntop=10):
     print '\n'.join('%d\t%s' % (n, f) for f, n in counts.most_common(ntop))
 
 
-def to_csv(bibfile, csvfile, sortkey=lambda (fn, bk, hs, id): (fn.lower(), bk.lower())):
+def bib_to_csv(bibfile, csvfile, sortkey=lambda (fn, bk, hs, id): (fn.lower(), bk.lower())):
     rows = sorted(iterrows(bibfile), key=sortkey)
     if not rows:
         print '...no matched entries, skipped'
@@ -115,9 +130,39 @@ def iterrows(bibfile):
         print '%d entries skipped' % skipped
 
 
+def to_csv():
+    if not os.path.exists('../monsterold/monsteroldv75.bib'):
+        fn, _ = urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/41f2108121734c86e60fd51e42a8cbd60d61b2a0/references/monster.zip?raw=true',
+            '../monsterold/monsteroldv75.zip')
+        with zipfile.ZipFile(fn, 'r') as z:
+            m = next(i for i in z.infolist() if i.filename == 'monster.bib')
+            m.filename = 'monsteroldv75.bib'
+            z.extract(m, '../monsterold')
+        
+    for bibfile, mtime, csvfile in iterfiles():
+        print os.path.basename(bibfile), mtime
+        #showstats(bibfile)
+        bib_to_csv(bibfile, csvfile)
+
+
 def to_sqlite(filename=DBFILE):
+    if not os.path.exists('../monsterold/monsteroldv76.csv'):
+        urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/ab6dcae9915834ba3940aa3225fd0a1cbfb16f0f/references/monster.csv?raw=true',
+            '../monsterold/monsteroldv76.csv')
+    
+    if not os.path.exists('../monsterold/monsteroldv77.csv'):
+        urllib.urlretrieve('https://github.com/clld/glottolog-data/blob/0e923c3c7dabd2b901ee295a7cfa526c20f6d6c3/references/monster.csv?raw=true',
+            '../monsterold/monsteroldv77.csv')
+
     if os.path.exists(filename):
         os.remove(filename)
+
+    def normalize_filename(filename):
+        filename = filename.lower()
+        if filename.endswith('.bib'):
+            filename = filename[:-4]
+        return filename
+
     with sqlite3.connect(filename) as conn:
         conn.execute('PRAGMA synchronous = OFF')
         conn.execute('PRAGMA journal_mode = MEMORY')
@@ -135,16 +180,17 @@ def to_sqlite(filename=DBFILE):
             'PRIMARY KEY (monster, filename, bibkey, monster), '
             'FOREIGN KEY (monster) REFERENCES monster(idx))')
         conn.execute('CREATE INDEX ix_id ON entry(id)')
-        for bibfile, mtime, csvfile in iterfiles():
+        for bibfile, mtime, csvfile in iterfiles(include_bibless=True):
             if not os.path.exists(csvfile):
                 continue
-            print csvfile
+            print os.path.basename(csvfile)
             rowid = conn.execute('INSERT INTO monster (name, mtime) '
-                'VALUES (?, ?)', (bibfile, mtime)).lastrowid
+                'VALUES (?, ?)', (os.path.basename(bibfile), mtime)).lastrowid
             try:
                 conn.executemany('INSERT INTO entry (monster, filename, bibkey, hash, id) '
                     'VALUES (?, ?, ?, ?, ?)',
-                    ((rowid,) + tuple(row) for row in from_csv(csvfile)))
+                    ((rowid, normalize_filename(filename), bibkey, hash, id)
+                    for filename, bibkey, hash, id in from_csv(csvfile)))
             except sqlite3.IntegrityError:
                 print '...uniqueness problem, skipped'
                 conn.rollback()
@@ -152,27 +198,50 @@ def to_sqlite(filename=DBFILE):
                 conn.commit()
 
 
-def build():
-    for bibfile, mtime, csvfile in iterfiles():
-        print bibfile, mtime
-        #showstats(bibfile)
-        to_csv(bibfile, csvfile)
-    to_sqlite()
+class Database(object):
 
+    @classmethod
+    def build(cls):
+        to_csv()
+        to_sqlite()
 
-def showids(filename=DBFILE):
-    with sqlite3.connect(filename) as conn:
-        cursor = conn.execute('SELECT filename, bibkey, '
-            'group_concat(id) AS ids '
-            'FROM (SELECT DISTINCT filename, bibkey, id '
-            'FROM entry ORDER BY filename, bibkey, monster) '
-            'GROUP BY filename, bibkey '
-            'HAVING count(*) > 1 '
-            'ORDER BY lower(filename), lower(bibkey)')
-        for fn, bk, ids in cursor:
-            print '%s\t%s\t%s' % (fn, bk, ids)
+    def __init__(self, filename=DBFILE):
+        self.filename = filename
+
+    def connect(self, close=True):
+        conn = sqlite3.connect(self.filename)
+        if close:
+            conn = contextlib.closing(conn)
+        return conn
+
+    def showids(self):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT filename, bibkey, '
+                'group_concat(id) AS ids '
+                'FROM (SELECT DISTINCT filename, bibkey, id '
+                'FROM entry ORDER BY filename, bibkey, monster) '
+                'GROUP BY filename, bibkey '
+                'HAVING count(*) > 1 '
+                'ORDER BY lower(filename), lower(bibkey)')
+            for fn, bk, ids in cursor:
+                print '%s\t%s\t%s' % (fn, bk, ids)
+
+    def replacements(self, old='monsteroldv74.bib', new='monsteroldv75.bib'):
+        import pandas as pd
+        with self.connect() as conn:
+            return pd.read_sql_query("""SELECT e.id AS old,
+                    CAST(group_concat(DISTINCT ee.id) AS INTEGER) AS new
+                FROM entry AS e JOIN entry AS ee
+                ON e.filename = ee.filename AND e.bibkey = ee.bibkey
+                AND e.id != ee.id
+                WHERE e.monster = (SELECT idx FROM monster WHERE name = ?)
+                AND ee.monster = (SELECT idx FROM monster WHERE name = ?)
+                GROUP BY e.id HAVING count(DISTINCT ee.id) = 1
+                ORDER BY e.id""", conn, params=(old, new))
 
 
 if __name__ == '__main__':
-    #build()
-    showids()
+    #Database.build()
+    d = Database()
+    #d.showids()
+    df = d.replacements()
