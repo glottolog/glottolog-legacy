@@ -345,6 +345,8 @@ Pidgin, Eskimo based pidgin
   Herschel Island Eskimo Trade Jargon [NOCODE_Pidgin-Herschel-Eskimo]
 Pidgin, Hawaiian based
   Pidgin Hawaiian [NOCODE_Pidgin-Hawaiian]
+Pidgin, Tahitian based
+  Maritime Polynesian Pidgin [NOCODE_Maritime-Polynesian-Pidgin]
 Pidgin, Motu based pidgin
   Hiri-Motu-Trading-Koriki [NOCODE_Hiri-Motu-Trading-Koriki]
   Hiri Motu [hmo]

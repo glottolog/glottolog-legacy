@@ -239,13 +239,15 @@ Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic
   Karekare [kai]
 Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.2, Tangalic
   Dera (Nigeria) [kna]
-Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.2, Tangalic, Nuclear Tangalic
+Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.2, Tangalic, Nuclear Tangalic, Tangale-Kwami-Kupto, Kwami-Kupto
   Kwaami [ksq]
   Kutto [kpa]
+Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.2, Tangalic, Nuclear Tangalic, Tangale-Kwami-Kupto
+  Tangale [tan]
+Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.2, Tangalic, Nuclear Tangalic
   Piya-Kwonci [piy]
   Kushi [kuh]
   Pero [pip]
-  Tangale [tan]
 Afro-Asiatic, Chadic, West Chadic, West Chadic A, West Chadic A.2-3, West Chadic A.3
   Ngas [anc]
   Mwaghavul [sur]
@@ -626,22 +628,23 @@ Anem
   Anem [anz]
 Angan
   Angaataha [agm]
+Angan, Nuclear Angan
   Yagwoia [ygw]
-Angan, Wojokesic
+Angan, Nuclear Angan, Wojokesic
   Safeyoka [apz]
   Kawacha [kcb]
-Angan, Wojokesic, Kamasa-Susuami
+Angan, Nuclear Angan, Wojokesic, Kamasa-Susuami
   Kamasa [klp]
   Susuami [ssu]
-Angan, Baruya-Simbari
+Angan, Nuclear Angan, Baruya-Simbari
   Simbari [smb]
   Baruya [byr]
-Angan, Ankave-Tainae-Akoye
+Angan, Nuclear Angan, Ankave-Tainae-Akoye
   Ankave [aak]
-Angan, Ankave-Tainae-Akoye, Tainae-Akoye
+Angan, Nuclear Angan, Ankave-Tainae-Akoye, Tainae-Akoye
   Tainae [ago]
   Akoye [miw]
-Angan, Kapau-Menya
+Angan, Nuclear Angan, Kapau-Menya
   Hamtai [hmt]
   Menya [mcr]
 Anson_Bay
@@ -6761,14 +6764,31 @@ Indo-European, Balto-Slavic, Slavic, West Slavic, Sorbian
 Indo-European, Tokharian
   Tokharian A [xto]
   Tokharian B [txb]
-Inland_Gulf_of_Papua
-  Ipiko [ipo]
-Inland_Gulf_of_Papua, Nuclear Inland Gulf of Papua
+Karami
   Karami [xar]
+Anim, Tirio, Nuclear Tirio
+  Makayam [aup]
+  Bitur [mcc]
+  Baramu [bmz]
+  Were [wei]
+Anim, Tirio
+  Abom [aob]
+Anim, Marind-Boazi-Yaqai, Boazi
+  Kuni-Boazi [kvg]
+  Zimakani [zik]
+Anim, Marind-Boazi-Yaqai, Marindic
+  Marind [mrz]
+  Bian Marind [bpv]
+Anim, Marind-Boazi-Yaqai, Yaqayic
+  Warkay-Bipim [bgv]
+  Yaqay [jaq]
+Anim, Inland Gulf of Papua
+  Ipiko [ipo]
+Anim, Inland Gulf of Papua, West Inland Gulf of Papua
   Mubami [tsx]
-  Minanibai [mcv]
-Inland_Gulf_of_Papua, Nuclear Inland Gulf of Papua, Foiafoian
-  Foia Foia [ffi]
+  Mahigi [NOCODE_Mahigi]
+  Minanibai-Foia Foia [mcv]
+Anim, Inland Gulf of Papua, West Inland Gulf of Papua, Hoyaic
   Hoia Hoia [hhi]
   Hoyahoya [hhy]
 Iranxe
@@ -7376,15 +7396,6 @@ Blue_Nile_Mao, West Mao, Hozo-Seze
   Seze [sze]
 Maratino
   Maratino [NOCODE_Maratino]
-Marindic, Boazi
-  Kuni-Boazi [kvg]
-  Zimakani [zik]
-Marindic, Nuclear Marindic
-  Marind [mrz]
-  Bian Marind [bpv]
-Marindic, Yaqayic
-  Warkay-Bipim [bgv]
-  Yaqay [jaq]
 Marrku-Wurrugu
   Wurrugu [wur]
   Margu [mhg]
@@ -9828,13 +9839,6 @@ Timucua
   Timucua [tjm]
 Tinigua
   Tinigua [tit]
-Tirio, Nuclear Tirio
-  Makayam [aup]
-  Bitur [mcc]
-  Baramu [bmz]
-  Were [wei]
-Tirio
-  Abom [aob]
 Tiwi
   Tiwi [tiw]
 Tonkawa
@@ -10462,8 +10466,9 @@ Tungusic, Northern Tungusic, Northwestern Tungusic
   Negidal [neg]
   Oroqen [orh]
 Tungusic, Central Tungusic, Central-Western Tungusic
-  Ulch [ulc]
   Nanai [gld]
+Tungusic, Central Tungusic, Central-Western Tungusic, Ulchaic
+  Ulch [ulc]
   Orok [oaa]
 Tungusic, Central Tungusic, Central-Eastern Tungusic
   Oroch [oac]

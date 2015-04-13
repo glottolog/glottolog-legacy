@@ -209,7 +209,6 @@ kfr	kfr	**32260**
 kfs	kfs	**44562**
 nhc	nhc	**311616** **130142**
 North New Guinea linkage	North New Guinea linkage	**98107**:120-132
-Inland_Gulf_of_Papua	Inland Gulf of Papua	**303435**:269-273
 nhh	nhh	**142255**
 nht	nht	**130142**
 nhq	nhq	**130142**
@@ -1279,6 +1278,7 @@ Chukotko-Kamchatkan	Chukotko-Kamchatkan	**160784**
 Mondzish	Mondzish	**309627**, **320668**
 Yidinic	Yidinic	**122621**
 Maninka-Mori	Maninka-Mori	**32921** **84047**
+Inland Gulf of Papua	Inland Gulf of Papua	
 Eastern Bengali	Eastern Bengali	**302707**
 Surinamese Creole English	Surinamese Creole English	**164788**
 Raja Ampat-South Halmahera	Raja Ampat-South Halmahera	**324725**:136-137
@@ -1294,6 +1294,7 @@ zkr	zkr	Contra **312712** there are good arguments for considering Meyor to be a
 ikr	ikr	**320043**
 ikp	ikp	**116852**
 fgr	fgr	**121033**:70-75 **135789**:21
+Tangale-Kwami-Kupto	Tangale-Kwami-Kupto	**325899**:29
 Dani	Dani	**94763**
 ikl	ikl	**36107**
 Dullay	Dullay	**305767**
@@ -1396,7 +1397,7 @@ Tipperic	Tipperic	**72425**
 Tetela-Hamba	Tetela-Hamba	**307831**
 Stieng	Stieng	**126740**:7-9
 Raja Ampat Maya	Raja Ampat Maya	**324725**:96 **82038**
-Elip-Maala	Elip-Maala	**400013**
+Elip-Maala	Elip-Maala	**440403**
 cua	cua	**20943**
 NOCODE_Jumana	NOCODE_Jumana	**61736**
 Sira (B.40)	Sira (B.40)	**29588**:200
@@ -1559,7 +1560,7 @@ Indo-European	Indo-European	**143594**
 odk	odk	**28060**
 ues	ues	**94914**
 Kadazan-Dusun	Kadazan-Dusun	**163327**
-Outer Enga	Outer Enga	**22758** **112072**
+Outer Enga	Outer Enga	**22758** **112072**:281 **159841**
 Makaa-Njem (A.80)	Makaa-Njem (A.80)	**29588**:198
 Dogon	Dogon	**135358**, **67623** **317929**
 Mpiemo-Ukhwejo	Mpiemo-Ukhwejo	**64166**
@@ -1667,6 +1668,7 @@ byf	byf	**302077**
 Mbam-Nkam	Mbam-Nkam	**22651**
 byb	byb	**64818**:104-105
 Celtic	Celtic	**137354**
+Hoyaic	Hoyaic	**322531**
 Saluan-Banggai	Saluan-Banggai	**7654**
 Mbaic	Mbaic	**45145**
 Chinali-Lahul Lohar	Chinali-Lahul Lohar	**37791**:1
@@ -1948,6 +1950,7 @@ kra	kra	**128691**:1175
 North-Central Jos	North-Central Jos	**19597**
 NOCODE_Tacunyape	NOCODE_Tacunyape	**102866**:112-113
 Southern Tanzania Highlands Bantu	Southern Tanzania Highlands Bantu	**145880**
+Ulchaic	Ulchaic	
 Njebe-Mbete-Teke	Njebe-Mbete-Teke	**13538**
 Melanau	Melanau	**304222**:161-162
 vaa	vaa	**313392**:i but shared numeral innovations with Bhil
@@ -1990,5 +1993,3 @@ bct	bct	**120192** **145707**:451 **149672**:226
 Bidayuh-Rejang	Bidayuh-Rejang	**88438**
 ymg	ymg	**148614**:72
 NOCODE_Ngala-Barth	NOCODE_Ngala-Barth	**19688**
-yuj	yuj	See **83861**
-NOCODE_Korapun-Bromley	NOCODE_Korapun-Bromley	**37015**:9 **126692** (The recognition of the separateness from Korapun-Sela of the Korapun data of Bromley is due to Tim Usher p.c.)

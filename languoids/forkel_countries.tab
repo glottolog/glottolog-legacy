@@ -589,7 +589,7 @@ NOCODE_Lower-Nosop	South Africa
 gzn	Indonesia (Papua)
 gzi	Iran
 gza	Ethiopia
-NOCODE_Iraqi-Sign	United States
+NOCODE_Iraqi-Sign	Iraq
 dyy	Australia
 fpe	Equatorial Guinea
 dyu	Côte d'Ivoire	Burkina Faso	Mali
@@ -1164,7 +1164,7 @@ wrz	Australia
 wrx	Indonesia (Papua)
 wry	India
 tri	Brazil	Suriname
-NOCODE_Bidai	Brazil
+NOCODE_Bidai	United States
 tro	India
 NOCODE_Mayoruna-Jandiatuba	Brazil
 gft	Ethiopia
@@ -1311,7 +1311,7 @@ ses	Mali
 ser	United States
 seq	Burkina Faso
 sep	Côte d'Ivoire	Burkina Faso	Mali
-sez	Myanmar
+NOCODE_Chalon	United States
 sey	Peru	Ecuador
 seg	Tanzania
 sef	Côte d'Ivoire
@@ -2290,7 +2290,6 @@ zen	Mauritania	Senegal
 ssf	Taiwan
 NOCODE_Jupua	Colombia
 NOCODE_Basque-Amerindian-Pidgin	Papua New Guinea
-NOCODE_Malaweg	Philippines
 pjt	Australia
 xgb	C\^ote d'Ivoire
 xga	Turkey (Asia)
@@ -3150,6 +3149,7 @@ pse	Indonesia (Papua)
 amy	Australia
 amx	Australia
 amz	Australia
+bsk	Pakistan	India
 amq	Indonesia (Papua)
 pss	Papua New Guinea
 psp	Philippines
@@ -3379,7 +3379,6 @@ nbe	India
 uvh	Papua New Guinea
 ffm	Ghana	Côte d'Ivoire	Mali
 uvl	Papua New Guinea
-ffi	Papua New Guinea
 uve	New Caledonia
 NOCODE_Hauna	Papua New Guinea
 ceg	Paraguay
@@ -4757,6 +4756,7 @@ xwa	Brazil
 NOCODE_Osamayi	Gabon
 NOCODE_West-Nyala	Kenya
 NOCODE_Okwanuchu	United States
+NOCODE_Mahigi	Papua New Guinea
 fse	Finland
 fsl	Togo	France
 fss	Finland
@@ -6504,7 +6504,7 @@ bso	Chad
 bsh	Afghanistan	Pakistan
 bsi	Cameroon
 bsj	Nigeria
-bsk	Pakistan	India
+NOCODE_Malaweg	Philippines
 bse	Cameroon
 bsf	Nigeria
 bsg	Iran
@@ -7689,6 +7689,7 @@ ljl	Indonesia (Papua)
 lje	Indonesia (Papua)
 ljx	Australia
 ljp	Indonesia (Papua)
+NOCODE_Maritime-Polynesian-Pidgin	French Polynesia
 NOCODE_Flecheiros	Brazil
 NOCODE_Araicu	Brazil
 zzj	Viet Nam	China
@@ -7968,7 +7969,7 @@ ltc	China
 lti	Indonesia (Papua)
 lto	Kenya
 ltn	Brazil
-NOCODE_Chalon	United States
+sez	Myanmar
 ybx	Papua New Guinea
 yby	Papua New Guinea
 NOCODE_Hawkesbury	Australia
