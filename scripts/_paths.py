@@ -80,10 +80,15 @@ class Paths(dict):
             for m in members:
                 yield path, m
 
+    def itertriples(self):
+        for path, members in self.iteritems():
+            for name, id in members:
+                yield path, name, id
+
     def to_dataframe(self, flatten=False):
         from pandas import DataFrame
         if flatten:
-            records, columns = self.iterpairs(), ['path', 'member']
+            records, columns = self.itertriples(), ['path', 'name', 'id']
         else:
             records, columns = self.iteritems(), ['path', 'members']
         return DataFrame.from_records(records, columns=columns)
