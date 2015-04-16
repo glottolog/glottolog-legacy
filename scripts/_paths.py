@@ -85,6 +85,20 @@ class Paths(dict):
             for name, id in members:
                 yield path, name, id
 
+    def extents(self):
+        result = {}
+        seen = set()
+        for path, members in self.iteritems():
+            for size in range(1, len(path) + 1):
+                p = path[:size]
+                if p in seen:
+                    continue
+                seen.add(p)
+                extent = sorted(id for mp, members in self.iteritems()
+                    if mp[:size] == p for name, id in members)
+                result[p] = tuple(extent)
+        return result
+
     def to_dataframe(self, flatten=False):
         from pandas import DataFrame
         if flatten:
