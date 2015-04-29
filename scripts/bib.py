@@ -498,16 +498,12 @@ def keyid(fields, fd={}, ti=2):
     ak = [undiacritic(x) for x in sorted(lastnamekey(a['lastname']) for a in authors)]
     yk = pyear(fields.get('year', '[nd]'))[:4]
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
-    # TODO: currently this selects the two least frequent words
-    #       in descending frequency order falling back to reverse
-    #       title order if their frequencies are the same.
-    #       consider changing this to the two least frequent words in
-    #       a) title order for less unstable hashes and increased entropy
-    #       or
-    #       b) alphabetic order for less unstable hashes and less entropy
-    #          (increased merge eagerness)
-    tkf = sorted(uniqued(w for w in tks if rewrdtok.match(w)), key=lambda w: fd.get(w, 0), reverse=True)
-    tk = tkf[-ti:]
+    # select the (leftmost) two least frequent words from the title
+    types = uniqued(w for w in tks if rewrdtok.match(w))
+    tk = sorted(types, key=lambda w: fd.get(w, 0))[:ti]
+    # put them back into the title order (i.e. 'spam eggs' != 'eggs spam')
+    order = {w: i for i, w in enumerate(types)}
+    tk.sort(key=lambda w: order[w])
     if fields.has_key('volume') and not fields.has_key('journal') and not fields.has_key('booktitle') and not fields.has_key('series'):
         vk = roman(fields['volume'])
     else:
