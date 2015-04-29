@@ -1,5 +1,7 @@
 # bib.py
 
+# TODO: enusure \emph is dropped from titles in keyid calculation
+
 import os
 import shutil
 import re
