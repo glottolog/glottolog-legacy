@@ -2,6 +2,7 @@
 
 import os
 import sqlite3
+import difflib
 import operator
 import itertools
 import contextlib
@@ -398,6 +399,16 @@ def unique(iterable):
         if item not in seen:
             seen.add(item)
             yield item
+
+
+def distance(left, right, weight={}):
+    keys = left.viewkeys() & right.viewkeys()
+    if not keys:
+        return 0.0
+    ratios = (weight.get(k, 1) * difflib.SequenceMatcher(None, left[k], right[k]).ratio()
+        for k in keys)
+    weights = (weight.get(k, 1) for k in keys)
+    return sum(ratios) / sum(weights)
 
 
 def _test_merge():
