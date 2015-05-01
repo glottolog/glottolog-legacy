@@ -109,18 +109,44 @@ class Database(object):
                     yield (id_hash, [(field, [(vl, fn, bk) for id, hs, fd, vl, fn, bk in g])
                         for field, g in itertools.groupby(grp, get_field)])
 
-    def merged(self, union=UNION_FIELDS):
+    def merged(self):
         for (id, hash), grp in self:
-            fields = {field: values[0][0] if field not in union
-                else ', '.join(unique(vl for vl, fn, bk in values))
-                for field, values in grp}
+            id, (entrytype, fields) = self._merged_entry(id, grp)
             fields['glottolog_ref_hash'] = hash
-            fields['src'] = ', '.join(sorted(set(fn
-                for field, values in grp for vl, fn, bk in values)))
-            fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
-                for field, values in grp for vl, fn, bk in values)))
-            entrytype = fields.pop('ENTRYTYPE')
             yield id, (entrytype, fields)
+
+    @staticmethod
+    def _merged_entry(key, grp, union=UNION_FIELDS):
+        fields = {field: values[0][0] if field not in union
+            else ', '.join(unique(vl for vl, fn, bk in values))
+            for field, values in grp}
+        fields['src'] = ', '.join(sorted(set(fn
+            for field, values in grp for vl, fn, bk in values)))
+        fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
+            for field, values in grp for vl, fn, bk in values)))
+        entrytype = fields.pop('ENTRYTYPE')
+        return key, (entrytype, fields)
+
+    def __getitem__(self, key, get_field=operator.itemgetter(0)):
+        if isinstance(key, int):
+            col = 'refid'
+        elif isinstance(key, basestring):
+            col = 'hash'
+        else:
+            raise ValueError
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT v.field, v.value, v.filename, v.bibkey '
+                'FROM entry AS e '
+                'JOIN file AS f ON e.filename = f.name '
+                'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
+                'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
+                'WHERE %s = ? '
+                'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey' % col, (key,))
+            grp = [(field, [(vl, fn, bk) for fd, vl, fn, bk in g])
+                for field, g in itertools.groupby(cursor, get_field)]
+            if not grp:
+                raise KeyError(key)
+            return self._merged_entry(key, grp)
 
     def show_splits(self, verbose=True):
         with self.connect() as conn:
