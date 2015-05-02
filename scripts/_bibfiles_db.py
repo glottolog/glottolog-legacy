@@ -128,21 +128,27 @@ class Database(object):
         entrytype = fields.pop('ENTRYTYPE')
         return key, (entrytype, fields)
 
-    def __getitem__(self, key, get_field=operator.itemgetter(0)):
+    def __getitem__(self, key, legacy=False, get_field=operator.itemgetter(0)):
         if isinstance(key, int):
             col = 'refid'
         elif isinstance(key, basestring):
             col = 'hash'
         else:
             raise ValueError
+        if legacy:
+            join = 'JOIN legacypriority AS l ON e.bibkey = l.bibkey '
+            order = "ORDER BY v.field, v.filename != 'hh.bib', v.filename, l.priority"
+        else:
+            join = ''
+            order = 'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey'
         with self.connect() as conn:
-            cursor = conn.execute('SELECT v.field, v.value, v.filename, v.bibkey '
+            cursor = conn.execute(('SELECT v.field, v.value, v.filename, v.bibkey '
                 'FROM entry AS e '
                 'JOIN file AS f ON e.filename = f.name '
+                + join +
                 'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
                 'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
-                'WHERE %s = ? '
-                'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey' % col, (key,))
+                'WHERE %s = ? ' + order) % col, (key,))
             grp = [(field, [(vl, fn, bk) for fd, vl, fn, bk in g])
                 for field, g in itertools.groupby(cursor, get_field)]
             if not grp:
@@ -162,6 +168,11 @@ class Database(object):
                 if verbose:
                     for ri, hs, fn, bk in group:
                         print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                    # FIXME: remove legacy mode after migration
+                    old = self.__getitem__(refid, legacy=True)[1][1]
+                    cand = [(hs, self[hs][1][1]) for hs in unique(hs for ri, hs, fn, bk in group)]
+                    new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
+                    print('-> %s' % new)
                 print
 
     def show_merges(self, verbose=True):
@@ -225,7 +236,12 @@ def create_tables(conn):
         'value TEXT NOT NULL, '
         'PRIMARY KEY (filename, bibkey, field), '
         'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
-
+    # bibkey -> hash(bibkey) (py2 dict order)
+    conn.execute('CREATE TABLE legacypriority ('
+        'bibkey TEXT NOT NULL, '
+        'priority INTEFGER NOT NULL, '
+        'PRIMARY KEY (bibkey))')
+ 
 
 def import_bibfiles(conn, bibfiles):
     for b in bibfiles:
@@ -239,6 +255,10 @@ def import_bibfiles(conn, bibfiles):
             conn.executemany('INSERT INTO value '
                 '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
                 ((b.filename, bibkey, field, value) for field, value in fields))
+            conn.execute('INSERT INTO legacypriority (bibkey, priority) '
+                'SELECT :bk, :pr WHERE NOT EXISTS '
+                '(SELECT 1 FROM legacypriority WHERE bibkey = :bk)',
+                {'bk': bibkey, 'pr': hash(bibkey)})
 
 
 def entrystats(conn):
@@ -401,14 +421,14 @@ def unique(iterable):
             yield item
 
 
-def distance(left, right, weight={}):
+def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3}):
     keys = left.viewkeys() & right.viewkeys()
     if not keys:
-        return 0.0
+        return 1.0
     ratios = (weight.get(k, 1) * difflib.SequenceMatcher(None, left[k], right[k]).ratio()
         for k in keys)
     weights = (weight.get(k, 1) for k in keys)
-    return sum(ratios) / sum(weights)
+    return 1 - (sum(ratios) / sum(weights))
 
 
 def _test_merge():
@@ -444,3 +464,5 @@ if __name__ == '__main__':
     d = Database.from_bibfiles()
     #d.to_bibfile()
     #_test_merge()
+    #d = Database()
+    #d.show_splits()
