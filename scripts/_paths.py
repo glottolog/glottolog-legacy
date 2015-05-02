@@ -80,10 +80,29 @@ class Paths(dict):
             for m in members:
                 yield path, m
 
+    def itertriples(self):
+        for path, members in self.iteritems():
+            for name, id in members:
+                yield path, name, id
+
+    def extents(self):
+        result = {}
+        seen = set()
+        for path, members in self.iteritems():
+            for size in range(1, len(path) + 1):
+                p = path[:size]
+                if p in seen:
+                    continue
+                seen.add(p)
+                extent = sorted(id for mp, members in self.iteritems()
+                    if mp[:size] == p for name, id in members)
+                result[p] = tuple(extent)
+        return result
+
     def to_dataframe(self, flatten=False):
         from pandas import DataFrame
         if flatten:
-            records, columns = self.iterpairs(), ['path', 'member']
+            records, columns = self.itertriples(), ['path', 'name', 'id']
         else:
             records, columns = self.iteritems(), ['path', 'members']
         return DataFrame.from_records(records, columns=columns)
