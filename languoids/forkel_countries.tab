@@ -1311,7 +1311,7 @@ ses	Mali
 ser	United States
 seq	Burkina Faso
 sep	Côte d'Ivoire	Burkina Faso	Mali
-NOCODE_Chalon	United States
+sez	Myanmar
 sey	Peru	Ecuador
 seg	Tanzania
 sef	Côte d'Ivoire
@@ -1820,7 +1820,7 @@ ckx	Cameroon
 ckz	Guatemala
 dbi	Nigeria
 dbj	Malaysia (Peninsular)
-dbm	Nigeria
+szn	Indonesia (Papua)
 dbl	Australia
 dbo	Nigeria
 dbn	Indonesia (Papua)
@@ -1927,7 +1927,7 @@ tlp	Mexico
 tlw	Indonesia (Papua)
 tlv	Indonesia (Papua)
 ett	Italy
-etu	Nigeria	Cameroon
+NOCODE_Lawu	China
 etz	Indonesia (Papua)
 tlz	Indonesia (Papua)
 etx	Nigeria
@@ -2724,7 +2724,7 @@ kvy	Myanmar
 ums	Indonesia (Papua)
 umr	Australia
 NOCODE_Kokenop-Mandobo	Indonesia (Papua)
-szn	Indonesia (Papua)
+dbm	Nigeria
 yvt	Venezuela
 szl	Poland
 NOCODE_Old-Wanji	Afghanistan
@@ -3108,7 +3108,7 @@ NOCODE_Early-East-African-Pidgin-Arabic	Uganda
 eip	Indonesia (Papua)
 eit	Papua New Guinea
 eiv	Papua New Guinea
-NOCODE_Lawu	China
+etu	Nigeria	Cameroon
 NOCODE_Western-Coastal-Tasmanian	Australia
 tly	Russian Federation (Asia)	Iran	Azerbaijan
 etb	Nigeria
@@ -3345,6 +3345,7 @@ puy	United States
 NOCODE_Maang	China
 ase	Canada	Madagascar	Democratic Republic of the Congo	Nigeria	Bolivia	Burkina Faso	Benin	Ghana	Singapore	Togo	Zimbabwe	China	Mauritania	Philippines	Central African Republic	United States	Gabon	Côte d'Ivoire	Jamaica	Chad	Kenya	Barbados
 jra	United States	Viet Nam	Cambodia
+NOCODE_Kilen	China
 put	Indonesia (Papua)
 jru	Venezuela
 jrt	Nigeria
@@ -3698,6 +3699,7 @@ ide	Nigeria
 idb	Guatemala
 idc	Nigeria
 ida	Kenya
+NOCODE_Kafr-Qasem-Sign	Israel
 NOCODE_Quignam	Peru
 pww	Thailand
 pwr	India
@@ -4234,7 +4236,7 @@ swh	Canada	Libya	South Africa	Mayotte	United Arab Emirates	Tanzania	United State
 duj	Australia
 duk	Papua New Guinea
 swm	Papua New Guinea
-dum	Netherlands
+swl	Sweden
 dun	Indonesia (Papua)
 NOCODE_Taita	Kenya
 duo	Philippines
@@ -5348,7 +5350,7 @@ css	United States
 csr	Costa Rica
 bkd	Philippines
 bkf	Democratic Republic of the Congo
-NOCODE_Joaquiniano	Bolivia
+bkg	Democratic Republic of the Congo	Central African Republic
 bka	Nigeria
 bkb	Philippines
 bkc	Gabon	Cameroon
@@ -6968,10 +6970,10 @@ shw	Sudan
 ppq	Papua New Guinea
 ppv	Brazil
 aht	United States
-bkg	Democratic Republic of the Congo	Central African Republic
 NOCODE_Fayjatases	Chile
 NOCODE_Ngala-Barth	Cameroon
 eja	Senegal	Guinea-Bissau
+NOCODE_Nouchi	C\^ote d'Ivoire
 NOCODE_Querandi	Uruguay
 git	Canada
 yuy	China
@@ -7645,7 +7647,7 @@ dui	Papua New Guinea
 swk	Malawi
 swj	Gabon
 dul	Philippines
-swl	Sweden
+dum	Netherlands
 swo	Brazil
 swn	Libya
 dua	Cameroon
@@ -7959,6 +7961,7 @@ pqa	Nigeria
 oub	Liberia	Côte d'Ivoire
 oua	Algeria
 oue	Papua New Guinea
+NOCODE_Joaquiniano	Bolivia
 soe	Democratic Republic of the Congo
 NOCODE_Burkina-Faso-Sign	Burkina Faso
 pqm	Canada	United States
@@ -7969,7 +7972,7 @@ ltc	China
 lti	Indonesia (Papua)
 lto	Kenya
 ltn	Brazil
-sez	Myanmar
+NOCODE_Chalon	United States
 ybx	Papua New Guinea
 yby	Papua New Guinea
 NOCODE_Hawkesbury	Australia

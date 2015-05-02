@@ -99,16 +99,17 @@ Sign Language, Deaf Sign Language, BSLic, South African Sign
   Namibian Sign Language [nbs]
 Sign Language, Deaf Sign Language, BSLic
   Maritime Sign Language [nsr]
-Sign Language, Deaf Sign Language, BSLic, Swedish Sign
+Sign Language, Deaf Sign Language, Swedish Sign
   Swedish Sign Language [swl]
   Portuguese Sign Language [psr]
-Sign Language, Deaf Sign Language, BSLic, Swedish Sign, Finnish Sign
+Sign Language, Deaf Sign Language, Swedish Sign, Finnish Sign
   Finnish Sign Language [fse]
   Finland-Swedish Sign Language [fss]
 Sign Language, Village Sign Language, Providencia-Cayman Sign
   Providencia Sign Language [prz]
   Old Cayman Sign Language [NOCODE_Old-Cayman-Sign]
 Sign Language, Village Sign Language
+  Kafr Qasem Sign Language [NOCODE_Kafr-Qasem-Sign]
   Yolngu Sign Language [NOCODE_Yolngu-Sign]
   Keresan Pueblo Indian Sign Language [NOCODE_Keresan-Pueblo-Sign]
   Jamaican Country Sign Language [jcs]
@@ -586,7 +587,7 @@ Spurious, Afro-Asiatic, Chadic, East Chadic, East Chadic A, East Chadic A.1
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, North-Central Edoid, Central Plains Edoid
   Uokha [uok]
   Ihievbe [ihi]
-Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Baka-Gundi
+Spurious, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Monzombo-Baka, Baka-Gundi
   Ngombe (Central African Republic) [nmj]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Akpes-Edoid, Edoid, Northwestern Edoid, Southern Northwestern Edoid
   Ibilo [ibi]

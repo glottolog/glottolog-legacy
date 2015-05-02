@@ -1099,10 +1099,12 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Jarawan, Ni
   Mama [mma]
   Lame [bma]
   Kulung (Nigeria) [bbu]
-  Bada (Nigeria) [bau]
-  Duguri [dbm]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Jarawan, Nigerian Jarawan, Unclassified Nigerian Jarawan
   Gwa [gwb]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Jarawan, Nigerian Jarawan, Jarawaic
+  Duguri [dbm]
   Jarawa (Nigeria) [jar]
+  Bada (Nigeria) [bau]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Jarawan, Nigerian Jarawan, Jaku-Gubi
   Labir [jku]
   Dulbu [dbo]
@@ -2476,7 +2478,7 @@ Atlantic-Congo, Volta-Congo, Kwa Volta-Congo, Nyo, Potou-Tano, Tano
 Atlantic-Congo, Volta-Congo, Kwa Volta-Congo, Nyo, Potou-Tano, Tano, Central Tano, Akanic
   Akan [aka]
   Abron [abr]
-  Wasa [wss]  
+  Wasa [wss]
 Atlantic-Congo, Volta-Congo, Kwa Volta-Congo, Nyo, Potou-Tano, Tano, Central Tano, Bia, Northern Bia
   Baoul\'e [bci]
   Anufo [cko]
@@ -2645,25 +2647,25 @@ Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngb
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Mbaic, Ndunga-Mba-Dongo, Ndunga-Mba
   Mba [mfc]
   Ndunga [ndt]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Eastern Ngbaka, Mayogo-Bangba
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Eastern Baka-Mundu, Mayogo-Bangba
   Bangba [bbe]
   Mayogo [mdm]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Eastern Ngbaka
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Eastern Baka-Mundu
   M\"und\"u [muh]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Baka-Gundi
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Monzombo-Baka, Baka-Gundi
   Ganzi [gnz]
   Gundi [gdi]
   Limassa [bme]
   Baka (Cameroon) [bkc]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Monzomboic
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Monzombo-Baka, Monzomboic
   Monzombo [moj]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Monzombo-Baka, Monzomboic, Kpala-Bakpa
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Monzombo-Baka, Monzomboic, Kpala-Bakpa
   Yango [yng]
   Kpala [kpl]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Gbanzili-Ngbaka, Bwaka
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Gbanzili-Ngbaka, Bwaka
   Ngbaka Ma'bo [nbm]
   Gilima [gix]
-Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Ngbakaic, Western Ngbaka, Gbanzili-Ngbaka, Gbanzili-Boraka
+Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Ngbaka-Mba, Baka-Mundu, Western Baka-Mundu, Gbanzili-Ngbaka, Gbanzili-Boraka
   Gbanziri [gbg]
   Buraka [bkg]
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Ubangi, Sere-Ngbaka-Mba, Sereic, Feroge-Mangaya
@@ -6656,8 +6658,10 @@ Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-
 Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil
   Picard [pcd]
   Cajun French [frc]
-Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil, Macro-French
+Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil, Macro-French, Global French
   French [fra]
+  Nouchi [NOCODE_Nouchi]
+Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil, Macro-French
   Zarphatic [zrp]
   R\'eunion Creole French [rcf]
   Tayo [cks]
@@ -10239,7 +10243,7 @@ Nuclear_Trans_New_Guinea, Kainantu-Goroka, Kainantu, Tairora
   North Tairora [tbg]
   Binumarien [bjr]
   Waffa [waj]
-Nuclear_Trans_New_Guinea, Kainantu-Goroka, Unclassified Kainantu Goroka
+Nuclear_Trans_New_Guinea, Kainantu-Goroka, Unclassified Kainantu-Goroka
   Kenati [gat]
 Nuclear_Trans_New_Guinea, Kainantu-Goroka, Goroka
   Gende [gaf]
@@ -10473,6 +10477,7 @@ Tungusic, Central Tungusic, Central-Western Tungusic, Ulchaic
 Tungusic, Central Tungusic, Central-Eastern Tungusic
   Oroch [oac]
   Udihe [ude]
+  Kilen [NOCODE_Kilen]
 Tungusic, Manchu-Jurchen, Manchu-Xibe
   Manchu [mnc]
   Xibe [sjo]
