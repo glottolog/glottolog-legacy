@@ -116,11 +116,11 @@ class Database(object):
             fields['glottolog_ref_hash'] = hash
             yield id, (entrytype, fields)
 
-    def __getitem__(self, key):
+    def __getitem__(self, key, legacy=False):
         if not isinstance(key, (int, basestring)):
             raise ValueError
         with self.connect() as conn:
-            grp = self._entrygrp(conn, key)
+            grp = self._entrygrp(conn, key, legacy=legacy)
             entrytype, fields = self._merged_entry(grp)
             return key, (entrytype, fields)
 
@@ -140,7 +140,7 @@ class Database(object):
     def _entrygrp(conn, key, legacy=False, get_field=operator.itemgetter(0)):
         col = 'refid' if isinstance(key, int) else 'hash'
         if legacy:
-            extra_join = 'JOIN legacypriority AS l ON e.bibkey = l.bibkey '
+            extra_join = 'JOIN legacypriority AS l ON e.filename = l.filename AND e.bibkey = l.bibkey '
             order = "ORDER BY v.field, v.filename != 'hh.bib', v.filename, l.priority"
         else:
             extra_join = ''
@@ -240,11 +240,13 @@ def create_tables(conn):
         'value TEXT NOT NULL, '
         'PRIMARY KEY (filename, bibkey, field), '
         'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
-    # bibkey -> hash(bibkey) (py2 dict order)
+    # bibkey -> py2 dict iteration order
     conn.execute('CREATE TABLE legacypriority ('
+        'filename TEXT NOT NULL, '
         'bibkey TEXT NOT NULL, '
         'priority INTEFGER NOT NULL, '
-        'PRIMARY KEY (bibkey))')
+        'PRIMARY KEY (filename, bibkey) '
+        'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
  
 
 def import_bibfiles(conn, bibfiles):
@@ -259,10 +261,12 @@ def import_bibfiles(conn, bibfiles):
             conn.executemany('INSERT INTO value '
                 '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
                 ((b.filename, bibkey, field, value) for field, value in fields))
-            conn.execute('INSERT INTO legacypriority (bibkey, priority) '
-                'SELECT :bk, :pr WHERE NOT EXISTS '
-                '(SELECT 1 FROM legacypriority WHERE bibkey = :bk)',
-                {'bk': bibkey, 'pr': hash(bibkey)})
+        # legacy
+        cursor = conn.execute('SELECT bibkey FROM entry WHERE filename = ?', (b.filename,))
+        dct = dict.fromkeys(bibkey for bibkey, in cursor)
+        conn.executemany('INSERT INTO legacypriority (filename, bibkey, priority) '
+                'VALUES (?, ?, ?) ',
+                ((b.filename, bibkey, i) for i, bibkey in enumerate(dct)))
 
 
 def entrystats(conn):
@@ -426,6 +430,8 @@ def unique(iterable):
 
 
 def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3}):
+    if not (left or right):
+        return 0.0
     keys = left.viewkeys() & right.viewkeys()
     if not keys:
         return 1.0
