@@ -112,12 +112,20 @@ class Database(object):
 
     def merged(self):
         for (id, hash), grp in self:
-            id, (entrytype, fields) = self._merged_entry(id, grp)
+            entrytype, fields = self._merged_entry(grp)
             fields['glottolog_ref_hash'] = hash
             yield id, (entrytype, fields)
 
+    def __getitem__(self, key):
+        if not isinstance(key, (int, basestring)):
+            raise ValueError
+        with self.connect() as conn:
+            grp = self._entrygrp(conn, key)
+            entrytype, fields = self._merged_entry(grp)
+            return key, (entrytype, fields)
+
     @staticmethod
-    def _merged_entry(key, grp, union=UNION_FIELDS):
+    def _merged_entry(grp, union=UNION_FIELDS):
         fields = {field: values[0][0] if field not in union
             else ', '.join(unique(vl for vl, fn, bk in values))
             for field, values in grp}
@@ -126,34 +134,29 @@ class Database(object):
         fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
             for field, values in grp for vl, fn, bk in values)))
         entrytype = fields.pop('ENTRYTYPE')
-        return key, (entrytype, fields)
+        return entrytype, fields
 
-    def __getitem__(self, key, legacy=False, get_field=operator.itemgetter(0)):
-        if isinstance(key, int):
-            col = 'refid'
-        elif isinstance(key, basestring):
-            col = 'hash'
-        else:
-            raise ValueError
+    @staticmethod
+    def _entrygrp(conn, key, legacy=False, get_field=operator.itemgetter(0)):
+        col = 'refid' if isinstance(key, int) else 'hash'
         if legacy:
-            join = 'JOIN legacypriority AS l ON e.bibkey = l.bibkey '
+            extra_join = 'JOIN legacypriority AS l ON e.bibkey = l.bibkey '
             order = "ORDER BY v.field, v.filename != 'hh.bib', v.filename, l.priority"
         else:
-            join = ''
+            extra_join = ''
             order = 'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey'
-        with self.connect() as conn:
-            cursor = conn.execute(('SELECT v.field, v.value, v.filename, v.bibkey '
-                'FROM entry AS e '
-                'JOIN file AS f ON e.filename = f.name '
-                + join +
-                'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
-                'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
-                'WHERE %s = ? ' + order) % col, (key,))
-            grp = [(field, [(vl, fn, bk) for fd, vl, fn, bk in g])
-                for field, g in itertools.groupby(cursor, get_field)]
-            if not grp:
-                raise KeyError(key)
-            return self._merged_entry(key, grp)
+        cursor = conn.execute(('SELECT v.field, v.value, v.filename, v.bibkey '
+            'FROM entry AS e '
+            'JOIN file AS f ON e.filename = f.name '
+            + extra_join +
+            'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
+            'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
+            'WHERE %s = ? ' + order) % col, (key,))
+        grp = [(field, [(vl, fn, bk) for fd, vl, fn, bk in g])
+            for field, g in itertools.groupby(cursor, get_field)]
+        if not grp:
+            raise KeyError(key)
+        return grp
 
     def show_splits(self, verbose=True):
         with self.connect() as conn:
@@ -169,8 +172,9 @@ class Database(object):
                     for ri, hs, fn, bk in group:
                         print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                     # FIXME: remove legacy mode after migration
-                    old = self.__getitem__(refid, legacy=True)[1][1]
-                    cand = [(hs, self[hs][1][1]) for hs in unique(hs for ri, hs, fn, bk in group)]
+                    old = self._merged_entry(self._entrygrp(conn, refid, legacy=True))[1]
+                    cand = [(hs, self._merged_entry(self._entrygrp(conn, hs))[1])
+                        for hs in unique(hs for ri, hs, fn, bk in group)]
                     new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
                     print('-> %s' % new)
                 print
