@@ -125,7 +125,7 @@ class Database(object):
             return key, (entrytype, fields)
 
     @staticmethod
-    def _merged_entry(grp, union=UNION_FIELDS):
+    def _merged_entry(grp, union=UNION_FIELDS, raw=False):
         fields = {field: values[0][0] if field not in union
             else ', '.join(unique(vl for vl, fn, bk in values))
             for field, values in grp}
@@ -133,6 +133,8 @@ class Database(object):
             for field, values in grp for vl, fn, bk in values)))
         fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
             for field, values in grp for vl, fn, bk in values)))
+        if raw:
+            return fields
         entrytype = fields.pop('ENTRYTYPE')
         return entrytype, fields
 
@@ -158,7 +160,7 @@ class Database(object):
             raise KeyError(key)
         return grp
 
-    def show_splits(self, verbose=True):
+    def show_splits(self):
         with self.connect() as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
@@ -168,31 +170,32 @@ class Database(object):
                 group = list(group)
                 for row in group:
                     print(row)
-                if verbose:
-                    for ri, hs, fn, bk in group:
-                        print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
-                    # FIXME: remove legacy mode after migration
-                    old = self._merged_entry(self._entrygrp(conn, refid, legacy=True))[1]
-                    cand = [(hs, self._merged_entry(self._entrygrp(conn, hs))[1])
-                        for hs in unique(hs for ri, hs, fn, bk in group)]
-                    new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
-                    print('-> %s' % new)
-                print
+                for ri, hs, fn, bk in group:
+                    print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                # FIXME: remove legacy mode after migration
+                old = self._merged_entry(self._entrygrp(conn, refid, legacy=True), raw=True)
+                cand = [(hs, self._merged_entry(self._entrygrp(conn, hs), raw=True))
+                    for hs in unique(hs for ri, hs, fn, bk in group)]
+                new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
+                print('-> %s\n' % new)
 
-    def show_merges(self, verbose=True):
+    def show_merges(self):
         with self.connect() as conn:
             cursor = conn.execute('SELECT hash, refid, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE hash = e.hash AND refid != e.refid) '
-            'ORDER BY hash, refid, filename, bibkey')
+            'ORDER BY hash, refid DESC, filename, bibkey')
             for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
                 group = list(group)
                 for row in group:
                     print(row)
-                if verbose:
-                    for hs, ri, fn, bk in group:
-                        print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
-                print
+                for hs, ri, fn, bk in group:
+                    print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                new = self._merged_entry(self._entrygrp(conn, hash), raw=True)
+                cand = [(ri, self._merged_entry(self._entrygrp(conn, ri, legacy=True), raw=True))
+                    for ri in unique(ri for hs, ri, fn, bk in group)]
+                old = min(cand, key=lambda (ri, fields): distance(new, fields))[0]
+                print('-> %s\n' % old)
 
     def show_identified(self):
         with self.connect() as conn:
@@ -240,7 +243,7 @@ def create_tables(conn):
         'value TEXT NOT NULL, '
         'PRIMARY KEY (filename, bibkey, field), '
         'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
-    # bibkey -> py2 dict iteration order
+    # entry -> current dict iteration order
     conn.execute('CREATE TABLE legacypriority ('
         'filename TEXT NOT NULL, '
         'bibkey TEXT NOT NULL, '
@@ -310,6 +313,7 @@ def hashfields(conn, filename, bibkey):
 
 def generate_hashes(conn):
     from bib import wrds, keyid
+
     words = collections.Counter()
     # TODO: consider distinct titles
     cursor = conn.execute('SELECT value FROM value WHERE field = ?', ('title',))
@@ -429,12 +433,14 @@ def unique(iterable):
             yield item
 
 
-def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3}):
+def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3, 'ENTRYTYPE': 2}):
     if not (left or right):
         return 0.0
+
     keys = left.viewkeys() & right.viewkeys()
     if not keys:
         return 1.0
+
     ratios = (weight.get(k, 1) * difflib.SequenceMatcher(None, left[k], right[k]).ratio()
         for k in keys)
     weights = (weight.get(k, 1) for k in keys)
