@@ -7,6 +7,7 @@ import shutil
 import re
 import csv
 from collections import defaultdict, namedtuple, Counter
+from heapq import nsmallest
 from ConfigParser import RawConfigParser
 
 import latexcodec
@@ -502,7 +503,7 @@ def keyid(fields, fd={}, ti=2):
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
     # select the (leftmost) two least frequent words from the title
     types = uniqued(w for w in tks if rewrdtok.match(w))
-    tk = sorted(types, key=lambda w: fd.get(w, 0))[:ti]
+    tk = nsmallest(ti, types, key=lambda w: fd.get(w, 0))
     # put them back into the title order (i.e. 'spam eggs' != 'eggs spam')
     order = {w: i for i, w in enumerate(types)}
     tk.sort(key=lambda w: order[w])
