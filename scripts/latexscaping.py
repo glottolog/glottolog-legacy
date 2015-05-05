@@ -2,11 +2,6 @@
 
 """TODO: replace in source files OR add de-/encoding rule
 
-\oslash
-\texteng
-
-\&
-{\N}
 \texthooktop{
 \textpolhook{
 \textbari{
@@ -28,16 +23,16 @@
 \textrevglotstop
 \;
 \:
-\texttt
 
----, --, ``'', {},\ng, \textdot, \textsubdot,  \v{j} -> \v\j
-{\N}?
+---, --, ``'', {}, \textdot, \textsubdot,  \v{j} -> \v\j
 
 see also:
   undiacritic.py rules
   http://github.com/clld/clld/blob/master/clld/lib/bibtex.py
   http://github.com/clld/clld/blob/master/clld/lib/latex.py
   http://github.com/mcmtroffaes/latexcodec/blob/develop/latexcodec/codec.py#L97
+
+\&
 """
 
 import latexcodec
