@@ -2929,7 +2929,7 @@ Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric, Sapuan-Sok
   Sapuan [spu]
   Sok [skk]
 Austroasiatic, Bahnaric, West Bahnaric, Nuclear West Bahnaric, Laveh-Brao
-  Lave [brb]
+  Brao [brb]
   Kru'ng 2 [krr]
   Kavet [krv]
 Austroasiatic, Bahnaric
@@ -8305,9 +8305,6 @@ Pama-Nyungan, Southeastern Pama-Nyungan, Wiradhuric
   Gamilaraay [kld]
   Wangaaybuwan-Ngiyambaa [wyb]
   Wiradhuri [wrh]
-Pama-Nyungan, Paman, Compromise Middle Pama
-  Pakanha [pkn]
-  Wikngenchera [wua]
 Pama-Nyungan, Paman, Southwest Pama, Upper Southwest Paman
   Thayore [thd]
   Kuuk-Yak [uky]
@@ -8322,6 +8319,9 @@ Pama-Nyungan, Paman, Southwest Pama, Coastal Southwest Paman, Dhawa-Kaber
   Koko Dhawa [NOCODE_Koko-Dhawa]
 Pama-Nyungan, Paman, Southwest Pama, Unclassified Southwest Pama
   Tagalaka [tgz]
+Pama-Nyungan, Paman, Compromise Middle Pama
+  Pakanha [pkn]
+  Wikngenchera [wua]
 Pama-Nyungan, Paman, Compromise Middle Pama, Wik, Kuku-Wik-Ep, Kuku-Wik, Paman Kuku
   Kuku-Mu'inh [xmp]
   Kuku-Uwanh [uwa]
@@ -8339,10 +8339,13 @@ Pama-Nyungan, Paman, Compromise Middle Pama, Wik, Ngatharra-Ngathana-Iinychanya
 Pama-Nyungan, Paman, Compromise Middle Pama, Wik, Flinders-Barrow
   Flinders Island [fln]
   Barrow Point [bpt]
-Pama-Nyungan, Paman, Compromise Middle Pama, Northeastern Pama
+Pama-Nyungan, Paman, Compromise Middle Pama, Eastern Pama, Umpilaic
   Umpila [ump]
   Kuuku-Ya'u [kuy]
   Kanju [kbe]
+Pama-Nyungan, Paman, Compromise Middle Pama, Eastern Pama, Umbindhamuic
+  Umbindhamu [umd]
+  Yintyinka-Ayabadhu [ayd]
 Pama-Nyungan, Paman, Rarmul Pama
   Thaypan [typ]
   Aghu Tharnggalu [ggr]
@@ -8373,9 +8376,6 @@ Pama-Nyungan, Paman
 Pama-Nyungan, Paman, Finasleigh Pama
   Wamin [wmi]
   Mbabaram [vmb]
-Pama-Nyungan, Paman, Umbindhamuic
-  Umbindhamu [umd]
-  Ayabadhu [ayd]
 Pama-Nyungan, Paman, Norman Pama
   Walangama [NOCODE_Walangama]
   Kok-Nar [gko]
@@ -9474,15 +9474,15 @@ Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Qiang
 Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Pumi
   Northern Pumi [pmi]
   Southern Pumi [pmj]
-Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic
-  Situ [tzi]
+Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Gyalrongic
   Khroskyabs [jiq]
-Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic, Horpa-Shangzhai
+Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Gyalrongic, Horpa-Stodsde
   Horpa [ero]
   Stodsde [jih]
-Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic, Jiarong
+Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Gyalrongic, Core Gyalrong
+  Situ [tzi]
+Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Gyalrongic, Core Gyalrong, Northern Gyalrong
   Japhug [NOCODE_Japhug]
-Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic, Jiarong, Zbu-Tshobdun
   Zbu [NOCODE_Zbu]
   Tshobdun [NOCODE_Tshobdun]
 Sino-Tibetan, Nungish, Gunong

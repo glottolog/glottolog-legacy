@@ -427,7 +427,7 @@ Spurious, Tai-Kadai, Kam-Tai, Be-Tai, Daic, Central-Southwestern Tai, Wenma-Sout
   Tai Pao [tpo]
 Spurious, Retired, Pama-Nyungan, Arandic-Thura-Yura, Thura-Yura
   Wirangu-Nauo [wiw]
-Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Rgyalrongic
+Spurious, Retired, Sino-Tibetan, Burmo-Qiangic, Na-Qiangic, Qiangic, Gyalrongic
   Jiarong [jya]
 Spurious, Retired, Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, South Peripheral Kuki-Chin, Paletwa
   Khumi Awa Chin [cka]
