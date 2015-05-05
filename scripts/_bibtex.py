@@ -15,9 +15,7 @@ from pybtex.textutils import whitespace_re
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
-import latexcodec
-assert u'\xe4'.encode('latex') == r'\"a'
-
+import latexscaping
 from latexutf8 import latex_to_utf8
 
 __all__ = [
@@ -143,7 +141,7 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
         items = sorted(entries.iteritems(), key=sortkey)
     else:
         raise ValueError(sortkey)
-    """ *: en/decoded by latexcodec
+    """Reserved characters (* -> en-/decoded by latexscaping)
     * #: \#
       $: \$
       %: \%
@@ -184,10 +182,6 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
         for bibkey, (entrytype, fields) in items:
             fd.write(u'@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
-                # FIXME
-                # ---, --, ``'', {},\ng, \textdot, \textsubdot,  \v{j} -> \v\j
-                # {\N}?
-                # see also http://github.com/clld/clld/blob/master/clld/lib/bibtex.py
                 if k in verbatim:
                     v = v.strip().decode('ascii')
                 elif isinstance(v, str):

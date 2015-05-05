@@ -1,7 +1,6 @@
 import re
 
-import latexcodec
-assert r'\"a'.decode('latex') == u'\xe4'
+import latexscaping
 
 __all__ = ['latex_to_utf8']
 

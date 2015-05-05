@@ -10,9 +10,7 @@ from collections import defaultdict, namedtuple, Counter
 from heapq import nsmallest
 from ConfigParser import RawConfigParser
 
-import latexcodec
-assert u'\xe4'.encode('latex') == r'\"a'
-
+import latexscaping
 from undiacritic import undiacritic
 
 __all__ = [
