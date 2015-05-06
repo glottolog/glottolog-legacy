@@ -6,7 +6,6 @@ import datetime
 import ConfigParser
 
 import _bibtex
-
 from _bibfiles_db import Database
 
 __all__ = ['Collection', 'BibFile', 'Database']
@@ -53,9 +52,12 @@ class Collection(list):
             return self._map[index_or_filename]
         return super(Collection, self).__getitem__(index_or_filename)
 
+    def check_all(self):
+        for b in self:
+            b.check()
+            
     def roundtrip_all(self):
         for b in self:
-            print(b)
             b.roundtrip()
 
     def to_sqlite(self, filename=None):
@@ -105,9 +107,14 @@ class BibFile(object):
             verbose=verbose)
 
     def check(self):
-        _bibtex.check(filename=self.filepath)
+        print(self)
+        invalid = _bibtex.check(filename=self.filepath)
+        verdict = ('(%d invalid)' % invalid) if invalid else 'OK'
+        entries = self.load()
+        print('%d %s' % (len(entries), verdict))
 
     def roundtrip(self):
+        print(self)
         self.save(self.load())
 
     def __repr__(self):

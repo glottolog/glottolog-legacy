@@ -3,8 +3,6 @@
 import io
 import re
 import mmap
-import string
-import StringIO
 import contextlib
 import collections
 
@@ -32,7 +30,6 @@ FIELDORDER = [
 
 VERBATIM = {'doi', 'eprint', 'file', 'url', 'pdf', 'fn', 'fnnote'}
 
-# TODO: bracket escapes r'\?\[\\u\d+\]' (possilbly with five digits)
 # FIXME: tex-escape/character entity mix in anla.bib titlealt
 
 
@@ -65,13 +62,16 @@ def iterentries(filename, encoding=None, use_pybtex=True):
             for bibkey, entrytype, fields in bib.pitems(source):
                 yield bibkey, (entrytype, fields)  
     elif encoding is None:
+        raise NotImplementedError
+    elif encoding == 'ascii+u_escape':
+        encoding = 'ascii'
         with memorymapped(filename) as source:
             try:
                 for entrytype, (bibkey, fields) in BibTeXEntryIterator(source):
-                    fields = {name.lower():
-                        whitespace_re.sub(' ', ''.join(values).strip())
+                    fields = {name.decode(encoding).lower():
+                        u_unescape(whitespace_re.sub(' ', ''.join(values).decode(encoding).strip()))
                         for name, values in fields}
-                    yield bibkey, (entrytype, fields)
+                    yield bibkey.decode(encoding), (entrytype.decode(encoding), fields)
             except PybtexSyntaxError as e:
                 debug_pybtex(source, e)
     else:
@@ -83,7 +83,30 @@ def iterentries(filename, encoding=None, use_pybtex=True):
                         for name, values in fields}
                     yield bibkey.decode(encoding), (entrytype.decode(encoding), fields)
             except PybtexSyntaxError as e:
-                    debug_pybtex(source, e)
+                debug_pybtex(source, e)
+
+
+def u_unescape(s, pattern=re.compile(r'\?\[\\u(\d{3,5})\]')):
+    def iterchunks(s, matches):
+        pos = 0
+        for m in matches:
+            start, end = m.span()
+            yield s[pos:start]
+            yield unichr(int(m.group(1)))
+            pos = end
+        yield s[pos:]
+    return ''.join(iterchunks(s, pattern.finditer(s)))
+
+
+def u_escape(s):
+    def iterchunks(s):
+        for c in s:
+            o = ord(c)
+            if o <= 127:
+                yield c
+            else:
+                yield r'?[\u%d]' % o
+    return ''.join(iterchunks(s))
 
 
 def debug_pybtex(source, e):
@@ -115,7 +138,7 @@ class Name(collections.namedtuple('Name', 'prelast last given lineage')):
 
 
 def save(entries, filename, sortkey, encoding=None, errors='strict', use_pybtex=True, verbose=True):
-    if encoding in (None, 'ascii'):
+    if encoding in (None, 'ascii', 'ascii+u_escape'):
         with open(filename, 'w') as fd:
             dump(entries, fd, sortkey, encoding, errors, use_pybtex, verbose)
     else:
@@ -155,8 +178,9 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
       <: \textless
       >: \textgreater
     """
-    if not use_pybtex:
-        assert encoding in (None, 'ascii')
+    if not use_pybtex:  # legacy code path for conversion/comparison
+        if encoding not in (None, 'ascii'):
+            raise NotImplementedError
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
@@ -166,11 +190,24 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
                     v = v.strip().encode('latex', errors).replace(r'\#', '#').replace(r'\&', r'&').replace(r'\_', '_')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
-    elif encoding in (None, 'ascii'):
+    elif encoding is None:
+        raise NotImplementedError
+    elif encoding == 'ascii+u_escape':
+        encoding = 'ascii'
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
-                # FIXME
+                v = u_escape(v)
+                if k in verbatim:
+                    v = v.strip().encode('ascii')
+                else:
+                    v = v.strip().encode('latex', errors).replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
+                fd.write(',\n    %s = {%s}' % (k, v))
+            fd.write('\n}\n' if fields else ',\n}\n')
+    elif encoding == 'ascii':
+        for bibkey, (entrytype, fields) in items:
+            fd.write('@%s{%s' % (entrytype, bibkey))
+            for k, v in fieldorder.itersorted(fields):
                 if k in verbatim:
                     v = v.strip().encode('ascii')
                 else:
@@ -240,27 +277,8 @@ class CheckParser(Parser):
 
 def _test_load():
     import _bibfiles
-    for b in _bibfiles.Collection():
-        print(b.filepath)
-        entries = load(b.filepath)
-        print(len(entries))
-        print('%d invalid' % check(b.filepath))
-
-
-def _test_unicode(remove=False):
-    import os, _bibfiles
-    for b in _bibfiles.Collection():
-        print(b.filepath)
-        dst = os.path.join(os.path.dirname(b.filepath),
-            '%s-utf8%s' % os.path.splitext(os.path.basename(b.filepath)))
-        try:
-            save(iterentries(b.filepath), dst, sortkey=None, encoding='utf-8')
-        except ValueError as e:
-            print(repr(e))
-        if remove:
-            os.remove(dst)
+    _bibfiles.Collection().check_all()
 
 
 if __name__ == '__main__':
     _test_load()
-    #_test_unicode()
