@@ -3,7 +3,6 @@
 import os
 import io
 import datetime
-import collections
 import ConfigParser
 
 import _bibtex
@@ -115,10 +114,13 @@ class BibFile(object):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
 
     def show_characters(self, include_plain=False):
+        import collections
+        from unicodedata import name
+
         with io.open(self.filepath, encoding=self.encoding) as fd:
             data = fd.read()
         hist = collections.Counter(data)
-        table = '\n'.join('%d\t%-9r\t%s' % (n, c, c)
+        table = '\n'.join('%d\t%-9r\t%s\t%s' % (n, c, c, name(c, ''))
             for c, n in hist.most_common()
             if include_plain or not 20 <= ord(c) <= 126)
         print(table)
