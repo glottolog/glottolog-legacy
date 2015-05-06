@@ -57,7 +57,7 @@ def load(filename, preserve_order=False, encoding=None, use_pybtex=True):
 
 
 def iterentries(filename, encoding=None, use_pybtex=True):
-    if not use_pybtex:
+    if not use_pybtex:  # legacy code path for conversion/comparison
         if encoding not in (None, 'ascii'):
             raise NotImplementedError
         import bib
