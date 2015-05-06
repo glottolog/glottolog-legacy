@@ -1,7 +1,6 @@
 # undiacritic.py
 
 import re
-import unicodedata
 
 from unidecode import unidecode
 
@@ -62,16 +61,6 @@ ACCENT = re.compile(r'''\\[`'^"H~ckl=b.druvt](\{[a-zA-Z]\}|[a-zA-Z])''')
 DROP = re.compile(r'\\[^\s{}]+\{|\\.|[{}]')
 
 
-def undiacritic_(txt):
-    if isinstance(txt, unicode):
-        txt = undiacritic_unicode(txt)
-    txt = REPLACE(txt)
-    txt = COMMAND1.sub(r'\1', txt)
-    txt = COMMAND2.sub('', txt)
-    txt = ACCENT.sub(r'\1', txt)
-    return DROP.sub('', txt)
-
-
 def undiacritic(txt):
     if isinstance(txt, unicode):
         txt = unidecode(txt)
@@ -80,42 +69,3 @@ def undiacritic(txt):
     txt = COMMAND2.sub('', txt)
     txt = ACCENT.sub(r'\1', txt)
     return DROP.sub('', txt)
-
-
-def undiacritic_unicode(s):
-    nkfd = unicodedata.normalize('NFKD', s)
-    undiac = u''.join(c for c in nkfd if not unicodedata.combining(c))
-    return undiac.encode('ascii', errors='ignore')
-
-
-def _test_undiacritic(field='title'):
-    import sqlalchemy as sa
-
-    engine = sa.create_engine('postgresql://postgres@/bibfiles')
-    metadata = sa.MetaData()
-    undiac = sa.Table('undiacritic', metadata,
-        sa.Column('value', sa.Text, primary_key=True),
-        sa.Column('result1', sa.Text, nullable=False),
-        sa.Column('result2', sa.Text))
-    metadata.drop_all(engine)
-    metadata.create_all(engine)
-    insert_un = undiac.insert(bind=engine).execute
-
-    cursor = engine.execution_options(stream_results=True).execute(sa.text(
-        "SELECT fields->>'author' FROM entry WHERE fields ? 'author' UNION "
-        "SELECT fields->>'editor' FROM entry WHERE fields ? 'editor' UNION "
-        "SELECT fields->>'title' FROM entry WHERE fields ? 'title'"))
-
-    while True:
-        rows = cursor.fetchmany(10000)
-        if not rows:
-            break
-        mapped = ((v, undiacritic_(v), undiacritic(v)) for v, in rows)
-        mapped = [{'value': v, 'result1': r1, 'result2': r2}
-            for (v, r1, r2) in mapped if not v == r1 == r2]
-        if mapped:
-            insert_un(mapped)
-
-
-if __name__ == '__main__':
-    _test_undiacritic()
