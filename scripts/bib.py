@@ -479,7 +479,7 @@ def roman(x):
 rewrdtok = re.compile("[a-zA-Z].+")
 reokkey = re.compile("[^a-z\d\-\_\[\]]")
 
-def keyid(fields, fd={}, ti=2):
+def keyid(fields, fd={}, ti=2, infinity=float('inf')):
     if not fields.has_key('author'):
         if not fields.has_key('editor'):
                 values = ''.join(v for f, v in bibord_iteritems(fields)
@@ -501,7 +501,8 @@ def keyid(fields, fd={}, ti=2):
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
     # select the (leftmost) two least frequent words from the title
     types = uniqued(w for w in tks if rewrdtok.match(w))
-    tk = nsmallest(ti, types, key=lambda w: fd.get(w, 0))
+    # TODO: consider dropping stop words/hapaxes from freq. distribution
+    tk = nsmallest(ti, types, key=lambda w: fd.get(w, infinity))
     # put them back into the title order (i.e. 'spam eggs' != 'eggs spam')
     order = {w: i for i, w in enumerate(types)}
     tk.sort(key=lambda w: order[w])
