@@ -56,7 +56,7 @@ class Database(object):
             filename = DBFILE
         self.filename = filename
 
-    def recompute(self):
+    def recompute(self, verbose=False):
         with self.connect(async=True) as conn:
             with conn:
                 generate_hashes(conn)
@@ -64,6 +64,12 @@ class Database(object):
             hashidstats(conn)
             with conn:
                 assign_ids(conn)
+
+        if verbose:
+            self.show_splits()
+            self.show_merges()
+            self.show_identified()
+            self.show_combined()
 
     def connect(self, async=False, close=True, page_size=None):
         conn = sqlite3.connect(self.filename)
@@ -414,6 +420,7 @@ def assign_ids(conn):
         'WHERE e.hash = entry.hash AND e.refid != entry.refid) '
         'AND NOT EXISTS (SELECT 1 FROM entry AS e '
         'WHERE e.refid = entry.refid AND e.hash != entry.hash)').rowcount)
+    # TODO: resolve split/merge id *before* giving new items an id
     # TODO: consider same23 merge attempt
     # TODO: let the closest match retain the id
     print('%d splitted' % conn.execute('SELECT count(*) FROM entry '
@@ -506,7 +513,3 @@ if __name__ == '__main__':
     #_test_merge()
     d = Database.from_bibfiles()
     #d = Database()
-    d.show_splits()
-    d.show_merges()
-    d.show_identified()
-    d.show_combined()
