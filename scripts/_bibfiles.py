@@ -108,9 +108,9 @@ class BibFile(object):
 
     def check(self):
         print(self)
-        invalid = _bibtex.check(filename=self.filepath)
+        entries = self.load()  # bare BibTeX syntax
+        invalid = _bibtex.check(filename=self.filepath)  # names/macros etc.
         verdict = ('(%d invalid)' % invalid) if invalid else 'OK'
-        entries = self.load()
         print('%d %s' % (len(entries), verdict))
 
     def roundtrip(self):

@@ -477,6 +477,15 @@ def _test_merge():
                     insert_ov(hash=hash, field=field, value1=value1, value2=value2,
                         file1=file1, bibkey1=bibkey1, file2=file2, bibkey2=bibkey2)
 
+    query = sa.select([
+        overrides.c.file1, overrides.c.file2, sa.func.count().label('n')
+        ]).where(overrides.c.file1 != overrides.c.file2)\
+        .group_by(overrides.c.file1, overrides.c.file2)\
+        .order_by(sa.literal_column('n'), overrides.c.file1, overrides.c.file2)
+
+    print('\n'.join('%d\t%s\t%s' % (n, f1, f2)
+        for f1, f2, n in engine.execute(query)))
+
 
 if __name__ == '__main__':
     d = Database.from_bibfiles()

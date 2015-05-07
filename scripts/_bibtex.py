@@ -256,6 +256,7 @@ def check(filename, encoding=None):
     
 
 class CheckParser(Parser):
+    """Unline BibTeXEntryIterator also parses names, macros, etc."""
 
     def __init__(self, *args, **kwargs):
         super(CheckParser, self).__init__(*args, **kwargs)
