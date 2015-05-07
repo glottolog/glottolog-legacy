@@ -213,6 +213,21 @@ class Database(object):
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                 print
 
+    def show_combined(self):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT hash, filename, bibkey '
+            'FROM entry AS e WHERE refid IS NULL AND EXISTS (SELECT 1 FROM entry '
+            'WHERE refid IS NULL AND hash = e.hash '
+            'AND (filename != e.filename OR bibkey != e.bibkey)) '
+            'ORDER BY hash, filename, bibkey')
+            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
+                group = list(group)
+                for row in group:
+                    print(row)
+                for hs, fn, bk in group:
+                    print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+                print
+
 
 def create_tables(conn):
     conn.execute('CREATE TABLE file ('
@@ -488,8 +503,10 @@ def _test_merge():
 
 
 if __name__ == '__main__':
-    d = Database.from_bibfiles()
-    #d.to_bibfile()
     #_test_merge()
+    d = Database.from_bibfiles()
     #d = Database()
-    #d.show_splits()
+    d.show_splits()
+    d.show_merges()
+    d.show_identified()
+    d.show_combined()
