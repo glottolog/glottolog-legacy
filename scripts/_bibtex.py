@@ -13,8 +13,7 @@ from pybtex.textutils import whitespace_re
 from pybtex.bibtex.utils import split_name_list
 from pybtex.database import Person
 
-import latexscaping
-from latexutf8 import latex_to_utf8
+from _bibtex_escaping import u_escape, u_unescape, latex_to_utf8
 
 __all__ = [
     'load', 'iterentries', 'names',
@@ -86,29 +85,6 @@ def iterentries(filename, encoding=None, use_pybtex=True):
                 debug_pybtex(source, e)
 
 
-def u_unescape(s, pattern=re.compile(r'\?\[\\u(\d{3,5})\]')):
-    def iterchunks(s, matches):
-        pos = 0
-        for m in matches:
-            start, end = m.span()
-            yield s[pos:start]
-            yield unichr(int(m.group(1)))
-            pos = end
-        yield s[pos:]
-    return ''.join(iterchunks(s, pattern.finditer(s)))
-
-
-def u_escape(s):
-    def iterchunks(s):
-        for c in s:
-            o = ord(c)
-            if o <= 127:
-                yield c
-            else:
-                yield r'?[\u%d]' % o
-    return ''.join(iterchunks(s))
-
-
 def debug_pybtex(source, e):
     start, line, pos = e.error_context_info
     print('BIBTEX ERROR on line %d, last parsed lines:' % line)
@@ -164,7 +140,7 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
         items = sorted(entries.iteritems(), key=sortkey)
     else:
         raise ValueError(sortkey)
-    """Reserved characters (* -> en-/decoded by latexscaping)
+    """Reserved characters (* -> en-/decoded by latexcodec)
     * #: \#
       $: \$
       %: \%

@@ -10,7 +10,7 @@ from collections import defaultdict, namedtuple, Counter
 from heapq import nsmallest
 from ConfigParser import RawConfigParser
 
-import latexscaping
+import _bibtex_escaping
 from undiacritic import undiacritic
 
 __all__ = [
