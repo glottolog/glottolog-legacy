@@ -56,20 +56,15 @@ class Database(object):
             filename = DBFILE
         self.filename = filename
 
-    def recompute(self, verbose=False):
+    def recompute(self, hashes=True, verbose=False):
         with self.connect(async=True) as conn:
+            if hashes:
+                with conn:
+                    generate_hashes(conn)
+                hashstats(conn)
+                hashidstats(conn)
             with conn:
-                generate_hashes(conn)
-            hashstats(conn)
-            hashidstats(conn)
-            with conn:
-                assign_ids(conn)
-
-        if verbose:
-            self.show_splits()
-            self.show_merges()
-            self.show_identified()
-            self.show_combined()
+                assign_ids(conn, verbose=verbose)
 
     def connect(self, async=False, close=True, page_size=None):
         conn = sqlite3.connect(self.filename)
@@ -97,10 +92,17 @@ class Database(object):
             allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
                 'WHERE id IS NULL)').fetchone()
             assert allid
+
             allpriority, = conn.execute('SELECT NOT EXISTS '
                 '(SELECT 1 FROM entry WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert allpriority
+
+            onetoone, = conn.execute('SELECT NOT EXISTS '
+                '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+                'WHERE hash = e.hash AND id != e.id '
+                'OR id = e.id AND hash != e.hash))').fetchone()
+            assert onetoone
 
             get_id_hash, get_field = operator.itemgetter(0, 1), operator.itemgetter(2)
             for first, last in windowed(conn, 'id', chunksize):
@@ -251,13 +253,15 @@ def create_tables(conn):
     conn.execute('CREATE TABLE entry ('
         'filename TEXT NOT NULL, '
         'bibkey TEXT NOT NULL, '
-        'refid INTEGER, '
-        'hash TEXT, '
-        'id INTEGER, '
+        'refid INTEGER, '  # old glottolog_ref_id from the bibfiles (previous hash groupings)
+        'hash TEXT, '      # current groupings, m:n with refid (splits/merges)
+        'srefid INTEGER, ' # split-resolved refid (every srefid maps to exactly one hash)
+        'id INTEGER, '     # new glottolog_ref_id to save into the bibfiles (current hash groupings)
         'PRIMARY KEY (filename, bibkey), '
         'FOREIGN KEY (filename) REFERENCES file(name))')
     conn.execute('CREATE INDEX ix_refid ON entry(refid)')
     conn.execute('CREATE INDEX ix_hash ON entry(hash)')
+    conn.execute('CREATE INDEX ix_srefid ON entry(srefid)')
     conn.execute('CREATE INDEX ix_id ON entry(id)')
     conn.execute('CREATE TABLE value ('
         'filename TEXT NOT NULL, '
@@ -403,50 +407,102 @@ def windowed(conn, col, chunksize):
         yield first, last
 
 
-def assign_ids(conn):
+def assign_ids(conn, verbose=False, legacy=True):  # FIXME: remove legacy mode after migration
+    merged_entry, entrygrp = Database._merged_entry, Database._entrygrp
+
     allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
         'WHERE hash IS NULL)').fetchone()
     assert allhash
 
-    print('%d entries' % conn.execute('UPDATE entry SET id = NULL').rowcount)
-    print('%d unchanged' % conn.execute('UPDATE entry SET id = refid WHERE refid IS NOT NULL '
-        'AND NOT EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE e.hash = entry.hash AND e.refid != entry.refid '
-        'OR e.refid = entry.refid AND e.hash != entry.hash)').rowcount)
-    print('%d merged' % conn.execute('UPDATE entry '
-        'SET id = (SELECT max(refid) FROM entry AS e WHERE e.hash = entry.hash) '
-        'WHERE refid IS NOT NULL '
-        'AND EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE e.hash = entry.hash AND e.refid != entry.refid) '
-        'AND NOT EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE e.refid = entry.refid AND e.hash != entry.hash)').rowcount)
-    # TODO: resolve split/merge id *before* giving new items an id
-    # TODO: consider same23 merge attempt
-    # TODO: let the closest match retain the id
-    print('%d splitted' % conn.execute('SELECT count(*) FROM entry '
-        'WHERE refid IS NOT NULL '
-        'AND EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE e.refid = entry.refid AND e.hash != entry.hash)').fetchone())
-    print('%d new' % conn.execute('SELECT count(*) FROM entry '
-        'WHERE refid IS NULL ').fetchone())
-    conn.execute('UPDATE entry '
-            'SET id = (SELECT id FROM entry as e WHERE e.hash = entry.hash) '
-            'WHERE id IS NULL')
-    conn.executemany('UPDATE entry SET id = ? WHERE hash = ?',
-        ((id, hash) for id, (hash,) in enumerate(
-        conn.execute('SELECT hash FROM entry '
-            'WHERE id IS NULL '
-            'GROUP BY hash ORDER BY hash'),
-        conn.execute('SELECT coalesce(max(id), 0) + 1 FROM entry').fetchone()[0])))
+    print('%d entries' % conn.execute('UPDATE entry SET id = NULL, srefid = refid').rowcount)
+
+    # resolve splits: srefid = refid only for entries from the most similar hash group
+    # TODO: consider same23 merge attempt?
+    nsplit = 0
+    cursor = conn.execute('SELECT refid, hash, filename, bibkey FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE refid = e.refid AND hash != e.hash) '
+        'ORDER BY refid, hash, filename, bibkey')
+    for refid, group in group_first(cursor):
+        old = merged_entry(entrygrp(conn, refid, legacy=legacy), raw=True)
+        nsplit += len(group)
+        cand = [(hs, merged_entry(entrygrp(conn, hs), raw=True))
+            for hs in unique(hs for ri, hs, fn, bk in group)]
+        new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
+        separated = conn.execute('UPDATE entry SET srefid = NULL WHERE refid = ? AND hash != ?',
+            (refid, new)).rowcount
+        if verbose:
+            for row in group:
+                print(row)
+            for ri, hs, fn, bk in group:
+                print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+            print('-> %s' % new)
+            print('%d: %d separated from %s\n' % (refid, separated, new))
+    print('%d splitted' % nsplit)
+    
+    nosplits = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE srefid = e.srefid AND hash != e.hash))')
+    assert nosplits
+
+    # resolve merges: id = srefid of the most similar srefid group
+    nmerge = 0
+    cursor = conn.execute('SELECT hash, srefid, filename, bibkey FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE hash = e.hash AND srefid != e.srefid) '
+        'ORDER BY hash, srefid DESC, filename, bibkey')
+    for hash, group in group_first(cursor):
+        new = merged_entry(entrygrp(conn, hash), raw=True)
+        nmerge += len(group)
+        cand = [(ri, merged_entry(entrygrp(conn, ri, legacy=legacy), raw=True))
+            for ri in unique(ri for hs, ri, fn, bk in group)]
+        old = min(cand, key=lambda (ri, fields): distance(new, fields))[0]
+        merged = conn.execute('UPDATE entry SET id = ? WHERE hash = ? AND srefid != ?',
+            (old, hash, old)).rowcount
+        if verbose:
+            for row in group:
+                print(row)
+            for hs, ri, fn, bk in group:
+                print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
+            print('-> %s' % old)
+            print('%s: %d merged into %d\n' % (hash, merged, old))
+    print('%d merged' % nmerge)
+
+    # unchanged entries
+    print('%d unchanged' % conn.execute('UPDATE entry SET id = srefid '
+        'WHERE id IS NULL AND srefid IS NOT NULL').rowcount)
+
+    nomerges = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE hash = e.hash AND id != e.id))')
+    assert nomerges
+
+    # identified
+    print('%d identified (new/separated)' % conn.execute('UPDATE entry '
+        'SET id = (SELECT id FROM entry AS e WHERE e.hash = entry.hash AND e.id IS NOT NULL) '
+        'WHERE refid IS NULL AND id IS NULL AND EXISTS '
+        '(SELECT 1 FROM entry AS e WHERE e.hash = entry.hash AND e.id IS NOT NULL)').rowcount)
+
+    # assign new ids to hash groups of separated/new entries
+    nextid, = conn.execute('SELECT coalesce(max(refid), 0) + 1 FROM entry').fetchone()
+    cursor = conn.execute('SELECT hash FROM entry WHERE id IS NULL GROUP BY hash ORDER BY hash')
+    print('%d new ids (new/separated)' % conn.executemany('UPDATE entry SET id = ? WHERE hash = ?',
+        ((id, hash) for id, (hash,) in enumerate(cursor, nextid))).rowcount)
 
     allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
         'WHERE id IS NULL)').fetchone()
     assert allid
+
     onetoone, = conn.execute('SELECT NOT EXISTS '
         '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
         'WHERE hash = e.hash AND id != e.id '
         'OR id = e.id AND hash != e.hash))').fetchone()
     assert onetoone
+
+    # supersede relation
+    superseded, = conn.execute('SELECT count(*) FROM entry WHERE id != srefid').fetchone()
+    print('%d supersede pairs' % superseded)
+
+
+def group_first(iterable, groupkey=operator.itemgetter(0)):
+    for key, group in itertools.groupby(iterable, groupkey):
+        yield key, list(group)
 
 
 def unique(iterable):
@@ -513,3 +569,4 @@ if __name__ == '__main__':
     #_test_merge()
     d = Database.from_bibfiles()
     #d = Database()
+    #d.recompute(hashes=False, verbose=True)
