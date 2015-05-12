@@ -2,6 +2,7 @@
 /monsterold/
 /references/bibtex/*-utf8.bib
 /scripts/monster-utf8.bib
+/scripts/monster-replacements.json
 /scripts/monstermark-hht.txt
 /scripts/monstermark-lgc.txt
 /scripts/*.sqlite3

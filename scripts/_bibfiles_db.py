@@ -2,6 +2,7 @@
 
 import os
 import csv
+import json
 import sqlite3
 import difflib
 import operator
@@ -20,6 +21,8 @@ DBFILE = '_bibfiles.sqlite3'
 BIBFILE = 'monster-utf8.bib'
 
 CSVFILE = '../references/monster.csv'
+
+REPLACEMENTSFILE = 'monster-replacements.json'
 
 UNION_FIELDS = {'lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'}
 
@@ -101,6 +104,15 @@ class Database(object):
                 writer.writerow([col[0].encode(encoding) for col in cursor.description])
                 for row in cursor:
                      writer.writerow([col.encode(encoding) for col in row])
+
+    def to_replacements(self, filename=REPLACEMENTSFILE):
+        with self.connect() as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.execute('SELECT refid AS id, id AS replacement '
+                'FROM entry WHERE id != refid ORDER BY id')
+            pairs = map(dict, cursor)
+        with open(filename, 'wb') as fd:
+            json.dump(pairs, fd, indent=4)
 
     def trickle(self, bibfiles=None):
         bibfiles = self._get_bibfiles(bibfiles)
@@ -643,5 +655,4 @@ def _test_merge():
 if __name__ == '__main__':
     #_test_merge()
     d = Database.from_bibfiles()
-    #d = Database()
     #d.recompute(hashes=False, verbose=True)
