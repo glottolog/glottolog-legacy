@@ -1,6 +1,7 @@
 # _bibfiles_db.py
 
 import os
+import csv
 import sqlite3
 import difflib
 import operator
@@ -12,23 +13,38 @@ import _bibtex
 
 __all__ = ['Database']
 
+# FIXME: remove legacy mode after migration
+
 DBFILE = '_bibfiles.sqlite3'
 
-BIBFILE = '_bibfiles.bib'
+BIBFILE = 'monster-utf8.bib'
+
+CSVFILE = '../references/monster.csv'
 
 UNION_FIELDS = {'lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'}
+
+IGNORE_FIELDS = {'crossref',  'numnote', 'glotto_id'}
 
 
 class Database(object):
 
-    @classmethod
-    def from_bibfiles(cls, bibfiles=None, filename=None, page_size=32768):
+    @staticmethod
+    def _get_bibfiles(bibfiles):
         if bibfiles is None:
             from _bibfiles import Collection
-            bibfiles = Collection()
+            return Collection()
+        return bibfiles
 
+    @staticmethod
+    def _get_filename(filename, default=DBFILE):
         if filename is None:
-            filename = DBFILE
+            return default
+        return filename
+
+    @classmethod
+    def from_bibfiles(cls, bibfiles=None, filename=None, page_size=32768):
+        bibfiles = cls._get_bibfiles(bibfiles)
+        filename = cls._get_filename(filename)
             
         if os.path.exists(filename):
             os.remove(filename)
@@ -52,9 +68,7 @@ class Database(object):
         return self
 
     def __init__(self, filename=None):
-        if filename is None:
-            filename = DBFILE
-        self.filename = filename
+        self.filename = self._get_filename(filename)
 
     def recompute(self, hashes=True, verbose=False):
         with self.connect(async=True) as conn:
@@ -66,6 +80,51 @@ class Database(object):
             with conn:
                 assign_ids(conn, verbose=verbose)
 
+    def to_bibfile(self, filename=BIBFILE, encoding='utf-8', ):
+        _bibtex.save(self.merged(), filename, sortkey=None, encoding=encoding)
+
+    def to_csvfile(self, filename=CSVFILE, encoding='utf-8', dialect='excel'):
+        with self.connect() as conn:
+            cursor = conn.execute('SELECT filename, bibkey, hash, cast(id AS text) AS id '
+                'FROM entry ORDER BY lower(filename), lower(bibkey)')
+            with open(filename, 'wb') as fd:
+                writer = csv.writer(fd, dialect=dialect)
+                writer.writerow([col[0].encode(encoding) for col in cursor.description])
+                for row in cursor:
+                     writer.writerow([col.encode(encoding) for col in row])
+
+    def trickle(self, bibfiles=None):
+        bibfiles = self._get_bibfiles(bibfiles)
+        with self.connect() as conn:
+            filenames = conn.execute('SELECT name FROM file WHERE EXISTS '
+                '(SELECT 1 FROM entry WHERE filename = name '
+                'AND id != coalesce(refid, -1)) ORDER BY name').fetchall()
+            for f, in filenames:
+                b = bibfiles[f]
+                print(b)
+                entries = b.load()
+                cursor = conn.execute('SELECT bibkey, cast(refid AS text), cast(id AS text) '
+                    'FROM entry WHERE filename = ? AND id != coalesce(refid, -1) '
+                    'ORDER BY lower(bibkey)', (f,))
+                added = changed = 0
+                for bibkey, refid, new in cursor:
+                    entrytype, fields = entries[bibkey]
+                    old = fields.pop('glottolog_ref_id', None)
+                    assert old == refid
+                    if old is None:
+                        added += 1
+                    else:
+                        changed += 1
+                    fields['glottolog_ref_id'] = new
+                print('%d added, %d changed' % (added, changed))
+                b.save(entries)
+
+    def merged(self):
+        for (id, hash), grp in self:
+            entrytype, fields = self._merged_entry(grp)
+            fields['glottolog_ref_hash'] = hash
+            yield id, (entrytype, fields)
+
     def connect(self, async=False, close=True, page_size=None):
         conn = sqlite3.connect(self.filename)
         if async:
@@ -76,16 +135,6 @@ class Database(object):
         if close:
             conn = contextlib.closing(conn)
         return conn
-
-    def stats(self, field_files=False):
-        with self.connect() as conn:
-            entrystats(conn)
-            fieldstats(conn, field_files)
-            hashstats(conn)
-            hashidstats(conn)
-
-    def to_bibfile(self, filename=BIBFILE, encoding='utf-8'):
-        _bibtex.save(self.merged(), filename, sortkey=None, encoding=encoding)
 
     def __iter__(self, chunksize=100):
         with self.connect() as conn:
@@ -118,12 +167,6 @@ class Database(object):
                     yield (id_hash, [(field, [(vl, fn, bk) for id, hs, fd, vl, fn, bk in g])
                         for field, g in itertools.groupby(grp, get_field)])
 
-    def merged(self):
-        for (id, hash), grp in self:
-            entrytype, fields = self._merged_entry(grp)
-            fields['glottolog_ref_hash'] = hash
-            yield id, (entrytype, fields)
-
     def __getitem__(self, key, legacy=False):
         if not isinstance(key, (int, basestring)):
             raise ValueError
@@ -133,10 +176,10 @@ class Database(object):
             return key, (entrytype, fields)
 
     @staticmethod
-    def _merged_entry(grp, union=UNION_FIELDS, raw=False):
+    def _merged_entry(grp, union=UNION_FIELDS, ignore=IGNORE_FIELDS, raw=False):
         fields = {field: values[0][0] if field not in union
             else ', '.join(unique(vl for vl, fn, bk in values))
-            for field, values in grp}
+            for field, values in grp if field not in ignore}
         fields['src'] = ', '.join(sorted(set(fn
             for field, values in grp for vl, fn, bk in values)))
         fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
@@ -168,6 +211,13 @@ class Database(object):
             raise KeyError(key)
         return grp
 
+    def stats(self, field_files=False):
+        with self.connect() as conn:
+            entrystats(conn)
+            fieldstats(conn, field_files)
+            hashstats(conn)
+            hashidstats(conn)
+
     def show_splits(self):
         with self.connect() as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
@@ -180,7 +230,6 @@ class Database(object):
                     print(row)
                 for ri, hs, fn, bk in group:
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
-                # FIXME: remove legacy mode after migration
                 old = self._merged_entry(self._entrygrp(conn, refid, legacy=True), raw=True)
                 cand = [(hs, self._merged_entry(self._entrygrp(conn, hs), raw=True))
                     for hs in unique(hs for ri, hs, fn, bk in group)]
@@ -407,7 +456,7 @@ def windowed(conn, col, chunksize):
         yield first, last
 
 
-def assign_ids(conn, verbose=False, legacy=True):  # FIXME: remove legacy mode after migration
+def assign_ids(conn, verbose=False, legacy=True):
     merged_entry, entrygrp = Database._merged_entry, Database._entrygrp
 
     allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
