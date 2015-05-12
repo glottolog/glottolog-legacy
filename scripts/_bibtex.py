@@ -1,4 +1,4 @@
-# bibtex.py - basic bibtex file parsing
+# bibtex.py - basic bibtex file parsing/serialization
 
 import io
 import re
@@ -28,8 +28,6 @@ FIELDORDER = [
 ]
 
 VERBATIM = {'doi', 'eprint', 'file', 'url', 'pdf', 'fn', 'fnnote'}
-
-# FIXME: tex-escape/character entity mix in anla.bib titlealt
 
 
 @contextlib.contextmanager

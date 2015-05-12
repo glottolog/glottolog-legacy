@@ -1,4 +1,4 @@
-# _bibfiles.py
+# _bibfiles.py - ordered collection of bibfiles with load/save api
 
 import os
 import io
@@ -21,6 +21,7 @@ class Collection(list):
 
     @classmethod
     def _bibfiles(cls, directory, config, endwith):
+        """Read the INI-file, yield bibfile instances for sections."""
         config = os.path.join(directory, config)
         cfg = ConfigParser.RawConfigParser()
         with io.open(config, encoding=cls._encoding) as fp:
@@ -48,15 +49,18 @@ class Collection(list):
         self._map = {b.filename: b for b in self}
 
     def __getitem__(self, index_or_filename):
+        """Retrieve a bibfile by index or filename."""
         if isinstance(index_or_filename, basestring):
             return self._map[index_or_filename]
         return super(Collection, self).__getitem__(index_or_filename)
 
     def check_all(self):
+        """Check the BiBtex syntax of all bibfiles."""
         for b in self:
             b.check()
             
     def roundtrip_all(self):
+        """Load/save all bibfiles with the current settings."""
         for b in self:
             b.roundtrip()
 
@@ -121,6 +125,7 @@ class BibFile(object):
         return '<%s %r>' % (self.__class__.__name__, self.filename)
 
     def show_characters(self, include_plain=False):
+        """Display character-frequencies (excluding printable ASCII)."""
         import collections
         from unicodedata import name
 

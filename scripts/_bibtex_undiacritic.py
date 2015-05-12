@@ -1,4 +1,4 @@
-# undiacritic.py
+# _bibtex_undiacritic.py
 
 import re
 

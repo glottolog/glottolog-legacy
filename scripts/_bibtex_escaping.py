@@ -29,10 +29,12 @@
 ---, --, ``'', {}, \textdot, \textsubdot,  \v{j} -> \v\j
 
 see also:
-  undiacritic.py rules
+  _bibtex_undiacritic.py rules
   http://github.com/clld/clld/blob/master/clld/lib/bibtex.py
   http://github.com/clld/clld/blob/master/clld/lib/latex.py
   http://github.com/mcmtroffaes/latexcodec/blob/develop/latexcodec/codec.py#L97
+
+FIXME: tex-escape/character entity mix in anla.bib titlealt
 
 \textpolhook{ -> \k{}?
 \&

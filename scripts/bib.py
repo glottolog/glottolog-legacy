@@ -11,7 +11,7 @@ from heapq import nsmallest
 from ConfigParser import RawConfigParser
 
 import _bibtex_escaping
-from undiacritic import undiacritic
+from _bibtex_undiacritic import undiacritic
 
 __all__ = [
     'mrg', 'fuse',
@@ -501,7 +501,6 @@ def keyid(fields, fd={}, ti=2, infinity=float('inf')):
     tks = wrds(fields.get("title", "no.title")) #takeuntil :
     # select the (leftmost) two least frequent words from the title
     types = uniqued(w for w in tks if rewrdtok.match(w))
-    # TODO: consider dropping stop words/hapaxes from freq. distribution
     tk = nsmallest(ti, types, key=lambda w: fd.get(w, infinity))
     # put them back into the title order (i.e. 'spam eggs' != 'eggs spam')
     order = {w: i for i, w in enumerate(types)}

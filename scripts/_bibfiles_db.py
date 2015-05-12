@@ -1,4 +1,4 @@
-# _bibfiles_db.py
+# _bibfiles_db.py - load bibfiles into sqlite3 db, hash, split/merge
 
 import os
 import csv
@@ -14,7 +14,7 @@ import _bibtex
 
 __all__ = ['Database']
 
-# FIXME: remove legacy mode after migration
+# FIXME: toggle legacy mode off after first use (may then be removed)
 
 DBFILE = '_bibfiles.sqlite3'
 
@@ -30,6 +30,7 @@ IGNORE_FIELDS = {'crossref',  'numnote', 'glotto_id'}
 
 
 class Database(object):
+    """Bibfile collection parsed into an sqlite3 file."""
 
     @staticmethod
     def _get_bibfiles(bibfiles):
@@ -46,6 +47,7 @@ class Database(object):
 
     @classmethod
     def from_bibfiles(cls, bibfiles=None, filename=None, rebuild=False, page_size=32768):
+        """If needed, (re)build the db from the bibfiles, hash, split/merge."""
         bibfiles = cls._get_bibfiles(bibfiles)
         filename = cls._get_filename(filename)
             
@@ -78,11 +80,13 @@ class Database(object):
         self.filename = self._get_filename(filename)
 
     def is_uptodate(self, bibfiles=None, verbose=False):
+        """Does the db have the same filenames, sizes, and mtimes as bibfiles?"""
         bibfiles = self._get_bibfiles(bibfiles)
         with self.connect() as conn:
             return compare_bibfiles(conn, bibfiles, verbose=verbose)
 
     def recompute(self, hashes=True, verbose=False):
+        """Call bib.keyid for all entries, splits/merges -> new ids."""
         with self.connect(async=True) as conn:
             if hashes:
                 with conn:
@@ -96,6 +100,7 @@ class Database(object):
         _bibtex.save(self.merged(), filename, sortkey=None, encoding=encoding)
 
     def to_csvfile(self, filename=CSVFILE, encoding='utf-8', dialect='excel'):
+        """Write a CSV file with one row for each entry in each bibfile."""
         with self.connect() as conn:
             cursor = conn.execute('SELECT filename, bibkey, hash, cast(id AS text) AS id '
                 'FROM entry ORDER BY lower(filename), lower(bibkey)')
@@ -106,6 +111,7 @@ class Database(object):
                      writer.writerow([col.encode(encoding) for col in row])
 
     def to_replacements(self, filename=REPLACEMENTSFILE):
+        """Write a JSON file with 301s from merged glottolog_ref_ids."""
         with self.connect() as conn:
             conn.row_factory = sqlite3.Row
             cursor = conn.execute('SELECT refid AS id, id AS replacement '
@@ -115,6 +121,7 @@ class Database(object):
             json.dump(pairs, fd, indent=4)
 
     def trickle(self, bibfiles=None):
+        """Write new/changed glottolog_ref_ids back into the bibfiles."""
         bibfiles = self._get_bibfiles(bibfiles)
         if not self.is_uptodate(bibfiles, verbose=True):
             raise RuntimeError('trickle with an outdated db')
@@ -191,6 +198,7 @@ class Database(object):
                         for field, g in itertools.groupby(grp, get_field)])
 
     def __getitem__(self, key, legacy=False):
+        """Retrieve a merged entry by refid (old grouping) or hash (current grouping)."""
         if not isinstance(key, (int, basestring)):
             raise ValueError
         with self.connect() as conn:
@@ -437,6 +445,7 @@ def generate_hashes(conn):
             break
         for title, in rows:
             words.update(wrds(title))
+    # TODO: consider dropping stop words/hapaxes from freq. distribution
     print('%d title words (from %d tokens)' % (len(words), sum(words.itervalues())))
 
     get_bibkey = operator.itemgetter(0)
@@ -601,6 +610,7 @@ def unique(iterable):
 
 
 def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3, 'ENTRYTYPE': 2}):
+    """Simple measure of the difference between two bibtex-field dicts."""
     if not (left or right):
         return 0.0
 
