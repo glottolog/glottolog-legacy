@@ -42,11 +42,15 @@ class Database(object):
         return filename
 
     @classmethod
-    def from_bibfiles(cls, bibfiles=None, filename=None, page_size=32768):
+    def from_bibfiles(cls, bibfiles=None, filename=None, rebuild=False, page_size=32768):
         bibfiles = cls._get_bibfiles(bibfiles)
         filename = cls._get_filename(filename)
             
         if os.path.exists(filename):
+            if not rebuild:
+                self = cls(filename)
+                if self.is_uptodate():
+                    return self
             os.remove(filename)
 
         self = cls(filename)
@@ -69,6 +73,11 @@ class Database(object):
 
     def __init__(self, filename=None):
         self.filename = self._get_filename(filename)
+
+    def is_uptodate(self, bibfiles=None, verbose=False):
+        bibfiles = self._get_bibfiles(bibfiles)
+        with self.connect() as conn:
+            return compare_bibfiles(conn, bibfiles, verbose=verbose)
 
     def recompute(self, hashes=True, verbose=False):
         with self.connect(async=True) as conn:
@@ -95,6 +104,8 @@ class Database(object):
 
     def trickle(self, bibfiles=None):
         bibfiles = self._get_bibfiles(bibfiles)
+        if not self.is_uptodate(bibfiles, verbose=True):
+            raise RuntimeError('trickle with an outdated db')
         with self.connect() as conn:
             filenames = conn.execute('SELECT name FROM file WHERE EXISTS '
                 '(SELECT 1 FROM entry WHERE filename = name '
@@ -348,6 +359,22 @@ def import_bibfiles(conn, bibfiles):
                 ((b.filename, bibkey, i) for i, bibkey in enumerate(dct)))
 
 
+def compare_bibfiles(conn, bibfiles, verbose=False):
+    ondisk = collections.OrderedDict((b.filename, (b.size, str(b.mtime)))
+        for b in bibfiles)
+    indb = collections.OrderedDict((name, (size, mtime))
+        for name, size, mtime in
+        conn.execute('SELECT name, size, mtime FROM file ORDER BY name'))
+    if dict(ondisk) == dict(indb):
+        return True
+    if verbose:
+        print('missing in db: %s' % [o for o in ondisk if o not in indb])
+        print('missing on disk: %s' % [i for i in indb if i not in ondisk])
+        print('differing in size/mtime: %s' % [o for o in ondisk
+            if o in indb and ondisk[o] != indb[o]])
+    return False
+
+
 def entrystats(conn):
     print('\n'.join('%s %d' % (f, n) for f, n in conn.execute(
         'SELECT filename, count(*) FROM entry GROUP BY filename')))
@@ -391,7 +418,6 @@ def generate_hashes(conn):
     from bib import wrds, keyid
 
     words = collections.Counter()
-    # TODO: consider distinct titles
     cursor = conn.execute('SELECT value FROM value WHERE field = ?', ('title',))
     while True:
         rows = cursor.fetchmany(10000)
