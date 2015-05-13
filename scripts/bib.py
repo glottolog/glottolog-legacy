@@ -482,9 +482,9 @@ reokkey = re.compile("[^a-z\d\-\_\[\]]")
 def keyid(fields, fd={}, ti=2, infinity=float('inf')):
     if not fields.has_key('author'):
         if not fields.has_key('editor'):
-                values = ''.join(v for f, v in bibord_iteritems(fields)
-                    if f != 'glottolog_ref_id')
-                return '__missingcontrib__' + reokkey.sub('_', values.lower())
+            values = ''.join(v for f, v in bibord_iteritems(fields)
+                if f != 'glottolog_ref_id')
+            return '__missingcontrib__' + reokkey.sub('_', values.lower())
         else:
             astring = fields['editor']
     else:
