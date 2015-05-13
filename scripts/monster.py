@@ -293,7 +293,9 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
 
 def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     print '%s compile_monster' % time.ctime()
-    m, bibs = compile_monster(bibfiles)
+    db = bibfiles.to_sqlite()
+    m = dict(db.merged())
+    bibs= {'hh.bib': bibfiles['hh.bib'].load()}
 
     # Annotate with macro_area from lgcode when lgcode is assigned manually
     print '%s macro_area_from_lgcode' % time.ctime()
@@ -314,8 +316,8 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     m = bib.add_inlg_e(m)
 
     # Standardize author list
-    print '%s stdauthor' % time.ctime()
-    m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
+    #print '%s stdauthor' % time.ctime()
+    #m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
 
     # Print some statistics
     print time.ctime()
@@ -325,25 +327,25 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     print "with macro_area", sum(1 for t, f in m.itervalues() if 'macro_area' in f)
 
     # Remove old fields
-    print '%s remove crossref/glotto_id/numnote' % time.ctime()
-    for k, (t, f) in m.iteritems():
-        for field in ('crossref', 'glotto_id', 'numnote'):
-            if field in f:
-                del f[field]
+    #print '%s remove crossref/glotto_id/numnote' % time.ctime()
+    #for k, (t, f) in m.iteritems():
+    #    for field in ('crossref', 'glotto_id', 'numnote'):
+    #        if field in f:
+    #            del f[field]
 
-    print '%s unduplicate_ids_smart' % time.ctime()
-    unduplicate_ids_smart(m, previous, idfield='glottolog_ref_id')
+    #print '%s unduplicate_ids_smart' % time.ctime()
+    #unduplicate_ids_smart(m, previous, idfield='glottolog_ref_id')
 
-    print '%s handout_ids' % time.ctime()
-    handout_ids(m, idfield='glottolog_ref_id')
+    #print '%s handout_ids' % time.ctime()
+    #handout_ids(m, idfield='glottolog_ref_id')
 
     # Update the CSV with the previous mappings for the next time
     print '%s update_previous' % time.ctime()
-    update_previous(m, previous)
+    db.to_csvfile()
 
     # Trickling back
     print '%s trickle' % time.ctime()
-    trickle(m, bibs, bibfiles, tricklefields=['glottolog_ref_id'])
+    db.trickle()
 
     # Save
     print '%s save as utf8' % time.ctime()
