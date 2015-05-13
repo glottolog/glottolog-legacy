@@ -131,7 +131,6 @@ class Database(object):
                 'AND id != coalesce(refid, -1)) ORDER BY name').fetchall()
             for f, in filenames:
                 b = bibfiles[f]
-                print(b)
                 entries = b.load()
                 cursor = conn.execute('SELECT bibkey, cast(refid AS text), cast(id AS text) '
                     'FROM entry WHERE filename = ? AND id != coalesce(refid, -1) '
@@ -146,14 +145,14 @@ class Database(object):
                     else:
                         changed += 1
                     fields['glottolog_ref_id'] = new
-                print('%d added, %d changed' % (added, changed))
+                print('%d changed %d added in %s' % (changed, added, b.filename))
                 b.save(entries)
 
     def merged(self):
         for (id, hash), grp in self:
             entrytype, fields = self._merged_entry(grp)
-            fields['glottolog_ref_hash'] = hash
-            yield id, (entrytype, fields)
+            fields['glottolog_ref_id'] = id
+            yield hash, (entrytype, fields)
 
     def connect(self, async=False, close=True):
         conn = sqlite3.connect(self.filename)
@@ -209,9 +208,9 @@ class Database(object):
         fields = {field: values[0][0] if field not in union
             else ', '.join(unique(vl for vl, fn, bk in values))
             for field, values in grp if field not in ignore}
-        fields['src'] = ', '.join(sorted(set(fn
+        fields['src'] = ', '.join(sorted(set(fn.partition('.bib')[0]
             for field, values in grp for vl, fn, bk in values)))
-        fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn, bk)
+        fields['srctrickle'] = ', '.join(sorted(set('%s#%s' % (fn.partition('.bib')[0], bk)
             for field, values in grp for vl, fn, bk in values)))
         if raw:
             return fields
@@ -452,7 +451,7 @@ def generate_hashes(conn):
     for filename, first, last in windowed_entries(conn, 500):
         rows = conn.execute('SELECT bibkey, field, value FROM value '
             'WHERE filename = ? AND bibkey BETWEEN ? AND ? '
-            'ORDER BY bibkey', (filename, first, last))
+            'AND field != ? ORDER BY bibkey', (filename, first, last, 'ENTRYTYPE'))
         conn.executemany('UPDATE entry SET hash = ? WHERE filename = ? AND bibkey = ?',
             ((keyid({k: v for b, k, v in grp}, words), filename, bibkey)
             for bibkey, grp in itertools.groupby(rows, get_bibkey)))

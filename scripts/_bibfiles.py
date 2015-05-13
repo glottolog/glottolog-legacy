@@ -64,8 +64,8 @@ class Collection(list):
         for b in self:
             b.roundtrip()
 
-    def to_sqlite(self, filename=None):
-        return Database.from_bibfiles(self, filename)
+    def to_sqlite(self, filename=None, rebuild=False):
+        return Database.from_bibfiles(self, filename, rebuild=rebuild)
 
 
 class BibFile(object):
