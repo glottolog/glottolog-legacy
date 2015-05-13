@@ -46,7 +46,7 @@ class Database(object):
         return filename
 
     @classmethod
-    def from_bibfiles(cls, bibfiles=None, filename=None, rebuild=False, page_size=32768):
+    def from_bibfiles(cls, bibfiles=None, filename=None, rebuild=False):
         """If needed, (re)build the db from the bibfiles, hash, split/merge."""
         bibfiles = cls._get_bibfiles(bibfiles)
         filename = cls._get_filename(filename)
@@ -59,7 +59,7 @@ class Database(object):
             os.remove(filename)
 
         self = cls(filename)
-        with self.connect(async=True, page_size=page_size) as conn:
+        with self.connect(async=True, ) as conn:
             create_tables(conn)
             with conn:
                 import_bibfiles(conn, bibfiles)
@@ -155,13 +155,11 @@ class Database(object):
             fields['glottolog_ref_hash'] = hash
             yield id, (entrytype, fields)
 
-    def connect(self, async=False, close=True, page_size=None):
+    def connect(self, async=False, close=True):
         conn = sqlite3.connect(self.filename)
         if async:
             conn.execute('PRAGMA synchronous = OFF')
             conn.execute('PRAGMA journal_mode = MEMORY')
-        if page_size is not None:
-            conn.execute('PRAGMA page_size = %d' % page_size)
         if close:
             conn = contextlib.closing(conn)
         return conn
@@ -317,7 +315,9 @@ class Database(object):
                 print
 
 
-def create_tables(conn):
+def create_tables(conn, page_size=32768):
+    if page_size is not None:
+        conn.execute('PRAGMA page_size = %d' % page_size)
     conn.execute('CREATE TABLE file ('
         'name TEXT NOT NULL, '
         'size INTEGER NOT NULL, '
@@ -513,7 +513,6 @@ def assign_ids(conn, verbose=False, legacy=True):
     print('%d entries' % conn.execute('UPDATE entry SET id = NULL, srefid = refid').rowcount)
 
     # resolve splits: srefid = refid only for entries from the most similar hash group
-    # TODO: consider same23 merge attempt?
     nsplit = 0
     cursor = conn.execute('SELECT refid, hash, filename, bibkey FROM entry AS e '
         'WHERE EXISTS (SELECT 1 FROM entry WHERE refid = e.refid AND hash != e.hash) '
