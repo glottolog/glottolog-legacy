@@ -2,108 +2,25 @@
 
 # TODO: enusure \emph is dropped from titles in keyid calculation
 
-import os
-import shutil
 import re
 import csv
-from collections import defaultdict, namedtuple, Counter
+from collections import namedtuple
 from heapq import nsmallest
 from ConfigParser import RawConfigParser
 
-import _bibtex_escaping
 from _bibtex_undiacritic import undiacritic
 
 __all__ = [
-    'mrg', 'fuse',
-    'fd', 'fdt',
-    'add_inlg_e', 'stdauthor',
-    'grp2', 'keyid', 'edist', 'same23', 'inv',
+    'add_inlg_e',
+    'keyid',
     'wrds', 'setd', 'setd3', 'indextrigs',
     'lstat', 'lstat_witness', 
-    'pairs',
     'hhtype_to_n', 'expl_to_hhtype', 'lgcode',
-    'read_csv_dict', 'csv_iterrows', 'write_csv_rows', 'load_triggers',
+    'read_csv_dict', 'write_csv_rows', 'load_triggers',
+    'pitems',
 ]
 
 INLG = '../references/alt4inlg.ini'
-
-
-def delta(a, b, case_sensitive=False, inscost=1, subcost=0.5):
-    if a and b:
-        if not case_sensitive:
-            a = a.lower()
-            b = b.lower()
-        if a == b:
-            return 0
-        else:
-            return subcost
-    else:
-        return inscost
-
-
-def align(d, x, y):
-    i = len(x)
-    j = len(y)
-    r = {}
-    k = 0
-    #print d
-    while (0, 0) != (i, j):
-        #print i, j
-        (_, t) = d[i, j]
-        if t == 'S':
-            r[k] = (x[i-1], y[j-1])
-            i = i - 1
-            j = j - 1
-        elif t == 'I':
-            r[k] = ("", y[j-1]) #'-'.ljust(len(y[j-1]))
-            j = j - 1
-        elif t == 'D':
-            r[k] = (x[i-1], "") #'-'.ljust(len(x[i-1]))
-            i = i - 1
-        k = k + 1
-    return [r[k] for k in sorted(r, reverse=True)]
-
-
-def edist(x, y, delta=delta, case_sensitive=False):
-    lx = len(x)
-    ly = len(y)
-
-    d = {}
-    d[(0, 0)] = (0, 'None')
-    for i in range(lx):
-        d[(i+1, 0)] = (d[(i, 0)][0] + delta(x[i], None, case_sensitive=case_sensitive), 'D')
-    for j in range(ly):
-        d[(0, j+1)] = (d[(0, j)][0] + delta(None, y[j], case_sensitive=case_sensitive), 'I')
-
-    for i in range(lx):
-        for j in range(ly):
-            d[(i+1, j+1)] = min((d[(i, j)][0] + delta(x[i], y[j], case_sensitive=case_sensitive), 'S'),
-                                (d[(i, j+1)][0] + delta(x[i], None, case_sensitive=case_sensitive), 'D'),
-                                (d[(i+1, j)][0] + delta(None, y[j], case_sensitive=case_sensitive), 'I'))
-
-    nrm = float(max(lx, ly))
-    (md, _) = d[(lx, ly)]
-    return (md/nrm, align(d, x, y))
-
-
-def inv(d):
-    r = defaultdict(set)
-    for k, v in d.items():
-        r[v].add(k)
-    return r
-
-
-def takeuntil(s, q):
-    return s.split(q, 1)[0]
-
-
-def takeafter(s, q):
-    return s.split(q, 1)[-1]
-
-
-def pairs(xs):
-    # FIXME: return itertools.combinations(xs, 2)
-    return [(x, y) for x in xs for y in xs if x < y]
 
 
 def read_csv_dict(filename):
@@ -164,13 +81,6 @@ def setd(ds, k1, k2, v=None):
     return
 
 
-def fd(ws):
-    d = {}
-    for w in ws:
-        d[w] = d.get(w, 0) + 1
-    return d
-
-
 def opv(d, func):
     return {i: func(v) for i, v in d.iteritems()}
 
@@ -225,18 +135,6 @@ def pauthor(s):
     return [a for a in pas if a]
 
 
-def standardize_author(s):
-    return ' and '.join(yankauthorbib(x) for x in pauthor(s))
-
-
-def stdauthor(fields):
-    if fields.has_key('author'):
-        fields['author'] = standardize_author(fields['author'])
-    if fields.has_key('editor'):
-        fields['editor'] = standardize_author(fields['editor'])
-    return fields
-
-
 #"Adam, A., W.B. Wood, C.P. Symons, I.G. Ord & J. Smith"
 #"Karen Adams, Linda Lauck, J. Miedema, F.I. Welling, W.A.L. Stokhof, Don A.L. Flassy, Hiroko Oguri, Kenneth Collier, Kenneth Gregerson, Thomas R. Phinnemore, David Scorza, John Davies, Bernard Comrie & Stan Abbott"
 
@@ -275,17 +173,6 @@ def lastnamekey(s):
     if not upper:
         return ''
     return max(upper)
-
-
-def yankauthorbib(author):
-    r = author['lastname']
-    if author.has_key('jr') and author['jr']:
-        r += ", " + author['jr']
-    if author.has_key('firstname') and author['firstname']:
-        #if not renafn.search(author['firstname']):
-        #    print "Warning:", author
-        r += ", " + author['firstname']
-    return r
 
 
 def rangecomplete(incomplete, complete):
@@ -359,38 +246,11 @@ def bibord_iteritems(fields, sortkey=lambda f, inf=float('inf'): (bibord.get(f, 
 
 
 resplittit = re.compile("[\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=]+")
-resplittittok = re.compile("([\(\)\[\]\:\,\.\s\-\?\!\;\/\~\=\'" + '\"' + "])")
 
 def wrds(txt):
     txt = undiacritic(txt.lower())
     txt = txt.replace("'", "").replace('"', "")
     return [x for x in resplittit.split(txt) if x]
-
-
-def fdt(e, fieldname='title'):
-    words = (w for typ, fields in e.itervalues() if fieldname in fields
-        for w in wrds(fields[fieldname]))
-    return Counter(words)
-
-
-#If publisher has Place: Publisher, then don't take address
-def fuse(dps, union=['lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'], onlyifnot={'address': 'publisher', 'lgfamily': 'lgcode', 'publisher': 'school', 'journal': 'booktitle'}):
-    otyp = None
-    ofields = {}
-    for (typ, fields) in dps:
-        if not otyp:
-            otyp = typ
-        for (k, v) in fields.iteritems():
-            if onlyifnot.has_key(k):
-                if not ofields.has_key(onlyifnot[k]):
-                    ofields[k] = v
-            elif not ofields.has_key(k):
-                ofields[k] = v
-            elif k in union:
-                if ofields[k].find(v) == -1:
-                    ofields[k] = ofields[k] + ", " + v
-
-    return (otyp, ofields)
 
 
 def renfn(e, ups):
@@ -544,14 +404,11 @@ def lgcodestr(lgcstr):
     return []
 
 
-ret = {}
 rekillparen = re.compile(" \([^\)]*\)")
-
 respcomsemic = re.compile("[;,]\s?")
-ret['hhtype'] = lambda x: respcomsemic.split(rekillparen.sub("", x))
 
 def hhtypestr(s):
-    return ret['hhtype'](s)
+    return respcomsemic.split(rekillparen.sub("", s))
 
 
 def indextrigs(ts):
@@ -637,38 +494,3 @@ def lstat_witness(e, unsorted=False):
         return (typ, ks)
     (lsd, lse) = sdlgs(e, unsorted=unsorted)
     return opv(lsd, statwit)
-
-
-def mrg(bibs=()):
-    e = {}
-    ft = Counter()
-    for b in bibs:
-        e[b.filename] = b.load()
-        print b.filename, len(e[b.filename])
-        ft.update(fdt(e[b.filename]))
-
-    r = {}
-    for b in bibs:
-        rp = len(r)
-        for (k, (typ, fields)) in e[b.filename].iteritems():
-            r.setdefault(keyid(fields, ft), []).append((b.filename, k))
-        print b.filename, len(r) - rp, "new from total", len(e[b.filename])
-    return (e, r)
-
-
-reyear = re.compile("\d\d\d\d")
-
-def same23((at, af), (bt, bf)):
-    alastnames = [x['lastname'] for x in pauthor(undiacritic(af.get("author", "")))]
-    blastnames = [x['lastname'] for x in pauthor(undiacritic(bf.get("author", "")))]
-    ay = reyear.findall(af.get('year', ""))
-    by = reyear.findall(bf.get('year', ""))
-    ta = undiacritic(takeuntil(af.get("title", ""), ":"))
-    tb = undiacritic(takeuntil(bf.get("title", ""), ":"))
-    if ta == tb and set(ay).intersection(by):
-        return True
-    if set(ay).intersection(by) and set(alastnames).intersection(blastnames):
-        return True
-    if ta == tb and set(alastnames).intersection(blastnames):
-        return True
-    return False

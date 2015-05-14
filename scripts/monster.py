@@ -3,7 +3,7 @@
 """Compiling the monster.
 
 This script takes all the .bib files in the references directory and puts it
-together in a file called monster.bib with some deduplication and annotation in
+together in a file called monster-utf8.bib with some deduplication and annotation in
 the process
 
 1.    The hash-id pairings of the previous monster.bib is taken from monster.csv
@@ -12,9 +12,8 @@ the process
 2.1.  A hash is computed for each bib-entry in any file
 2.2.  For each hash, any bib-entries with that hash are merged
 2.2.1 The merging takes place such that some fields of the merged entry are
-      previliged according to provenance (e.g. title, lgcode and more are taken
-      from hh.bib if possible), while other fields are taken from a random
-      provenance, and yet others (like note) are the union of all original
+      previliged according to priority (e.g. title, lgcode and more are taken
+      from hh.bib if possible), while others (like note) are the union of all original
       fields. The merged entries link back to the original(s) in the added
       srctrickle field.
 
@@ -35,21 +34,9 @@ the process
 
 4.    Once all merging and annotation is done, it's time for the
       glottolog_ref_id:s are dole:ed out
-4.1   The resulting merged bib may contain different entries which nevertheless
-      have the same glottolog_ref_id-field. This is handled as follows:
-4.1.1 If there are different bib-entries with the same glottolog_ref_id which
-      are "the same" (diacritics, first names etc ignored) in two of the three
-      fields author/title/year, they are considered the same entry and are
-      merged
-4.1.2 If there are still different bib-entries with the same glottolog_ref_id,
-      any earlier version is monster.bib (in the same dir) is checked, and if
-      one entry had the ref_id in an earlier version, this is retained. (This is
-      because often new entries are typed up manually by copying an earlier
-      entry and changing the fields which the by accident -- it should be
-      removed -- is kept.)
-4.2   New glottolog_ref_id:s (from the private area above 300000) are doled out
+4.1   New glottolog_ref_id:s (from the private area above 300000) are doled out
       to bib-entries which do not have one
-4.3   The assigned glottolog_ref_id are burned back into the original bib:s one
+4.2   The assigned glottolog_ref_id are burned back into the original bib:s one
       by one (via srctrickle), so that they never change
 
 5.    A final monster-utf8.bib is written
@@ -62,18 +49,14 @@ import bib
 
 BIBFILES = _bibfiles.Collection('../references/bibtex')
 PREVIOUS = '../references/monster.csv'
+REPLACEMENTS = 'monster-replacements.json'
 MONSTER = _bibfiles.BibFile('monster-utf8.bib', encoding='utf-8', sortkey='bibkey')
+
 HHTYPE = '../references/alt4hhtype.ini'
 LGCODE = '../references/alt4lgcode.ini'
 LGINFO = '../languoids/lginfo.csv'
 MARKHHTYPE = 'monstermark-hht.txt'
 MARKLGCODE = 'monstermark-lgc.txt'
-
-PRIOS = {
-    'typ': 'hh.bib', 'lgcode': 'hh.bib', 'hhtype': 'hh.bib', 'macro_area': 'hh.bib',
-    'volume': 'hh.bib', 'series': 'hh.bib', 'publisher': 'hh.bib', 'pages': 'hh.bib',
-    'title': 'hh.bib', 'author': 'hh.bib', 'booktitle': 'hh.bib', 'note': 'hh.bib',
-}
 
 
 def intersectall(xs):
@@ -81,147 +64,6 @@ def intersectall(xs):
     for x in xs[1:]:
         a.intersection_update(x)
     return a
-
-
-def groupsame(ks, e):
-    # FIXME: do not consider entries with different extra_hash the same
-    ksame = [((k1, k2), bib.same23(e[k1], e[k2])) for (k1, k2) in bib.pairs(ks)]
-    r = dict((k, i) for (i, k) in enumerate(ks))
-    for ((k1, k2), s23) in ksame:
-        if s23:
-            r[k2] = r[k1]
-    return bib.inv(r).values()
-
-
-def unduplicate_ids_smart(e, previous, idfield="glottolog_ref_id"):
-    # check for duplicates
-    q = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield))
-    dups = sorted(((idn, ks) for (idn, ks) in q.iteritems() if len(ks) != 1), key=lambda (i, k): int(i))
-
-    # if are same? then merge
-    # if one same as prev keep that
-    # otherwise keep first
-    for (idn, ks) in dups:
-        for g in groupsame(ks, e):
-            gsort = list(sorted(g, key=lambda x: (e[x][1].get("src", "").find("hh") == -1, x)))
-            e[gsort[0]] = bib.fuse([e[k] for k in gsort])
-            for k in gsort[1:]:
-                print "FUSED", k, "WITH", gsort[0], "BECAUSE SAME", idfield, idn
-                del e[k]
-
-    dups = sorted(((idn, [k for k in ks if e.has_key(k)]) for (idn, ks) in dups), key=lambda (i, k): int(i))
-    print "%s Using previous version info from %s" % (time.ctime(), previous)
-    qp = bib.grp2((row.id, row.hash) for row in bib.csv_iterrows(previous) if row.id)
-    for (idn, ks) in dups:
-        if len(ks) < 2:
-            continue
-        (_, remaink) = min([(min([bib.edist(k, kold) for kold in qp.get(idn, [])] + [len(k)]), k) for k in ks])
-        print remaink, "RETAINS", idn, "BECAUSE IN OLD VER"
-        for k in ks:
-            if k != remaink:
-                del e[k][1][idfield]
-                print "DELETED", idn, "FOR", k
-
-
-def handout_ids(e, idfield="glottolog_ref_id"):
-    q = bib.grp2((fields[idfield], k) for (k, (typ, fields)) in e.iteritems() if fields.has_key(idfield))
-
-    tid = max([int(x) for x in q.iterkeys()] + [300000]) + 1
-    print "NEW UNIQUE ID", tid
-    for (k, (t, f)) in e.iteritems():
-        if not f.has_key(idfield):
-            f[idfield] = str(tid)
-            tid = tid + 1
-    print "ADDED IDS", tid - max(int(x) for x in q.iterkeys()) - 1
-
-
-def findidks(e, mks):
-    ft = bib.fdt(e)
-    ekis = bib.grp2((bib.keyid(fields, ft), ek) for (ek, (typ, fields)) in e.iteritems())
-    mkis = [(mk, bib.keyid(fields, ft)) for (mk, (typ, fields)) in mks.iteritems()]
-    return dict((mk, ekis.get(kid, [])) for (mk, kid) in mkis)
-
-
-def update_previous(m, previous, fieldnames=('filename', 'bibkey', 'hash', 'id')):
-    def iterrows():
-        for hash, (entrytype, fields) in m.iteritems():
-            id = fields['glottolog_ref_id']
-            for t in fields['srctrickle'].split(', '):
-                name, bibkey = t.partition('#')[::2]
-                filename = '%s.bib' % name
-                yield filename, bibkey, hash, id
-    rows = sorted(iterrows(), key=lambda (fn, bk, hs, id): (fn.lower(), bk.lower()))
-    bib.write_csv_rows(rows, previous, fieldnames=fieldnames, encoding='utf-8')
-
-
-def trickle(m, bibs, bibfiles, tricklefields=['isbn']):
-    for f in tricklefields:
-        ups = [(src, (k, f, fields[f])) for (k, (typ, fields)) in m.iteritems() for src in fields.get('src', '').split(', ') if fields.has_key(f)]
-        for (src, us) in sorted(bib.grp2(ups).iteritems()):
-            te = bibs['%s.bib' % src]
-            mktk = findidks(te, dict((mk, m[mk]) for (mk, f, newd) in us))
-            r = {}
-            for (mk, f, newd) in us:
-                if m[mk][1].has_key('srctrickle'):
-                    tks = [st[len(src)+1:] for st in m[mk][1]['srctrickle'].split(", ") if st.startswith(src + "#")]
-                else:
-                    tks = mktk.get(mk, [])
-                r[mk] = (tks, f, newd)
-
-
-            fnups = [(tk, f, newd) for (tks, f, newd) in r.itervalues() for tk in tks if te.has_key(tk) and te[tk][1].get(f, '') != newd]
-            print len(fnups), "changes to", src
-            warnings = [tk for (tks, f, newd) in r.itervalues() for tk in tks if not te.has_key(tk)]
-            if warnings:
-                print src, "Warning, the following keys do not exist anymore:", warnings
-            #trace = [(mk, tk, f, newd) for (mk, (tks, f, newd)) in r.iteritems() for tk in tks if te[tk][1].get(f, '') != newd]
-            #for a in trace[:10]:
-            #    print a
-            if not fnups:
-                continue
-            t2 = renfn(te, fnups)
-            bibfiles['%s.bib' % src].save(t2)
-
-
-def argm(d, f=max):
-    if len(d) == 0:
-        return None
-    (_, m) = f([(v, k) for (k, v) in d.iteritems()])
-    return m
-
-
-def compile_monster(bibs, prios=PRIOS):
-    (e, r) = bib.mrg(bibs)
-    o = {}
-    for (hk, dps) in r.iteritems():
-        src = ', '.join(sorted(set(dpf.replace(".bib", "") for (dpf, _) in dps)))
-        srctrickle = ', '.join(sorted('%s#%s' % (dpf.replace(".bib", ""), dpk) for (dpf, dpk) in dps))
-        (typ, fields) = bib.fuse(e[dpf][dpk] for (dpf, dpk) in dps)
-
-        ofs = fields
-        ofs.update(srctrickle=srctrickle, src=src)
-
-        for (what, where) in prios.iteritems():
-            (_, fields) = bib.fuse(e[dpf][dpk] for (dpf, dpk) in dps if dpf == where)
-            if fields.has_key(what):
-                ofs[what] = fields[what]
-        if prios.has_key('typ'):
-            priotyp = bib.fd(e[dpf][dpk][0] for (dpf, dpk) in dps if dpf == prios['typ'])
-            if priotyp:
-                typ = argm(priotyp)
-
-        o[hk] = (typ, ofs)
-
-    return o, e
-
-
-def renfn(e, ups):
-    for (k, field, newvalue) in ups:
-        (typ, fields) = e[k]
-        #fields['mpifn'] = fields['fn']
-        fields[field] = newvalue
-        e[k] = (typ, fields)
-    return e
 
 
 def markconservative(m, trigs, ref, outfn="monstermarkrep.txt", blamefield="hhtype"):
@@ -291,11 +133,15 @@ def macro_area_from_lgcode(m, lginfo=LGINFO):
     return dict((k, inject_macro_area(tf)) for k, tf in m.iteritems())
 
 
-def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
-    print '%s compile_monster' % time.ctime()
+def main(bibfiles=BIBFILES, previous=PREVIOUS, replacements=REPLACEMENTS, monster=MONSTER):
+    print '%s open/rebuild bibfiles db' % time.ctime()
     db = bibfiles.to_sqlite()
+
+    print '%s compile_monster' % time.ctime()
     m = dict(db.merged())
-    bibs= {'hh.bib': bibfiles['hh.bib'].load()}
+
+    print '%s load hh.bib' % time.ctime()
+    hhbib = bibfiles['hh.bib'].load()
 
     # Annotate with macro_area from lgcode when lgcode is assigned manually
     print '%s macro_area_from_lgcode' % time.ctime()
@@ -304,20 +150,16 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     # Annotate with hhtype
     print '%s annotate hhtype' % time.ctime()
     hht = dict(((cls, bib.expl_to_hhtype[lab]), v) for ((cls, lab), v) in bib.load_triggers(HHTYPE).iteritems())
-    m = markconservative(m, hht, bibs['hh.bib'], outfn=MARKHHTYPE, blamefield="hhtype")
+    m = markconservative(m, hht, hhbib, outfn=MARKHHTYPE, blamefield="hhtype")
 
     # Annotate with lgcode
     print '%s annotate lgcode' % time.ctime()
     lgc = bib.load_triggers(LGCODE, sec_curly_to_square=True)
-    m = markconservative(m, lgc, bibs['hh.bib'], outfn=MARKLGCODE, blamefield="hhtype")
+    m = markconservative(m, lgc, hhbib, outfn=MARKLGCODE, blamefield="hhtype")
 
     # Annotate with inlg
     print '%s add_inlg_e' % time.ctime()
     m = bib.add_inlg_e(m)
-
-    # Standardize author list
-    #print '%s stdauthor' % time.ctime()
-    #m = dict((k, (t, bib.stdauthor(f))) for (k, (t, f)) in m.iteritems())
 
     # Print some statistics
     print time.ctime()
@@ -326,22 +168,12 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, monster=MONSTER):
     print "with hhtype", sum(1 for t, f in m.itervalues() if 'hhtype' in f)
     print "with macro_area", sum(1 for t, f in m.itervalues() if 'macro_area' in f)
 
-    # Remove old fields
-    #print '%s remove crossref/glotto_id/numnote' % time.ctime()
-    #for k, (t, f) in m.iteritems():
-    #    for field in ('crossref', 'glotto_id', 'numnote'):
-    #        if field in f:
-    #            del f[field]
-
-    #print '%s unduplicate_ids_smart' % time.ctime()
-    #unduplicate_ids_smart(m, previous, idfield='glottolog_ref_id')
-
-    #print '%s handout_ids' % time.ctime()
-    #handout_ids(m, idfield='glottolog_ref_id')
-
-    # Update the CSV with the previous mappings for the next time
+    # Update the CSV with the previous mappings for later reference
     print '%s update_previous' % time.ctime()
-    db.to_csvfile()
+    db.to_csvfile(previous)
+
+    print '%s save_replacements' % time.ctime()
+    db.to_replacements(replacements)
 
     # Trickling back
     print '%s trickle' % time.ctime()

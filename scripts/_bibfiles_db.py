@@ -205,6 +205,8 @@ class Database(object):
 
     @staticmethod
     def _merged_entry(grp, union=UNION_FIELDS, ignore=IGNORE_FIELDS, raw=False):
+        # TODO: consider implementing (a subset of?) onlyifnot logic:
+        # {'address': 'publisher', 'lgfamily': 'lgcode', 'publisher': 'school', 'journal': 'booktitle'}
         fields = {field: values[0][0] if field not in union
             else ', '.join(unique(vl for vl, fn, bk in values))
             for field, values in grp if field not in ignore}
