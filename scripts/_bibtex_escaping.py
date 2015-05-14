@@ -41,6 +41,7 @@ FIXME: tex-escape/character entity mix in anla.bib titlealt
 """
 
 import re
+import codecs
 
 import latexcodec
 
@@ -89,6 +90,33 @@ def u_unescape(s, pattern=re.compile(r'\?\[\\u(\d{3,5})\]')):
         yield s[pos:]
 
     return ''.join(iterchunks(s, pattern.finditer(s)))
+
+
+class U_escapeCodec(codecs.Codec):
+
+    def encode(self, input, erors='strict'):
+        return u_escape(input.encode('ascii')), len(input)
+
+    def decode(self, input, erors='strict'):
+        return u_unescape(input.decode('ascii')), len(input)
+
+
+class U_escapeStreamWriter(U_escapeCodec, codecs.StreamWriter):
+    pass
+
+
+class U_escapeStreamReader(U_escapeCodec, codecs.StreamReader):
+    pass
+
+
+def _find_u_escape(encoding):
+    if encoding == 'ascii+u_escape':
+        return codecs.CodecInfo(name='ascii+u_escape',
+            encode=U_escapeCodec().encode, decode=U_escapeCodec().decode,
+            streamwriter=U_escapeStreamWriter, streamreader=U_escapeStreamReader)
+
+
+codecs.register(_find_u_escape)
 
 
 # legacy

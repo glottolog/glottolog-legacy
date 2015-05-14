@@ -60,17 +60,6 @@ def iterentries(filename, encoding=None, use_pybtex=True):
                 yield bibkey, (entrytype, fields)  
     elif encoding is None:
         raise NotImplementedError
-    elif encoding == 'ascii+u_escape':
-        encoding = 'ascii'
-        with memorymapped(filename) as source:
-            try:
-                for entrytype, (bibkey, fields) in BibTeXEntryIterator(source):
-                    fields = {name.decode(encoding).lower():
-                        u_unescape(whitespace_re.sub(' ', ''.join(values).decode(encoding).strip()))
-                        for name, values in fields}
-                    yield bibkey.decode(encoding), (entrytype.decode(encoding), fields)
-            except PybtexSyntaxError as e:
-                debug_pybtex(source, e)
     else:
         with memorymapped(filename) as source:
             try:
@@ -167,15 +156,13 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
     elif encoding is None:
         raise NotImplementedError
     elif encoding == 'ascii+u_escape':
-        encoding = 'ascii'
         for bibkey, (entrytype, fields) in items:
             fd.write('@%s{%s' % (entrytype, bibkey))
             for k, v in fieldorder.itersorted(fields):
-                v = u_escape(v)
                 if k in verbatim:
                     v = v.strip().encode('ascii')
                 else:
-                    v = v.strip().encode('latex', errors).replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
+                    v = u_escape(v).strip().encode('latex', errors).replace(r'\#', '#').replace(r'\\&', r'\&').replace(r'\_', '_')
                 fd.write(',\n    %s = {%s}' % (k, v))
             fd.write('\n}\n' if fields else ',\n}\n')
     elif encoding == 'ascii':
