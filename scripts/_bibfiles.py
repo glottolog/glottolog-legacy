@@ -16,6 +16,7 @@ CONFIG = 'BIBFILES.ini'
 
 
 class Collection(list):
+    """Directory with an INI-file with settings for BibTeX files inside."""
 
     _encoding = 'utf-8-sig'
 
@@ -54,21 +55,23 @@ class Collection(list):
             return self._map[index_or_filename]
         return super(Collection, self).__getitem__(index_or_filename)
 
+    def to_sqlite(self, filename=None, rebuild=False):
+        """Return a database with the bibfiles loaded."""
+        return Database.from_bibfiles(self, filename, rebuild=rebuild)
+
     def check_all(self):
-        """Check the BiBtex syntax of all bibfiles."""
+        """Check the BibTeX syntax of all bibfiles."""
         for b in self:
             b.check()
             
     def roundtrip_all(self):
-        """Load/save all bibfiles with the current settings."""
+        """Load and save all bibfiles with the current settings."""
         for b in self:
             b.roundtrip()
 
-    def to_sqlite(self, filename=None, rebuild=False):
-        return Database.from_bibfiles(self, filename, rebuild=rebuild)
-
 
 class BibFile(object):
+    """BibTeX source file with configurable load/save options and meta data."""
 
     def __init__(self, filepath, encoding, sortkey, use_pybtex=True, priority=0,
                  name=None, title=None, description=None, abbr=None):
@@ -92,23 +95,29 @@ class BibFile(object):
         return datetime.datetime.fromtimestamp(os.stat(self.filepath).st_mtime)
 
     def iterentries(self):
+        """Yield entries as (bibkey, (entrytype, fields)) tuples."""
         return _bibtex.iterentries(filename=self.filepath,
             encoding=self.encoding,
             use_pybtex=self.use_pybtex)
 
     def load(self):
+        """Return entries as bibkey -> (entrytype, fields) dict."""
         return _bibtex.load(filename=self.filepath,
             preserve_order=self.sortkey is None,
             encoding=self.encoding,
             use_pybtex=self.use_pybtex)
 
     def save(self, entries, verbose=True):
+        """Write bibkey -> (entrytype, fields) map to file."""
         _bibtex.save(entries,
             filename=self.filepath,
             sortkey=self.sortkey,
             encoding=self.encoding,
             use_pybtex=self.use_pybtex,
             verbose=verbose)
+
+    def __repr__(self):
+        return '<%s %r>' % (self.__class__.__name__, self.filename)
 
     def check(self):
         print(self)
@@ -120,9 +129,6 @@ class BibFile(object):
     def roundtrip(self):
         print(self)
         self.save(self.load())
-
-    def __repr__(self):
-        return '<%s %r>' % (self.__class__.__name__, self.filename)
 
     def show_characters(self, include_plain=False):
         """Display character-frequencies (excluding printable ASCII)."""
@@ -140,5 +146,4 @@ class BibFile(object):
 
 if __name__ == '__main__':
     c = Collection()
-    #c.roundtrip_all()
     d = Database()

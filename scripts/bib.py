@@ -1,4 +1,4 @@
-# bib.py
+# bib.py - mixed support library
 
 # TODO: enusure \emph is dropped from titles in keyid calculation
 

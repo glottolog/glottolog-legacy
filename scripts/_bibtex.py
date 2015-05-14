@@ -1,4 +1,4 @@
-# bibtex.py - basic bibtex file parsing/serialization
+# bibtex.py - bibtex file parsing/serialization
 
 import io
 import re
@@ -202,14 +202,17 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
 
 
 class Ordering(dict):
+    """Key order for iterating over dicts (unknown keys last alphabetic)."""
 
     _missing = float('inf')
 
     @classmethod
     def fromlist(cls, keys):
+        """Define the order of keys as given."""
         return cls((k, i) for i, k in enumerate(keys))
 
     def itersorted(self, dct):
+        """Iterate over dct (key, value) pairs in the defined order."""
         for key in sorted(dct, key=self._itersorted_key):
             yield key, dct[key]
 

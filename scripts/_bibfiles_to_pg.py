@@ -1,4 +1,4 @@
-# _bifiles_to_pg.py - parse bibfiles into postgres 9.4 database
+# _bifiles_to_pg.py - load bibfiles into postgres 9.4 database for inspection
 
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import JSONB
@@ -8,6 +8,7 @@ import _bibfiles
 import _bibtex
 
 DB = 'postgresql://postgres@/bibfiles'
+
 BIBFILES = _bibfiles.Collection()
 
 
@@ -47,12 +48,6 @@ Entry.metadata.drop_all(engine)
 Entry.metadata.create_all(engine)
 
 
-def vacuum(engine):
-    with engine.connect() as conn:
-        conn = conn.execution_options(isolation_level='AUTOCOMMIT')
-        conn.execute('VACUUM ANALYZE')
-
-
 for b in BIBFILES:
     print(b.filepath)
     with engine.begin() as conn:
@@ -73,6 +68,3 @@ for b in BIBFILES:
                 in enumerate(_bibtex.names(fields.get(role, '')), 1)]
             if contribs:
                 insert_contrib(contribs)
-                    
-
-vacuum(engine)

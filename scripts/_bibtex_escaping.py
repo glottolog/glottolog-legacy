@@ -1,4 +1,4 @@
-# _bibtex_escaping.py - latex and unicode bracket escapes
+# _bibtex_escaping.py - latex escapes and unicode bracket escapes
 
 """TODO: replace in source files OR add de-/encoding rule
 

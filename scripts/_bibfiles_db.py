@@ -1,4 +1,4 @@
-# _bibfiles_db.py - load bibfiles into sqlite3 db, hash, split/merge
+# _bibfiles_db.py - load bibfiles into sqlite3, hash, assign ids (split/merge)
 
 import os
 import csv
@@ -85,7 +85,7 @@ class Database(object):
         with self.connect() as conn:
             return compare_bibfiles(conn, bibfiles, verbose=verbose)
 
-    def recompute(self, hashes=True, verbose=False):
+    def recompute(self, hashes=True, verbose=True):
         """Call bib.keyid for all entries, splits/merges -> new ids."""
         with self.connect(async=True) as conn:
             if hashes:
@@ -149,6 +149,7 @@ class Database(object):
                 b.save(entries)
 
     def merged(self):
+        """Yield merged (bibkey, (entrytype, fields)) entries."""
         for (id, hash), grp in self:
             entrytype, fields = self._merged_entry(grp)
             fields['glottolog_ref_id'] = id
@@ -195,13 +196,29 @@ class Database(object):
                         for field, g in itertools.groupby(grp, get_field)])
 
     def __getitem__(self, key, legacy=False):
-        """Retrieve a merged entry by refid (old grouping) or hash (current grouping)."""
-        if not isinstance(key, (int, basestring)):
+        """Entry by (fn, bk) or merged entry by refid (old grouping) or hash (current grouping)."""
+        if not isinstance(key, (tuple, int, basestring)):
             raise ValueError
         with self.connect() as conn:
-            grp = self._entrygrp(conn, key, legacy=legacy)
-            entrytype, fields = self._merged_entry(grp)
+            if isinstance(key, tuple):
+                filename, bibkey = key
+                entrytype, fields = self._entry(conn, filename, bibkey)
+            else:
+                grp = self._entrygrp(conn, key, legacy=legacy)
+                entrytype, fields = self._merged_entry(grp)
             return key, (entrytype, fields)
+
+    @staticmethod
+    def _entry(conn, filename, bibkey, raw=False):
+        cursor = conn.execute('SELECT field, value FROM value '
+            'WHERE filename = ? AND bibkey = ? ', (filename, bibkey))
+        fields = dict(cursor)
+        if not fields:
+            raise KeyError((filename, bibkey))
+        if raw:
+            return fields
+        entrytype = fields.pop('ENTRYTYPE')
+        return entrytype, fields
 
     @staticmethod
     def _merged_entry(grp, union=UNION_FIELDS, ignore=IGNORE_FIELDS, raw=False):
@@ -254,8 +271,7 @@ class Database(object):
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE refid = e.refid AND hash != e.hash) '
             'ORDER BY refid, hash, filename, bibkey')
-            for refid, group in itertools.groupby(cursor, operator.itemgetter(0)):
-                group = list(group)
+            for refid, group in group_first(cursor):
                 for row in group:
                     print(row)
                 for ri, hs, fn, bk in group:
@@ -272,8 +288,7 @@ class Database(object):
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
             'WHERE hash = e.hash AND refid != e.refid) '
             'ORDER BY hash, refid DESC, filename, bibkey')
-            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
-                group = list(group)
+            for hash, group in group_first(cursor):
                 for row in group:
                     print(row)
                 for hs, ri, fn, bk in group:
@@ -292,8 +307,7 @@ class Database(object):
             'AND EXISTS (SELECT 1 FROM entry '
             'WHERE refid IS NOT NULL AND hash = e.hash) '
             'ORDER BY hash, refid IS NOT NULL, refid, filename, bibkey')
-            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
-                group = list(group)
+            for hash, group in group_first(cursor):
                 for row in group:
                     print(row)
                 for hs, ri, fn, bk in group:
@@ -307,8 +321,7 @@ class Database(object):
             'WHERE refid IS NULL AND hash = e.hash '
             'AND (filename != e.filename OR bibkey != e.bibkey)) '
             'ORDER BY hash, filename, bibkey')
-            for hash, group in itertools.groupby(cursor, operator.itemgetter(0)):
-                group = list(group)
+            for hash, group in group_first(cursor):
                 for row in group:
                     print(row)
                 for hs, fn, bk in group:
@@ -665,4 +678,4 @@ def _test_merge():
 if __name__ == '__main__':
     #_test_merge()
     d = Database.from_bibfiles()
-    #d.recompute(hashes=False, verbose=True)
+    #d.recompute(hashes=False)

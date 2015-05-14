@@ -1,4 +1,4 @@
-# _bibtex_undiacritic.py
+# _bibtex_undiacritic.py - remove latex/unicode diacritics for string comparison
 
 import re
 

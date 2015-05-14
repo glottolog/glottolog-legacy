@@ -1,21 +1,32 @@
-# monster.py - combine, deduplicate, and annotate bibfiles
+# monster.py - load, combine, annotate, and save bibfiles collection
 
 """Compiling the monster.
 
-This script takes all the .bib files in the references directory and puts it
-together in a file called monster-utf8.bib with some deduplication and annotation in
-the process
+This script read the INI-file in the references/bibtex directory and combines
+all .bib files configured there into a file called monster-utf8.bib with some
+deduplication and annotation in the process.
 
-1.    The hash-id pairings of the previous monster.bib is taken from monster.csv
+1.    The bibfiles are combined in the following manner
+1.1   All bibfiles are parsed and loaded into an sqlite3 database
+1.2   A hash (keyid) is computed for each bib-entry
+1.3.  For each hash, any bib-entries with that hash are merged
+1.3.1 The merging takes place such that the priority setting of the file in the
+      INI-file (in case of ties, filename and bibkey) decides which value takes
+      precedence (hh.bib has the highest priority).
+      Some fields (like note) are the concatenation of all original fields.
+      The merged entries link back to the original(s) in the added
+      src/srctrickle field.
 
-2.    The .bib are merged in the following manner
-2.1.  A hash is computed for each bib-entry in any file
-2.2.  For each hash, any bib-entries with that hash are merged
-2.2.1 The merging takes place such that some fields of the merged entry are
-      previliged according to priority (e.g. title, lgcode and more are taken
-      from hh.bib if possible), while others (like note) are the union of all original
-      fields. The merged entries link back to the original(s) in the added
-      srctrickle field.
+2.    A glottolog_ref_id needs to be assigned to each merged entry
+2.1   If a group of entries with the same glottolog_ref_id (last run) is split
+      up into different hashes (this run), the new hash group which is most
+      similar to the old group retains the glottolog_ref_id
+2.2   If entries with different glottolog_ref_ids (last run) are merged into
+      a single hash (this run), the old ref_id groups which are not most similar
+      to the new group will be marked as being replaced by the most similar one
+2.3   Once splitting/merging is resolved, remaining entries get glottolog_ref_ids
+2.3.1 New glottolog_ref_id:s (from the private area above 300000) are doled out
+      to bib-entries which do not have one
 
 3.    Four steps of annotation are added to the merged entries, but only if
       there isn't already such annotation
@@ -32,12 +43,7 @@ the process
 3.4   inlg is added based on a small set of trigger words that may occur in the
       titles of bibentries which are specified in "../references/alt4inlg.ini".
 
-4.    Once all merging and annotation is done, it's time for the
-      glottolog_ref_id:s are dole:ed out
-4.1   New glottolog_ref_id:s (from the private area above 300000) are doled out
-      to bib-entries which do not have one
-4.2   The assigned glottolog_ref_id are burned back into the original bib:s one
-      by one (via srctrickle), so that they never change
+4.    The assigned glottolog_ref_id are burned back into the original bib:s
 
 5.    A final monster-utf8.bib is written
 """
