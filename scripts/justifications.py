@@ -5,7 +5,7 @@ import re
 import csv
 import collections
 
-REF = re.compile(r'\*\*(\d+)\*\*(?::([\d\-]+))?')
+REF = re.compile(r'\*\*([^*]+)\*\*(?::([\d\-]+))?')
 
 
 class Justifications(list):
@@ -17,7 +17,7 @@ class Justifications(list):
 
         @property
         def commentrefs(self):
-            result = [int(ma.group(1)) for ma in REF.finditer(self.comment)]
+            result = [ma.group(1) for ma in REF.finditer(self.comment)]
             self.__dict__['commentrefs'] = result
             return result
 
@@ -48,7 +48,7 @@ class FamilyJust(Justifications):
         @classmethod
         def fromrow(cls, row):
             name1, name2, refs, comment = row
-            refs = [int(REF.match(r).group(1)) for r in refs.split(', ')]
+            refs = [REF.match(r).group(1) for r in refs.split(', ')]
             return cls(name1, name2, refs, comment)
 
         def allrefs(self):
@@ -73,8 +73,8 @@ class SubclassJust(Justifications):
 if __name__ == '__main__':
     from _bibfiles import Database
     with Database().connect() as conn:
-        query = 'SELECT DISTINCT refid FROM entry'
-        known = {refid for refid, in conn.execute(query)}
+        query = 'SELECT bibkey FROM entry WHERE filename = ?'
+        known = {refid for refid, in conn.execute(query, ('hh.bib',))}
     print len(known)
     for rows in (FamilyJust(), SubclassJust()):
         for r in rows:
