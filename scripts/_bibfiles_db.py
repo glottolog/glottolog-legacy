@@ -59,7 +59,7 @@ class Database(object):
             os.remove(filename)
 
         self = cls(filename)
-        with self.connect(async=True, ) as conn:
+        with self.connect(async=True) as conn:
             create_tables(conn)
             with conn:
                 import_bibfiles(conn, bibfiles)
@@ -85,7 +85,7 @@ class Database(object):
         with self.connect() as conn:
             return compare_bibfiles(conn, bibfiles, verbose=verbose)
 
-    def recompute(self, hashes=True, verbose=True):
+    def recompute(self, hashes=True, reload_priorities=True, verbose=True):
         """Call bib.keyid for all entries, splits/merges -> new ids."""
         with self.connect(async=True) as conn:
             if hashes:
@@ -93,6 +93,11 @@ class Database(object):
                     generate_hashes(conn)
                 hashstats(conn)
                 hashidstats(conn)
+            if reload_priorities:
+                source = None if reload_priorities is True else reload_priorities
+                bibfiles = self._get_bibfiles(source)
+                with conn:
+                    update_priorities(conn, bibfiles)
             with conn:
                 assign_ids(conn, verbose=verbose)
 
@@ -155,7 +160,7 @@ class Database(object):
             fields['glottolog_ref_id'] = id
             yield hash, (entrytype, fields)
 
-    def connect(self, async=False, close=True):
+    def connect(self, close=True, async=False):
         conn = sqlite3.connect(self.filename)
         if async:
             conn.execute('PRAGMA synchronous = OFF')
@@ -391,6 +396,17 @@ def import_bibfiles(conn, bibfiles):
         conn.executemany('INSERT INTO legacypriority (filename, bibkey, priority) '
                 'VALUES (?, ?, ?) ',
                 ((b.filename, bibkey, i) for i, bibkey in enumerate(dct)))
+
+
+def update_priorities(conn, bibfiles):
+    inini = {b.filename for b in bibfiles}
+    indb = {filename for filename, in conn.execute('SELECT name FROM file')}
+    assert inini == indb
+    for b in bibfiles:
+        conn.execute('UPDATE file SET priority = ? WHERE NAME = ?',
+            (b.priority, b.filename))
+    print('\n'.join('%d\t%s' % pn for pn in conn.execute(
+        'SELECT priority, name FROM file ORDER BY priority DESC, name')))
 
 
 def compare_bibfiles(conn, bibfiles, verbose=False):
@@ -676,6 +692,6 @@ def _test_merge():
 
 
 if __name__ == '__main__':
-    #_test_merge()
     d = Database.from_bibfiles()
     #d.recompute(hashes=False)
+    #_test_merge()

@@ -121,7 +121,7 @@ def dump(entries, fd, sortkey=None, encoding=None, errors='strict', use_pybtex=T
     elif sortkey == 'bibkey':
         items = ((bibkey, entries[bibkey]) for bibkey in
             sorted(entries, key=lambda bibkey: bibkey.lower()))
-    elif sortkey == 'authorbibkey_colon':
+    elif sortkey == 'authorbibkey_colon':  # legacy order for hh.bib
         def sortkey((bibkey, (entrytype, fields))):
             return fields.get('author', '') + ':'.join(bibkey.split(':', 1)[::-1])
         items = sorted(entries.iteritems(), key=sortkey)
