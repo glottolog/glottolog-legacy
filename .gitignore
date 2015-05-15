@@ -1,4 +1,6 @@
 *.py[cod]
+/languoids/forkel_family_justifications-utf8-ids.tab
+/languoids/forkel_subclassification_justifications-utf8-ids.tab
 /monsterold/
 /references/bibtex/*-utf8.bib
 /scripts/monster-utf8.bib

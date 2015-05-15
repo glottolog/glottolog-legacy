@@ -122,4 +122,4 @@ def translate_refs():
 
 if __name__ == '__main__':
     check_refs()
-    #translate_refs()
+    translate_refs()
