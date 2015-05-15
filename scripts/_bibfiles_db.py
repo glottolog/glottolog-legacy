@@ -125,6 +125,12 @@ class Database(object):
         with open(filename, 'wb') as fd:
             json.dump(pairs, fd, indent=4)
 
+    def to_hhmapping(self):
+        with self.connect() as conn:
+            assert allid(conn)
+            query = 'SELECT bibkey, id FROM entry WHERE filename = ?'
+            return dict(conn.execute(query, ('hh.bib',)))
+
     def trickle(self, bibfiles=None):
         """Write new/changed glottolog_ref_ids back into the bibfiles."""
         bibfiles = self._get_bibfiles(bibfiles)
@@ -171,20 +177,14 @@ class Database(object):
 
     def __iter__(self, chunksize=100):
         with self.connect() as conn:
-            allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
-                'WHERE id IS NULL)').fetchone()
-            assert allid
+            assert allid(conn)
 
             allpriority, = conn.execute('SELECT NOT EXISTS '
                 '(SELECT 1 FROM entry WHERE NOT EXISTS (SELECT 1 FROM file '
                 'WHERE name = filename))').fetchone()
             assert allpriority
 
-            onetoone, = conn.execute('SELECT NOT EXISTS '
-                '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
-                'WHERE hash = e.hash AND id != e.id '
-                'OR id = e.id AND hash != e.hash))').fetchone()
-            assert onetoone
+            assert onetoone(conn)
 
             get_id_hash, get_field = operator.itemgetter(0, 1), operator.itemgetter(2)
             for first, last in windowed(conn, 'id', chunksize):
@@ -425,6 +425,20 @@ def compare_bibfiles(conn, bibfiles, verbose=False):
     return False
 
 
+def allid(conn):
+    result, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
+        'WHERE id IS NULL)').fetchone()
+    return result
+
+
+def onetoone(conn):
+    result, = conn.execute('SELECT NOT EXISTS '
+        '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
+        'WHERE hash = e.hash AND id != e.id '
+        'OR id = e.id AND hash != e.hash))').fetchone()
+    return result
+
+
 def entrystats(conn):
     print('\n'.join('%s %d' % (f, n) for f, n in conn.execute(
         'SELECT filename, count(*) FROM entry GROUP BY filename')))
@@ -610,15 +624,8 @@ def assign_ids(conn, verbose=False, legacy=True):
     print('%d new ids (new/separated)' % conn.executemany('UPDATE entry SET id = ? WHERE hash = ?',
         ((id, hash) for id, (hash,) in enumerate(cursor, nextid))).rowcount)
 
-    allid, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
-        'WHERE id IS NULL)').fetchone()
-    assert allid
-
-    onetoone, = conn.execute('SELECT NOT EXISTS '
-        '(SELECT 1 FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
-        'WHERE hash = e.hash AND id != e.id '
-        'OR id = e.id AND hash != e.hash))').fetchone()
-    assert onetoone
+    assert allid(conn)
+    assert onetoone(con)
 
     # supersede relation
     superseded, = conn.execute('SELECT count(*) FROM entry WHERE id != srefid').fetchone()

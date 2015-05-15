@@ -102,11 +102,7 @@ class SubclassJust(Justifications):
 
 def check_refs():
     db = BIBFILES.to_sqlite()
-
-    with db.connect() as conn:
-        query = 'SELECT bibkey FROM entry WHERE filename = ?'
-        known = {refid for refid, in conn.execute(query, ('hh.bib',))}
-
+    known = db.to_hhmapping()
     print(len(known))
 
     for rows in (FamilyJust(), SubclassJust()):
@@ -118,10 +114,7 @@ def check_refs():
 
 def translate_refs():
     db = BIBFILES.to_sqlite()
-
-    with db.connect() as conn:
-        query = 'SELECT bibkey, id FROM entry WHERE filename = ?'
-        mapping = dict(conn.execute(query, ('hh.bib',)))
+    mapping = db.to_hhmapping()
 
     for old in (FamilyJust(), SubclassJust()):
         new = old.translated(mapping)
