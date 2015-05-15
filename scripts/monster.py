@@ -53,7 +53,7 @@ import time
 import _bibfiles
 import bib
 
-BIBFILES = _bibfiles.Collection('../references/bibtex')
+BIBFILES = _bibfiles.Collection()
 PREVIOUS = '../references/monster.csv'
 REPLACEMENTS = 'monster-replacements.json'
 MONSTER = _bibfiles.BibFile('monster-utf8.bib', encoding='utf-8', sortkey='bibkey')

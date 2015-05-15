@@ -5,6 +5,10 @@ import re
 import csv
 import collections
 
+import _bibfiles
+
+BIBFILES = _bibfiles.Collection()
+
 REF = re.compile(r'\*\*([^*]+)\*\*(?::([\d\-]+))?')
 
 TRANSLATED_SUFFIX = '-ids'
@@ -45,8 +49,10 @@ class Justifications(list):
             ref, bk = ma.group(0, 1)
             bstart, bend = ma.span(1)
             return '%s%d%s' % (ref[:bstart], mapping[bk], ref[bend:])
+
         make_row = self.Row._make
         inst = self.__class__(make_row(r) for r in self._translated(REF.sub, repl))
+
         name, ext = os.path.splitext(self.filename)
         inst.filename = '%s%s%s' % (name, suffix, ext)
         return inst
@@ -95,29 +101,31 @@ class SubclassJust(Justifications):
 
 
 def check_refs():
-    from _bibfiles import Database
-    with Database().connect() as conn:
+    db = BIBFILES.to_sqlite()
+
+    with db.connect() as conn:
         query = 'SELECT bibkey FROM entry WHERE filename = ?'
         known = {refid for refid, in conn.execute(query, ('hh.bib',))}
-    print len(known)
+
+    print(len(known))
+
     for rows in (FamilyJust(), SubclassJust()):
         for r in rows:
             unknown = [b for b in r.allbks() if b not in known]
             if unknown:
-                print r
-                print unknown
-                print
+                print('%s\n%s\n' % (r, unknown))
 
 
 def translate_refs():
-    from _bibfiles import Database
-    with Database().connect() as conn:
+    db = BIBFILES.to_sqlite()
+
+    with db.connect() as conn:
         query = 'SELECT bibkey, id FROM entry WHERE filename = ?'
         mapping = dict(conn.execute(query, ('hh.bib',)))
-    global new
-    for rows in (FamilyJust(), SubclassJust()):
-        rows = rows.translated(mapping)
-        rows.save()
+
+    for old in (FamilyJust(), SubclassJust()):
+        new = old.translated(mapping)
+        new.save()
 
 
 if __name__ == '__main__':
