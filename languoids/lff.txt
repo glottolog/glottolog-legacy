@@ -6828,21 +6828,21 @@ Japonic, Japanesic
 Japonic, Japanesic, Japan-Taiwan Japanese
   Japanese [jpn]
   Yilan Creole Japanese [NOCODE_Yilan-Creole-Japanese]
-Japonic, Ryukyuan, Amami
+Japonic, Ryukyuan, Northern Ryukyuan, Amami
   Yoron [yox]
   Kikai [kzg]
-Japonic, Ryukyuan, Amami, Nuclear Amami, Oshima
+Japonic, Ryukyuan, Northern Ryukyuan, Amami, Nuclear Amami, Oshima
   Northern Amami-Oshima [ryn]
   Southern Amami-Oshima [ams]
-Japonic, Ryukyuan, Amami, Nuclear Amami, Okinoerabu-Tokunoshima
+Japonic, Ryukyuan, Northern Ryukyuan, Amami, Nuclear Amami, Okinoerabu-Tokunoshima
   Toku-No-Shima [tkn]
   Oki-No-Erabu [okn]
-Japonic, Ryukyuan, Okinawa
+Japonic, Ryukyuan, Northern Ryukyuan, Okinawa
   Central Okinawan [ryu]
   Kunigami [xug]
-Japonic, Ryukyuan, Ryukyu Sud
+Japonic, Ryukyuan, Southern Ryukyu
   Miyako [mvi]
-Japonic, Ryukyuan, Ryukyu Sud, Macro-Yaeyama
+Japonic, Ryukyuan, Southern Ryukyu, Macro-Yaeyama
   Yaeyama [rys]
   Yonaguni [yoi]
 Jarawa-Onge
@@ -6852,6 +6852,10 @@ Jarrakan
   Gadjerawang [gdh]
   Miriwung [mep]
   Kitja [gia]
+Nuclear-Macro-Je
+  Rikbaktsa [rkb]
+  Karaj\'a [kpj]
+  Ofay\'e [opy]
 Nuclear-Macro-Je, Aimore
   Krenak [kqq]
   Gueren [NOCODE_Gueren]
@@ -6862,10 +6866,6 @@ Nuclear-Macro-Je, Maxakalian, Western Maxakali
 Nuclear-Macro-Je, Maxakalian
   Malali [NOCODE_Malali]
   Patax\'o H\~a-Ha-H\~ae [pth]
-Nuclear-Macro-Je, Ofaie
-  Ofay\'e [opy]
-  Rikbaktsa [rkb]
-  Karaj\'a [kpj]
 Nuclear-Macro-Je, Jabuti
   Djeoromitx\'i [jbt]
   Arikap\'u [ark]
@@ -8845,6 +8845,8 @@ Sino-Tibetan, Sinitic, Northern Chinese, Mandarinic
   Mandarin Chinese [cmn]
   Wutunhua [wuh]
   Tangwang [NOCODE_Tangwang]
+  Gangou [NOCODE_Gangou]
+  Hezhou [NOCODE_Hezhou]
   Daohua [NOCODE_Daohua]
 Sino-Tibetan, Sinitic, Central Chinese
   Gan Chinese [gan]
@@ -9070,7 +9072,7 @@ Sino-Tibetan, Bodic, Tibeto-Kanauri, Lahaulic
   Tinani [lbf]
 Sino-Tibetan
   Gongduk [goe]
-Sino-Tibetan, Geman
+Sino-Tibetan, Kman-Meyor
   Miju-Mishmi [mxj]
   Zakhring [zkr]
 Sino-Tibetan, Dhimalish
@@ -9212,6 +9214,7 @@ Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Old Kuki, Moyon-Monsang Naga
   Moyon [nmo]
   Monsang Naga [nmh]
 Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, South Peripheral Kuki-Chin, Paletwa
+  Rengmitca [NOCODE_Rengmitca]
   Khumi Chin [cnk]
 Sino-Tibetan, Kuki-Chin-Naga, Kuki-Chin, Peripheral Kuki-Chin, South Peripheral Kuki-Chin, Paletwa, Cho-Asho, Ashoic
   Asho Chin [csh]
@@ -10610,7 +10613,6 @@ Turkic, Common Turkic, Oghuz-Kipchak-Uyghur, Uyghur
 Turkic, Common Turkic, Oghuz-Kipchak-Uyghur, Uyghur, Far East Yugur
   West Yugur [ybe]
   Ainu (China) [aib]
-  Hezhou [NOCODE_Hezhou]
 Turkic, Common Turkic, Oghuz-Kipchak-Uyghur, Oghuz, West Oghuz, Azerbaijani
   North Azerbaijani [azj]
   Salchuq [slq]

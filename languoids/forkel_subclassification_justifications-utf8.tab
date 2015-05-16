@@ -289,6 +289,7 @@ Arawan	Arawán	**hv:Dienst:Arawan**
 Dutch Caribbean Creole	Dutch Caribbean Creole	**vw:Robertson:Berbice-Skepi**
 Phunoi-Coong	Phunoi-Coong	**hld:Edmondson:Central-Southern-Loloish**
 Trukic	Trukic	**hvw:Jackson:Trukic**
+NOCODE_Rengmitca	NOCODE_Rengmitca	**vtyp:Peterson:Rengmitca**
 Musguic	Musguic	**hv:Gravina:Central-Chadic**:60 **hv:Tourneux:Musgu**
 Nabak-Momolili	Nabak-Momolili	**hv:HooleyMcElhanon:Morobe**:1071
 Nabi-Irarutu	Nabi-Irarutu	**g:Jackson:Irarutu**:11-12, 325-420
@@ -510,7 +511,7 @@ xkc	xkc	**s:Yarshater:Xoini**
 Sentanic	Sentanic	**hv:HartzlerGregerson:Proto-Tabla-Sentani**
 Bebe-Kemezung	Bebe-Kemezung	**soc:BryeBrye:Bebe-Kemezung** **hsoc:BryeBrye:Eastern-Beboid**
 tiq	tiq	**typ:Winkelmann:Cefo**
-tij	tij	**v:Opgenort:Tilung**
+tij	tij	**s:Opgenort:Tilung**:334-340 **v:Opgenort:Tilung**
 Ojibwa	Ojibwa	**hv:RhodesTodd:Subarctic-Algonquian**:62
 Tumbukic	Tumbukic	**h:Young:Nyasaland**
 xkv	xkv	**wdial:Kalasi:Sekgalagari**
@@ -963,7 +964,7 @@ xna	xna	**s:MacDonald:Ancient-North-Arabian**
 Kanyara	Kanyara	**hv:Austin:SPilbara** **hv:BowernAtkinson:Pama-Nyungan**
 kvr	kvr	**v:Kurniatietal:Tapan**
 Macro-Tani	Macro-Tani	**hv:PostModi:Milang**
-NOCODE_Hezhou	NOCODE_Hezhou	**s:Lee-Smith:Hezhou**
+NOCODE_Hezhou	NOCODE_Hezhou	**hv:Dede:Chinese-Qinghai**
 bjj	bjj	**hvwt:Grierson:9:I**
 yyz	yyz	**hv:Bradley:Tibeto-Burman**:101
 Highland East Cushitic	Highland East Cushitic	**hv:Hudson:HECushitic**
@@ -1213,8 +1214,9 @@ aad	aad	**hv:Foley:Sepik:2013**
 aaf	aaf	**hb:RamaiahReddy:Tribal-Dravidian**
 aab	aab	**w:Blench:Tesu**
 dtb	dtb	**ld:Spitzack:Eastern-Kadazan**
+Ryukyuan	Ryukyuan	**hv:Pellard:Ryukyu**
 South Bauchi West	South Bauchi West	**hvw:Shimizu:SBauchi** **typ:Caron:South-Bauchi-West**
-stu	stu	**hv:Sidwell:Austroasiatic:2015**:207
+Nek-Nuk	Nek-Nuk	**w:Retsemaetal:Mungkip**:7
 dty	dty	**vwsoc:Eichentopf:Dotyali**
 Kalikoic	Kalikoic	**hwsoc:WatsonBoone:Moru-Madi**:35-39
 dtr	dtr	**ld:Banker:Lotud**
@@ -1290,6 +1292,7 @@ Central Santa Isabel	Central Santa Isabel	**hv:Voica:Isabel**
 arg	arg	**hv:Agard:Aragonese-Asturo**
 arj	arj	**hv:Bruzzi:Tukano**
 sej	sej	**hv:HooleyMcElhanon:Morobe**:1069
+stu	stu	**hv:Sidwell:Austroasiatic:2015**:207
 zkt	zkt	**s:Kane:Kitan**
 Pomoan	Pomoan	**hv:McLendon:Pomoan:2006**
 zkr	zkr	Contra **vw:Blench:Monpa** there are good arguments for considering Meyor to be a Tibetanised Mijuic language rather than vice versa **hld:Sun:Eastern-Himalayan-China** (thanks to Scott DeLancey for arguing this out with me)
@@ -1772,6 +1775,7 @@ South Mangyan	South Mangyan	**hv:Blust:CPhilippines**
 szv	szv	**hvw:Meinhof:Kamerun**
 Ternate-Zamboanga-Cavite	Ternate-Zamboanga-Cavite	**g:Sippola:Chabacano**:25-27
 jax	jax	**hvw:Anderbeck:Batanghari**
+NOCODE_Gangou	NOCODE_Gangou	**hv:Janhunen:Amdo-Sprachbund**
 Sudanese-Chadian Arabic	Sudanese-Chadian Arabic	**hvtyp:Kaye:Chadian**
 Kwilu-Umlaut	Kwilu-Umlaut	**hv:KoniBostoen:Kwilu**
 ksy	ksy	**s:Dasgupta:Kharia**
@@ -1885,7 +1889,7 @@ Sabi	Sabi	**hv:Ahmed:East-Central-Africa**
 phq	phq	**hel:Bradley:EAsia**:365
 phv	phv	**hb:Redard:Other-Iranian**
 Nisu	Nisu	**hv:Yang:Nisu**
-Nek-Nuk	Nek-Nuk	**w:Retsemaetal:Mungkip**:7
+Amami	Amami	**g:Pellard:Ogami**:249-276
 Yaoic	Yaoic	**hv:Nurse:SWTanzania**:94
 Pomo-Bomwali	Pomo-Bomwali	**hv:Klieman:Gabon**
 Thura-Yura	Thura-Yura	**hv:SimpsonHercus:Thura-Yura** **hv:BowernAtkinson:Pama-Nyungan**
@@ -1976,7 +1980,7 @@ Nyulnyulan	Nyulnyulan	**hv:StokesMcGregor:Nyulnyulan**
 Guaicuruan	Guaicuruan	**hv:ViegasBarros:Guaicuru-Reconstruccion:2013**
 pie	pie	**hvbtyp:Sutton:Kiowa-Tanoan**:5-6
 Old Kuki	Old Kuki	**hv:VanBik:Proto-Kuki-Chin** **vwphon:MortensenKeogh:Sorbung**
-myc	myc	**he:deCalonne:Ubangi-Uele-Aruwimi(**):114, 120, 247, 251
+myc	myc	**he:deCalonne:Ubangi-Uele-Aruwimi**:114, 120, 247, 251
 Lowland East Cushitic	Lowland East Cushitic	**hv:Tosco:Cushitic**:95-98
 hld	hld	**h:Schliesinger:Laos**
 hns	hns	**ld:Damsteegt:Sarnami**

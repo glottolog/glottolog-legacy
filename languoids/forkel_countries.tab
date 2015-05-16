@@ -1451,7 +1451,7 @@ knp	Cameroon
 knq	Thailand	Malaysia (Peninsular)
 psr	Portugal
 amp	Papua New Guinea
-ams	Japan
+psp	Philippines
 amr	Peru
 amt	Papua New Guinea
 pst	Pakistan
@@ -1845,6 +1845,7 @@ jaz	New Caledonia
 jax	Indonesia (Papua)
 jay	Australia
 jav	United States	Indonesia (Papua)	Netherlands	Malaysia (Peninsular)	Singapore
+NOCODE_Gangou	China
 jat	Afghanistan
 jau	Indonesia (Papua)
 jar	Nigeria
@@ -1870,7 +1871,7 @@ lbm	India
 gbf	Papua New Guinea
 gbg	Democratic Republic of the Congo	Central African Republic
 gbd	Australia
-gbe	Papua New Guinea
+aer	Australia
 gbb	Australia
 gbc	Australia
 aew	Papua New Guinea
@@ -2892,7 +2893,7 @@ noa	Panama	Colombia
 tjo	Algeria
 noc	Papua New Guinea
 tjs	China
-aer	Australia
+gbe	Papua New Guinea
 tju	Australia
 mbb	Philippines
 noz	Ethiopia
@@ -3152,7 +3153,7 @@ amz	Australia
 bsk	Pakistan	India
 amq	Indonesia (Papua)
 pss	Papua New Guinea
-psp	Philippines
+ams	Japan
 psq	Papua New Guinea
 amu	Mexico
 psw	Vanuatu
@@ -5326,7 +5327,7 @@ def	Iran
 deg	Nigeria
 NOCODE_Jesuit-Maynas	Peru
 NOCODE_Bularnu	Australia
-csm	United States
+ryn	Japan
 csl	Malaysia (Peninsular)	Taiwan	China
 cso	Mexico
 csn	Colombia
@@ -6530,6 +6531,7 @@ och	China
 oca	Peru	Colombia
 NOCODE_Tshobdun	China
 ocu	Mexico
+NOCODE_Rengmitca	Bangladesh
 nuz	Mexico
 nux	Papua New Guinea
 nuy	Australia
@@ -6932,7 +6934,7 @@ kyt	Indonesia (Papua)
 cob	Guatemala	Mexico
 tbp	Indonesia (Papua)
 mgi	Nigeria
-ryn	Japan
+csm	United States
 mgh	Tanzania	Mozambique
 mgo	Cameroon
 mgn	Central African Republic
