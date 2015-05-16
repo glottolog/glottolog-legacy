@@ -625,7 +625,7 @@ def assign_ids(conn, verbose=False, legacy=True):
         ((id, hash) for id, (hash,) in enumerate(cursor, nextid))).rowcount)
 
     assert allid(conn)
-    assert onetoone(con)
+    assert onetoone(conn)
 
     # supersede relation
     superseded, = conn.execute('SELECT count(*) FROM entry WHERE id != srefid').fetchone()
