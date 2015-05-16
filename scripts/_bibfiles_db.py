@@ -14,7 +14,10 @@ import _bibtex
 
 __all__ = ['Database']
 
-# FIXME: toggle legacy mode off after first use (may then be removed)
+# FIXME: toggle COMPARE_WITH_LEGACY off after first use
+#        legacy=True code paths may then be removed
+
+COMPARE_WITH_LEGACY = True
 
 DBFILE = '_bibfiles.sqlite3'
 
@@ -270,7 +273,7 @@ class Database(object):
             hashstats(conn)
             hashidstats(conn)
 
-    def show_splits(self):
+    def show_splits(self, legacy=COMPARE_WITH_LEGACY):
         with self.connect() as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
@@ -281,13 +284,13 @@ class Database(object):
                     print(row)
                 for ri, hs, fn, bk in group:
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
-                old = self._merged_entry(self._entrygrp(conn, refid, legacy=True), raw=True)
+                old = self._merged_entry(self._entrygrp(conn, refid, legacy=legacy), raw=True)
                 cand = [(hs, self._merged_entry(self._entrygrp(conn, hs), raw=True))
                     for hs in unique(hs for ri, hs, fn, bk in group)]
                 new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
                 print('-> %s\n' % new)
 
-    def show_merges(self):
+    def show_merges(self, legacy=COMPARE_WITH_LEGACY):
         with self.connect() as conn:
             cursor = conn.execute('SELECT hash, refid, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
@@ -299,7 +302,7 @@ class Database(object):
                 for hs, ri, fn, bk in group:
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                 new = self._merged_entry(self._entrygrp(conn, hash), raw=True)
-                cand = [(ri, self._merged_entry(self._entrygrp(conn, ri, legacy=True), raw=True))
+                cand = [(ri, self._merged_entry(self._entrygrp(conn, ri, legacy=legacy), raw=True))
                     for ri in unique(ri for hs, ri, fn, bk in group)]
                 old = min(cand, key=lambda (ri, fields): distance(new, fields))[0]
                 print('-> %s\n' % old)
@@ -547,7 +550,7 @@ def windowed(conn, col, chunksize):
         yield first, last
 
 
-def assign_ids(conn, verbose=False, legacy=True):
+def assign_ids(conn, verbose=False, legacy=COMPARE_WITH_LEGACY):
     merged_entry, entrygrp = Database._merged_entry, Database._entrygrp
 
     allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
