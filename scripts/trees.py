@@ -1,10 +1,13 @@
-# paths.py - parse (path, members) files like lff.txt and lof.txt
+# trees.py - parse and check (path, members) files (lff.txt and lof.txt)
 
 import io
 import re
 import operator
 import itertools
 import collections
+
+LFF = '../languoids/lff.txt'
+LOF = '..//languoids/lof.txt'
 
 
 class PathsFile(object):
@@ -109,15 +112,15 @@ class Paths(dict):
 
 
 if __name__ == '__main__':
-    lff = PathsFile('../languoids/lff.txt').to_dict(Paths)
+    lff = PathsFile(LFF).to_dict(Paths)
     assert lff.is_tree()
     print(len(lff))
-    print(next(lff.iteritems()))
+    #print(next(lff.iteritems()))
 
-    lof = PathsFile('..//languoids/lof.txt').to_dict()
+    lof = PathsFile(LOF).to_dict()
     print(len(lof))
-    print(next(lof.iteritems()))
+    #print(next(lof.iteritems()))
 
-    df = lff.to_dataframe()
-    df.insert(0, 'family', df['path'].map(operator.itemgetter(-1)))
-    assert not df['family'].duplicated().any()
+    #df = lff.to_dataframe()
+    #df.insert(0, 'family', df['path'].map(operator.itemgetter(-1)))
+    #assert not df['family'].duplicated().any()
