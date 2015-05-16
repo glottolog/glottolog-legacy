@@ -54,9 +54,9 @@ def iterentries(filename, encoding=None, use_pybtex=True):
     if not use_pybtex:  # legacy code path for conversion/comparison
         if encoding not in (None, 'ascii'):
             raise NotImplementedError
-        import bib
+        import _libmonster
         with memorymapped(filename) as source:
-            for bibkey, entrytype, fields in bib.pitems(source):
+            for bibkey, entrytype, fields in _libmonster.pitems(source):
                 yield bibkey, (entrytype, fields)  
     elif encoding is None:
         raise NotImplementedError

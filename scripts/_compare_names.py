@@ -1,11 +1,11 @@
 # _compare_names.py - compare regex-based with pybtex name parsing
 
-import _bibfiles, _bibtex, bib
+import _bibfiles, _bibtex, _libmonster
 
 
 def names1(s):
     return [(debr(n.get('firstname', '')), debr(n.get('lastname', '')), debr(n.get('jr', '')))
-        for n in bib.pauthor(s)]
+        for n in _libmonster.pauthor(s)]
 
 
 def names2(s):

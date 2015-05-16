@@ -51,7 +51,7 @@ deduplication and annotation in the process.
 import time
 
 import _bibfiles
-import bib
+import _libmonster as bib
 
 BIBFILES = _bibfiles.Collection()
 PREVIOUS = '../references/monster.csv'

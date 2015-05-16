@@ -89,7 +89,7 @@ class Database(object):
             return compare_bibfiles(conn, bibfiles, verbose=verbose)
 
     def recompute(self, hashes=True, reload_priorities=True, verbose=True):
-        """Call bib.keyid for all entries, splits/merges -> new ids."""
+        """Call _libmonster.keyid for all entries, splits/merges -> new ids."""
         with self.connect(async=True) as conn:
             if hashes:
                 with conn:
@@ -482,7 +482,7 @@ def hashfields(conn, filename, bibkey):
 
 
 def generate_hashes(conn):
-    from bib import wrds, keyid
+    from _libmonster import wrds, keyid
 
     words = collections.Counter()
     cursor = conn.execute('SELECT value FROM value WHERE field = ?', ('title',))
