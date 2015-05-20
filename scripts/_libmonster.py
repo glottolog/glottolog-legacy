@@ -1,5 +1,6 @@
 # _libmonster.py - mixed support library
 
+# TODO: consider replacing pauthor in keyid with _bibtex.names
 # TODO: enusure \emph is dropped from titles in keyid calculation
 
 import re
@@ -450,6 +451,7 @@ def byid(es, idf=lgcode, unsorted=False):
     return grp2([(cfn, k) for (k, tf) in es.iteritems() for cfn in tftoids(tf)])
 
 
+# FIXME: load this from alt4hhtype.ini
 hhtypes = {}
 hhtypes['unknown'] = (1, 'unknown', 'U', 'unknown')
 hhtypes['bibliographical'] = (2, 'bibliographically oriented', 'B', 'b')

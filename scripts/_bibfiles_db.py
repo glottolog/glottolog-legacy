@@ -1,5 +1,7 @@
 # _bibfiles_db.py - load bibfiles into sqlite3, hash, assign ids (split/merge)
 
+# TODO: try unconditional hh.bib preference in (merge/split) legacy comparisons
+
 import os
 import csv
 import json
