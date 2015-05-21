@@ -22,6 +22,7 @@ __all__ = [
 ]
 
 INLG = '../references/alt4inlg.ini'
+HHTYPE = '../references/alt4hhtype.ini'
 
 
 def read_csv_dict(filename):
@@ -58,8 +59,25 @@ def load_triggers(filename, sec_curly_to_square=False):
     for s in p.sections():
         cls, _, lab = mangle_sec(s).partition(', ')
         triggers = p.get(s, 'triggers').strip().splitlines()
+        if not triggers:  # hhtype, unknown
+            continue
         result[(cls, lab)] = [[(False, w[4:].strip()) if w.startswith('NOT ') else (True, w.strip())
           for w in t.split(' AND ')] for t in triggers]
+    return result
+
+
+def load_hhtypes(filename=HHTYPE):
+    p = RawConfigParser()
+    with open(filename) as fp:
+        p.readfp(fp)
+    result = {}
+    for s in p.sections():
+        _, _, expl = s.partition(', ')
+        hht = p.get(s, 'id')
+        rank = p.getint(s, 'rank')
+        abbv = p.get(s, 'abbv')
+        bibabbv = p.get(s, 'bibabbv')
+        result[hht] = (rank, expl, abbv, bibabbv)
     return result
 
 
@@ -451,26 +469,7 @@ def byid(es, idf=lgcode, unsorted=False):
     return grp2([(cfn, k) for (k, tf) in es.iteritems() for cfn in tftoids(tf)])
 
 
-# FIXME: load this from alt4hhtype.ini
-hhtypes = {}
-hhtypes['unknown'] = (1, 'unknown', 'U', 'unknown')
-hhtypes['bibliographical'] = (2, 'bibliographically oriented', 'B', 'b')
-hhtypes['ethnographic'] = (3, 'ethnographic work', 'E', 'e')
-hhtypes['overview'] = (4, 'handbook/overview', 'O', 'h')
-hhtypes['dialectology'] = (5, 'dialectologically oriented', 'X', 'dial')
-hhtypes['socling'] = (6, 'sociolinguistically oriented', 'SL', 'soc')
-hhtypes['minimal'] = (8, 'some very small amount of data/information on a language', 'M', 'numbers')
-hhtypes['comparative'] = (9, 'comparative-historical study', 'C', 'v')
-hhtypes['wordlist'] = (10, 'wordlist', 'W', 'w')
-hhtypes['new_testament'] = (11, 'new testament', 'N', 'nt')
-hhtypes['text'] = (12, 'text', 'T', 't')
-hhtypes['phonology'] = (13, 'phonology', 'P', 'phon')
-hhtypes['specific_feature'] = (14, '(typological) study of a specific feature', 'F', 'typ')
-hhtypes['dictionary'] = (15, 'dictionary', 'D', 'd')
-hhtypes['grammar_sketch'] = (16, 'grammar sketch', 'S', 's')
-hhtypes['grammar'] = (17, 'grammar', 'G', 'g')
-
-
+hhtypes = load_hhtypes()
 hhtyperank = [hht for (n, expl, abbv, bibabbv, hht) in sorted((info + (hht,) for (hht, info) in hhtypes.iteritems()), reverse=True)]
 hhtype_to_n = dict((x, len(hhtyperank)-i) for (i, x) in enumerate(hhtyperank))
 expl_to_hhtype = dict((expl, hht) for (hht, (n, expl, abbv, bibabbv)) in hhtypes.iteritems())
