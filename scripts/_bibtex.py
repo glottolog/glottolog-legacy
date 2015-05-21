@@ -1,5 +1,7 @@
 # bibtex.py - bibtex file parsing/serialization
 
+# TODO: make check fail on non-whitespace between entries (bibtex 'comments')
+
 import io
 import re
 import mmap
