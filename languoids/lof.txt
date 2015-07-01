@@ -6,6 +6,7 @@ Artificial Language
   Neo [neu]
   Talossan [tzl]
   Ladakhi Sign [NOCODE_Ladakhi-Sign]
+  Rennellese Sign Language [rsi]
 Artificial Language, Efate group based
   Efatese [NOCODE_Efatese]
 Sign Language, Deaf Sign Language, JSLic
@@ -90,6 +91,7 @@ Sign Language, Deaf Sign Language, ASLic
   Ethiopian Sign Language [eth]
   Chilean Sign Language [csg]
   Colombian Sign Language [csn]
+  Puerto Rican Sign Language [NOCODE_Puerto-Rican-Sign]
 Sign Language, Deaf Sign Language, BSLic, BANZL
   British Sign Language [bfi]
   New Zealand Sign Language [nzs]
@@ -109,6 +111,7 @@ Sign Language, Village Sign Language, Providencia-Cayman Sign
   Providencia Sign Language [prz]
   Old Cayman Sign Language [NOCODE_Old-Cayman-Sign]
 Sign Language, Village Sign Language
+  Amami O Shima Sign Language [NOCODE_Amami-Sign]
   Kafr Qasem Sign Language [NOCODE_Kafr-Qasem-Sign]
   Yolngu Sign Language [NOCODE_Yolngu-Sign]
   Keresan Pueblo Indian Sign Language [NOCODE_Keresan-Pueblo-Sign]
@@ -171,17 +174,18 @@ Sign Language, Deaf Sign Language, Old Chiangmai-Bangkok-Haiphong Sign, Old Chia
   Old Bangkok Sign Language [NOCODE_Old-Bangkok-Sign]
 Sign Language, Deaf Sign Language, Old Chiangmai-Bangkok-Haiphong Sign
   Haiphong Sign Language [haf]
+Sign Language, Deaf Sign Language, Indo-Pakistani-Nepalese Sign, Indo-Pakistani Sign
+  Indian Sign Language [ins]
+  Pakistan Sign Language [pks]
+Sign Language, Deaf Sign Language, Indo-Pakistani-Nepalese Sign
+  Nepalese Sign Language [nsp]
 Sign Language, Deaf Sign Language
   Yoruba Sign Language [NOCODE_Yoruba-Sign]
   Armenian Sign Language [aen]
-  Indian Sign Language [ins]
   Lyons Sign Language [lsg]
   Salvadoran Sign Language [esn]
   Ecuadorian Sign Language [ecs]
-  Pakistan Sign Language [pks]
-  Nepalese Sign Language [nsp]
   Penang Sign Language [psg]
-  Rennellese Sign Language [rsi]
   Saudi Arabian Sign Language [sdl]
   Sri Lankan Sign Language [sqs]
   Venezuelan Sign Language [vsl]
@@ -390,6 +394,12 @@ Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Fra
   Tsotsitaal [fly]
 Speech Register, Indo-European, Indo-Iranian, Iranian, Western Iranian, Southwestern Iranian, Farsic-Caucasian Tat, Farsic, Eastern Farsic
   Adurgari [NOCODE_Adurgari]
+Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Kayan-Kenyah, Unclassified Kayan-Kenyah
+  Punan Merap [puc]
+Spurious, Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil, Macro-French
+  Zarphatic [zrp]
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic
+  Kon Keu [kkn]
 Spurious, Austroasiatic, Katuic, West Katuic, Brou-So
   Khua [xhv]
 Spurious, Austroasiatic, Katuic, Ta'oihic
