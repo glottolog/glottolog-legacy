@@ -553,7 +553,9 @@ Afro-Asiatic, Semitic, West Semitic, Modern South Arabian, Eastern MSA
 Aikana
   Aikan\~a [tba]
 Ainu
-  Ainu (Japan) [ain]
+  Hokkaido Ainu [ain]
+  Sakhalin Ainu [NOCODE_Sakhalin-Ainu]
+  Kuril Ainu [NOCODE_Kuril-Ainu]
 Algic, Algonquian
   Cheyenne [chy]
   Siksika [bla]
@@ -1706,7 +1708,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Mwesa [NOCODE_Mwesa]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Keleic, Kele-Sake, Greater Sake, Sake-Ndambomo
   Sake [sak]
-  Ndambomo [NOCODE_Ndambomo]
+  Ndambomo [nxo]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Keleic, Greater Kota, Kota-Mahongwe
   Mahongwe [mhb]
   Kota (Gabon) [koq]
@@ -1714,7 +1716,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Ndasa [nda]
   Wumbvu [wum]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Keleic, Greater Kota, Ndasa-Wumbvu-Samay
-  Osamayi [NOCODE_Osamayi]
+  Osamayi [syx]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Unclassified Sira (B.40)
   Ngubi [NOCODE_Ngubi]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Lumbuic
@@ -1773,7 +1775,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Kande [kbs]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, B10-B30, Okani (B.30), Southern Okani
   Bubi [buw]
-  Viya [NOCODE_Eviya]
+  Viya [gev]
   Tsogo [tsv]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan
   Bali (Democratic Republic of Congo) [bcp]
@@ -2275,7 +2277,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Central Kainji, Basa-Eastern K
 Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Kainji Lake
   Reshe [res]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Kainji Lake, Upper Niger Kainji, Oleran
-  Cuba [NOCODE_Cuba]
+  Cuba [cbq]
   Lopa [lop]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Kainji, Kainji Lake, Upper Niger Kainji
   Laru [lan]
@@ -2895,7 +2897,7 @@ Atlantic-Congo, Volta-Congo, North Volta-Congo, Gur
 Atlantic-Congo, Volta-Congo, North Volta-Congo, Gur, Samu
   Natioro [nti]
   Wara [wbf]
-  Palen [NOCODE_Palen]
+  Palen [pnl]
 Atlantic-Congo, Volta-Congo, Unclassified Volta-Congo
   Mpra [NOCODE_Mpra]
   Mbre [mka]
@@ -4064,7 +4066,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Western Oceanic linkage, North New Guinea linkage, Ngero-Vitiaz linkage, Vitiaz linkage, Korap linkage
   Arop-Lokep [apr]
   Karnai [bbv]
-  Mur Pano [NOCODE_Mur-Pano]
+  Mur Pano [tkv]
   Malasanga [mqz]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Western Oceanic linkage, North New Guinea linkage, Ngero-Vitiaz linkage, Vitiaz linkage
   Mbula [mna]
@@ -7083,7 +7085,7 @@ Konda-Yahadian
   Yahadian [ner]
 Koreanic
   Korean [kor]
-  Jejueo [jjm]
+  Jejueo [jje]
 Kresh-Aja
   Gbaya (Sudan) [krs]
   Aja (Sudan) [aja]
@@ -7831,11 +7833,13 @@ Nilotic, Western Nilotic, Luo-Burun, Southern Lwoo
 Nilotic, Western Nilotic, Luo-Burun, Southern Lwoo, Lango-Kumam
   Lango (Uganda) [laj]
   Kumam [kdi]
-Nimboran
+Nimboranic
   Nimboran [nir]
+Nimboranic, Outer Nimboranic
   Mekwei [msf]
+Nimboranic, Outer Nimboranic, Mlap-Gresi-Kemtuik
   Mlap [kja]
-Nimboran, Gresi-Kemtuik
+Nimboranic, Outer Nimboranic, Mlap-Gresi-Kemtuik, Gresi-Kemtuik
   Gresi [grs]
   Kemtuik [kmt]
 Nivkh
@@ -8722,7 +8726,7 @@ Saharan, Eastern Saharan
 Saharan, Western Saharan, Kanuri-Kanembu, Kanembuic
   Tumari Kanuri [krt]
   Kanembu [kbl]
-  Tarjumo [NOCODE_Tarjumo]
+  Tarjumo [txj]
 Saharan, Western Saharan, Kanuri-Kanembu, Kanuric
   Central Kanuri [knc]
 Saharan, Western Saharan, Kanuri-Kanembu, Kanuric, East Kanuri
@@ -10687,7 +10691,7 @@ Turkic, Common Turkic, South Siberian Turkic, Altay Turkic
 Turkic, Common Turkic, South Siberian Turkic
   Chulym [clw]
 Tuu, !Kwi
-  Vaal-Orange [NOCODE_Vaal-Orange]
+  Vaal-Orange [gku]
   //Xegwi [xeg]
   N/u [ngh]
   /Xam [xam]
