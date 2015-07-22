@@ -697,6 +697,7 @@ Arawakan, Northern Maipuran, Caribbean Arawakan, Guajiro-Paraujano
 Arawakan, Northern Maipuran, Inland Northern Maipuran, Alto Negro
   Bar\'e [bae]
   Guinau [NOCODE_Guinau]
+  Anauy\'a [NOCODE_Anauya]
   Yaba\^ana [ybn]
 Arawakan, Northern Maipuran, Inland Northern Maipuran, Japura-Colombia
   Res\'igaro [rgr]
@@ -9351,7 +9352,7 @@ Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Lisoid, Nuc
 Sino-Tibetan, Burmo-Qiangic, Lolo-Burmese, Loloish, Ni-Li-Kazhouish, Lisoid, Unclassified Lisoid
   Lamu [llh]
   Limi [ylm]
-  Lawu [NOCODE_Lawu]
+  Lawu [lwu]
   Samatu [NOCODE_Samatu]
   Naluo Yi [ylo]
   Ache [yif]

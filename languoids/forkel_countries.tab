@@ -1930,7 +1930,7 @@ tlp	Mexico
 tlw	Indonesia (Papua)
 tlv	Indonesia (Papua)
 ett	Italy
-NOCODE_Lawu	China
+tlt	Indonesia (Papua)
 etz	Indonesia (Papua)
 tlz	Indonesia (Papua)
 etx	Nigeria
@@ -4400,6 +4400,7 @@ sje	Sweden	Norway
 esk	United States
 lww	Vanuatu
 lwt	Indonesia (Papua)
+lwu	China
 lwh	Viet Nam
 lwo	Sudan
 lwl	Thailand
@@ -6881,6 +6882,7 @@ pmi	China
 pmj	China
 kls	Pakistan
 NOCODE_Aranama	United States
+NOCODE_Anauya	Brazil
 NOCODE_Forest-Nenets	Russian Federation (Asia)
 esm	C\^ote d'Ivoire
 msz	Papua New Guinea
@@ -7317,7 +7319,6 @@ hwc	United States
 hwa	Côte d'Ivoire
 tlu	Indonesia (Papua)
 hmo	Papua New Guinea
-tlt	Indonesia (Papua)
 pto	Brazil
 ptn	Indonesia (Papua)
 all	India

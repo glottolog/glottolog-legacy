@@ -81,6 +81,7 @@ Malayic	Malayic	**hv:Ross:Malayic**
 Lemerig-Veraa	Lemerig-Veraa	**hv:KalyanFrancois:Freeing**
 Okani (B.30)	Okani (B.30)	**hv:vanderVeen:B30**
 North and Central Vanuatu	North and Central Vanuatu	**h:Tryon:Espiritu-Santo** **hv:Clark:North-Central-Vanuatu**
+lwu	lwu	**vphon:Yang:Lawu**
 lwm	lwm	**ldsoc:Xu:Laomian**:99-100
 lwa	lwa	**v:Meeussen:Mbagani-Lwalwa**
 Leinong-Makyan	Leinong-Makyan	**hvsoc:Wayeshaetal:Lahe**
@@ -317,6 +318,7 @@ Northwest Solomonic	Northwest Solomonic	**hv:Ross:NWSolomonic**
 muc	muc	**hvld:Goodetal:Lower-Fungom**
 mub	mub	**hwsoc:Martietal:Kajakse**
 mum	mum	**hvld:Lithgow:Milne**
+North-Western Tibetic	North-Western Tibetic	**hv:Tournadre:Tibetic**
 xve	xve	**v:Gvozdanovic:Venetic**
 Turoyo-Mlahso	Turoyo-Mlahso	**s:Jastrow:Turoyo-Mlahso** **v:Kim:Turoyo**
 Pimbweic	Pimbweic	**hv:Abe:Gongwe-Bende-Pimbwe** **hv:WalshSwilla:Corridor**
@@ -1404,7 +1406,7 @@ Sydney-Hawkesbury	Sydney-Hawkesbury	**hvw:Waferetal:New-South-Wales**
 West Chadic B.2	West Chadic B.2	**hvw:Skinner:NBauchi**
 West Chadic B.1	West Chadic B.1	**hvw:Schuh:Shira**
 hji	hji	**wsoc:Anderbeck:Haji**
-North-Western Tibetic	North-Western Tibetic	**hv:Tournadre:Tibetic**
+NOCODE_Anauya	NOCODE_Anauya	**hvw:Ramirez:Arawak**:475-498 (little in the way of forms exclusively shared with Yabaana so the two are not subgrouped here)
 cuu	cuu	**hv:Pittayaporn:Southwestern-Tai**
 Tipperic	Tipperic	**wsoc:Kimetal:Tripura**
 Tetela-Hamba	Tetela-Hamba	**g:Jacobs:Tetela**
@@ -1839,7 +1841,6 @@ keq	keq	**hvw:Grierson:7**:386 **e:RussellHiralal:Kamar**
 kep	kep	**hvwld:Grierson:4**
 tlq	tlq	**hv:Hsiu:Angkuic**
 NOCODE_Tangwang	NOCODE_Tangwang	**s:Lee-Smith:Tangwang**
-NOCODE_Lawu	NOCODE_Lawu	**vphon:Yang:Lawu**
 NOCODE_Rundi-Kitwa	NOCODE_Rundi-Kitwa	**w:vanderBurgt:Watwa**
 Banda-Geser	Banda-Geser	**hvw:Collins:ESeram**
 tli	tli	**hv:Leer:AET**
@@ -1887,7 +1888,7 @@ Small Nambas	Small Nambas	**hvw:Tryon:NewHebrides**
 Quechuan	Quechuan	**hv:Adelaar:Andes**:183-188 **hv:Adelaar:Quechua-I-II**
 Molet-Asaroo	Molet-Asaroo	**w:Carteretal:Mur**
 fkv	fkv	**s:Lindgren:Kven-Finnish**
-NOCODE_Bangru	NOCODE_Bangru	**hv:Sun:Tani**:159
+NOCODE_Bangru	NOCODE_Bangru	**hv:Sun:Tani**:159 **vphon:BodtLieberherr:Bangru**
 mzt	mzt	**hvw:Benjamin:Prehistory**
 Lalo	Lalo	**hvwphon:Yang:Lalo**
 Axamb-Avok	Axamb-Avok	**hvb:LynchCrowley:Vanuatu**:75
