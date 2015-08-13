@@ -16,10 +16,9 @@ import _bibtex
 
 __all__ = ['Database']
 
-# FIXME: toggle COMPARE_WITH_LEGACY off after first use
-#        legacy=True code paths may then be removed
+# TODO: legacy=True code paths may be removed
 
-COMPARE_WITH_LEGACY = True
+COMPARE_WITH_LEGACY = False
 
 DBFILE = '_bibfiles.sqlite3'
 
