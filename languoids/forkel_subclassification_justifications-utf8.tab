@@ -19,6 +19,7 @@ aur	aur	**hv:Laycock:Sepik**:14
 aut	aut	**hvld:Fischer:Austral**
 aux	aux	**v:Mello:Aure-Aura**
 Central Ngayarda	Central Ngayarda	**hv:BowernAtkinson:Pama-Nyungan**
+Ewondo-Bebele	Ewondo-Bebele	**hvw:Wega:Polri**
 Iranian	Iranian	**hv:Schmitt:Iranischen**
 Northern Pama	Northern Pama	**hv:Hale:Paman**
 cwa	cwa	**h:Tanzania:Tanzania**:xi
@@ -26,7 +27,6 @@ Bandjalangic	Bandjalangic	**hvw:Jefferies:Guwar**
 Maiduan	Maiduan	**hvb:Golla:California**
 Worrorran	Worrorran	**hv:McGregorRumsey:Worrorran**
 Athapaskan	Athapaskan	**hv:Campbell:1997**
-Boma-Tiene	Boma-Tiene	**s:Mangulu:Ketiene** **hv:Bastinetal:Bantu**:202-203
 Seuta	Seuta	**hv:NursePhilippson:EAfrica**
 Sena-Nyanja	Sena-Nyanja	**hv:Bastinetal:Bantu**:220
 cml	cml	**hvw:GrimesGrimes:South-Sulawesi**:30-32
@@ -107,13 +107,13 @@ West Chadic A.3	West Chadic A.3	**hv:Takacs:Angas-Sura**
 West Chadic A.4	West Chadic A.4	**hv:Newman:Chadic:1977**
 Mandaraic	Mandaraic	**hv:Gravina:Central-Chadic**:51-53
 Western Nilotic	Western Nilotic	**hvtyp:Storch:WNilotic**
-Southern Uto-Aztecan	Southern Uto-Aztecan	**hv:Merrill:Southern-Uto-Aztecan**
+Southern Uto-Aztecan	Southern Uto-Aztecan	**hv:Merrill:Southern-Uto-Aztecan** **hv:Hill:Uto-Aztecan**
 Mountain Ok	Mountain Ok	**hvw:Healey:Ok**
 Kalamian	Kalamian	**hv:Himes:Kalamian**
 Hunter-Hastings	Hunter-Hastings	**hvw:Waferetal:New-South-Wales**
 end	end	**phon:McDonnell:Ende**
 Bihari	Bihari	**hv:Jeffers:Bihari**
-eno	eno	**hv:Nothofer:Barrier-Sulawesi-Philippines** **hv:Nothofer:Barrier** **phon:Yoder:Enggano**
+eno	eno	**v:Edwards:Enggano**
 Zaparoan	Zaparoan	**hv:deCarvalho:Zaparoan**
 NOCODE_Old-Malay	NOCODE_Old-Malay	**s:Mahdi:OldMalay**
 hor	hor	**hw:Gaudefroy-Demombynes:Oubangui-Chari**
@@ -178,7 +178,6 @@ wss	wss	**h:DolphyneDakubu:Volta-Comoe**
 Saami	Saami	**hv:Sammallahti:Saami**:6-38
 Batuley-Mariri	Batuley-Mariri	**g:Daigle:Batuley**:1-2
 smm	smm	**h:SkarGurung:Tharus** **h:Guneratne:Tharu**
-Tungusic	Tungusic	**hv:Whaley:Tungusic**
 Ok-Oksapmin	Ok-Oksapmin	**hv:LoughnaneFedden:Oksapmin-Ok**
 Ifugaw	Ifugaw	**hw:Walrod:Dialect-Ifugao**
 smd	smd	**e:Heintze:Kisama**
@@ -197,7 +196,7 @@ uky	uky	**w:Hall:Kuk-Yak**
 NOCODE_Bafoto	NOCODE_Bafoto	**s:Hulstaert:Bafoto**
 atm	atm	p.c.~Jason Lobel 2012
 atk	atk	**hv:Blust:CPhilippines**:80
-ist	ist	**s:BartoliVidossi:Venezia-Giulia**
+Lower Mamberamo	Lower Mamberamo	**h:Jones:ECenderawasih** **s:Donohue:Warembori** **w:LeRoux:Woordenlijsten**
 Kwalean	Kwalean	**hv:Dutton:SETNG**:636
 Nyanga-Mituku-Lega	Nyanga-Mituku-Lega	**hv:Bastinetal:Bantu**:209-210
 Oti-Volta Oriental	Oti-Volta Oriental	**hv:Sambieni:Proto-Oti-Volta-Oriental**
@@ -270,6 +269,7 @@ Koongo-Kituba	Koongo-Kituba	**s:Mufwene:Kituba**
 Timor-Alor-Pantar	Timor-Alor-Pantar	**hv:Schapperetal:Timor-Kisar-Alor-Pantar**
 Sindhi-Lahnda	Sindhi-Lahnda	**hv:Masica:Indo-Aryan**
 Andic	Andic	**hv:Gudava:Andijskix**
+Manambu-Yalaku	Manambu-Yalaku	**typ:Aikhenvald:Yalaku**:242-243
 Igboid	Igboid	**hv:Williamson:Igboid**
 abg	abg	Pace **el:Tupper:Abaga** and **hvld:McElhanon:NETNG**:543 lower numerals **hld:Lean:EHighlands**:27-29 and other items of basic vocabulary look similar to their Eastern Highlands counterparts especially with in the Kamano-Yagaria group
 Koyo-Mboshi	Koyo-Mboshi	**hv:Bastinetal:Bantu**:205 **hphontyp:NdingaOba:Congo-Brazzaville**
@@ -302,7 +302,7 @@ Osage-Kansa	Osage-Kansa	**s:Rankin:Quapaw**:455
 Southern Tibetic	Southern Tibetic	**hv:Tournadre:Tibetic**
 Mono-Uruavan	Mono-Uruavan	**hv:EvansPalmer:Southern-Bougainville**
 Marrngu	Marrngu	**hv:BowernAtkinson:Pama-Nyungan**
-nuw	nuw	Pace **vw:Sakiyama:Nguluwan** is easily a Yapese variety woth some influence from Ulithian but not an intertwined language
+nuw	nuw	Pace **vw:Sakiyama:Nguluwan** Nguluwan is easily a Yapese variety with some influence from Ulithian but not an intertwined language
 Ormuri-Parachi	Ormuri-Parachi	**h:Kieffer:Paraci-Ormuri-SEIraniennes**
 Southern Periphery Mongolic	Southern Periphery Mongolic	**hv:Nugteren:Qinghai-Gansu**
 Lisoid	Lisoid	**hvw:Lama:Nisoic**:153-156 **hv:Bradley:Tibeto-Burman**:101-102
@@ -334,7 +334,7 @@ Khasian	Khasian	**hvw:Nagarajaetal:Khasian**
 coj	coj	**hv:Campbell:1997**
 unn	unn	**h:Dixon:Australian2002**:xxxv, 44 **hv:BlakeReid:Victorian**
 North_Halmahera	North Halmahera	**hv:GrimesGrimes:NMoluccas** **hv:Voorhoeve:NMoluccas**
-NOCODE_Yagara	NOCODE_Yagara	**hvw:Jefferies:Guwar**:61-66
+Tetelaic	Tetelaic	**g:Jacobs:Tetela** **hvw:Motingea:Nkutsu**
 kwh	kwh	**hv:Blust:CEMP**
 NOCODE_Haraza	NOCODE_Haraza	**vw:Bell:Haraza** **hv:Rilly:Meroitique**:166
 Kuliak	Kuliak	**hv:Heine:Kuliak**:59-66
@@ -373,6 +373,7 @@ smh	smh	**hsoc:Bradley:Sanie**
 Chatino	Chatino	**vtyp:Sullivant:Tataltepec**
 Lahoid	Lahoid	**hvw:Lama:Nisoic**:157-160
 Yidgha-Munja	Yidgha-Munja	**hv:Wendtland:Pamir**
+Central Eastern Polynesian	Central Eastern Polynesian	**hv:Walworth:Eastern-Polynesian**
 Meso-Cordilleran	Meso-Cordilleran	**hv:Himes:Meso-Cordilleran**
 Timbe-Selepet-Komba	Timbe-Selepet-Komba	**hvw:McElhanon:Huon**
 Nimboranic	Nimboranic	**hvld:Voorhoeve:CWTNG**:421
@@ -383,7 +384,7 @@ Bororoan	Bororoan	**hvw:Camargos:Bororo**
 Asmat-Awyu-Ok	Asmat-Awyu-Ok	**hv:Voorhoeve:Asmat-Kamoro-Awyu-Dumut-Ok**
 nix	nix	**e:Thiry:Hema**
 NOCODE_Mongoba-Kazibati	NOCODE_Mongoba-Kazibati	**hvb:vanBulck:Congo**:178-184 **hv:HackettvanBulck:ETeam**:74 **hvw:McMaster:Uele**:123, 259
-Lumbuic	Lumbuic	**hv:Alewijnseetal:Gabon**
+Lumbuic	Lumbuic	**hv:Bastinetal:Bantu**:200
 kid	kid	**hvld:Goodetal:Lower-Fungom**
 Akum-Beezen	Akum-Beezen	**wsoc:AkumbuBrye:Akum**
 Emiliano-Romagnolo	Emiliano-Romagnolo	**hv:Schurr:Romagnolo**
@@ -394,7 +395,7 @@ Bushoong-Wongo-Lele	Bushoong-Wongo-Lele	**hv:Bastinetal:Bantu**:209
 thc	thc	**phon:Ferlus:Tai-Nghe-An**
 Lower Murray	Lower Murray	**hvw:Horgen:Lower-Murray** **hvw:Waferetal:New-South-Wales**:26-29 **hv:BowernAtkinson:Pama-Nyungan**
 Maningrida	Maningrida	**hv:Green:Maningrida**
-yel	yel	**h:Hulstaert:Cuvette-Congolaise**
+yel	yel	**h:Hulstaert:Cuvette-Congolaise**:23 **hv:Mangulu:Bassin-Congolais**
 yea	yea	**hw:Bhattacharya:South-Kerala**
 Eastern Yapen	Eastern Yapen	**hv:Kamholz:South-Halmahera-West-New-Guinea**:139
 yey	yey	**v:Seidel:Yeyi**
@@ -452,6 +453,7 @@ ykt	ykt	**hvsoc:Pelkey:Phula**:458 **h:Hsiu:Southwestern-China**
 fom	fom	**hv:Bastinetal:Bantu**:208 **h:Hulstaert:Cuvette-Congolaise**:22
 umi	umi	**hv:Rensch:Central-Sarawak** **e:Sellato:Bukat-Kereho**:20-21
 Southern Nilotic	Southern Nilotic	**hvphon:Rottland:SNilotischen**
+Western Tibeto-Kanauri	Western Tibeto-Kanauri	**hvw:Widmer:West-Himalayish**
 plq	plq	**hv:Melchert:Anatolian**
 plp	plp	**hvwt:Grierson:9:IV**
 Yandang	Yandang	**hvw:Blench:Yendang**
@@ -472,7 +474,6 @@ soi	soi	**h:Ethnologue:16**
 Bukitanic-Busangic	Bukitanic-Busangic	**he:SellatoSercombe:Borneo-Hunter-Gatherer**:12 **hv:Rensch:Central-Sarawak**
 mba	mba	**hv:Burton:East-Mindanao-Manobo**:57
 two	two	**hld:AnderssonJanson:Botswana**:42-46 **hv:Batibo:Bantu-Botswana**:25
-ppp	ppp	**lde:Lamal:Basuku-Bayaka**
 mby	mby	**ld:Katiya:Memoni**
 mbz	mbz	**hdial:Eglandetal:Mexico**
 soy	soy	**s:Rongier:Moyobe**
@@ -485,7 +486,7 @@ Ethiosemitic	Ethiosemitic	**hv:Weninger:Ethio-Semitic** **hv:Voigt:North-South-E
 Kosena-Awiyaana	Kosena-Awiyaana	**s:Marks:Kosena** **hv:McKaughan:Gadsup-Auyana-Awa-Tairora**
 gid	gid	**hv:Gravina:Central-Chadic**:61-62
 Tucanoan	Tucanoan	**hv:Chacon:Proto-Tukanoan**
-Yaunde-Fang (A.70)	Yaunde-Fang (A.70)	**hv:Piper:Pahouin**
+Yaunde-Fang (A.70)	Yaunde-Fang (A.70)	**phontyp:Piper:Pahouin**
 wat	wat	**hvld:Lithgow:Milne**:460
 Huitotoan	Huitotoan	**hv:SeifartEcheverri:Bora-Witotoan**
 Aari-Gayil	Aari-Gayil	**soc:Jordanetal:Gayil** **hvw:Tsuge:SOmotic**
@@ -529,7 +530,7 @@ Potou-Tano	Potou-Tano	**hv:Stewart:Kwa**
 Agaw	Agaw	**hv:Appleyard:Agaw:1984**
 Sukuma-Nyamwezi (F.20)	Sukuma-Nyamwezi (F.20)	**hv:Nurse:Western-Tanzania**
 Nuclear Bodo	Nuclear Bodo	**hv:Burling:NEIndia**:177
-Kinnauric	Kinnauric	**hv:SaxenaBorin:West-Himalayish**
+Kinnauric	Kinnauric	**hv:SaxenaBorin:West-Himalayish** **hvw:Widmer:West-Himalayish**
 kvx	kvx	**typ:Hoyle:Parkari**
 Dayic	Dayic	**hvw:Blust:Saban** **hv:Kroeger:Sarawak**
 Omo-Tana	Omo-Tana	**hv:Tosco:Cushitic**:94-95
@@ -583,6 +584,7 @@ Au-Olo-Elkei	Au-Olo-Elkei	**hvw:Laycock:Lumi**:48
 Bungku-Tolaki	Bungku-Tolaki	**hvs:Mead:Bungku-Tolaki**
 zrg	zrg	**h:Masica:Indo-Aryan**:438
 North_Bougainville	North Bougainville	**g:Robinson:Rotokas**:17-24
+Corachol-Aztecan	Corachol-Aztecan	**hv:Hill:Uto-Aztecan**
 Kaike-Ghale-Tamangic	Kaike-Ghale-Tamangic	**vphon:Honda:Kaike**
 zrn	zrn	**wsoc:Johnson:Zirenkel**
 Southern Melanesian	Southern Melanesian	**hv:Lynch:Efate-Erromango**
@@ -601,7 +603,7 @@ Turama-Kikori	Turama-Kikori	**hv:Franklin:Other**:263-267
 Hmong-Mien	Hmong-Mien	**hv:Ratliff:Hmong-Mien**
 Enya (D.10)	Enya (D.10)	**hv:Bastinetal:Bantu**:209
 Limba	Limba	**hv:Pozdniakov:Atlantiques**
-West Nyanza	West Nyanza	**hvw:Schoenbrun:Great-Lakes-Bantu**
+West Nyanza	West Nyanza	**hvw:Schoenbrun:Great-Lakes-Bantu**, **hv:Schoenbrun:Great-Lakes-Bantu:1994**
 Sahaptian	Sahaptian	**hv:Campbell:1997**
 ayg	ayg	**hvw:Painter:Guang**
 Eastern Malakula linkage	Eastern Malakula linkage	**hv:LynchBrotchie:Tirax**
@@ -642,7 +644,7 @@ nyu	nyu	**s:vanderMohl:Tete**
 nyc	nyc	**hv:HackettvanBulck:ETeam**:74 **hv:vanBulck:Bantoetaalgrens**
 Lamalamic	Lamalamic	**s:Laycock:Lamalamic**
 Three Rivers	Three Rivers	**hvw:Collins:CMaluku**:34-60
-nye	nye	**hvw:Johnston:Bantu-Semi-Bantu**
+nye	nye	**hv:Fortune:Barotseland**
 Germanic	Germanic	**hv:Stiles:West-Germanic**:8-10
 aob	aob	**el:Tupper:Abom**
 Tani	Tani	**hv:Post:Defoliating-Tani**
@@ -685,7 +687,7 @@ tju	tju	**hv:Dench:Pilbara:Pronoun**
 kkj	kkj	**h:Guthrie:Bantu-Western**
 Shinaic	Shinaic	**hvld:Bashir:Dardic**
 Inagta Bikol	Inagta Bikol	**hv:Reid:Negrito** p.c.~Jason Lobel 2012
-noq	noq	**lde:Lamal:Basuku-Bayaka**
+noq	noq	**hv:BostoenKoni:Kwilu**
 ulb	ulb	**h:MordiOpone:Enuani**
 Omagua-Kokama	Omagua-Kokama	**hv:WautersOHagan:Omagua-Kokama**
 xld	xld	**hv:Melchert:Anatolian**
@@ -763,6 +765,7 @@ saw	saw	**hvw:Voorhoeve:Irian**
 Kewieng-Bonkiman-Nokopo	Kewieng-Bonkiman-Nokopo	**hv:HooleyMcElhanon:Morobe**:1074
 Northern Njila	Northern Njila	**hv:Vansina:West-Central-Africa**:273-283
 NOCODE_Nisvai	NOCODE_Nisvai	**hv:Lynch:Malakula**
+NOCODE_Hungu	NOCODE_Hungu	**s:Atkins:Hungu**:163-164
 Southeastern Bengali	Southeastern Bengali	**hvld:Chowdhury:East-Pakistan**
 Momo	Momo	**hvtyp:Stallcup:Moghamo-Ngie-Oshie**
 gko	gko	**hv:Black:Norman-Pama**
@@ -813,7 +816,6 @@ Eastern Beboid	Eastern Beboid	**hsoc:BryeBrye:Eastern-Beboid**
 Afghanistan-Uzbekistan Arabic	Afghanistan-Uzbekistan Arabic	**w:Sirat:Arabic-Balkh**
 Kinalakna-Kumukio	Kinalakna-Kumukio	**hv:HooleyMcElhanon:Morobe**:1071
 rmt	rmt	**hv:Matras:Romani**:14-48 **s:Herin:Domari-Aleppo**
-lnz	lnz	**h:Kadima:Zaire**:19
 rmx	rmx	**h:WRITENET:Vietnam**
 Konyak	Konyak	**hv:Burling:NEIndia**
 lnl	lnl	**w:Simonsetal:Ngbugu**
@@ -825,7 +827,7 @@ East Polynesian	East Polynesian	**hv:Marck:Polynesian**
 Gyalrongic	Gyalrongic	**hvld:Sun:rGyalrong** **hwdial:Gates:Jiarong**
 vkp	vkp	**g:Clements:Korlai** **hv:Ferraz:WAfrica**
 ytw	ytw	**wsoc:Gray:Domung**
-Iroquoian	Iroquoian	**hv:Julian:Iroquoian**
+Khoe-Kwadi	Khoe-Kwadi	**hv:GuldemannElderkin:Khoe-Kwadi**
 vki	vki	**typ:Obatoye:Koro-Ija**
 ytl	ytl	**hv:Bradley:Tibeto-Burman**
 vkk	vkk	**hb:Voorhoeve:Sumatra**
@@ -835,7 +837,7 @@ Kaukombaran	Kaukombaran	**hw:Zgraggen:NAdelbert**
 Nusoish	Nusoish	**hvw:Lama:Nisoic**:157
 Kru	Kru	**hv:Marchese:Kru:1989** **hv:Zogbo:Kru**
 Southeast Borneo Malay	Southeast Borneo Malay	**hv:Collins:Malay-Borneo**
-Ndu	Ndu	**hvs:Laycock:Ndu**:181, 185-189
+Ndu	Ndu	**hvs:Laycock:Ndu**:181, 185-189 **typ:Aikhenvald:Yalaku**:242-243
 West Wapei	West Wapei	**hvw:Crowther:WWapei**
 dkr	dkr	**ld:Spitzack:Kuijau**
 Ningil-Yil	Ningil-Yil	**hv:Laycock:Torricelli**:768
@@ -851,7 +853,6 @@ Gua-Cherepon	Gua-Cherepon	**hv:Snider:Proto-Guang:Consonants**
 Makua-Lomwe	Makua-Lomwe	**hv:Kisseberth:Makhuwa**
 NOCODE_Nasvang	NOCODE_Nasvang	**hvb:LynchCrowley:Vanuatu**:75
 Pearic	Pearic	**hv:Sidwell:Austroasiatic** **hv:Ferlus:Pearic**
-Pre-Andine	Pre-Andine	**hv:Michael:Kampa**
 Angkuic	Angkuic	**hv:Hsiu:Angkuic**
 Southwestern Tai	Southwestern Tai	**hv:EdmondsonSolnit:Kadai-Tai:Introduction**
 NOCODE_Khorasan-Arabic	NOCODE_Khorasan-Arabic	**s:Dahlgren:Arabkhane**
@@ -860,7 +861,7 @@ Biaoic	Biaoic	**w:Hsiu:Biao**
 Nobiin Nubian	Nobiin Nubian	**sv:Bechhaus-Gerst:Nobiin**
 Berber	Berber	Lameen Souag p.c.~2011 and **hv:Kossmann:Proto-Berbere**:30-31, 35-36
 Gbe	Gbe	**hv:Kluge:Gbe**
-Great Lakes Bantu	Great Lakes Bantu	**hvw:Schoenbrun:Great-Lakes-Bantu**
+Great Lakes Bantu	Great Lakes Bantu	**hvw:Schoenbrun:Great-Lakes-Bantu**, **hv:Schoenbrun:Great-Lakes-Bantu:1994**
 Nuclear Maimai	Nuclear Maimai	**hsoc:Hutchinson:Heyoetc**:130 **hvw:Laycock:Lumi**:48
 Mazatecan	Mazatecan	**hvwphon:Kirk:Mazatec** **hv:Leonard:Mazateco**
 Koto-Olrat-Lakon	Koto-Olrat-Lakon	**hv:KalyanFrancois:Freeing**
@@ -927,7 +928,7 @@ Lamaholotic	Lamaholotic	**hvw:Keraf:Lamalera**
 ama	ama	**w:NimuendajuUnkel:Geral**
 mow	mow	**h:Jacquot:Congo-Brazzaville**
 amg	amg	**vtyp:Mailhammer:Iwaidjan**
-Lahaulic	Lahaulic	**hv:Sharma:Bunan**
+Lahaulic	Lahaulic	**hvw:Widmer:West-Himalayish**
 Uralic	Uralic	**hv:Salminen:Uralic**
 psu	psu	**st:Woolner:Prakrit**
 Central-East Sumbanese	Central-East Sumbanese	**hv:Asplund:Sumba**
@@ -946,7 +947,7 @@ Wewewa-Laboya	Wewewa-Laboya	**hv:Asplund:Sumba**
 tvt	tvt	**hb:Matisoff:Tibeto-Burman**
 Greater Bangi-Ntomba	Greater Bangi-Ntomba	**hv:Bastinetal:Bantu**:205-206
 kvb	kvb	**hvw:Anderbeck:Batanghari**
-East Nyanza	East Nyanza	**hvw:Schoenbrun:Great-Lakes-Bantu**
+East Nyanza	East Nyanza	**hvw:Schoenbrun:Great-Lakes-Bantu**, **hv:Schoenbrun:Great-Lakes-Bantu:1994**
 kmg	kmg	**hvw:McElhanon:Huon**:7
 kme	kme	**he:Ardener:Coastal-Cameroons**
 Kim-Besme-Goundo	Kim-Besme-Goundo	**w:Roberts:Goundo**
@@ -970,6 +971,7 @@ nmk	nmk	**g:Sperlich:Namakir**:21-24
 nmh	nmh	**typ:BarehWar:Monsang**:200
 nmi	nmi	**s:Andreasetal:Nyam**
 dza	dza	**ld:BlenchNengel:Tunzu**
+xns	xns	**hvw:Widmer:West-Himalayish**
 Mixtepec-Quioquitani-Quierí Zapotec	Mixtepec-Quioquitani-Quierí Zapotec	**s:Hunnetal:Mixtepec-Zapotec**:4
 srk	srk	**hv:Lobel:Southwest-Sabah**:399-401
 dzn	dzn	**hv:HackettvanBulck:ETeam**:73-74 **h:Mangulu:Riverains**:12
@@ -991,6 +993,7 @@ Goroka	Goroka	**hv:Foley:Papuan**:236-237 **hvw:Capell:CHighlands** **hv:Haiman:
 Southeastern Benue-Congo Plateau	Southeastern Benue-Congo Plateau	**hv:Blench:Plateau:2009**
 hem	hem	**g:Vandermeiren:Kiluba-Hemba**
 Northeast Savanna Bantu	Northeast Savanna Bantu	**hv:NursePhilippson:Bantu**:175-176
+Dualaic	Dualaic	**hvw:Ebobisse:Sawabantu**:395-404
 Gusap-Mot	Gusap-Mot	**g:McElhanon:Selepet-Finisterre-Huon**:45
 xgb	xgb	**hw:Delafosse:CotedIvoire**
 Ngarna	Ngarna	**hv:Breen:Ngarna** **hv:BowernAtkinson:Pama-Nyungan**
@@ -1002,6 +1005,7 @@ awv	awv	**hwsoc:Leboldetal:Lower-Digul**:4
 Heiban	Heiban	**hvw:Schadeberg:Heiban**
 Kwer-Kopkaka-Burumakok	Kwer-Kopkaka-Burumakok	**hvw:Wilbrink:Kopkaka**
 Mbumic	Mbumic	**hv:Elders:Kebi-Benue**
+\Xcite[228-235]{hvb	\Xcite[228-235]{hvb	vanBulck:Congo}
 Finisterre-Huon	Finisterre-Huon	**hv:Suter:Finisterre-Huon**
 Southwest Grassfields	Southwest Grassfields	**hvw:Blench:Momo-Western-Momo**
 Ga-Dangme	Ga-Dangme	**hv:Kropp:Ga-Dangme**
@@ -1021,6 +1025,7 @@ Krongo-Tumtum	Krongo-Tumtum	**hv:ThelwallSchadeberg:Nuba** **hvs:Stevenson:Nuba*
 Zenatic	Zenatic	**hv:Kossmann:Arabic-Berber**:21-24 **hv:Kossmann:Proto-Berbere**:31-32
 Sonsorol-Tobi	Sonsorol-Tobi	**hvw:Quackenbush:Sonsorol-Truk**
 nxi	nxi	**s:Spiss:Kingoni**
+Darma-Byangsi-Chaudangsi	Darma-Byangsi-Chaudangsi	**hv:vanDriem:Himalayas** **hv:Sharma:Uttar-Pradesh**
 all	all	**e:Singh:Allar**
 sci	sci	**v:Paauw:SLM**
 sck	sck	**g:Jordan-Horstmann:Sadani**
@@ -1040,6 +1045,7 @@ mpv	mpv	**w:Retsemaetal:Mungkip**
 fak	fak	**hvld:Goodetal:Lower-Fungom**
 fah	fah	**hw:Koops:Baissa**
 fam	fam	**vw:Blench:Fam**
+Hangaza-Shubi	Hangaza-Shubi	**hv:NursePhilippson:EAfrica**:55
 NOCODE_Sadu	NOCODE_Sadu	**h:Bradley:Tibeto-Burman-China**
 mpz	mpz	**wsoc:Nahhas:Mpi**
 Njila	Njila	**hv:Vansina:West-Central-Africa**:273-283
@@ -1084,6 +1090,7 @@ vig	vig	**typ:Winkelmann:Viemo**
 NOCODE_Tsixa	NOCODE_Tsixa	**ld:Fehn:Tsixa:Gestures**:148-149
 Tor	Tor	**hew:Oosterwal:Tor**
 NOCODE_Kilen	NOCODE_Kilen	**hv:Kazama:Hezhen:1998**
+Eastern Tibeto-Kanauri	Eastern Tibeto-Kanauri	**hvw:Widmer:West-Himalayish**
 vis	vis	**he:Shashi:Other-Kerala**
 NOCODE_Cosao	NOCODE_Cosao	**ld:BaiXu:Cosao**
 jrt	jrt	**hv:Hoffmann:Angas-Goemai**
@@ -1107,18 +1114,20 @@ klf	klf	**soc:Maassetal:Kendedje**
 gqi	gqi	**hvld:Sun:Western-Sichuan**:20
 East Bodish	East Bodish	**hvld:Hyslop:East-Bodish**
 kll	kll	**soc:WendelWendel:Kagan-Kalagan**
-jdg	jdg	**he:Hughes-Buller:Baluchistan**:189
+jdg	jdg	**he:Hughes-Buller:Baluchistan**:189 and Agnes Korn p.c. 2015
 klo	klo	p.c. Roger Blench 2011
+Boma-Tiene-Mpe	Boma-Tiene-Mpe	**s:Mangulu:Ketiene** **hv:Bastinetal:Bantu**:202-203
 Kajang	Kajang	**hv:Kroeger:Sarawak**:159
 Minangkabauic	Minangkabauic	**v:Kurniatietal:Tapan**
 def	def	**h:Lecoq:SWIran** **g:MacKinnon:Dezfuli-Shushtari**
 Sarawak-Melanau-Kajang	Sarawak-Melanau-Kajang	**hv:Rensch:Central-Sarawak**
 Mishmic	Mishmic	**hvw:BlenchPost:Arunachal**
 kcf	kcf	**phon:Salffner:Ukaan**
-Lower Mamberamo	Lower Mamberamo	**h:Jones:ECenderawasih** **s:Donohue:Warembori** **w:LeRoux:Woordenlijsten**
+Xincan	Xincan	**g:Sachse:Xinka**:48-49
 Grebo	Grebo	**hsoc:JohnsonHasselbring:Grebo**
 Nakh-Daghestanian	Nakh-Daghestanian	**hv:Nichols:Nakh-Dagestanian**
 Kpwe	Kpwe	**g:Kuperus:Londo**:17-18 **he:Ardener:Coastal-Cameroons**
+Laali-Tsaayi-Yaka	Laali-Tsaayi-Yaka	**g:Mouandza:Iyaa**:17
 Apachean	Apachean	**hv:Hoijer:Apachean-Athapaskan**
 Mampruli-Dagbani	Mampruli-Dagbani	**s:Naden:Kamara-Larabanga**
 Central Gur	Central Gur	**hv:Manessy:Bwamu-Voltaiques**
@@ -1127,7 +1136,7 @@ Gondi	Gondi	**hvwsoc:Beine:Gondi**
 bkf	bkf	**hv:HackettvanBulck:ETeam**:84
 Nuclear Polynesian	Nuclear Polynesian	**hv:Marck:Polynesian** **hv:Wilson:East-Polynesians**
 bkt	bkt	**hv:Bastinetal:Bantu**:206
-Eton-Mengisa	Eton-Mengisa	**g:vandeVelde:Eton**
+Eton-Mengisa	Eton-Mengisa	**g:vandeVelde:Eton**:2
 NOCODE_Syriem	NOCODE_Syriem	**h:Haokip:Kuki-Chin**
 Kapong	Kapong	**g:Sousa:Ingariko**:36-40
 Ersuic	Ersuic	**hvw:Yu:Ersuic** **vw:Chirkova:Duoxu**
@@ -1142,6 +1151,7 @@ Compromise Middle Pama	Compromise Middle Pama	**hvsoc:Sutton:Wik-Relationships**
 Macro-Carolinian	Macro-Carolinian	**hvw:Quackenbush:Sonsorol-Truk**
 Tibeto-Kanauri	Tibeto-Kanauri	**hv:vanDriem:Himalayas**
 kft	kft	**hvwld:Grierson:11**:95-102
+Marquesan	Marquesan	**hv:Walworth:Eastern-Polynesian** **hv:Marck:Polynesian**
 Waja-Jen	Waja-Jen	**hv:Kleinewillinghofer:Adamawa-Gur** **v:Kleinewillinghofer:Tula**
 nha	nha	**hv:Blevins:Nhanta**
 itt	itt	**hv:Himes:Kalinga-Itneg**:103
@@ -1185,7 +1195,7 @@ Northeastern Luzon	Northeastern Luzon	**hv:RobinsonLobel:Northeastern-Luzon**
 Austroasiatic	Austroasiatic	**hv:Sidwell:Austroasiatic**
 Greater Binanderean	Greater Binanderean	**hv:Smallhorn:Binanderean**
 Japura-Colombia	Japura-Colombia	**hvw:Ramirez:Arawak**:447-474, 623-778
-Nguni (S.40)	Nguni (S.40)	**hv:Gowlett:S**
+Nguni (S.40)	Nguni (S.40)	**hv:Ownby:Nguni**
 NOCODE_Pa-Na	NOCODE_Pa-Na	**hv:Taguchi:Hmong-Mien**
 Batanic	Batanic	**hv:Li:Batanic**
 Central_Sudanic	Central Sudanic	**hv:BoyeldieuNougayrol:CSudanic** **hv:Boyeldieu:CSudanic:Labiovelar**
@@ -1202,7 +1212,7 @@ sbn	sbn	**hsoc:Rahman:Pakistan**
 sbo	sbo	**hvw:Benjamin:Prehistory**
 NOCODE_Qujiang-Hakka-Shibei-Shaoguan-Tuhua	NOCODE_Qujiang-Hakka-Shibei-Shaoguan-Tuhua	**vld:Chen:Tuhua**
 South_Omotic	South Omotic	**hvw:Tsuge:SOmotic**
-Xincan	Xincan	**g:Sachse:Xinka**:48-49
+Pre-Andine Maipuran	Pre-Andine Maipuran	**hv:Michael:Kampa**
 West Chadic A.2-3	West Chadic A.2-3	**hv:Newman:Chadic:1977**
 Finungwan-Mamaa-Gusan	Finungwan-Mamaa-Gusan	**hv:HooleyMcElhanon:Morobe**:1073
 North Dravidian	North Dravidian	**hv:Krishnamurti:Dravidian**
@@ -1277,7 +1287,6 @@ bfn	bfn	**hv:Schapperetal:Timor-Kisar**
 Eastern Murutic	Eastern Murutic	**hv:Spitzack:Murutic**
 ych	ych	**hel:Bradley:EAsia**:396-397
 ymd	ymd	**hel:Bradley:EAsia**:364, 401
-bfu	bfu	**hv:SaxenaBorin:West-Himalayish** **hv:Sharma:Bunan**
 Je	Je	**hv:Jolkesky:Proto-Je**:3-4
 Boleic	Boleic	**h:Schuh:Bole-Tangale:Introduction**
 Yapen	Yapen	**hv:Kamholz:South-Halmahera-West-New-Guinea**:138
@@ -1409,7 +1418,6 @@ hji	hji	**wsoc:Anderbeck:Haji**
 NOCODE_Anauya	NOCODE_Anauya	**hvw:Ramirez:Arawak**:475-498 (little in the way of forms exclusively shared with Yabaana so the two are not subgrouped here)
 cuu	cuu	**hv:Pittayaporn:Southwestern-Tai**
 Tipperic	Tipperic	**wsoc:Kimetal:Tripura**
-Tetela-Hamba	Tetela-Hamba	**g:Jacobs:Tetela**
 Stieng	Stieng	**typ:Owen:Stieng**:7-9
 Raja Ampat Maya	Raja Ampat Maya	**hv:Kamholz:South-Halmahera-West-New-Guinea**:96 **phon:Remijsen:Raja-Ampat**
 Elip-Maala	Elip-Maala	**hvwphon:Bebine:Yambassa**
@@ -1451,7 +1459,8 @@ Epi-Efate	Epi-Efate	**hv:Lynch:Efate-Erromango**
 Halbic	Halbic	**v:Bhattacharya:Halbi-Bhatri**
 aho	aho	**hv:EdmondsonSolnit:Kadai-Tai:Introduction**
 Tarokoid	Tarokoid	**hvw:Blench:Tarokoid**
-rub	rub	**hvw:Schoenbrun:Great-Lakes-Bantu**
+rub	rub	**hvw:Schoenbrun:Great-Lakes-Bantu**, **hv:Schoenbrun:Great-Lakes-Bantu:1994**
+ruc	ruc	**h:Ladefogedetal:Uganda**
 Epi	Epi	**hvtyp:Tryon:Epi**
 Pagi-Kilmeri	Pagi-Kilmeri	**g:Gerstner-Link:Kilmeri** **h:Brown:Pagi-Kilmeri**:195
 Cangin	Cangin	**hvw:Williams:Cangin**
@@ -1473,6 +1482,7 @@ enc	enc	**hv:Edmondson:Kra**
 Kilivilic	Kilivilic	**hvld:Lithgow:Milne**
 New Caledonian	New Caledonian	**hv:Rivierre:Nouvelle-Caledonie**
 Yuat	Yuat	**hv:Laycock:Sepik**, **hv:Foley:Sepik:2013**
+wgy	wgy	**hv:Dixon:Cairns** **g:Dixon:Wargamay** **h:Dixon:Australian2002**:xxv, xxxiii
 mkb	mkb	**s:Dasgupta:Mal-Pahariya**
 mka	mka	**vld:Boukari:Pre**
 xpc	xpc	**ld:Voros:Pecheneg**
@@ -1494,7 +1504,7 @@ Sayhadic	Sayhadic	**hv:Stein:Ancient-South-Arabian**
 sdc	sdc	**s:Jones:Sardinian**:314
 aqn	aqn	**hv:Reid:Negritos:2013**:338-340
 Dumpas-Sukang	Dumpas-Sukang	**hv:Lobel:Southwest-Sabah**:396-398
-Khoe-Kwadi	Khoe-Kwadi	**hv:GuldemannElderkin:Khoe-Kwadi**
+Iroquoian	Iroquoian	**hv:Julian:Iroquoian**
 Greater Luyia	Greater Luyia	**hv:Mould:Greater-Luyia**
 Cariban	Cariban	**hv:Meira:Cariban:2006**, **hewsoc:Howard:Waiwai**, **hv:Gildea:Cariban**
 sxb	sxb	**vld:Rottland:Suba**
@@ -1509,15 +1519,12 @@ grz	grz	**hel:Wurm:Pacific**:493
 ext	ext	**s:Curiel:Extremeno**
 Membi-Mangbutu-Efe	Membi-Mangbutu-Efe	**hwb:Bokula:Irumu:Moru-Mangbetu**:226-234
 NOCODE_Njanga	NOCODE_Njanga	**el:Connell:Nigeria-Cameroon**:213
-Almora	Almora	**hv:vanDriem:Himalayas** **hv:vanDriem:Zhangzhung** **hv:Sharma:Uttar-Pradesh**
-Nuclear Marquesic	Nuclear Marquesic	**hv:Marck:Mangarevan**
 Teun-Nila-Serua	Teun-Nila-Serua	**hvw:Taber:SWMaluku**
 Kalapuyan	Kalapuyan	**h:Mithun:NAmerica**:431-433
 NOCODE_Yao	NOCODE_Yao	**hv:Girard:Carib**
 Indo-Aryan Eastern zone	Indo-Aryan Eastern zone	**hv:Masica:Indo-Aryan**
 Bwile-Bemba	Bwile-Bemba	**hv:Bastinetal:Bantu**
-Rongpo-Almora	Rongpo-Almora	**hv:Sharma:Uttar-Pradesh**
-Herbert River	Herbert River	**hv:Dixon:Cairns** **h:Dixon:Australian2002**
+Tungusic	Tungusic	**hv:Whaley:Tungusic**
 Kewa-Huli	Kewa-Huli	**hv:Franklin:Engan-Pronouns**
 svm	svm	**ld:Breu:Moliseslavische**
 NOCODE_Nterato	NOCODE_Nterato	**hew:Goody:Guang** **h:Kropp:Vanishing-Ghana**
@@ -1538,6 +1545,7 @@ Kowan	Kowan	**hv:Zgraggen:Madang:1971**
 bvy	bvy	**s:Rubino:Utudnon**
 Southeast Choiseul	Southeast Choiseul	**s:Ross:Sisiqa**:456
 bvb	bvb	**hv:Grollemund:Bantu-Nord-Ouest** **hv:Vansina:Western-Bantu**
+Western Lega	Western Lega	**h:Biebuyck:Lega** **s:Botne:Lega**:422-423
 Kamengic	Kamengic	**hvw:BlenchPost:Arunachal** **hv:Anderson:West-Kameng**
 bvh	bvh	**el:Haruna:Bubbure**
 Bura-Marghi	Bura-Marghi	**hv:Gravina:Central-Chadic**:50-51
@@ -1546,7 +1554,7 @@ Momare-Migabac	Momare-Migabac	**hv:HooleyMcElhanon:Morobe**:1070
 lkj	lkj	**soc:Cullip:Remun**
 lki	lki	**hvw:Anonby:Luri**
 Muller-Schwaner Punan	Muller-Schwaner Punan	**hvld:SellatoSoriente:Muller**
-lke	lke	**hvw:Mould:NVictorian-Bantu**
+lke	lke	**h:Ladefogedetal:Uganda**:71
 lkc	lkc	**hv:Bradley:Tibeto-Burman**:104
 Yau-Yis	Yau-Yis	**hv:Laycock:Torricelli**:768
 Otomi	Otomi	**hevw:Lastra:Otomies**
@@ -1698,12 +1706,12 @@ South Biu-Mandara	South Biu-Mandara	**hv:Gravina:Central-Chadic**:43-44
 nfd	nfd	**hv:Blench:Prospecting** **w:Blench:Shakara** **w:Blench:Nyeng**
 kpu	kpu	**hvw:Stokhof:Alor**:14-15 and the s to h sound change
 bju	bju	**hv:Breton:Furu:1993**:104-105
-nyg	nyg	**hvb:vanBulck:Congo**:228-235
+nyg	nyg	**g:VanOtterlooVanOtterloo:Fuliiru**:1-3
 kpb	kpb	**g:Lawrence:Paniya**
 Jimi	Jimi	**v:Cook:Narak**
 kph	kph	**hvw:Painter:Guang**
 Central Naga	Central Naga	**hv:Bruhn:Central-Naga**
-Saw	Saw	**hv:HackettvanBulck:ETeam**:70-71 **hel:Mangulu:RDC**:149-150
+kpl	kpl	**hvw:BoyeldieuCloarec-Heiss:Oubanguien**
 bjr	bjr	**s:Bee:Binumarien**
 NOCODE_Khamnigan-Mongol	NOCODE_Khamnigan-Mongol	**s:Janhunen:Khamnigan:2003**:85-86
 NOCODE_Lianmin-Yao	NOCODE_Lianmin-Yao	**hew:Suining:Suining** and p.c.~Andrew Hsiu 2014
@@ -1875,7 +1883,7 @@ Sabellic	Sabellic	**s:Wallace:Sabellic**
 wkl	wkl	**he:Fuchs:India**
 Guadalcanal-Nggelic	Guadalcanal-Nggelic	**hv:Pawley:Guadalcanal-Nggelic**
 wkb	wkb	**hsoc:Mathew:Wayanad**
-Western Lakes Bantu	Western Lakes Bantu	**hvw:Schoenbrun:Great-Lakes-Bantu**
+Western Lakes Bantu	Western Lakes Bantu	**hvw:Schoenbrun:Great-Lakes-Bantu**, **hv:Schoenbrun:Great-Lakes-Bantu:1994**
 Lebonya	Lebonya	**hv:Bastinetal:Bantu**:211
 Northern South Sulawesi	Northern South Sulawesi	**hvw:Smith:Ulunnu** **hvw:GrimesGrimes:South-Sulawesi**
 Yareban	Yareban	**hv:Dutton:SEPapua**:14-15
@@ -1909,8 +1917,10 @@ Nyâlayu	Nyâlayu	**g:McCracken:Belep**:22-25
 mfa	mfa	**g:Tadmor:Malay-Nonthaburi**
 Tamangic	Tamangic	**s:Noonan:Chantyal** **hv:Honda:Tamangic**
 Kilombero	Kilombero	**hv:Nurse:EBantu**
+NOCODE_Yagara	NOCODE_Yagara	**hvw:Jefferies:Guwar**:61-66
 tck	tck	**hv:Alewijnseetal:Gabon**
 Balochic	Balochic	**s:JahaniKorn:Balochi**
+ist	ist	**s:BartoliVidossi:Venezia-Giulia**
 igg	igg	**hb:Zgraggen:Madang**
 wea	wea	**hld:Grierson:12:Burma**
 skq	skq	**soc:Kedrebeogo:Sillanko**
@@ -1918,7 +1928,8 @@ South_Bougainville	South Bougainville	**hv:Evans:SBougainville** **hv:Onishi:Sou
 adq	adq	**s:Sprigge:Adangbe-Ewe**
 Northern Benue-Congo Plateau	Northern Benue-Congo Plateau	**w:Blench:Ejegha**
 Dabaic	Dabaic	**hv:Gravina:Central-Chadic**:46, 48
-Nyawaygic	Nyawaygic	**hv:Dixon:Cairns**
+Nyawaygic	Nyawaygic	**hv:Dixon:Cairns** **h:Dixon:Australian2002**:xxv, xxxiii
+gmx	gmx	**phont:Schadeberg:Kinga**:1
 Torres-Banks linkage	Torres-Banks linkage	**hv:Francois:Ecology:NVanuatu**
 Abkhaz-Adyge	Abkhaz-Adyge	**hv:Hewitt:NWC**
 Jivaroan	Jivaroan	**g:Overall:Aguaruna**:4-5
@@ -1961,7 +1972,7 @@ Biakic	Biakic	**hv:Kamholz:South-Halmahera-West-New-Guinea**:138
 dcc	dcc	**hvw:Grierson:7**
 West_Bird's_Head	West Bird's Head	**hv:BerryBerry:WPapuan**
 Tsimshian	Tsimshian	**g:Tarpent:Nisgha**
-kpl	kpl	**hvw:BoyeldieuCloarec-Heiss:Oubanguien**
+Saw	Saw	**hv:HackettvanBulck:ETeam**:70-71 **hel:Mangulu:RDC**:149-150
 ndb	ndb	**phon:DeVries:Bamessing**:3-4
 NOCODE_Girirra	NOCODE_Girirra	**h:Banti:Somali**
 Okiek-Mosiro	Okiek-Mosiro	**hvw:Distefano:Kalenjin**:84-93 although more recent work holds this relationship as premature (p.c.~2015 Christa König)
@@ -1978,7 +1989,7 @@ Gudanji-Binbinga-Wambaya	Gudanji-Binbinga-Wambaya	**hvtyp:Chadwick:WBarkly**
 vas	vas	**e:Hakim:Vasavi**
 Bohtan	Bohtan	**s:Fox:Bohtan**:166
 Central Jukunoid	Central Jukunoid	**hvw:Storch:Zentral-Jukunoid**
-Lower Guinea Portuguese	Lower Guinea Portuguese	**hv:Ferraz:WAfrica**
+Lower Guinea Portuguese	Lower Guinea Portuguese	**hv:Hagemeijer:Gulf-Guinea**
 Kwilu-Nsong	Kwilu-Nsong	**hv:KoniBostoen:Kwilu**
 buh	buh	**s:MaoLi:Younuo**
 Arafundi	Arafundi	**ew:Haberland:Alfendio**
@@ -2010,5 +2021,4 @@ Enga-Kewa-Huli	Enga-Kewa-Huli	**hv:Franklin:Engan**
 Biu-Mandara	Biu-Mandara	**hv:Gravina:Central-Chadic**
 bct	bct	**w:Liesenborghs:Mabendi** **g:Kutsch:Ngiti**:451 **hwb:Bokula:Irumu:Moru-Mangbetu**:226
 Bidayuh-Rejang	Bidayuh-Rejang	**hv:McGinn:Rejang-Borneo**
-ymg	ymg	**hv:HackettvanBulck:ETeam**:72
 NOCODE_Ngala-Barth	NOCODE_Ngala-Barth	**hw:Benton:WSudan**

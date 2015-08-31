@@ -247,8 +247,6 @@ Mixed Language, Persian-Romani
   Afghanistan Gorbat [NOCODE_Afghanistan-Gorbati]
 Mixed Language, Irish-undocumented
   Shelta [sth]
-Mixed Language, Makhua-Nyanja
-  Malawi Lomwe [lon]
 Mixed Language, Norwegian-Romani
   Traveller Norwegian [rmg]
 Mixed Language, Quechua-Puquina
@@ -479,6 +477,21 @@ Spurious, Retired, Dogon, Nangan Dogon
   Walo Kumbe Dogon [dwl]
 Spurious, Retired, Tai-Kadai, Kadaic, Southwestern Kra, Western Kra, Gelaoic
   Gelao [gio]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kongo-Yaka-Suku-Hungan, Nuclear Kongo-Yaka-Suku-Hungan, Yaka-Suku
+  Pelende [ppp]
+  Lonzo [lnz]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Nkutsuic
+  Kela (Democratic Republic of Congo) [kel]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Yaunde-Fang (A.70)
+  Mengisa [mct]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70)
+  Teke-Nzikou [nzu]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kele (C.60), Kele-Poke, Kele-Lombo
+  Foma [fom]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Lomongo
+  Lalia [lal]
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Lomongo
+  Yamongeri [ymg]
 Spurious, Retired, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Mbam, West Mbam (A.40), Mandi-Nyokon
   Tunen [baz]
 Spurious, Sino-Tibetan, Macro-Tani, Tani, Pre-Western Tani, Western Tani
@@ -607,7 +620,7 @@ Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, N
   Songa [sgo]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Delta Cross, Upper Cross, Kiong-Korop
   Odut [oda]
-Spurious, Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan
+Spurious, Arawakan, Southern Maipuran, Pre-Andine Maipuran, Asha-Ashe-Kak-Matsi-Nan
   South Ucayali Ash\'eninka [cpy]
 Spurious, Quechuan, Quechua II, Quechua IIC, Bolivian Quechua IIC
   Chilean Quechua [cqu]
@@ -703,7 +716,7 @@ Spurious, Pama-Nyungan, Paman, Compromise Middle Pama, Wik, Kuku-Wik-Ep, Kuku-Wi
   Kuku-Mangk [xmq]
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Bembe-Buyu-Binja
   Bemba (Democratic Republic of Congo) [bmy]
-Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene
+Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene-Mpe, Boma-Tiene
   Buya [byy]
   Borna (Democratic Republic of Congo) [bxx]
 Spurious, Nilotic, Southern Nilotic, Kalenjin, Okiek-Mosiro
@@ -881,12 +894,12 @@ Unattested, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VI
   Morerebi [xmo]
 Unattested, Arawakan, Central Maipuran
   Agavotaguerra [avo]
-Unattested, Arawakan, Southern Maipuran, Pre-Andine
+Unattested, Arawakan, Southern Maipuran, Pre-Andine Maipuran
   Aguano [aga]
 Unattested, Afro-Asiatic, Chadic, West Chadic, West Chadic A
   Daza [dzd]
 Unattested, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, East Nyanza, Nyanza Mara, North Mara
-  Ware [NOCODE_Ware]
+  Ware [wre]
 Unattested, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Northwestern zone
   Badeshi [bdz]
 Unattested, Atlantic-Congo, Volta-Congo, North Volta-Congo, Adamawa-Ubangi, Adamawa, Mbum-Day, Mbumic

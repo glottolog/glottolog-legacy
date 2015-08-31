@@ -755,19 +755,19 @@ Arawakan, Southern Maipuran, Bolivia-Parana, Moxo
 Arawakan, Southern Maipuran, Bolivia-Parana, Baure-Carmelito-Joaquiniano
   Baure [brg]
   Joaquiniano [NOCODE_Joaquiniano]
-Arawakan, Southern Maipuran, Pre-Andine
+Arawakan, Southern Maipuran, Pre-Andine Maipuran
   Nomatsiguenga [not]
-Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak
+Arawakan, Southern Maipuran, Pre-Andine Maipuran, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak
   Caquinte [cot]
-Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak, Asha-Ashe
+Arawakan, Southern Maipuran, Pre-Andine Maipuran, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak, Asha-Ashe
   Ash\'aninka [cni]
-Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak, Asha-Ashe, Asheninka
+Arawakan, Southern Maipuran, Pre-Andine Maipuran, Asha-Ashe-Kak-Matsi-Nan, Asha-Ashe-Kak, Asha-Ashe, Asheninka
   Ucayali-Yur\'ua Ash\'eninka [cpb]
   Ajy\'ininka Apurucayali [cpc]
   Ash\'eninka Peren\'e [prq]
   Pichis Ash\'eninka [cpu]
   Ash\'eninka Pajonal [cjo]
-Arawakan, Southern Maipuran, Pre-Andine, Asha-Ashe-Kak-Matsi-Nan, Matsi-Nan
+Arawakan, Southern Maipuran, Pre-Andine Maipuran, Asha-Ashe-Kak-Matsi-Nan, Matsi-Nan
   Nanti [cox]
   Machiguenga [mcb]
 Arawakan, Southern Maipuran, Purus
@@ -1169,10 +1169,12 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Bembe-Buyu-Binja, Buyu-Holoholo
   Buyu [byi]
   Holoholo [hoo]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Lega
-  Kwami [ktf]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Lega, Western Lega
   Kanu [khx]
   Lega-Shabunda [lea]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Unclassified Nyanga-Mituku-Lega
+  Kwami [ktf]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Nyanga-Mituku-Lega, Mituku-Lega, Lega Complex, Lega
   Lega-Mwenga [lgm]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Kilimanjaro-Taita, Taita-Sagalla
   Taita [dav]
@@ -1289,11 +1291,8 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Hungana [hum]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kongo-Yaka-Suku-Hungan, Nuclear Kongo-Yaka-Suku-Hungan, Yaka-Suku
   Suku [sub]
-  Yaka (Democratic Republic of Congo) [yaf]
-  Samba [smx]
-  Pelende [ppp]
-  Lonzo [lnz]
-  Ngongo [noq]
+  Yaka-Pelende-Lonzo [yaf]
+  Hungu [NOCODE_Hungu]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kongo-Yaka-Suku-Hungan, Nuclear Kongo-Yaka-Suku-Hungan, Core Kikongo
   Eastern Kikongo [kwy]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kongo-Yaka-Suku-Hungan, Nuclear Kongo-Yaka-Suku-Hungan, Core Kikongo, Koongo-Kituba
@@ -1340,18 +1339,21 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, Western Lakes Bantu, Kivu, Forest Kivu
   Tembo (Kitembo) [tbt]
   Shi [shr]
-  Fuliiru [flr]
   Havu [hav]
   Hunde [hke]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, Western Lakes Bantu, Kivu, Forest Kivu, Fuliiric, Fuliiru-Vira
   Joba [job]
+  Fuliiru [flr]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, Western Lakes Bantu, Kivu, Forest Kivu, Fuliiric
   Nyindu [nyg]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, Western Lakes Bantu, Kivu, West Highlands Kivu
   Rundi [run]
   Kinyarwanda [kin]
   Rundi-Kitwa [NOCODE_Rundi-Kitwa]
   Ha [haq]
-  Hangaza [han]
   Vinza [vin]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, Western Lakes Bantu, Kivu, West Highlands Kivu, Hangaza-Shubi
+  Hangaza [han]
   Shubi [suj]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, East Nyanza, Nyanza Mara, South Mara
   Zanaki [zak]
@@ -1369,17 +1371,18 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Kwaya [kya]
   Jita [jit]
   Kara (Tanzania) [reg]
-  Ruuli [ruc]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, West Nyanza, North Nyanza
   Ganda [lug]
   Singa [sgm]
   Gwere [gwr]
+  Syan [NOCODE_Syan]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, West Nyanza, North Nyanza, Soga-Kenyi
   Soga [xog]
   Kenyi [lke]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, West Nyanza, Rutara, North Rutara
   Hema [nix]
   Talinga-Bwisi [tlj]
+  Ruuli [ruc]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Northeast Savanna Bantu, Great Lakes Bantu, West Nyanza, Rutara, North Rutara, Nkore-Kiga-Nyoro-Tooro, Nyoro-Tooro
   Tooro [ttj]
   Nyoro [nyo]
@@ -1424,7 +1427,6 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Mbwela [mfu]
   Mbunda [mck]
   Luimbi [lum]
-  Nyengo [nye]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njila, Southern Njila, Chokwe-Lunda, Chokwe-Ngangela-Nyemba (K.20), Ngangela-Nyemba
   Nkangala [nkn]
   Luchazi [lch]
@@ -1452,8 +1454,9 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Luyana, Eastern Greater Luyana
   Mbowe [mxo]
   Luyi [lyn]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Luyana, Western Greater Luyana
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Luyana, Western Greater Luyana, Simaaic
   Simaa [sie]
+  Nyengo [nye]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Luyana, Western Greater Luyana, Mashi-Mbukushi
   Mashi (Zambia) [mho]
   Mbukushu [mhw]
@@ -1575,12 +1578,15 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Tawara [twl]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Shona (S.10), Unclassified Shona (S. 10)
   Dema [dmx]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Nguni (S.40), Zunda
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Nguni (S.40)
+  Sumayela Ndebele [nbl]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Nguni (S.40), Southern Ndebele-Lowland
+  Zimbabwean Ndebele [nde]
+  Swati [ssw]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Nguni (S.40), Southern Ndebele-Lowland, Zulu-Xhosa
   Xhosa [xho]
   Zulu [zul]
-  North Ndebele [nde]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Nguni (S.40)
-  Swati [ssw]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Nguni-Tsonga, Tswa-Ronga (S.50)
   Tsonga [tso]
   Ronga [rng]
@@ -1592,7 +1598,6 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Venda [ven]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Sotho-Makua-Venda, Sotho-Makua, Sotho-Tswana (S.30), Sotho, Northern Sotho
   Birwa [brl]
-  South Ndebele [nbl]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Sotho-Makua-Venda, Sotho-Makua, Sotho-Tswana (S.30), Sotho, Northern Sotho, Sepedic
   Pedi [nso]
   Tswapong [two]
@@ -1613,8 +1618,10 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Maindo [cwb]
   Manyawa [mny]
   Kokola [kzn]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Sotho-Makua-Venda, Sotho-Makua, North Mozambique Bantu, Makua-Lomwe, Lomweic
+  Mozambique Lomwe [ngl]
+  Malawi Lomwe [lon]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, East Bantu, Southern Bantu-Makua, Sotho-Makua-Venda, Sotho-Makua, North Mozambique Bantu, Makua-Lomwe
-  Lomwe [ngl]
   Makhuwa-Meetto [mgh]
   Makhuwa-Saka [xsq]
   Makhuwa-Moniga [mhm]
@@ -1673,29 +1680,30 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Yambe [NOCODE_Yambe]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Kpwe
   Oroko [bdu]
-  Wumboko [bqm]
+  Wumboko-Bubia [bqm]
   Mokpwe [bri]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Dualaic
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Dualaic, Kole-Isubu
   Bakole [kme]
+  Isu (Fako Division) [szv]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Dualaic
+  Oli-Bidiman [NOCODE_Oli-Bidiman]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Dualaic, Duala-Malimba
   Duala [dua]
   Malimba [mzd]
-  Isu (Fako Division) [szv]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Bengaic
   Benga [bng]
   Batanga [bnm]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sawabantu, Bengaic, Yasa-Kombe
   Yasa [yko]
   Ngumbi [nui]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Yaunde-Fang (A.70), Eton-Mengisa
-  Eton (Cameroon) [eto]
-  Mengisa [mct]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Yaunde-Fang (A.70), Ewondo-Bebele
   Ewondo [ewo]
   Bebele [beb]
+  Bebil [bxp]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Yaunde-Fang (A.70)
+  Eton-Mengisa [eto]
   Fang (Equatorial Guinea) [fan]
   Bulu (Cameroon) [bum]
-  Bebil [bxp]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Bantu A-B10-B20-B30, Sheke
   Seki [syi]
   Molengue [bxc]
@@ -1720,7 +1728,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Osamayi [syx]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Unclassified Sira (B.40)
   Ngubi [NOCODE_Ngubi]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Lumbuic
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Lumbuic, Lumbu-Bwisi
   Lumbu [lup]
   Bwisi [bwz]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Sira (B.40), Lumbuic, Bantu H12-16c
@@ -1737,14 +1745,13 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70)
   Ngungwel [ngz]
   Ibali Teke [tek]
+  Teke-Eboo-Nzikou [ebo]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70), West Teke
+  Teke-Tyee [tyx]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70), West Teke, Laali-Tsaayi-Yaka
   Teke-Tsaayi [tyi]
   Teke-Laali [lli]
-  Teke-Tyee [tyx]
   Yaka (Congo) [iyx]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70), Central Teke
-  Teke-Ebo [ebo]
-  Teke-Nzikou [nzu]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Njebe-Mbete-Teke, Teke (B.70), South Teke
   Teke-Kukuya [kkw]
   Teke-Fuumu [ifm]
@@ -1783,10 +1790,11 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Komoic
   Amba (Uganda) [rwm]
   Bera [brf]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Komoic, Bilaic
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Komoic, Bilaic, Bila-Kaiku
   Bila [bip]
-  Bhele [bhy]
   Kaiku [kkq]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Komoic, Bilaic
+  Bhele [bhy]
   Komo (Democratic Republic of Congo) [kmw]
   Kango (Tshopo District) [kzy]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Ngbele-Ngenda, Extreme North Vestigial Suffixes Bantu
@@ -1809,14 +1817,20 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Ababuan, Old Bomokandian, Middle Bomokandian, Late Bomokandian, Pagabeteic
   Pagibete [pae]
   Bwa [bww]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Kwilu-Nsong, Nsong-Mpiin-Ngong
+  Nsong [soo]
+  Ngongo [noq]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Kwilu-Nsong
-  Songo [soo]
   Mfinu [zmf]
   Mpuono [zmp]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Kwilu-Umlaut
   Ding [diz]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Kwilu-Umlaut, Yans-Mpur-Ntsambaan
   Yansi [yns]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene
+  Ntsambaan [smx]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene-Mpe
+  Kempee [NOCODE_Kempee]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene-Mpe, Boma-Tiene
   Boma [boh]
   Tiene [tii]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80)
@@ -1852,33 +1866,29 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Mbole [mdq]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Lomongo
   Mongo [lol]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Lomongo, Ngando-Lalia
-  Lalia [lal]
-  Ngando (Democratic Republic of Congo) [nxd]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Kusu-Nkutsu
-  Kusu [ksv]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Kusu-Nkutsu, Nkutsuic, Tetela-Hamba
+  Ngando-Lalia [nxd]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Nkutsuic, Tetelaic
   Hamba [hba]
   Tetela [tll]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Kusu-Nkutsu, Nkutsuic
+  Kusu [ksv]
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Nkutsuic
   Ombo [oml]
-  Kela (Democratic Republic of Congo) [kel]
+  Yela-Kela [yel]
   Dengese [dez]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Kusu-Nkutsu, Nkutsuic, Boshongo, Bushoong-Wongo-Lele
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Nkutsuic, Boshongo, Bushoong-Wongo-Lele
   Bushoong [buf]
   Wongo [won]
   Lele (Democratic Republic of Congo) [lel]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Kusu-Nkutsu, Nkutsuic, Boshongo
+Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Kela-Ntomba, Tsingi-Tsingi, Vieux Mongo, Nkutsuic, Boshongo
   Sakata [skt]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Unclassified Ngiri, Saw
   Bolondo [bzm]
   Ndolo [ndl]  
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Unclassified Ngiri, Budja (C.36)
-  Babango [bbm]
   Egbuta [NOCODE_Egbuta]
   Budza [bja]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic, Bobangic Riverain
-  Baloi [biz]
+  Loi-Zamba-Likila [biz]
   Moi (Congo) [mow]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic, Bobangic Riverain, Bobangi-Bangala-Lingala
   Bangi [bni]
@@ -1887,14 +1897,12 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Bangala [bxg]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic
   Mpama [NOCODE_Mpama]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic
   Elinga [NOCODE_Elinga]
-  Yela [yel]
   Nkutu [nkw]
   Songomeno [soe]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Libinzic, Libinza Ngiri
   Libinza [liz]
-  Likila [lie]
+  Balobo [lie]
   Boloki [bkt]
   Litoka [NOCODE_Litoka]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Libinzic, Libinza Fleuve
@@ -1917,12 +1925,11 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Dzando [dzn]
   Bozaba [bzo]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Mongala
+  Babango [bbm]
   Motembo-Kunda-Buja [tmv]
-Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Mongala
   Bwela [bwl]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kele (C.60), Kele-Poke, Kele-Lombo
-  Kele (Democratic Republic of Congo) [khy]
-  Foma [fom]
+  Kele-Foma [khy]
   Lombo [loo]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kele (C.60), Kele-Poke, So-Poke
   Poke [pof]
@@ -1931,7 +1938,6 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Moingi [mwz]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Kele (C.60)
   Mbesa [zms]
-  Yamongeri [ymg]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Unclassified Greater Bangi-Ntomba
   Bafoto [NOCODE_Bafoto]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Unclassified Bantoid
@@ -3573,21 +3579,22 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Takuu [nho]
   Nukuria [nur]
   Nukumanu [nuq]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Nuclear Marquesic
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Marquesan
   South Marquesan [mqm]
   North Marquesan [mrq]
-  Mangareva [mrv]
   Rapa [ray]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian
   Hawaiian [haw]
-Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Tahitic
-  Tuamotuan [pmt]
+  Mangareva [mrv]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Tahitian-Austral
   Tahitian [tah]
+  Austral [aut]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian
+  Tuamotuan [pmt]
   Maori [mri]
   Rarotongan [rar]
   Rakahanga-Manihiki [rkh]
   Penrhyn [pnh]
-  Austral [aut]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian
   Rapanui [rap]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian
@@ -4639,7 +4646,6 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polyn
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, Southwest Sabahan, Greater Murutic, Murutic
   Abai Tubu-Abai Sembuak [NOCODE_Abai-Tubu-Sembuak]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Northwest Sumatra-Barrier Islands
-  Enggano [eno]
   Gayo [gay]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Northwest Sumatra-Barrier Islands, Nuclear Barrier Islands
   Simeulue [smr]
@@ -4992,6 +4998,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, South Sulawesi, Northern 
 Austronesian, Nuclear Austronesian, Malayo-Polynesian
   Chamorro [cha]
   Nasal [nsy]
+  Enggano [eno]
 Austronesian, Nuclear Austronesian, Northwest Formosan
   Saisiyat [xsy]
   Kulon-Pazeh [uun]
@@ -6109,7 +6116,6 @@ Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, 
   Hunsrik [hrx]
 Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian
   Old English (ca. 450-1100) [ang]
-Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian
   Scots [sco]
 Indo-European, Germanic, Northwest Germanic, West Germanic, North Sea Germanic, Anglo-Frisian, Anglian, Mercian
   Middle English [enm]
@@ -6746,9 +6752,10 @@ Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-
   Papiamento [pap]
 Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Southwestern Shifted Romance, West Ibero-Romance, Galician Romance, Macro-Portuguese, Lower Guinea Portuguese
   Annobonese [fab]
+  Angolar [aoa]
+Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Southwestern Shifted Romance, West Ibero-Romance, Galician Romance, Macro-Portuguese, Lower Guinea Portuguese, Saotomense-Principense
   S\~aotomense [cri]
   Principense [pre]
-  Angolar [aoa]
 Indo-European, Balto-Slavic
   Old Prussian [prg]
 Indo-European, Balto-Slavic, Eastern Baltic
@@ -7714,9 +7721,9 @@ Nakh-Daghestanian, Nakh, Chechen-Ingush
   Ingush [inh]
   Chechen [che]
 Nambiquaran
-  Southern Nambiku\'ara [nab]
-Nambiquaran, Nambikwara Complex
   Saban\^e [sae]
+Nambiquaran, Nambikwara Complex
+  Southern Nambiku\'ara [nab]
 Nambiquaran, Nambikwara Complex, Northern Nambiquaran
   Mamaind\'e [wmd]
 Nambiquaran, Nambikwara Complex, Northern Nambiquaran, Roosevelt
@@ -7743,6 +7750,7 @@ Natchez
   Natchez [ncz]
 Ndu
   Ngala [nud]
+  Boikin [bzf]
 Ndu, Nuclear Ndu, Sawosic
   Koiwat [kxt]
   Sengo [spk]
@@ -7753,9 +7761,8 @@ Ndu, Nuclear Ndu, Sawosic, Iatmulic
   Iatmul [ian]
   Keak [keh]
   Sos Kundi [sdk]
-Ndu, Nuclear Ndu
+Ndu, Nuclear Ndu, Manambu-Yalaku
   Yelogu [ylg]
-  Boikin [bzf]
   Manambu [mle]
 Ndu, Nuclear Ndu, Ambulas-Hanga-Hundi
   Hanga Hundi [wos]
@@ -8222,10 +8229,7 @@ Pama-Nyungan
 Pama-Nyungan, Macleay-New England
   Nganyaywana [nyx]
   Dyangadi [dyn]
-Pama-Nyungan, Herbert River
-  Warrgamay [wgy]
-  Dyirbal [dbl]
-Pama-Nyungan, Herbert River, Nyawaygic
+Pama-Nyungan, Nyawaygic
   Nyawaygi [nyt]
   Wulguru [qgu]
   Yuru [ljx]
@@ -8548,6 +8552,9 @@ Pama-Nyungan, Desert Nyungic, Ngumpin-Yapa, Ngumpin, Gurindjic
   Mudbura [mwd]
 Pama-Nyungan, Desert Nyungic
   Warumungu [wrm]
+Pama-Nyungan
+  Warrgamay [wgy]
+  Dyirbal [dbl]
 Pankararu
   Pankarar\'u [paz]
 Panoan, Mainline Pano
@@ -9074,27 +9081,27 @@ Sino-Tibetan, Bodic, Kaike-Ghale-Tamangic, Ghale-Tamangic, Tamangic, Gurungic, G
 Sino-Tibetan, Bodic, Kaike-Ghale-Tamangic, Ghale-Tamangic, Tamangic, Gurungic, Thakali-Chantyal
   Chantyal [chx]
   Thakali [ths]
-Sino-Tibetan, Bodic, Tibeto-Kanauri
-  Kanashi [xns]
-  Gahri [bfu]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Eastern Tibeto-Kanauri, Central-Eastern Tibeto-Kanauri
   Rongpo [rnp]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora
-  Rangkas [rgk]
+  Bunan [bfu]
+  Sunam [ssk]
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Eastern Tibeto-Kanauri, Central-Eastern Tibeto-Kanauri, Unclassified Central-Eastern Tibeto-Kanauri
   Zhangzhung [NOCODE_Zhangzhung]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora, Darma-Byangsi-Chaudangsi
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Eastern Tibeto-Kanauri, Pithauragarh
+  Rangkas [rgk]
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Eastern Tibeto-Kanauri, Pithauragarh, Darma-Byangsi-Chaudangsi
   Chaudangsi [cdn]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Rongpo-Almora, Almora, Darma-Byangsi-Chaudangsi, Darma-Byangsi
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Eastern Tibeto-Kanauri, Pithauragarh, Darma-Byangsi-Chaudangsi, Darma-Byangsi
   Darma [drd]
   Byangsi [bee]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Kinnauric
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Western Tibeto-Kanauri, Kinnauric
+  Kanashi [xns]
   Chitkuli Kinnauri [cik]
   Kinnauri [kfk]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Kinnauric, Thebor
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Western Tibeto-Kanauri, Kinnauric, Thebor
   Jangshung [jna]
   Shumcho [scu]
-  Sunam [ssk]
-Sino-Tibetan, Bodic, Tibeto-Kanauri, Lahaulic
+Sino-Tibetan, Bodic, Tibeto-Kanauri, Western Tibeto-Kanauri, Lahaulic
   Pattani [lae]
   Tinani [lbf]
 Sino-Tibetan
