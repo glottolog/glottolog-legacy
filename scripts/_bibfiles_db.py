@@ -1,7 +1,5 @@
 # _bibfiles_db.py - load bibfiles into sqlite3, hash, assign ids (split/merge)
 
-# TODO: try unconditional hh.bib preference in (merge/split) legacy comparisons
-
 import os
 import csv
 import json
@@ -15,10 +13,6 @@ import collections
 import _bibtex
 
 __all__ = ['Database']
-
-# TODO: legacy=True code paths may be removed
-
-COMPARE_WITH_LEGACY = False
 
 DBFILE = '_bibfiles.sqlite3'
 
@@ -204,7 +198,7 @@ class Database(object):
                     yield (id_hash, [(field, [(vl, fn, bk) for id, hs, fd, vl, fn, bk in g])
                         for field, g in itertools.groupby(grp, get_field)])
 
-    def __getitem__(self, key, legacy=False):
+    def __getitem__(self, key):
         """Entry by (fn, bk) or merged entry by refid (old grouping) or hash (current grouping)."""
         if not isinstance(key, (tuple, int, basestring)):
             raise ValueError
@@ -213,7 +207,7 @@ class Database(object):
                 filename, bibkey = key
                 entrytype, fields = self._entry(conn, filename, bibkey)
             else:
-                grp = self._entrygrp(conn, key, legacy=legacy)
+                grp = self._entrygrp(conn, key)
                 entrytype, fields = self._merged_entry(grp)
             return key, (entrytype, fields)
 
@@ -246,21 +240,16 @@ class Database(object):
         return entrytype, fields
 
     @staticmethod
-    def _entrygrp(conn, key, legacy=False, get_field=operator.itemgetter(0)):
+    def _entrygrp(conn, key, get_field=operator.itemgetter(0)):
         col = 'refid' if isinstance(key, int) else 'hash'
-        if legacy:
-            extra_join = 'JOIN legacypriority AS l ON e.filename = l.filename AND e.bibkey = l.bibkey '
-            order = "ORDER BY v.field, v.filename != 'hh.bib', v.filename, l.priority"
-        else:
-            extra_join = ''
-            order = 'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey'
         cursor = conn.execute(('SELECT v.field, v.value, v.filename, v.bibkey '
             'FROM entry AS e '
             'JOIN file AS f ON e.filename = f.name '
-            + extra_join +
             'JOIN value AS v ON e.filename = v.filename AND e.bibkey = v.bibkey '
             'LEFT JOIN field AS d ON v.filename = d.filename AND v.field = d.field '
-            'WHERE %s = ? ' + order) % col, (key,))
+            'WHERE %s = ? '
+            'ORDER BY v.field, coalesce(d.priority, f.priority) DESC, v.filename, v.bibkey'
+            ) % col, (key,))
         grp = [(field, [(vl, fn, bk) for fd, vl, fn, bk in g])
             for field, g in itertools.groupby(cursor, get_field)]
         if not grp:
@@ -274,7 +263,7 @@ class Database(object):
             hashstats(conn)
             hashidstats(conn)
 
-    def show_splits(self, legacy=COMPARE_WITH_LEGACY):
+    def show_splits(self):
         with self.connect() as conn:
             cursor = conn.execute('SELECT refid, hash, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
@@ -285,13 +274,13 @@ class Database(object):
                     print(row)
                 for ri, hs, fn, bk in group:
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
-                old = self._merged_entry(self._entrygrp(conn, refid, legacy=legacy), raw=True)
+                old = self._merged_entry(self._entrygrp(conn, refid), raw=True)
                 cand = [(hs, self._merged_entry(self._entrygrp(conn, hs), raw=True))
                     for hs in unique(hs for ri, hs, fn, bk in group)]
                 new = min(cand, key=lambda (hs, fields): distance(old, fields))[0]
                 print('-> %s\n' % new)
 
-    def show_merges(self, legacy=COMPARE_WITH_LEGACY):
+    def show_merges(self):
         with self.connect() as conn:
             cursor = conn.execute('SELECT hash, refid, filename, bibkey '
             'FROM entry AS e WHERE EXISTS (SELECT 1 FROM entry '
@@ -303,7 +292,7 @@ class Database(object):
                 for hs, ri, fn, bk in group:
                     print('\t%r, %r, %r, %r' % hashfields(conn, fn, bk))
                 new = self._merged_entry(self._entrygrp(conn, hash), raw=True)
-                cand = [(ri, self._merged_entry(self._entrygrp(conn, ri, legacy=legacy), raw=True))
+                cand = [(ri, self._merged_entry(self._entrygrp(conn, ri), raw=True))
                     for ri in unique(ri for hs, ri, fn, bk in group)]
                 old = min(cand, key=lambda (ri, fields): distance(new, fields))[0]
                 print('-> %s\n' % old)
@@ -373,13 +362,6 @@ def create_tables(conn, page_size=32768):
         'value TEXT NOT NULL, '
         'PRIMARY KEY (filename, bibkey, field), '
         'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
-    # entry -> current dict iteration order
-    conn.execute('CREATE TABLE legacypriority ('
-        'filename TEXT NOT NULL, '
-        'bibkey TEXT NOT NULL, '
-        'priority INTEFGER NOT NULL, '
-        'PRIMARY KEY (filename, bibkey) '
-        'FOREIGN KEY (filename, bibkey) REFERENCES entry(filename, bibkey))')
  
 
 def import_bibfiles(conn, bibfiles):
@@ -394,12 +376,6 @@ def import_bibfiles(conn, bibfiles):
             conn.executemany('INSERT INTO value '
                 '(filename, bibkey, field, value) VALUES (?, ?, ?, ?)',
                 ((b.filename, bibkey, field, value) for field, value in fields))
-        # legacy
-        cursor = conn.execute('SELECT bibkey FROM entry WHERE filename = ?', (b.filename,))
-        dct = dict.fromkeys(bibkey for bibkey, in cursor)
-        conn.executemany('INSERT INTO legacypriority (filename, bibkey, priority) '
-                'VALUES (?, ?, ?) ',
-                ((b.filename, bibkey, i) for i, bibkey in enumerate(dct)))
 
 
 def update_priorities(conn, bibfiles):
@@ -551,7 +527,7 @@ def windowed(conn, col, chunksize):
         yield first, last
 
 
-def assign_ids(conn, verbose=False, legacy=COMPARE_WITH_LEGACY):
+def assign_ids(conn, verbose=False):
     merged_entry, entrygrp = Database._merged_entry, Database._entrygrp
 
     allhash, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry '
@@ -566,7 +542,7 @@ def assign_ids(conn, verbose=False, legacy=COMPARE_WITH_LEGACY):
         'WHERE EXISTS (SELECT 1 FROM entry WHERE refid = e.refid AND hash != e.hash) '
         'ORDER BY refid, hash, filename, bibkey')
     for refid, group in group_first(cursor):
-        old = merged_entry(entrygrp(conn, refid, legacy=legacy), raw=True)
+        old = merged_entry(entrygrp(conn, refid), raw=True)
         nsplit += len(group)
         cand = [(hs, merged_entry(entrygrp(conn, hs), raw=True))
             for hs in unique(hs for ri, hs, fn, bk in group)]
@@ -594,7 +570,7 @@ def assign_ids(conn, verbose=False, legacy=COMPARE_WITH_LEGACY):
     for hash, group in group_first(cursor):
         new = merged_entry(entrygrp(conn, hash), raw=True)
         nmerge += len(group)
-        cand = [(ri, merged_entry(entrygrp(conn, ri, legacy=legacy), raw=True))
+        cand = [(ri, merged_entry(entrygrp(conn, ri), raw=True))
             for ri in unique(ri for hs, ri, fn, bk in group)]
         old = min(cand, key=lambda (ri, fields): distance(new, fields))[0]
         merged = conn.execute('UPDATE entry SET id = ? WHERE hash = ? AND srefid != ?',
