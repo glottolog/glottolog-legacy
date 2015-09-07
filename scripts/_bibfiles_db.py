@@ -558,8 +558,8 @@ def assign_ids(conn, verbose=False):
             print('%d: %d separated from %s\n' % (refid, separated, new))
     print('%d splitted' % nsplit)
     
-    nosplits = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE EXISTS (SELECT 1 FROM entry WHERE srefid = e.srefid AND hash != e.hash))')
+    nosplits, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE srefid = e.srefid AND hash != e.hash))').fetchone()
     assert nosplits
 
     # resolve merges: id = srefid of the most similar srefid group
@@ -588,8 +588,8 @@ def assign_ids(conn, verbose=False):
     print('%d unchanged' % conn.execute('UPDATE entry SET id = srefid '
         'WHERE id IS NULL AND srefid IS NOT NULL').rowcount)
 
-    nomerges = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
-        'WHERE EXISTS (SELECT 1 FROM entry WHERE hash = e.hash AND id != e.id))')
+    nomerges, = conn.execute('SELECT NOT EXISTS (SELECT 1 FROM entry AS e '
+        'WHERE EXISTS (SELECT 1 FROM entry WHERE hash = e.hash AND id != e.id))').fetchone()
     assert nomerges
 
     # identified
