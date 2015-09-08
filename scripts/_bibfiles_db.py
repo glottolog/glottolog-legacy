@@ -22,7 +22,7 @@ CSVFILE = '../references/monster.csv'
 
 REPLACEMENTSFILE = 'monster-replacements.json'
 
-UNION_FIELDS = {'lgcode', 'fn', 'asjp_name', 'hhtype', 'isbn'}
+UNION_FIELDS = {'fn', 'asjp_name', 'isbn'}
 
 IGNORE_FIELDS = {'crossref',  'numnote', 'glotto_id'}
 

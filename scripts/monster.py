@@ -149,15 +149,6 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, replacements=REPLACEMENTS, monste
     print '%s load hh.bib' % time.ctime()
     hhbib = bibfiles['hh.bib'].load()
 
-    #Take the fields inlg/hhtype/lgcode from hh.bib whenever possible
-    for (k, (t, fields)) in m.iteritems():
-        for s in fields["srctrickle"].split(", "):
-            if s.startswith("hh#"):
-                hhfields = hhbib[s[len("hh#"):]][1]
-                for f in ["inlg", "hhtype", "lgcode"]:
-                    if hhfields.has_key(f):
-                        fields[f] = hhfields[f]
-
     # Annotate with macro_area from lgcode when lgcode is assigned manually
     print '%s macro_area_from_lgcode' % time.ctime()
     m = macro_area_from_lgcode(m)
@@ -193,7 +184,7 @@ def main(bibfiles=BIBFILES, previous=PREVIOUS, replacements=REPLACEMENTS, monste
     # Trickling back
     print '%s trickle' % time.ctime()
     db.trickle()
-    
+
     # Save
     print '%s save as utf8' % time.ctime()
     monster.save(m, verbose=False)
