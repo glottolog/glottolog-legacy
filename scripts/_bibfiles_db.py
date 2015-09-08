@@ -634,10 +634,10 @@ def distance(left, right, weight={'author': 3, 'year': 3, 'title': 3, 'ENTRYTYPE
     if not keys:
         return 1.0
 
-    ratios = (weight.get(k, 1) * difflib.SequenceMatcher(None, left[k], right[k]).ratio()
-        for k in keys)
-    weights = (weight.get(k, 1) for k in keys)
-    return 1 - (sum(ratios) / sum(weights))
+    weights = {k: weight.get(k, 1) for k in keys}
+    ratios = (w * difflib.SequenceMatcher(None, left[k], right[k]).ratio()
+        for k, w in weights.iteritems())
+    return 1 - (sum(ratios) / sum(weights.itervalues()))
 
 
 def _test_merge():
