@@ -909,7 +909,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Northern Bantoid, Mambiloid, 
   Njanga [NOCODE_Njanga]
   Kwanja [knp]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Northern Bantoid, Mambiloid, Nizaa-Mambila-Vute, Konja-Mambila-Vute, Mambila-Vute, Mambila-Mbongno, Mbongno-Mvano, Mvano
-  Mvanip [mcj]
+  Mvano [mcj]
   Ndunda [nuh]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Northern Bantoid, Mambiloid, Nizaa-Mambila-Vute, Konja-Mambila-Vute, Mambila-Vute, Mambila-Mbongno, Mbongno-Mvano
   Mbongno [bgu]
@@ -1888,7 +1888,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Egbuta [NOCODE_Egbuta]
   Budza [bja]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic, Bobangic Riverain
-  Loi-Zamba-Likila [biz]
+  Loi-Likila [biz]
   Moi (Congo) [mow]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic, Bobangic Riverain, Bobangi-Bangala-Lingala
   Bangi [bni]
@@ -1897,7 +1897,6 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Bangala [bxg]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Bobangic
   Mpama [NOCODE_Mpama]
-  Elinga [NOCODE_Elinga]
   Nkutu [nkw]
   Songomeno [soe]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Ripuaire, Libinzic, Libinza Ngiri
@@ -1912,6 +1911,7 @@ Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bant
   Lobala [loq]
   Bomboli [bml]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri, Ngiri Riverain, Ngiri Riverain Ubangi, Ngiri Riverain Ubangi-Interieur
+  Zamba [NOCODE_Zamba]
   Boko (Democratic Republic of Congo) [bkp]
 Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Greater Bangi-Ntomba, Ngiri
   Lusengo [lse]
@@ -3582,7 +3582,6 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Marquesan
   South Marquesan [mqm]
   North Marquesan [mrq]
-  Rapa [ray]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian
   Hawaiian [haw]
   Mangareva [mrv]
@@ -3592,9 +3591,11 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian
   Tuamotuan [pmt]
   Maori [mri]
-  Rarotongan [rar]
   Rakahanga-Manihiki [rkh]
   Penrhyn [pnh]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Mangaia-Old Rapa
+  Rarotongan [rar]
+  Rapa [ray]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian
   Rapanui [rap]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian
@@ -3777,7 +3778,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Daakie [ptv]
   Dakaka [bpa]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Ambrym, Orkon-Port Vato-Dakaka
-  Orkon [NOCODE_Orkon]
+  Orkon-Fanbak [NOCODE_Orkon]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, North and Central Vanuatu, Central Vanuatu, Epi-Efate, Epi, Bieria-Maii
   Maii [mmm]
   Bieria [brj]
@@ -5521,14 +5522,6 @@ Dravidian, Central Dravidian, Parji-Ollari-Gadaba
   Pottangi Ollar Gadaba [gdb]
   Duruwa [pci]
   Mudhili Gadaba [gau]
-Dravidian, Central Dravidian, Teluguic
-  Telugu [tel]
-  Old Telugu [NOCODE_Old-Telugu]
-  Chenchu [cde]
-  Mukha-Dora [mmk]
-  Manna-Dora [mju]
-  Waddar [wbq]
-  Kumbaran [wkb]
 Dravidian, North Dravidian, Kurux-Malto, Kurux
   Kurukh [kru]
   Nepali Kurux [kxl]
@@ -5554,6 +5547,14 @@ Dravidian, South Dravidian, South Dravidian II, Konda-Kui, Manda-Kui, Kui-Kuvi
 Dravidian, South Dravidian, South Dravidian II, Konda-Kui, Manda-Kui, Manda-Pengo
   Pengo [peg]
   Manda (India) [mha]
+Dravidian, South Dravidian, South Dravidian II, Teluguic
+  Telugu [tel]
+  Old Telugu [NOCODE_Old-Telugu]
+  Chenchu [cde]
+  Mukha-Dora [mmk]
+  Manna-Dora [mju]
+  Waddar [wbq]
+  Kumbaran [wkb]
 Dravidian, South Dravidian, South Dravidian I, Tamil-Kannada, Badaga-Kannada, Kannadoid, Nuclear Kannaoid
   Old Kannada [qkn]
   Kannada [kan]
@@ -6937,7 +6938,7 @@ Jivaroan, Shuaric
   Achuar-Shiwiar [acu]
   Huambisa [hub]
 Jodi
-  Yuwana [yau]
+  Hoti [yau]
 Kadugli-Krongo
   Keiga [kec]
 Kadugli-Krongo, Central-Western Kadugli-Krongo, Krongo-Tumtum 
@@ -7801,7 +7802,7 @@ Nilotic, Southern Nilotic, Kalenjin, Central Kalenjin, Plateau Central Kalenjin
   Keiyo [eyo]
   Nandi [niq]
   Terik [tec]
-Nilotic, Southern Nilotic, Kalenjin, Okiek-Mosiro
+Nilotic, Southern Nilotic, Kalenjin, Okiek-Akie
   Akie [mwy]
   Okiek [oki]
 Nilotic, Southern Nilotic, Kalenjin, Northern Kalenjin
@@ -8491,10 +8492,12 @@ Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Ngayarda, Central Ngayarda, Ngar
 Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Ngayarda, Central Ngayarda, Yindjibarndi-Kurrama
   Kurrama [vku]
   Yindjibarndi [yij]
-Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Mantharta
+Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Mantharta, Djiwarli-Thiin
+  Thiin [iin]
+  Djiwarli [djl]
+Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Mantharta, Wariyangga-Dhargari
   Wariyangga [wri]
   Dhargari [dhr]
-  Djiwarli [djl]
 Pama-Nyungan, South-West Pama-Nyungan, Pilbara, Kanyara
   Bayungu [bxj]
   Pinigura [pnv]
@@ -8557,54 +8560,66 @@ Pama-Nyungan
   Dyirbal [dbl]
 Pankararu
   Pankarar\'u [paz]
-Panoan, Mainline Pano
+Pano-Tacanan, Tacanan
+  Cavine\~na [cav]
+Pano-Tacanan, Tacanan, Unclassified Tacanan
+  Mabenaro [NOCODE_Mabenaro]
+Pano-Tacanan, Tacanan, Takanik-Chamik
+  Ese Ejja [ese]
+Pano-Tacanan, Tacanan, Takanik-Chamik, Araona-Toromono
+  Toromono [tno]
+  Araona [aro]
+Pano-Tacanan, Tacanan, Takanik-Chamik, Takanik
+  Reyesano [rey]
+  Tacana [tna]
+Pano-Tacanan, Panoan, Mainline Pano
   Kaxarar\'i [ktx]
   Cashibo-Cacataibo [cbr]
-Panoan, Mainline Pano, Pano Nawa
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa
   Tuxin\'awa [tux]
   Cashinawa of the Tarauac\'a river [NOCODE_Cashinawa-Tarauaca-River]
   Remo of the Blanco river [NOCODE_Remo-Blanco-River]
-Panoan, Mainline Pano, Pano Nawa, Bolivian Nawa
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Bolivian Nawa
   Pacahuara [pcp]
   Ch\'acobo [cao]
   Karipuna [NOCODE_Karipuna]
-Panoan, Mainline Pano, Pano Nawa, Bolivian Nawa, Unclassified Bolivian Nawa
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Bolivian Nawa, Unclassified Bolivian Nawa
   Chiriva [NOCODE_Chiriva]
-Panoan, Mainline Pano, Pano Nawa, Chama subgroup
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Chama subgroup
   Panobo [pno]
   Sensi [sni]
-Panoan, Mainline Pano, Pano Nawa, Chama subgroup, Shipibo-Konibo-Kapanawa
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Chama subgroup, Shipibo-Konibo-Kapanawa
   Shipibo-Conibo [shp]
   Capanahua [kaq]
-Panoan, Mainline Pano, Pano Nawa, Headwaters Pano
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Headwaters Pano
   Cashinahua [cbs]
   Amahuaca [amc]
   Remo of the Moa river [rem]
-Panoan, Mainline Pano, Pano Nawa, Headwaters Pano, Yaminawa Complex
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Headwaters Pano, Yaminawa Complex
   Shanenawa [swo]
   Yawanawa [ywn]
   Sharanahua [mcd]
   Yaminahua [yaa]
   Yora [mts]
-Panoan, Mainline Pano, Pano Nawa, Madre de Dios Pano
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Madre de Dios Pano
   Arazaire [NOCODE_Arazaire]
   Atsahuaca [atc]
-Panoan, Mainline Pano, Pano Nawa, Marubo Subgroup
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Marubo Subgroup
   Panoan Katuk\'ina [knt]
   Mar\'ubo [mzr]
-Panoan, Mainline Pano, Pano Nawa, Poyanawa Subgroup
+Pano-Tacanan, Panoan, Mainline Pano, Pano Nawa, Poyanawa Subgroup
   Isconahua [isc]
   Nawa [NOCODE_Nawa]
   Poyan\'awa [pyn]
   Remo of the Jaquirana river [NOCODE_Remo-Jaquirana]
   Nukuini [nuc]
-Panoan, Mayoruna Branch
+Pano-Tacanan, Panoan, Mayoruna Branch
   Mayoruna-Tabatinga [NOCODE_Mayoruna-Tabatinga]
-Panoan, Mayoruna Branch, Mayo Group, Matis subgroup
+Pano-Tacanan, Panoan, Mayoruna Branch, Mayo Group, Matis subgroup
   Mayoruna-Jandiatuba [NOCODE_Mayoruna-Jandiatuba]
   Mayoruna-Amazon [NOCODE_Mayoruna-Amazon]
   Mat\'is [mpq]
-Panoan, Mayoruna Branch, Mayo Group, Matses subgroup
+Pano-Tacanan, Panoan, Mayoruna Branch, Mayo Group, Matses subgroup
   Kulina Pano [xpk]
   Mats\'es [mcf]
   Korubo [xor]
@@ -9678,18 +9693,6 @@ Surmic, South Surmic, Southwest Surmic, Didinga-Murle, Didinga-Longarim
   Narim [loh]
 Surmic, South Surmic, Southwest Surmic
   Kacipo-Balesi [koe]
-Tacanan
-  Cavine\~na [cav]
-Tacanan, Unclassified Tacanan
-  Mabenaro [NOCODE_Mabenaro]
-Tacanan, Takanik-Chamik
-  Ese Ejja [ese]
-Tacanan, Takanik-Chamik, Araona-Toromono
-  Toromono [tno]
-  Araona [aro]
-Tacanan, Takanik-Chamik, Takanik
-  Reyesano [rey]
-  Tacana [tna]
 Tai-Kadai, Hlaic
   Jiamao [jio]
 Tai-Kadai, Hlaic, Nuclear Hlaic
@@ -10525,9 +10528,6 @@ Tunica
 Tupian, Arikemic
   Arikem [ait]
   Kariti\^ana [ktn]
-Tupian
-  Awet\'i [awe]
-  Sater\'e-Maw\'e [mav]
 Tupian, Monde
   Suru\'i [sru]
 Tupian, Monde, Gavianic, Nuclear Gavianic
@@ -10553,52 +10553,56 @@ Tupian, Tuparic, Nuclear Tuparic
 Tupian, Tuparic, Nuclear Tuparic, Akuntsu-Mekens
   Mekens [skf]
   Akuntsu [aqz]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.A
+Tupian, Maweti-Guarani
+  Sater\'e-Maw\'e [mav]
+Tupian, Maweti-Guarani, Aweti-Guarani
+  Awet\'i [awe]
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.A
   Mby\'a Guaran\'i [gun]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.A, Paraguay-Brazil Guarani
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.A, Paraguay-Brazil Guarani
   Paraguayan Guaran\'i [gug]
   Pai Tavytera [pta]
   Kaiw\'a [kgk]
   Chirip\'a [nhd]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.B
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.B
   Western Bolivian Guaran\'i [gnw]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.B, Chiriguanic
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup I, Tupi-Guarani Subgroup I.B, Chiriguanic
   Eastern Bolivian Guaran\'i [gui]
   Tapiet\'e [tpj]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup I
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup I
   Ach\'e [guq]
   Xet\'a [xet]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup II
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup II
   Yuqui [yuq]
   Pauserna [psm]
   Guarayu [gyr]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup II, Siriono-Jora
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup II, Siriono-Jora
   Jor\'a [jor]
   Sirion\'o [srq]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup III
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup III
   Tup\'i [tpw]
   Nhengatu [yrl]
   Tupinamb\'a [tpn]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup III, Omagua-Kokama
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup III, Omagua-Kokama
   Omagua [omg]
   Cocama-Cocamilla [cod]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.A
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.A
   Tocantins Asurini [asu]
   Suru\'i Do Par\'a [mdz]
   Parakan\~a [pak]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.B
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.B
   Turiw\'ara [twt]
   Amanay\'e [ama]
   Tenetehara [tqb]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV
   Tapirap\'e [taf]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV, Unclassified Tupi-Guarani Subgroup IV
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, Unclassified Tupi-Guarani Subgroup IV
   Av\'a-Canoeiro [avv]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup V
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup V
   Kayab\'i [kyz]
   Arawet\'e [awt]
   Xing\'u Asurin\'i [asn]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VI
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VI
   Apiak\'a [api]
   Amundava [adw]
   Wiraf\'ed [wir]
@@ -10607,26 +10611,26 @@ Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VI
   Uru-Eu-Wau-Wau [urz]
   Tenharim [pah]
   Karip\'una [kuq]
-Tupian, Tupi-Guarani
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani
   Kamayur\'a [kay]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Wayampi-Zoe-Emerillon, Zoe-Emerillon
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Wayampi-Zoe-Emerillon, Zoe-Emerillon
   Zo'\'e [pto]
   Emerillon [eme]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Wayampi-Zoe-Emerillon
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Wayampi-Zoe-Emerillon
   Wayampi [oym]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Unclassified Guaja-Kaapor-Anambe
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Unclassified Guaja-Kaapor-Anambe
   Tacunyape [NOCODE_Tacunyape]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe
   Urub\'u-Kaapor [urb]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe
   Anamb\'e [aan]
-Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe, Guaja-Aure-Aura
+Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe, Guaja-Aure-Aura
   Guaj\'a [gvj]
   Aur\^e y Aur\'a [aux]
-Tupian, Yuruna
+Tupian, Maweti-Guarani, Aweti-Guarani, Yuruna
   Jur\'una [jur]
   Xipaya [xiy]
-Tupian, Yuruna, Unclassified Yuruna
+Tupian, Maweti-Guarani, Aweti-Guarani, Yuruna, Unclassified Yuruna
   Maritsau\'a [msp]
 Turama-Kikori
   Rumu [klq]

@@ -94,7 +94,9 @@ Sign Language, Deaf Sign Language, ASLic
 Sign Language, Deaf Sign Language, BSLic, BANZL
   British Sign Language [bfi]
   New Zealand Sign Language [nzs]
+Sign Language, Deaf Sign Language, BSLic, BANZL, Australian-PNG Sign
   Australian Sign Language [asf]
+  Papua New Guinean Sign Language [pgz] 
 Sign Language, Deaf Sign Language, BSLic, South African Sign
   South African Sign Language [sfs]
   Namibian Sign Language [nbs]
@@ -110,6 +112,7 @@ Sign Language, Village Sign Language, Providencia-Cayman Sign
   Providencia Sign Language [prz]
   Old Cayman Sign Language [NOCODE_Old-Cayman-Sign]
 Sign Language, Village Sign Language
+  Angami Naga Sign Language [NOCODE_Angami-Sign]
   Amami O Shima Sign Language [NOCODE_Amami-Sign]
   Kafr Qasem Sign Language [NOCODE_Kafr-Qasem-Sign]
   Yolngu Sign Language [ygs]
@@ -297,9 +300,12 @@ Pidgin, Trio based
   Ndyuka-Trio Pidgin [njt]
 Pidgin, Minigir based
   Tolai-Nakanai-Trade [NOCODE_Tolai-Nakanai-Trade]
-Pidgin, Amerindian pidgin
+Pidgin, Delware based
   Pidgin Delaware [dep]
+Pidgin, Choctaw based
   Mobilian [mod]
+Pidgin, Ottawa based
+  Broken Oghibbeway [NOCODE_Broken-Oghibbeway]
 Pidgin, Arabic based pidgin
   Turku [NOCODE_Turku]
   Early East African Pidgin Arabic [NOCODE_Early-East-African-Pidgin-Arabic]
@@ -350,15 +356,15 @@ Pidgin, Hawaiian based
 Pidgin, Tahitian based
   Maritime Polynesian Pidgin [NOCODE_Maritime-Polynesian-Pidgin]
 Pidgin, Motu based pidgin
-  Hiri-Motu-Trading-Koriki [NOCODE_Hiri-Motu-Trading-Koriki]
+  Trading Koriki [NOCODE_Hiri-Motu-Trading-Koriki]
   Hiri Motu [hmo]
-  Hiri-Motu-Trading-Eleman [NOCODE_Hiri-Motu-Trading-Eleman]
+  Trading Eleman [NOCODE_Hiri-Motu-Trading-Eleman]
 Pidgin, Onin based pidgin
   Onin Pidgin [onx]
 Pidgin, Romance based pidgin
   Mediterranean Lingua Franca [pml]
 Pidgin, Swahili based pidgin
-  Settla [sta]
+  KiSetla [sta]
   KiKAR [NOCODE_KiKar]
 Pidgin, Basque based pidgin
   Basque-Amerindian Pidgin [NOCODE_Basque-Amerindian-Pidgin]
@@ -419,7 +425,7 @@ Spurious, Sign Language, Deaf Sign Language
   Laos Sign Language [lso]
 Spurious, Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, South-Western Tibetic
   Thudam [thw]
-Spurious, Panoan, Mainline Pano
+Spurious, Pano-Tacanan, Panoan, Mainline Pano
   Nocam\'an [nom]
 Spurious, Afro-Asiatic, Berber, Kabyle-Atlas Berber, Atlas Berber
   Judeo-Berber [jbe]
@@ -471,7 +477,7 @@ Spurious, Retired, Uto-Aztecan, Southern Uto-Aztecan, Corachol-Aztecan, Aztec, W
   Durango Nahuatl [nln]
 Spurious, Retired, Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Southwestern Shifted Romance, West Ibero-Romance, Galician Romance, Macro-Portuguese, Indo-Portuguesic
   Indo-Portuguese [idb]
-Spurious, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.B
+Spurious, Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, Tupi-Guarani Subgroup IV.B
   Guajaj\'ara [gub]
 Spurious, Retired, Dogon, Nangan Dogon
   Walo Kumbe Dogon [dwl]
@@ -573,7 +579,7 @@ Spurious, Central_Sudanic, Sara-Bongo-Bagirmi, SBB Occidental, Nuclear SBB Occid
   Sara Dunjo [koj]
 Spurious, Sino-Tibetan, Nungish, Gunong
   Norra [nrr]
-Spurious, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup III
+Spurious, Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup III
   Tupinikin [tpk]
 Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Central Malayo-Polynesian, Flores-Sumba-Hawu, Sumba-Hawu, Sumba, Wewewa-Laboya
   Laura [lur]
@@ -680,7 +686,7 @@ Spurious, Sino-Tibetan, Bodic, Kaike-Ghale-Tamangic, Ghale-Tamangic, Tamangic, N
   Southwestern Tamang [tsf]
 Spurious, Sino-Tibetan, Himalayish
   Pongyong [pgy]
-Spurious, Dravidian, Central Dravidian, Teluguic
+Spurious, Dravidian, South Dravidian, South Dravidian II, Teluguic
   Savara [svr]
 Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Oriya-Gauda-Kamrupa, Gauda-Kamrupa, Gauda-Banga
   Kayort [kyv]
@@ -719,7 +725,7 @@ Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, N
 Spurious, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Southern Bantoid, Narrow Bantu, Central-Western Bantu, Yanzi (B.80), Boma-Tiene-Mpe, Boma-Tiene
   Buya [byy]
   Borna (Democratic Republic of Congo) [bxx]
-Spurious, Nilotic, Southern Nilotic, Kalenjin, Okiek-Mosiro
+Spurious, Nilotic, Southern Nilotic, Kalenjin, Okiek-Akie
   Aramanik [aam]
   Mediak [mwx]
   Kisankasa [kqh]
@@ -838,7 +844,7 @@ Spurious, Pama-Nyungan, Paman, Norman Pama
   Kunggara [kvs]
 Spurious, Hmong-Mien, Hmongic, Nuclear Hmongic-Ho Ne, Nuclear Hmongic, West Hmongic
   Chuanqiandian Cluster Miao [cqd]
-Spurious, Tupian, Tupi-Guarani
+Spurious, Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani
   Karipuna do Amapa [kgm]
 Spurious, Indo-European, Germanic, Northwest Germanic, North Germanic, West Scandinavian
   Norwegian Bokm\aa{}l [nob]
@@ -876,7 +882,7 @@ Unattested, Umbugarla
   Ngurmbur [nrx]
 Unattested, Tor-Orya, Tor
   Wares [wai]
-Unattested, Panoan
+Unattested, Pano-Tacanan, Panoan
   Papav\^o [ppv]
 Unattested, Arawan
   Himarim\~a [hir]
@@ -889,7 +895,7 @@ Unattested, Chocoan
   Runa [rna]
 Unattested, Atlantic-Congo, Volta-Congo, Benue-Congo, Bantoid, Unclassified Bantoid
   Nshi [nsc]
-Unattested, Tupian, Tupi-Guarani, Tupi-Guarani Subgroup VI
+Unattested, Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VI
   Tukumanf\'ed [tkf]
   Morerebi [xmo]
 Unattested, Arawakan, Central Maipuran
@@ -926,10 +932,10 @@ Unattested, Nambiquaran, Nambikwara Complex, Northern Nambiquaran
   Yelelihre [NOCODE_Yelelihre]
   Yalakalore [xyl]
   Tawend\^e [NOCODE_Tawende]
-Unattested, Panoan
+Unattested, Pano-Tacanan, Panoan
   Shinabo [snh]
   Xipin\'awa [xip]
-Unattested, Panoan, Mayoruna Branch
+Unattested, Pano-Tacanan, Panoan, Mayoruna Branch
   Mayo [NOCODE_Mayo]
   Pisabo [pig]
   Kontan\'awa [NOCODE_Kuntanawa]
