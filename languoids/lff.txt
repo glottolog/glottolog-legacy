@@ -6937,8 +6937,6 @@ Jivaroan, Shuaric
   Shuar [jiv]
   Achuar-Shiwiar [acu]
   Huambisa [hub]
-Jodi
-  Hoti [yau]
 Kadugli-Krongo
   Keiga [kec]
 Kadugli-Krongo, Central-Western Kadugli-Krongo, Krongo-Tumtum 
@@ -7589,6 +7587,7 @@ Mombum
 Mongolic, Unclassified Mongolic
   Kitan [zkt]
 Mongolic
+  Middle Mongol [xng]
   Dagur [dta]
 Mongolic, Southern Periphery Mongolic
   East Yugur [yuy]
@@ -8758,9 +8757,11 @@ Saharan, Western Saharan, Kanuri-Kanembu, Kanuric, East Kanuri
 Saharan, Western Saharan, Tebu
   Tedaga [tuq]
   Dazaga [dzg]
-Saliban
+Jodi-Saliban
+  Hoti [yau]
+Jodi-Saliban, Saliban
   S\'aliba [slc]
-Saliban, Maco-Piaroa
+Jodi-Saliban, Saliban, Maco-Piaroa
   Piaroa [pid]
   Maco [wpc]
 Salinan
