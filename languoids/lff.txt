@@ -6776,12 +6776,12 @@ Indo-European, Balto-Slavic, Slavic, South Slavic, Eastern South Slavic, Macedo-
   Bulgarian [bul]
 Indo-European, Balto-Slavic, Slavic, South Slavic, Western South Slavic
   Slovenian [slv]
-Indo-European, Balto-Slavic, Slavic, South Slavic, Western South Slavic, Molise-SKB, Serbian-Croatian-Bosnian
+  Kajkavian [kjv]
+  Slavomolisano [svm]
+Indo-European, Balto-Slavic, Slavic, South Slavic, Western South Slavic, Serbian-Croatian-Bosnian
   Serbian [srp]
   Croatian [hrv]
   Bosnian [bos]
-Indo-European, Balto-Slavic, Slavic, South Slavic, Western South Slavic, Molise-SKB
-  Slavomolisano [svm]
 Indo-European, Balto-Slavic, Slavic, West Slavic, Czech-Slovak, Czech-Lach
   Czech [ces]
   Silesian [szl]

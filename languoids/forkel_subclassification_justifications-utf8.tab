@@ -198,7 +198,7 @@ atm	atm	p.c.~Jason Lobel 2012
 atk	atk	**hv:Blust:CPhilippines**:80
 Lower Mamberamo	Lower Mamberamo	**h:Jones:ECenderawasih** **s:Donohue:Warembori** **w:LeRoux:Woordenlijsten**
 Kwalean	Kwalean	**hv:Dutton:SETNG**:636
-Nyanga-Mituku-Lega	Nyanga-Mituku-Lega	**hv:Bastinetal:Bantu**:209-210
+Nyanga-Mituku-Lega	Nyanga-Mituku-Lega	**hv:Bastinetal:Bantu**:209-210 **hvb:vanBulck:Congo**:228-235xs
 Oti-Volta Oriental	Oti-Volta Oriental	**hv:Sambieni:Proto-Oti-Volta-Oriental**
 Pashayi	Pashayi	**hvld:Bashir:Dardic**
 isa	isa	**hv:Pawley:Chequered-TNG**:93 **hv:Ross:Voorhoeve**:146
@@ -1005,7 +1005,6 @@ awv	awv	**hwsoc:Leboldetal:Lower-Digul**:4
 Heiban	Heiban	**hvw:Schadeberg:Heiban**
 Kwer-Kopkaka-Burumakok	Kwer-Kopkaka-Burumakok	**hvw:Wilbrink:Kopkaka**
 Mbumic	Mbumic	**hv:Elders:Kebi-Benue**
-\Xcite[228-235]{hvb	\Xcite[228-235]{hvb	vanBulck:Congo}
 Finisterre-Huon	Finisterre-Huon	**hv:Suter:Finisterre-Huon**
 Southwest Grassfields	Southwest Grassfields	**hvw:Blench:Momo-Western-Momo**
 Ga-Dangme	Ga-Dangme	**hv:Kropp:Ga-Dangme**
