@@ -50,8 +50,7 @@ class Replace(object):
         return self._pattern.sub(self._repl, s)
 
     def _repl(self, match):
-        group = next(i for i, m in enumerate(match.groups()) if m)
-        return self._new[group]
+        return self._new[match.lastindex - 1]
 
 
 REPLACE = Replace()
