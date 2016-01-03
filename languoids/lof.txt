@@ -243,7 +243,7 @@ Mixed Language, Serbian-Romani
   Romano-Serbian [rsb]
 Mixed Language, Swedish-Romani
   Tavringer Romani [rmu]
-Mixed Language, Persian-Romani
+Mixed Language, Persian-Indic
   Central-Southern Persian Gypsy [NOCODE_Central-Southern-Persian-Gypsy]
   Caspian and eastern Persia Gypsy [NOCODE_Caspian-Eastern-Persia-Gypsy]
   Magati [NOCODE_Magati]
@@ -397,14 +397,18 @@ Speech Register, Indo-European, Germanic, Northwest Germanic, West Germanic, Fra
   Tsotsitaal [fly]
 Speech Register, Indo-European, Indo-Iranian, Iranian, Western Iranian, Southwestern Iranian, Farsic-Caucasian Tat, Farsic, Eastern Farsic
   Adurgari [NOCODE_Adurgari]
+Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Halbic
+  Mirgan [zrg]
 Spurious, Austronesian, Nuclear Austronesian, Malayo-Polynesian, North Borneo Malayo-Polynesian, North Sarawakan, Kayan-Kenyah, Unclassified Kayan-Kenyah
   Punan Merap [puc]
 Spurious, Indo-European, Italic, Latino-Faliscan, Latinic, Imperial Latin, Romance, Italo-Western Romance, Western Romance, Shifted Western Romance, Northwestern Shifted Romance, Gallo-Rhaetian, Oil, Central Oil, Macro-French
   Zarphatic [zrp]
-Spurious, Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Angkuic
   Kon Keu [kkn]
 Spurious, Austroasiatic, Katuic, West Katuic, Brou-So
   Khua [xhv]
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Angkuic, Southern Angkuic
+  Kiorr [xko]
 Spurious, Austroasiatic, Katuic, Ta'oihic
   Khlor [llo]
 Spurious, Austroasiatic, Katuic, Katu
@@ -417,7 +421,7 @@ Spurious, Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Oriy
   Desiya [dso]
 Spurious, Maybrat
   Karon Dori [kgw]
-Spurious, Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
+Spurious, Austroasiatic, Khasi-Palaung, Palaungic
   Khao [xao]
 Spurious, Sign Language, Deaf Sign Language
   Singapore Sign Language [sls]

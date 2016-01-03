@@ -159,7 +159,7 @@ sml	Philippines
 smk	Philippines
 smj	Sweden	Norway
 dsh	Ethiopia	Kenya
-smh	China
+NOCODE_Gardiol	Italy
 smg	Papua New Guinea
 smf	Papua New Guinea
 sme	Sweden	Finland	Norway
@@ -310,7 +310,7 @@ cub	Brazil	Venezuela	Colombia
 ano	Colombia
 anh	Papua New Guinea
 prh	Philippines
-anj	Papua New Guinea
+prk	China	Myanmar
 cum	Colombia
 pru	Indonesia (Papua)
 cul	Brazil	Peru
@@ -326,6 +326,7 @@ tzu	Mexico
 tzt	Guatemala
 tzx	Papua New Guinea
 tzz	Mexico
+smh	China
 drt	Netherlands
 tza	Tanzania
 tzc	Mexico
@@ -346,7 +347,7 @@ dhl	Australia
 dhi	Nepal	India
 sjk	Finland
 dhg	Australia
-pry	Thailand
+anx	Papua New Guinea
 dhd	India
 dha	India
 prx	India
@@ -654,7 +655,7 @@ djn	Australia
 NOCODE_Chholo	Bolivia
 NOCODE_Amotomanco	Mexico
 NOCODE_Tosu	China
-NOCODE_Taita	Kenya
+NOCODE_Nori	Papua New Guinea
 bly	Benin
 blx	Philippines
 blz	Indonesia (Papua)
@@ -767,7 +768,7 @@ xmo	Brazil
 xmh	Australia
 xmi	Brazil
 xmj	Cameroon	Chad
-xmd	Cameroon
+NOCODE_Timote-Cuica	Venezuela
 xmf	Georgia
 xmg	Cameroon
 xma	Somalia
@@ -1422,7 +1423,7 @@ amn	Papua New Guinea
 NOCODE_Goo	C\^ote d'Ivoire
 NOCODE_Cuitlatec	Mexico
 lxu	China
-amb	Nigeria
+psa	Indonesia (Papua)
 rdb	Iran
 amg	Australia
 NOCODE_Caspian-Eastern-Persia-Gypsy	Iran
@@ -2076,6 +2077,7 @@ krk	Russian Federation (Asia)
 krh	Nigeria
 kri	United States	Gambia	Senegal	Sierra Leone	Guinea
 krn	Liberia
+NOCODE_Teojomulco-Chatino	Mexico
 krl	Russian Federation (Asia)	Finland
 krm	Sierra Leone
 krb	United States
@@ -2231,7 +2233,6 @@ nkv	Zambia	Malawi
 nkw	Democratic Republic of the Congo
 nkx	Nigeria
 nkz	Nigeria
-NOCODE_Pidgin-Gulf-Arabic	Saudi Arabia
 tmo	Malaysia (Peninsular)
 ert	Indonesia (Papua)
 tnt	Indonesia (Papua)
@@ -2399,7 +2400,7 @@ ypb	China
 ypa	China
 ypg	China
 yph	China
-nbd	Democratic Republic of the Congo
+tew	United States
 ypn	China
 ypo	China
 ypm	China
@@ -2512,6 +2513,7 @@ gnl	Australia
 gnm	Papua New Guinea
 NOCODE_Vili	Gabon
 NOCODE_Pidgin-Carib	Guyana
+gni	Australia
 nij	Indonesia (Papua)
 nik	India
 nih	Tanzania	Zambia
@@ -2570,7 +2572,7 @@ lcd	Indonesia (Papua)
 lce	Indonesia (Papua)
 lcc	Indonesia (Papua)
 lcl	Indonesia (Papua)
-rnp	India
+lcm	Papua New Guinea
 rnw	Tanzania
 lch	Namibia	Zambia	Angola
 bpa	Vanuatu
@@ -3147,7 +3149,7 @@ psm	Bolivia
 ama	Brazil
 psc	Iran
 amc	Brazil	Peru
-psa	Indonesia (Papua)
+amb	Nigeria
 ame	Peru
 psg	Malaysia (Peninsular)
 psd	Canada	United States
@@ -3315,7 +3317,7 @@ pum	Nepal
 nbj	Australia
 puo	Viet Nam	Laos
 asv	Democratic Republic of the Congo
-puj	Indonesia (Papua)
+asu	Brazil
 puk	Laos
 asz	Indonesia (Papua)
 puf	Indonesia (Papua)
@@ -3369,7 +3371,6 @@ gqu	China
 gqr	Chad
 hhr	Senegal
 hhy	Papua New Guinea
-NOCODE_Gardiol	Italy
 hhi	Papua New Guinea
 NOCODE_Yaroame	Brazil
 mfy	Mexico
@@ -3417,7 +3418,7 @@ asq	Austria
 asp	Algeria
 asw	Australia
 pui	Venezuela	Colombia
-asu	Brazil
+puj	Indonesia (Papua)
 ast	Portugal	Spain
 pud	Indonesia (Papua)
 pue	Argentina
@@ -3895,7 +3896,7 @@ NOCODE_Khamnigan-Mongol	China
 NOCODE_Komta	Nigeria
 hlu	Turkey (Asia)
 hlt	India	Myanmar
-snd	Canada	Pakistan	Singapore	Oman	Philippines	India	United Kingdom	United States
+mas	Kenya	Tanzania
 mar	Canada	Mauritius	Israel	United States	India
 mau	Mexico
 hle	China
@@ -4248,7 +4249,7 @@ duk	Papua New Guinea
 swm	Papua New Guinea
 swl	Sweden
 dun	Indonesia (Papua)
-NOCODE_Nori	Papua New Guinea
+NOCODE_Taita	Kenya
 duo	Philippines
 dub	India
 duc	Papua New Guinea
@@ -4277,7 +4278,7 @@ dmu	Indonesia (Papua)
 dmv	Malaysia (Peninsular)
 dmx	Mozambique
 dmy	Indonesia (Papua)
-swv	India
+duw	Indonesia (Papua)
 NOCODE_Idabaez	Colombia
 NOCODE_Wathawurrung	Australia
 ese	Bolivia	Peru
@@ -4677,7 +4678,7 @@ slg	Indonesia (Papua)	Malaysia (Peninsular)
 slc	Venezuela	Colombia
 glc	Chad
 akw	Congo
-akv	Russian Federation (Asia)
+NOCODE_Pidgin-Gulf-Arabic	Saudi Arabia
 glg	Portugal	Spain
 gly	Sudan
 kiz	Tanzania
@@ -4734,7 +4735,6 @@ opo	Papua New Guinea
 NOCODE_Jirajaran	Venezuela
 opk	Indonesia (Papua)
 whu	Indonesia (Papua)
-eli	Sudan
 NOCODE_Tabancale	Peru
 www	Cameroon
 wwr	Australia
@@ -4767,6 +4767,7 @@ xwa	Brazil
 NOCODE_West-Nyala	Kenya
 NOCODE_Okwanuchu	United States
 NOCODE_Mahigi	Papua New Guinea
+rnp	India
 fse	Finland
 fsl	Togo	France
 fss	Finland
@@ -4904,7 +4905,7 @@ nyd	Kenya
 nye	Angola
 snf	Senegal
 sng	Democratic Republic of the Congo
-mas	Kenya	Tanzania
+snd	Canada	Pakistan	Singapore	Oman	Philippines	India	United Kingdom	United States
 sne	Malaysia (Peninsular)
 snb	Malaysia (Peninsular)
 mat	Mexico
@@ -5116,7 +5117,6 @@ hdy	Ethiopia
 NOCODE_Envuelto	Colombia
 hdn	Canada	United States
 NOCODE_Pauwi	Indonesia (Papua)
-aif	Papua New Guinea
 pap	Netherlands	U.S. Virgin Islands	United States	Aruba	Puerto Rico	Netherlands Antilles
 paq	Uzbekistan	Afghanistan	Tajikistan
 par	United States
@@ -5280,6 +5280,7 @@ lkl	Papua New Guinea
 gge	Australia
 ggd	Australia
 ggg	Pakistan
+akv	Russian Federation (Asia)
 gga	Solomon Islands
 ggb	Liberia
 ggm	Australia
@@ -5436,7 +5437,7 @@ mmp	Papua New Guinea
 mms	Guatemala
 mmr	China
 sbb	Solomon Islands
-sbc	Papua New Guinea
+mml	China
 mmo	Papua New Guinea
 mmn	Philippines
 sbf	Ethiopia
@@ -5513,7 +5514,6 @@ ikl	Nigeria
 lbq	Papua New Guinea
 NOCODE_Samoan-Plantation-Pidgin	Samoa
 lbs	Libya
-NOCODE_Timote-Cuica	Venezuela
 rab	Nepal
 lbt	Viet Nam	China
 lbv	Papua New Guinea
@@ -6345,7 +6345,7 @@ aij	Israel
 NOCODE_Palmela	Brazil
 gnk	Botswana
 gnh	Nigeria
-gni	Australia
+aif	Papua New Guinea
 wdd	Gabon
 wdg	Papua New Guinea
 gnn	Australia
@@ -6644,7 +6644,7 @@ NOCODE_Dyarim	Nigeria
 mmu	Cameroon
 elk	Papua New Guinea
 elh	Sudan
-lcm	Papua New Guinea
+eli	Sudan
 elo	Kenya
 ell	Canada	Italy	Czech Republic	France	Bahamas	Democratic Republic of the Congo	Malawi	Turkey (Asia)	Russian Federation (Asia)	Australia	Austria	Jordan	Armenia	Germany	Kazakhstan	Sierra Leone	Ukraine	Georgia	Libya	Poland	Macedonia	United States	Sweden	Bulgaria	Romania	Albania	South Africa	Egypt	United Arab Emirates	United Kingdom	Tunisia	Djibouti	Congo	Mozambique	Greece	Paraguay	Hungary	Cyprus
 elm	Nigeria
@@ -6710,7 +6710,7 @@ pyn	Brazil
 ppe	Papua New Guinea
 ppk	Indonesia (Papua)
 ahk	Viet Nam	Thailand	China	Myanmar	Laos
-ppi	Mexico
+ahh	Indonesia (Papua)
 ahi	Côte d'Ivoire
 ahn	Nigeria
 aho	India
@@ -6978,7 +6978,7 @@ gta	Brazil
 tbb	Brazil
 gti	Democratic Republic of the Congo
 vto	Indonesia (Papua)
-ahh	Indonesia (Papua)
+ppi	Mexico
 shp	Peru
 ulm	Indonesia (Papua)
 ppo	Papua New Guinea
@@ -7070,7 +7070,7 @@ ann	Nigeria
 prn	Afghanistan
 pri	New Caledonia
 ani	Russian Federation (Asia)
-prk	China	Myanmar
+anj	Papua New Guinea
 ank	Nigeria
 ant	Australia
 prt	Thailand	Laos
@@ -7080,7 +7080,7 @@ prq	Peru
 NOCODE_Bauxite	Guinea
 anr	India
 prr	Brazil
-anx	Papua New Guinea
+pry	Thailand
 any	Ghana	Côte d'Ivoire
 anz	Papua New Guinea
 prz	Colombia
@@ -7408,7 +7408,7 @@ tes	Indonesia (Papua)
 tet	East Timor	Indonesia (Papua)
 teu	Uganda
 tev	Indonesia (Papua)
-tew	United States
+nbd	Democratic Republic of the Congo
 sug	Papua New Guinea
 sue	Papua New Guinea
 suc	Philippines
@@ -7434,7 +7434,7 @@ sux	Iraq
 sby	Zambia
 NOCODE_Warekena-Velha	Brazil
 mmm	Vanuatu
-mml	China
+sbc	Papua New Guinea
 NOCODE_Yanda	Australia
 bqa	Benin
 sba	Nigeria	Cameroon	Chad
@@ -7688,7 +7688,7 @@ swr	Indonesia (Papua)
 swu	Indonesia (Papua)
 duu	China
 duv	Indonesia (Papua)
-duw	Indonesia (Papua)
+swv	India
 skm	Papua New Guinea
 NOCODE_Kpeego	Burkina Faso
 rit	Australia
@@ -8226,6 +8226,7 @@ ndw	Democratic Republic of the Congo
 ndv	Senegal
 owl	United Kingdom
 owi	Papua New Guinea
+xmd	Cameroon
 vaj	Namibia
 vah	India
 vai	Liberia	Sierra Leone

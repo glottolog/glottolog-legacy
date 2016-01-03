@@ -3077,40 +3077,37 @@ Austroasiatic, Mangic
 Austroasiatic, Mangic, Bolyu-Bugan
   Bolyu [ply]
   Bugan [bbh]
-Austroasiatic, Khasi-Palaung, Palaungic, Khao-Bit
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Khao-Bit
   Bit [bgk]
   Kh\'ang [kjm]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Unclassified West Palaungic
-  Kiorr [xko]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Bulangic
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Waic, Bulangic
   Blang [blr]
   Samtao [stu]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Wa-Lawa, Lawa
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Waic, Wa-Lawa, Lawa
   Western Lawa [lcp]
   Eastern Lawa [lwl]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Wa-Lawa, Nuclear Waic
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Waic, Wa-Lawa, Nuclear Waic
   Zhenkang Wa [wbm]
   Ximeng-Menglian Awa [vwa]
   South Wa [prk]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Waic, Unclassified Waic
-  Tai Loi [tlq]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Angkuic
   U [uuu]
   Eastern Angkuic [NOCODE_Eastern-Angkuic]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Angkuic, Southern Angkuic
+Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Angkuic, Southern Angkuic
+  Muak [tlq]
   Mok [mqt]
   Hu [huo]
   Man Met [mml]
-Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic
-  Lamet [lbn]
 Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic
+  Lamet [lbn]
+Austroasiatic, Khasi-Palaung, Palaungic
   Danau [dnu]
-Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Palaung-Riang, Palaung
-  Shwe Palaung [pll]
-Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Palaung-Riang, Palaung, Rumai-Ruching Palaung
+Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic
   Rumai Palaung [rbb]
+Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Palaung
+  Shwe Palaung [pll]
   Ruching Palaung [pce]
-Austroasiatic, Khasi-Palaung, Palaungic, East Palaungic, Palaung-Riang, Riang
+Austroasiatic, Khasi-Palaung, Palaungic, West Palaungic, Riang
   Riang (Myanmar) [ril]
   Yinchia [yin]
 Austroasiatic, Vietic, Chutic, East Chutic
@@ -3595,7 +3592,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Po
   Penrhyn [pnh]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian, Central Eastern Polynesian, Mangaia-Old Rapa
   Rarotongan [rar]
-  Rapa [ray]
+  Old Rapa [ray]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian, Northern Outlier Polynesian-East Polynesian, Solomons Northern Outlier Polynesian-East Polynesian, Central Northern Outlier Polynesian-East Polynesian, East Polynesian
   Rapanui [rap]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Central-Eastern Malayo-Polynesian, Eastern Malayo-Polynesian, Oceanic, Central Pacific linkage, Tokelau-Fijian, Polynesian, Nuclear Polynesian
@@ -5530,15 +5527,18 @@ Dravidian, North Dravidian, Kurux-Malto, Malto
   Kumarbhag Paharia [kmj]
 Dravidian, North Dravidian
   Brahui [brh]
-Dravidian, South Dravidian, South Dravidian II, Gondi
-  Western Muria [mut]
-  Far Western Muria [fmu]
-  Maria (India) [mrr]
-  Eastern Muria [emu]
-  Dandami Maria [daq]
+Dravidian, South Dravidian, South Dravidian II, Gondi, Northwest Gondi
   Southern Gondi [ggo]
   Northern Gondi [gno]
+Dravidian, South Dravidian, South Dravidian II, Gondi, Southeast Gondi, Hill Maria-Koya
+  Maria (India) [mrr]
   Koya [kff]
+Dravidian, South Dravidian, South Dravidian II, Gondi, Southeast Gondi, General Southeast Gondi
+  Dandami Maria [daq]
+Dravidian, South Dravidian, South Dravidian II, Gondi, Southeast Gondi, General Southeast Gondi, Muria
+  Western Muria [mut]
+  Far Western Muria [fmu]
+  Eastern Muria [emu]
 Dravidian, South Dravidian, South Dravidian II, Konda-Kui
   Konda-Dora [kfc]
 Dravidian, South Dravidian, South Dravidian II, Konda-Kui, Manda-Kui, Kui-Kuvi
@@ -5607,6 +5607,7 @@ Dravidian, South Dravidian, South Dravidian I, Tamil-Kannada, Tamil-Kota, Tamil-
   Urali [url]
   Kaikadi [kep]
   Wayanad Chetti [ctt]
+  Vishavan [vis]
 Dravidian, South Dravidian, South Dravidian I, Tamil-Kannada, Tamil-Kota, Tamil-Toda, Tamil-Irula, Tamil-Kodagu, Tamil-Malayalam, Unclassified Tamil-Malayalam
   Malasar [ymr]
 Dravidian, South Dravidian, South Dravidian I, Tulu-Koraga, Tulu-Bellari
@@ -5617,7 +5618,6 @@ Dravidian, South Dravidian, South Dravidian I, Tulu-Koraga, Koraga
   Mudu Koraga [vmd]
   Korra Koraga [kfd]
 Dravidian, Unclassified Dravidian
-  Vishavan [vis]
   Khirwar [kwx]
 Duna
   Duna [duc]
@@ -6348,7 +6348,6 @@ Indo-European, Indo-Iranian, Indo-Aryan, Indo-Aryan Eastern zone, Halbic
   Bhunjia [bhu]
   Kamar [keq]
   Nahari [nhh]
-  Mirgan [zrg]
 Indo-European, Indo-Iranian, Indo-Aryan, Unclassified Indo-Aryan, Chinali-Lahul Lohar
   Chinali [cih]
   Lahul Lohar [lhl]
@@ -6897,6 +6896,8 @@ Nuclear-Macro-Je, Maxakalian, Western Maxakali
 Nuclear-Macro-Je, Maxakalian
   Malali [NOCODE_Malali]
   Patax\'o H\~a-Ha-H\~ae [pth]
+Nuclear-Macro-Je, Maxakalian, Unclassified Maxakalian
+  Korop\'o [xxr]
 Nuclear-Macro-Je, Jabuti
   Djeoromitx\'i [jbt]
   Arikap\'u [ark]
@@ -7735,16 +7736,17 @@ Namla-Tofanma
   Tofanma [tlg]
 Nara
   Nara [nrb]
-Narrow_Talodi
+Narrow_Talodi, Buram-Saraf, Nding-Tasomi
   Tasomi-Tata [tlo]
   Nding [eli]
-Narrow_Talodi, Ngile-Dengebu
+Narrow_Talodi, Buram-Saraf, Buram Hill Chain
   Ngile [jle]
   Dagik [dec]
-Narrow_Talodi, Tochoic
+Narrow_Talodi, Buram-Saraf, Acheron-Tocho
   Acheron [acz]
-  Lumun [lmd]
   Tocho [taz]
+Narrow_Talodi, Lumun-Torona
+  Lumun [lmd]
   Torona [tqr]
 Natchez
   Natchez [ncz]
@@ -8063,10 +8065,12 @@ Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Popolocan-Mazatecan, Mazat
   Huautla Mazatec [mau]
   Mazatl\'an Mazatec [vmz]
 Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino
+  Teojomulco Chatino [NOCODE_Teojomulco-Chatino]
+Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino, Core Chatino
   Zenzontepec Chatino [czn]
-Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino, Coastal Chatino
+Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino, Core Chatino, Coastal Chatino
   Tataltepec Chatino [cta]
-Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino, Coastal Chatino, Eastern Chatino
+Otomanguean, Eastern Otomanguean, Popoloca-Zapotecan, Zapotecan, Chatino, Core Chatino, Coastal Chatino, Eastern Chatino
   Zacatepec Chatino [ctz]
   Western Highland Chatino [ctp]
   Eastern Highland Chatino [cly]
@@ -8664,9 +8668,7 @@ Puinave
   Puinave [pui]
 Puquina
   Puquina [puq]
-Puri-Coropo-Coroado
-  Coropo [xxr]
-Puri-Coropo-Coroado, Puri-Coroado
+Puri-Coroado
   Coroado-Puri [NOCODE_Coroado-Puri]
   Puri [prr]
 Pyu
@@ -9016,7 +9018,7 @@ Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, South-Western Tibetic,
   Tsum [ttz]
 Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, South-Western Tibetic, Kyirong-Kagate, Yolmo-Kagate
   Kagate [syw]
-  Helambu Sherpa [scp]
+  Lamjung-Melamchi Yolmo [scp]
 Sino-Tibetan, Bodic, Bodish, Old-Modern Tibetan, Tibetic, South-Western Tibetic, Kyirong-Kagate, Gyalsumdo-Nubri-Kyirong
   Nubri [kte]
   Kyerung [kgy]
@@ -10481,7 +10483,7 @@ Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan I
 Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan I, Bara-Tatuyo
   Tatuyo [tav]
   Waimaha [bao]
-Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan II, Wanano-Piratapuyo
+Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan II, Kotiria-Piratapuyo
   Kotiria [gvc]
   Piratapuyo [pir]
 Tucanoan, Eastern Tucanoan, Eastern Eastern Tucanoan, Eastern Eastern Tucanoan II, Pisamira-Yuruti, Tuyuca-Yuruti
@@ -10597,8 +10599,6 @@ Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, T
   Tenetehara [tqb]
 Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV
   Tapirap\'e [taf]
-Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup IV, Unclassified Tupi-Guarani Subgroup IV
-  Av\'a-Canoeiro [avv]
 Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup V
   Kayab\'i [kyz]
   Arawet\'e [awt]
@@ -10622,6 +10622,7 @@ Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII,
 Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Unclassified Guaja-Kaapor-Anambe
   Tacunyape [NOCODE_Tacunyape]
 Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe
+  Av\'a-Canoeiro [avv]
   Urub\'u-Kaapor [urb]
 Tupian, Maweti-Guarani, Aweti-Guarani, Tupi-Guarani, Tupi-Guarani Subgroup VIII, Guaja-Kaapor-Anambe, Guaja-Anambe
   Anamb\'e [aan]
