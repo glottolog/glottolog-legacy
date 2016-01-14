@@ -5823,7 +5823,7 @@ Gunwinyguan, Marne
   Kunbarlang [wlg]
 Gunwinyguan, Marne, Central Gunwinyguan
   Ngalkbun [ngk]
-  Gunwinggu [gup]
+  Bininj Kun-Wok [gup]
 Gunwinyguan, Gunwinyguan Bak, Wubuy-Anindilyakwa
   Wubuy [nuy]
   Anindilyakwa [aoi]
@@ -9125,7 +9125,7 @@ Sino-Tibetan, Bodic, Tibeto-Kanauri, Western Tibeto-Kanauri, Lahaulic
 Sino-Tibetan
   Gongduk [goe]
 Sino-Tibetan, Kman-Meyor
-  Miju-Mishmi [mxj]
+  Kman [mxj]
   Zakhring [zkr]
 Sino-Tibetan, Dhimalish
   Toto [txo]

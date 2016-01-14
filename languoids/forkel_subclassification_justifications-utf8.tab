@@ -451,7 +451,6 @@ NOCODE_Old-Wanji	NOCODE_Old-Wanji	**hv:EdelmanDodykhudoeva:Pamir**
 Southwestern Shifted Romance	Southwestern Shifted Romance	**hv:Agard:Romance**:91-99
 Chuanqiandian	Chuanqiandian	**styp:McLaughlin:Hmong-Soud**:6-10
 ykt	ykt	**hvsoc:Pelkey:Phula**:458 **h:Hsiu:Southwestern-China**
-fom	fom	**hv:Bastinetal:Bantu**:208 **h:Hulstaert:Cuvette-Congolaise**:22
 umi	umi	**hv:Rensch:Central-Sarawak** **e:Sellato:Bukat-Kereho**:20-21
 eya	eya	**hv:Leer:AET**
 Western Tibeto-Kanauri	Western Tibeto-Kanauri	**hvw:Widmer:West-Himalayish**
@@ -511,7 +510,6 @@ NOCODE_Mawakwa	NOCODE_Mawakwa	**hv:Loukotka:SAmerica**
 vwa	vwa	**phon:Watkins:Wa**
 Greater Chuanqiandian	Greater Chuanqiandian	**hvb:Niederer:Hmong-Mjen** **hv:Johnson:Far-Western-Hmongic**
 xkk	xkk	**hel:Bradley:SEAsia**
-xko	xko	**hb:Parker:Austroasiatic**:114 **hv:Hsiu:Angkuic**
 tiz	tiz	**hv:EdmondsonSolnit:Shan**
 Sepik Hill	Sepik Hill	**hvw:ConradLewis:USepik** **hvw:Dyeetal:Sepik-Hill**
 xkc	xkc	**s:Yarshater:Xoini**
@@ -584,7 +582,6 @@ nlk	nlk	**e:Wilson:Yali-Heluk**
 Taos-Picuris	Taos-Picuris	**hvbtyp:Sutton:Kiowa-Tanoan**:1168-1173
 Au-Olo-Elkei	Au-Olo-Elkei	**hvw:Laycock:Lumi**:48
 Bungku-Tolaki	Bungku-Tolaki	**hvs:Mead:Bungku-Tolaki**
-zrg	zrg	**h:Masica:Indo-Aryan**:438
 North_Bougainville	North Bougainville	**g:Robinson:Rotokas**:17-24
 Corachol-Aztecan	Corachol-Aztecan	**hv:Hill:Uto-Aztecan**
 Kaike-Ghale-Tamangic	Kaike-Ghale-Tamangic	**vphon:Honda:Kaike**
@@ -1137,6 +1134,7 @@ csv	csv	**typ:Watkins:Sumtu**:79
 Gondi	Gondi	**hv:Smith:Gondi** **hv:Garapati:Gondi** **hvwsoc:Beine:Gondi**
 bkf	bkf	**hv:HackettvanBulck:ETeam**:84
 Nuclear Polynesian	Nuclear Polynesian	**hv:Marck:Polynesian** **hv:Wilson:East-Polynesians**
+NOCODE_Nouchi	NOCODE_Nouchi	**soc:Kube:Nouchi**, **ldsoc:Sande:Nouchi**
 bkt	bkt	**hv:Bastinetal:Bantu**:206
 NOCODE_Syriem	NOCODE_Syriem	**h:Haokip:Kuki-Chin**
 Kapong	Kapong	**g:Sousa:Ingariko**:36-40
