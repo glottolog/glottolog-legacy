@@ -3216,6 +3216,7 @@ Austronesian, Nuclear Austronesian, Malayo-Polynesian, Celebic, Eastern Celebic,
   Andio [bzb]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Celebic, Eastern Celebic, Saluan-Banggai, Western Saluan-Banggai, Saluanic
   Bobongko [bgb]
+Austronesian, Nuclear Austronesian, Malayo-Polynesian, Celebic, Eastern Celebic, Saluan-Banggai, Western Saluan-Banggai, Saluanic, Batui-Saluan  
   Batui [zbt]
   Saluan [loe]
 Austronesian, Nuclear Austronesian, Malayo-Polynesian, Celebic, Kaili-Pamona-Wotu-Wolio, Kaili-Pamona, Northern Kaili-Pamona, Kaili
@@ -7223,13 +7224,13 @@ Koam
   Mongol [mgt]
 Lower_Sepik-Ramu, Ramu, Tamolan, Itutang-Midsivindi-Akrukai
   Chini [afi]
-  Inapang [mzu]
-  Kominimung [xoi]
-Lower_Sepik-Ramu, Ramu, Tamolan, Unclassified Tamolan
-  Igana [igg]
+  Itutang-Inapang [mzu]
 Lower_Sepik-Ramu, Ramu, Tamolan, Breri-Romkun
   Romkun [rmk]
   Breri [brq]
+Lower_Sepik-Ramu, Ramu, Tamolan, Unclassified Tamolan
+  Igana [igg]
+  Kominimung [xoi]
 Lower_Sepik-Ramu, Ramu, Ataitan, Tangu-Igom
   Kanggape [igm]
   Tanggu [tgu]
