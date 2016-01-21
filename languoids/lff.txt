@@ -7222,7 +7222,7 @@ Koam
   Langam [lnm]
   Yaul [yla]
   Mongol [mgt]
-Lower_Sepik-Ramu, Ramu, Tamolan, Itutang-Midsivindi-Akrukai
+Lower_Sepik-Ramu, Ramu, Tamolan
   Chini [afi]
   Itutang-Inapang [mzu]
 Lower_Sepik-Ramu, Ramu, Tamolan, Breri-Romkun
